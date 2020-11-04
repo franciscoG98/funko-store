@@ -1,8 +1,7 @@
 import React from 'react';
 
-import './Product.css';
+import './ProductStyle.jsx';
 
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,19 +10,14 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import useStyles from './ProductStyle';
+
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
 import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
 
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-});
+
 
 
 const Product = ({f}) => {
@@ -32,7 +26,7 @@ const Product = ({f}) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} display='flex'>
       <CardActionArea>
         <CardMedia
           className={classes.media}
