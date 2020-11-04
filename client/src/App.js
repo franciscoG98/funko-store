@@ -1,8 +1,9 @@
 import React from 'react';
 // import React, { useState, useEffect, useRef } from 'react'; //hooks
-import Products from './components/Products/Products'
+import Products from './components/Products/Products';
 import './App.css';
-import Nav from '../src/components/Nav/Nav'
+import Nav from '../src/components/Nav/Nav';
+import CRUForm from '../src/components/CRUForm/CRUForm';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
 
       <Nav />
       <Products />
+      <CRUForm />
     </div>
   );
 }
