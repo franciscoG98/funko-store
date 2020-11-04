@@ -1,0 +1,15 @@
+#image {
+    width: 65%;
+    float: left;
+}
+
+#info{
+    width: 30%;
+    float: right;
+    padding-left: 30px;
+}
+
+img{
+    width: '400px';
+    height: 'auto'
+}

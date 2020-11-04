@@ -17,13 +17,30 @@ import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounde
 import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
 
 
+//modal 
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
+import DetailModal from '../DetailModal/DetailModal'
 
 
 const Product = ({f}) => {
 
 
   const classes = useStyles();
+
+  //estado
+  const [open, setOpen] = React.useState(false);
+  
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  // fin estado
 
   return (
     <Card className={classes.root} display='flex'>
@@ -55,10 +72,29 @@ const Product = ({f}) => {
         <AddShoppingCartRoundedIcon />
         Add To Cart
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={() => handleOpen()}>
             <OpenInNewRoundedIcon />
             More
         </Button>
+
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+          >
+          <Fade in={open}>
+            <div className={classes.paper}>
+              <DetailModal f={f}/>
+            </div>
+          </Fade>
+        </Modal>
 
       </CardActions>
     </Card>
