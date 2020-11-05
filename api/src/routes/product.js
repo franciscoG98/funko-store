@@ -2,14 +2,15 @@ const server = require('express').Router();
 const { Product, Categories } = require('../db.js');
 
 server.post('/', function (req, res) {
-    const {name, description, price} = req.body;
+    const {name, description, price, imagen, stock, categories} = req.body;
 
-    if (!name || !description || !price) res.status(400).json({msj: "Faltan datos"});
+    if (!name || !description || !price ||  !imagen) res.status(400).json({msj: "Faltan datos"});
 
-    Product.create({name: name, description: description, price: price})
+    Product.create({name: name, description: description, price: price, imagen: imagen, stock: stock, categories: categories})
         .then(np => {
-            res.status(201).send(np);
-        })
+            res.status(201).json({np});
+		})
+		
 })
 
 server.put('/:id', function(req, res) {
@@ -24,6 +25,9 @@ server.put('/:id', function(req, res) {
 			res.status(200);
 			res.send(product)
 		})
+		.catch(err => {
+			console.log(err)
+		  })
 	})
 
 server.get('/', (req, res, next) => {
@@ -40,6 +44,9 @@ server.get("/category", (req, res) => {
 		.then(categories => {
 			res.json({categories})
 		})
+		.catch(err => {
+			console.log(err)
+		  })
 })
 
 server.post("/category", (req, res) => {
@@ -85,20 +92,35 @@ server.get('/:id', (req, res)=> {
 	if(!id){
 		res.json({msg: "invalid Id"})
 	}else{
-	Product.findByPk(id, 
-		{include: {model: Categories}}
+		Product.findAll({where: {id}}, 
+		{include:[{ model: "Categoryp", attributes: ['name']}]}
 		)
-	.then(producto =>{
+		.then(producto =>{
+			console.log(producto)
 		res.json({producto})
-	})
-	.catch(err => {
-		res.json({err})
-	}) 	
-		
-	}
-		
-
-	
+		})
+		.catch(err => {
+			console.log(err)
+			res.json({err})
+		}) 
+	}			
 });
+
+server.get("/category/:nombreCat", (req, res) => {
+	const {nombreCat} = req.params;
+
+	if(!nombreCat){
+		res.status(400).json({msg: "Elija una categoria"})
+	} else {
+		Product.findAll({where: nombreCat}, {include: Categories})
+		.then(resultado => {
+			res.json(resultado)
+		})
+		.catch(err => {
+			res.json(err)
+		})
+	}
+
+})
 
 module.exports = server;
