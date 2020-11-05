@@ -6,7 +6,7 @@ server.post('/', function (req, res) {
 
     if (!name || !description || !price) res.status(400).json({msj: "Faltan datos"});
 
-    let newProduct = Product.create({name: name, description: description, price: price})
+    Product.create({name: name, description: description, price: price})
         .then(np => {
             res.status(201).send(np);
         })
@@ -25,17 +25,6 @@ server.put('/:id', function(req, res) {
 			res.send(product)
 		})
 	})
-
-//     Product.findByPk(productId.id)
-//     .then(product => {
-//         Product.update(data,
-//             {where: { id: productId.id }})
-//     })
-//     .then(product => {
-//         res.status(200);
-//         res.send(product);
-//     })
-// })
 
 server.get('/', (req, res, next) => {
 	Product.findAll()
