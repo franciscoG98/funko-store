@@ -1,6 +1,6 @@
 import React from 'react'
 import Product from '../Product/Product'
-import Funkos from './aux'
+import Funkos from './funkos'
 import './Products.css'
 
 
