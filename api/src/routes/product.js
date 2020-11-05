@@ -53,6 +53,20 @@ server.delete("/category/:id", (req, res) => {
 	}	
 })
 
+//crear rutas para modificar categorias:
+server.get('/:id', (req, res)=> {
+	const {id} = req.params;
 
+	if(!id){
+		res.json({msg: "invalid Id"})
+	}else{
+	
+		
+		
+	}
+		
+
+	
+});
 
 module.exports = server;
