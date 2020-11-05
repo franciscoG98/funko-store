@@ -78,15 +78,22 @@ server.delete("/category/:id", (req, res) => {
 	}	
 })
 
-//crear rutas para modificar categorias:
+//Retorna un objeto de tipo producto con todos sus datos. (Incluidas las categorías e imagenes).
 server.get('/:id', (req, res)=> {
 	const {id} = req.params;
 
 	if(!id){
 		res.json({msg: "invalid Id"})
 	}else{
-	
-		
+	Product.findByPk(id, 
+		{include: {model: Categories}}
+		)
+	.then(producto =>{
+		res.json({producto})
+	})
+	.catch(err => {
+		res.json({err})
+	}) 	
 		
 	}
 		
