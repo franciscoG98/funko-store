@@ -123,4 +123,52 @@ server.get("/category/:nombreCat", (req, res) => {
 
 })
 
+//Agrega la categoria al producto.
+server.post('/:idProducto/category/:idCategoria', (req, res) => {
+	const {idProducto, idCategoria} = req.params;
+	let newProduct;
+
+	if(!idProducto || !idCategoria){
+		res.status(400).json({msg: "invalid or missing data"})
+	} else {
+		Product.FindByPk(idProducto)
+	.then(producto => {
+	newProduct = producto;
+	newProduct.setCategories(idCategoria);
+	})
+	.catch(err => {
+		res.json(err)
+	})
+	}
+	
+});
+//Elimina la categoria al producto.
+server.delete('/:idProducto/category/:idCategoria', (req, res) => {
+	const {idProducto, idCategoria} = req.params;
+	let deleteProduct;
+
+	if(!idProducto || !idCategoria){
+		res.status(400).json({msg: "invalid or missing data"})
+	} else {
+		Product.FindByPk(idProducto)
+	.then(producto => {
+	deleteProduct = producto;
+	deleteProduct.destroy({
+		where: { id: idCategoria }
+	   });
+	})
+	.then(()=>{
+		res.json({msg: "successfully deleted"})
+	})
+	.catch(err => {
+		res.json(err)
+	})
+	}
+
+})
+
+
+
+
+
 module.exports = server;
