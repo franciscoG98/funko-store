@@ -43,15 +43,15 @@ server.get('/', (req, res, next) => {
 });
 
 
-server.get("/category", (req, res) => {
-	Categories.findAll()
-		.then(categories => {
-			res.json({categories})
-		})
-		.catch(err => {
-			console.log(err)
-		  })
-})
+// server.get("/category", (req, res) => {
+// 	Categories.findAll()
+// 		.then(categories => {
+// 			res.json({categories})
+// 		})
+// 		.catch(err => {
+// 			console.log(err)
+// 		  })
+// })
 
 server.post("/category", (req, res) => {
 	const {name, description} = req.body;
@@ -96,9 +96,7 @@ server.get('/:id', (req, res)=> {
 	if(!id){
 		res.json({msg: "invalid Id"})
 	}else{
-		Product.findOne({where: {id: id}}, 
-		{include: { model: Categories}}
-		)
+		Product.findOne({where: {id},	include: [Categories]})
 		.then(producto =>{
 		 res.json({producto})
 		})
@@ -110,19 +108,17 @@ server.get('/:id', (req, res)=> {
 });
 
 server.get("/category/:nombreCat", (req, res) => {
-	const {nombreCat} = req.params;
-
-	if(!nombreCat){
-		res.status(400).json({msg: "Elija una categoria"})
-	} else {
-		Product.findAll({where: nombreCat}, {include: Categories})
-		.then(resultado => {
-			res.json(resultado)
-		})
-		.catch(err => {
-			res.json(err)
-		})
+	
+	const { nombreCat} = req.params;
+	let name = nombreCat
+	if(!name){
+		res.status(400).json({msg: "La categoria no existe"})
 	}
+  
+	Categories.findOne({where: {name}})
+	.then(categoria => {
+		res.json(categoria)
+	})
 
 })
 
@@ -130,28 +126,40 @@ server.get("/category/:nombreCat", (req, res) => {
 server.delete('/:idProducto/category/:idCategoria', (req, res) => {
 	const {idProducto, idCategoria} = req.params;
 	let deleteProduct;
-
 	if(!idProducto || !idCategoria){
 		res.status(400).json({msg: "invalid or missing data"})
 	} else {
-		Product.FindByPk(idProducto)
-	.then(producto => {
-	deleteProduct = producto;
-	deleteProduct.destroy({
-		where: { id: idCategoria }
-	   });
-	})
-	.then(()=>{
-		res.json({msg: "successfully deleted"})
-	})
-	.catch(err => {
-		res.json(err)
-	})
-	}
+		Product.findOne({where: {id: idProducto},	include: [Categories]})
+		.then(producto =>{
+		 deleteProduct = producto
+		 Categories.destroy({ where: {id: idCategoria}})
+		 .then((data) => {
+			 res.json(data)
+		 })
+		})
+		.catch(err => {
+			console.log(err)
+			res.json(err)
+		}) 
+	}			
+	
 
 })
 
-
+// 	Product.findByPk(idProducto, {include: [Categories]})
+// 	.then(producto => {
+// 	deleteProduct = producto;
+// 	deleteProduct.destroy({
+// 	where: { idCategoria }
+//    });
+// })
+// .then(()=>{
+// 	res.json({msg: "successfully deleted"})
+// })
+// .catch(err => {
+// 	res.json(err)
+// })
+// }
 
 
 
