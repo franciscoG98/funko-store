@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FormGroup, TextField, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import CheckboxesAvenger from "./newCheckbox"
+import CheckboxAvenger from "./checkboxAvenger"
 
 const useStyles = makeStyles({
     root: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
       border: 0,
       borderRadius: 3,
       boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      color: 'white',
+      color: 'black',
       height: 'auto',
       width:350,
       margin: 'auto',
@@ -22,23 +22,26 @@ const useStyles = makeStyles({
     },
     formControl: {
         minWidth: 120,
-    }
+    },
+    /* checkbox : {
+        display: "none"
+    } */
 });
-//const marvel = ["Avenger", "x-men", "Fantastic Four"];
+const marvel = ["Avenger", "X-men", "Fantastic Four"];
+const dc = ["Justice League", "Legend", "Villain"];
 
 const CRUForm = () => {
-    //const [dcOMarvel, setDcOMarvel] = useState(choose);
+    const [value, setValue] = useState("Marvel");
     const classes = useStyles();
 
     const handleChange = (el)=>{
-        if(el.value === "Marvel"){
-            return(<div>salio</div>)
-        }
+        setValue(el.target.value)
+        
     };
     return (
 
         <FormGroup>
-            <form className={classes.root} noValidate autoComplete="off">
+        <form className={classes.root} noValidate autoComplete="off">
                 <TextField id="standard-basic" label="Name your Funko" />
                 <TextField id="standard-basic" label="Describe your funko" />
                 <TextField id="standard-basic" label="Price your Funko" type="number"/>
@@ -56,7 +59,7 @@ const CRUForm = () => {
                     <option value='DC'>DC</option>
                </NativeSelect>
                 <br/>
-                <CheckboxesAvenger/>
+                <CheckboxAvenger  props={value === "Marvel" ? marvel : dc}/>
                 <br/>
                 <Button variant="contained" color="primary" onClick={() => { alert('andò') }}>
                     Upload your Funko!
