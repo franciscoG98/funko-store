@@ -1,7 +1,7 @@
 const server = require('express').Router();
 const { Product, Categories } = require('../db.js');
 
-server.post('/', function (req, res) {
+server.post('/', function (req, res, next) {
     let { name, description, price, imagen, stock, categoryId} = req.body;
 	Product.create({
 	name: name,
