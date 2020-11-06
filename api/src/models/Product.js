@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
       },
       description: {
         type: DataTypes.STRING,
@@ -16,6 +17,13 @@ module.exports = (sequelize) => {
       price: {
         type: DataTypes.DOUBLE,
         allowNull: false,
+      },
+      imagen: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      stock: {
+        type: DataTypes.ENUM("true", "false"),
       }
   });
 
