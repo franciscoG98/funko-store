@@ -17,16 +17,37 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require("./src/app.js");
 
+const {
+  conn,
+  Product,
+  Categories,
+  categoryp,
+} = require("./src/db.js");
+
+const {
+  initialCategories,
+  initialProducts,
+  categoryProducts,
+} = require("./src/seed.js");
+
+//const Category = require("./src/models/Category.js");
 // Syncing all the models at once.
-
-conn.sync({ force: false }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
-})
-.catch(err => {
-  console.log(err)
-})
+conn
+  .sync({ force: true })
+  .then(() => {
+    server.listen(3001, () => {
+      console.log("server listening at 3001"); // eslint-disable-line no-console
+    });
+  })
+  .then(() => {
+    Categories.bulkCreate(initialCategories);
+  })
+  .then(() => {
+    Product.bulkCreate(initialProducts);
+  })
+  .then(() => {
+    categoryp.bulkCreate(categoryProducts);
+  })
+  .catch((error) => console.log('Error al bulkcreate', error))

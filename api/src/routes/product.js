@@ -43,15 +43,15 @@ server.get('/', (req, res, next) => {
 });
 
 
-// server.get("/category", (req, res) => {
-// 	Categories.findAll()
-// 		.then(categories => {
-// 			res.json({categories})
-// 		})
-// 		.catch(err => {
-// 			console.log(err)
-// 		  })
-// })
+server.get("/category", (req, res) => {
+	Categories.findAll()
+		.then(categories => {
+			res.json({categories})
+		})
+		.catch(err => {
+			console.log(err)
+		  })
+})
 
 server.post("/category", (req, res) => {
 	const {name, description} = req.body;
@@ -115,7 +115,7 @@ server.get("/category/:nombreCat", (req, res) => {
 		res.status(400).json({msg: "La categoria no existe"})
 	}
   
-	Categories.findOne({where: {name}})
+	Categories.findOne({where: {name}, include: [Product]})
 	.then(categoria => {
 		res.json(categoria)
 	})
