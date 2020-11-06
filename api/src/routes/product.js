@@ -93,11 +93,10 @@ server.get('/:id', (req, res)=> {
 		res.json({msg: "invalid Id"})
 	}else{
 		Product.findAll({where: {id}}, 
-		{include:[{ model: "Categoryp", attributes: ['name']}]}
+		{include:[{ model: Categories}]}
 		)
 		.then(producto =>{
-			console.log(producto)
-		res.json({producto})
+		 res.json({producto})
 		})
 		.catch(err => {
 			console.log(err)
@@ -126,19 +125,27 @@ server.get("/category/:nombreCat", (req, res) => {
 //Agrega la categoria al producto.
 server.post('/:idProducto/category/:idCategoria', (req, res) => {
 	const {idProducto, idCategoria} = req.params;
-	let newProduct;
-
+	const{ name, description, price, imagen, stock } = req.body
+	//let newProduct;
+	
 	if(!idProducto || !idCategoria){
 		res.status(400).json({msg: "invalid or missing data"})
 	} else {
-		Product.FindByPk(idProducto)
-	.then(producto => {
-	newProduct = producto;
-	newProduct.setCategories(idCategoria);
-	})
-	.catch(err => {
-		res.json(err)
-	})
+		Product.findByPk(idProducto)
+		.then((producto) => {
+			return producto.setCategories(idCategoria)
+		})	
+		.then(resultado => {
+		  res.json(resultado)
+		})
+		// .then(respuesta => {
+		// 	console.log(respuesta)
+
+		// 	res.json(respuesta)
+		// })
+		.catch(err => {
+			console.log(err)
+		})
 	}
 	
 });
