@@ -92,15 +92,15 @@ server.get('/:id', (req, res)=> {
 	if(!id){
 		res.json({msg: "invalid Id"})
 	}else{
-		Product.findAll({where: {id}}, 
-		{include:[{ model: Categories}]}
+		Product.findOne({where: {id: id}}, 
+		{include: { model: Categories}}
 		)
 		.then(producto =>{
 		 res.json({producto})
 		})
 		.catch(err => {
 			console.log(err)
-			res.json({err})
+			res.json(err)
 		}) 
 	}			
 });
@@ -125,24 +125,27 @@ server.get("/category/:nombreCat", (req, res) => {
 //Agrega la categoria al producto.
 server.post('/:idProducto/category/:idCategoria', (req, res) => {
 	const {idProducto, idCategoria} = req.params;
-	const{ name, description, price, imagen, stock } = req.body
-	//let newProduct;
+	let product;
 	
+
+
 	if(!idProducto || !idCategoria){
 		res.status(400).json({msg: "invalid or missing data"})
 	} else {
-		Product.findByPk(idProducto)
+		Product.findOne({ where: {id: idProducto}})
 		.then((producto) => {
-			return producto.setCategories(idCategoria)
+			console.log(producto)
+			product = producto
+			return Categories.findOne({where: {id: idCategoria}})
 		})	
-		.then(resultado => {
-		  res.json(resultado)
+		.then(category => {
+		  console.log(category)		  
+		  return product.addCategories(category)
 		})
-		// .then(respuesta => {
-		// 	console.log(respuesta)
-
-		// 	res.json(respuesta)
-		// })
+		.then(respuesta => {
+			console.log(respuesta)
+			return res.json(respuesta)
+		})
 		.catch(err => {
 			console.log(err)
 		})
