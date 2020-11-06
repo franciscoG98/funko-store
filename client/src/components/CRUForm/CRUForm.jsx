@@ -3,7 +3,7 @@ import { FormGroup, TextField, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-
+import CheckboxesAvenger from "./newCheckbox"
 
 const useStyles = makeStyles({
     root: {
@@ -24,11 +24,17 @@ const useStyles = makeStyles({
         minWidth: 120,
     }
 });
+//const marvel = ["Avenger", "x-men", "Fantastic Four"];
 
 const CRUForm = () => {
-
+    //const [dcOMarvel, setDcOMarvel] = useState(choose);
     const classes = useStyles();
 
+    const handleChange = (el)=>{
+        if(el.value === "Marvel"){
+            return(<div>salio</div>)
+        }
+    };
     return (
 
         <FormGroup>
@@ -40,16 +46,17 @@ const CRUForm = () => {
                 <br/>
                 <InputLabel htmlFor="uncontrolled-native">Where is your Funko from?</InputLabel>
                 <NativeSelect
-                    // onChange={handleChange} la vamos a usar
+                    onChange={handleChange} //la vamos a usar
                     name="comic"
                     className={classes.selectEmpty}
                     inputProps={{ 'aria-label': 'age' }}
                     >
-                    <option value="">None</option>
+                    <option value="">Choose</option>
                     <option value='Marvel'>Marvel</option>
                     <option value='DC'>DC</option>
                </NativeSelect>
                 <br/>
+                <CheckboxesAvenger/>
                 <br/>
                 <Button variant="contained" color="primary" onClick={() => { alert('andò') }}>
                     Upload your Funko!
