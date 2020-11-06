@@ -40,8 +40,8 @@ const { Product, Categories } = sequelize.models;
 // Categories.hasMany(Product, { foreignKey: 'id_categoryp' });
 // makes a join table between the users and projects
 // 'through' key sets the name of the table: user_projects
-Categories.belongsToMany(Product, { through: "Categoryp", foreignKey: 'categoryId' });
-Product.belongsToMany(Categories, { through: "Categoryp", foreignKey: 'productId' });
+Categories.belongsToMany(Product, { through: "Categoryp" });
+Product.belongsToMany(Categories, { through: "Categoryp" });
 
 
 module.exports = {
