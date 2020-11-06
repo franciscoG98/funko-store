@@ -2,15 +2,19 @@ const server = require('express').Router();
 const { Product, Categories } = require('../db.js');
 
 server.post('/', function (req, res) {
-    const {name, description, price, imagen, stock, categories} = req.body;
-
-    if (!name || !description || !price ||  !imagen) res.status(400).json({msj: "Faltan datos"});
-
-    Product.create({name: name, description: description, price: price, imagen: imagen, stock: stock, categories: categories})
-        .then(np => {
-            res.status(201).json({np});
-		})
-		
+    let { name, description, price, imagen, stock, categoryId} = req.body;
+	Product.create({
+	name: name,
+	description: description,
+	price: price,
+	stock: stock,
+	imagen: imagen,
+	})
+	.then((product) => 
+	  Categories.findByPk(categoryId).then((category) => product.addCategories(category))
+	)
+	.then(() => res.sendStatus(201))
+	.catch(next);
 })
 
 server.put('/:id', function(req, res) {
@@ -122,36 +126,6 @@ server.get("/category/:nombreCat", (req, res) => {
 
 })
 
-//Agrega la categoria al producto.
-server.post('/:idProducto/category/:idCategoria', (req, res) => {
-	const {idProducto, idCategoria} = req.params;
-	let product;
-	
-
-
-	if(!idProducto || !idCategoria){
-		res.status(400).json({msg: "invalid or missing data"})
-	} else {
-		Product.findOne({ where: {id: idProducto}})
-		.then((producto) => {
-			console.log(producto)
-			product = producto
-			return Categories.findOne({where: {id: idCategoria}})
-		})	
-		.then(category => {
-		  console.log(category)		  
-		  return product.addCategories(category)
-		})
-		.then(respuesta => {
-			console.log(respuesta)
-			return res.json(respuesta)
-		})
-		.catch(err => {
-			console.log(err)
-		})
-	}
-	
-});
 //Elimina la categoria al producto.
 server.delete('/:idProducto/category/:idCategoria', (req, res) => {
 	const {idProducto, idCategoria} = req.params;
