@@ -3,12 +3,12 @@ import './DetailModalStyle.css';
 
 export default function DetailModal({f}) {
 
-    const {name, description, price, img} = f;
+    const {name, description, price, imagen} = f;
 
     return (
         <div>
             <div id='image'>
-                <img src={img} alt='funko img' />
+                <img src={imagen} alt='funko img' />
             </div>
             <div id='info'>
                 <h3>{name}</h3>
