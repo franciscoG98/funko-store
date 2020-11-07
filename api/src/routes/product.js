@@ -150,7 +150,7 @@ server.delete('/:idProducto/category/:idCategoria', (req, res) => {
 //Modificar Categoria
 server.put('/category/:id', (req, res) =>{
 	const {id} = req.params;
-	const {name, description} = req.body;
+	const {categoria} = req.body;
 
 	if (!id || !categoria){
 		res.status(400).json({msj: "invalid or missing data"});
