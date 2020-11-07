@@ -19,6 +19,11 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import useStyles from './NavStyles';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
+import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
+
+import {Link} from 'react-router-dom';
+
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -54,9 +59,13 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      style= {{opacity: '80%', marginTop: '34px', paddingRight: '30px'}}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
+      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#57009D', fontWeight: 'bold' }} to= '/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#57009D', fontWeight: 'bold' }} to= '/admin/products'> Products </Link> </MenuItem>
+      
     </Menu>
   );
 
@@ -114,7 +123,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Funko's Store
+            <Link style= {{textDecoration: 'none', color: 'white' }} to= '/'> Funko's Store </Link>
           </Typography>
 
           <div className={classes.grow} />

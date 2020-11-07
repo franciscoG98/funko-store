@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Axios from 'axios';
+import FormDialog from './DialogCRUDCat'  
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -62,6 +63,10 @@ export default function BasicTable() {
     
   return (
 
+    <div>
+
+      <FormDialog/>
+
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
         <TableHead >
@@ -86,5 +91,7 @@ export default function BasicTable() {
         </TableBody>
       </Table>
     </TableContainer>
+
+    </div>
   );
 }
