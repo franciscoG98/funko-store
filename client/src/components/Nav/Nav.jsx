@@ -64,8 +64,8 @@ export default function PrimarySearchAppBar() {
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#9932CC', fontWeight: 'bold' }} to= '/admin/categories'> Categories </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#9932CC', fontWeight: 'bold' }} to= '/admin/products'> Products </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to= '/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to= '/admin/products'> Products </Link> </MenuItem>
       
     </Menu>
   );

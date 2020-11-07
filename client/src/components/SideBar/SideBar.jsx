@@ -12,6 +12,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Axios from 'axios';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,6 +23,11 @@ const useStyles = makeStyles({
     fullList: {
       width: 'auto',
     },
+    font: {
+      textDecoration: 'none',
+      color: '#191970',
+      fontSize: '20'
+    }
   });
   
 
@@ -62,7 +68,9 @@ const SideBar = () => {
             <ListItem button key={text.id}>
 
               {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              <ListItemText primary={text.name} />
+              <Link className= {classes.font} to= {`/product/${text.name}`} >
+                  <ListItemText fontWeight= 'fontWeightBold' primary={text.name} />
+              </Link>
 
             </ListItem>
           ))}

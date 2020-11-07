@@ -5,7 +5,8 @@ import Nav from '../src/components/Nav/Nav';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Categories from './components/Admin/Categories/Categories';
 import ListProducts from "./components/Admin/Products/listProducts";
-import SideBar from '../src/components/SideBar/SideBar'
+import SideBar from '../src/components/SideBar/SideBar';
+import CategoryProduct from './components/CategoryProduct/CategoryProduct';
 
 
 function App() {
@@ -14,16 +15,15 @@ function App() {
 
       <BrowserRouter> 
 
-        <Nav />
-
+          < Nav />
        
+          < Route exact path= '/' component= {Products} />
 
+          < Route exact path= '/admin/categories' component= {Categories} />
 
-           < Route exact path= '/' component= {Products} />
+          < Route exact path= '/admin/products' component= {ListProducts} />
 
-           < Route exact path= '/admin/categories' component= {Categories} />
-
-           < Route exact path= '/admin/products' component= {ListProducts} />        
+          < Route exact path= '/product/:nombreCat' component= {CategoryProduct} />              
         
       
       </BrowserRouter>
