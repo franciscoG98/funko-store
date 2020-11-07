@@ -6,10 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
+
 
 import SearchBar from '../SearchBar/SearchBar'
-// import SideBar from '../SideBar/SideBar';
+import SideBar from '../SideBar/SideBar';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
@@ -28,6 +28,7 @@ export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [side, setSide] = React.useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -63,8 +64,8 @@ export default function PrimarySearchAppBar() {
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#57009D', fontWeight: 'bold' }} to= '/admin/categories'> Categories </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#57009D', fontWeight: 'bold' }} to= '/admin/products'> Products </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#9932CC', fontWeight: 'bold' }} to= '/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#9932CC', fontWeight: 'bold' }} to= '/admin/products'> Products </Link> </MenuItem>
       
     </Menu>
   );
@@ -120,7 +121,7 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <SideBar /> 
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link style= {{textDecoration: 'none', color: 'white' }} to= '/'> Funko's Store </Link>
@@ -161,8 +162,7 @@ export default function PrimarySearchAppBar() {
 
               <MoreIcon />
 
-              {/* <SideBar /> */}
-
+              
             </IconButton>
           </div>
 

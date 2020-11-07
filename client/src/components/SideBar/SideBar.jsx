@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -10,6 +10,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Axios from 'axios';
+import MenuIcon from '@material-ui/icons/Menu';
+
+
 
 const useStyles = makeStyles({
     list: {
@@ -21,8 +25,16 @@ const useStyles = makeStyles({
   });
   
 
+
 const SideBar = () => {
     const classes = useStyles();
+    const [category, setCategory]= React.useState([])
+    
+    useEffect(()=>{
+    Axios("http://localhost:3001/products/category")
+        .then(r => setCategory(r.data.categories))
+    },[])
+
     const [state, setState] = React.useState({
       left: false,
     });
@@ -46,28 +58,18 @@ const SideBar = () => {
       >
         <List>
             {/* estos elementos son los que vana aparecer en la seccion de arriba */}
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+          {category.map((text) => (
+            <ListItem button key={text.id}>
 
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              <ListItemText primary={text.name} />
 
             </ListItem>
           ))}
         </List>
 
         <Divider />
-        <List>
-            {/* estos elementos son los que vana aparecer en la seccion de abajo */}
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-
-              <ListItemText primary={text} />
-
-            </ListItem>
-          ))}
-        </List>
+       
       </div>
     );
   
@@ -77,7 +79,9 @@ const SideBar = () => {
 
           <React.Fragment key={anchor}>
 
-            <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+            {/* <Button onClick={toggleDrawer(anchor, true)}>  </Button> */}
+
+            <MenuIcon onClick={toggleDrawer(anchor, true)} />
 
             <SwipeableDrawer
               anchor={anchor}

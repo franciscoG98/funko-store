@@ -5,6 +5,7 @@ import Nav from '../src/components/Nav/Nav';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Categories from './components/Admin/Categories/Categories';
 import ListProducts from "./components/Admin/Products/listProducts";
+import SideBar from '../src/components/SideBar/SideBar'
 
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
       <BrowserRouter> 
 
         <Nav />
+
+       
 
 
            < Route exact path= '/' component= {Products} />
