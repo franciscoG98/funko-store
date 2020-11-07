@@ -9,10 +9,13 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import SearchBar from '../SearchBar/SearchBar'
+// import SideBar from '../SideBar/SideBar';
+
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 
 import MoreIcon from '@material-ui/icons/MoreVert';
+
 import useStyles from './NavStyles';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
@@ -116,13 +119,13 @@ export default function PrimarySearchAppBar() {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+            <IconButton aria-label="show 0 new mails" color="inherit">
+              <Badge badgeContent={0} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+            <IconButton aria-label="show 0 new notifications" color="inherit">
+              <Badge badgeContent={0} color="secondary">
                 <ShoppingCartRoundedIcon />
               </Badge>
             </IconButton>
@@ -146,7 +149,11 @@ export default function PrimarySearchAppBar() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
+
               <MoreIcon />
+
+              {/* <SideBar /> */}
+
             </IconButton>
           </div>
 

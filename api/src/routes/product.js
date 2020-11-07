@@ -120,6 +120,7 @@ server.get("/category/:nombreCat", (req, res) => {
 		res.json(categoria)
 	})
 
+
 })
 
 //Elimina la categoria al producto.

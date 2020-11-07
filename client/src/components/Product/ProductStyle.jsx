@@ -7,8 +7,14 @@ const useStyles = makeStyles({
     padding: 10,
   },
   media: {
-    height: 140,
+    height: 150,
+    width: 150,
   },
+  // media: {
+  //   height: 0,  
+  //   paddingTop: '56.25%',
+  //   16:9,
+  // },
   modal: {
     display: 'flex',
     alignItems: 'center',
