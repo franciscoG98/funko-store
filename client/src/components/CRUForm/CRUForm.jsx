@@ -55,6 +55,7 @@ const CRUForm = ({cambio}) => {
                 <option onChange={cambio} name="categoria" >Marvel</option>
                 <option onChange={cambio} name="categoria" >DC</option>
             </NativeSelect>
+            {/* <CheckboxAvenger  name="categoria" onChange={cambio}/>  */}
             <br/>
             
             <br/>
