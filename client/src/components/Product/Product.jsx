@@ -47,8 +47,7 @@ const Product = ({f}) => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-        //   image="https://http2.mlstatic.com/D_NQ_NP_891013-MLA43484162083_092020-O.webp"
-          image= {f.img}
+          image= {f.imagen}
 
           title="Contemplative Reptile"
         />
@@ -57,10 +56,10 @@ const Product = ({f}) => {
             Funko Name: {f.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            bueno aca va a ir una descripcion del funko: {f.description}
+            Description: {f.description}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-              price: {f.price}
+            ${f.price}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
               hay stock: icono
@@ -70,7 +69,7 @@ const Product = ({f}) => {
       <CardActions>
         <Button size="small" color="primary">
         <AddShoppingCartRoundedIcon />
-        Add To Cart
+          Add To Cart
         </Button>
         <Button size="small" color="primary" onClick={() => handleOpen()}>
             <OpenInNewRoundedIcon />

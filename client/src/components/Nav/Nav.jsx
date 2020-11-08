@@ -6,20 +6,31 @@ import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 
 import SearchBar from '../SearchBar/SearchBar'
+import SideBar from '../SideBar/SideBar';
+
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 
 import MoreIcon from '@material-ui/icons/MoreVert';
+
 import useStyles from './NavStyles';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
+import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
+
+import {Link} from 'react-router-dom';
+
+
 export default function PrimarySearchAppBar() {
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [side, setSide] = React.useState(false);
+ 
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -51,9 +62,13 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      style= {{opacity: '80%', marginTop: '34px', paddingRight: '30px'}}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
+      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to= '/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to= '/admin/products'> Products </Link> </MenuItem>
+      
     </Menu>
   );
 
@@ -108,21 +123,21 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <SideBar /> 
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Funko's Store
+            <Link style= {{textDecoration: 'none', color: 'white' }} to= '/'> Funko's Store </Link>
           </Typography>
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+            <IconButton aria-label="show 0 new mails" color="inherit">
+              <Badge badgeContent={0} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+            <IconButton aria-label="show 0 new notifications" color="inherit">
+              <Badge badgeContent={0} color="secondary">
                 <ShoppingCartRoundedIcon />
               </Badge>
             </IconButton>
@@ -146,7 +161,10 @@ export default function PrimarySearchAppBar() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
+
               <MoreIcon />
+
+              
             </IconButton>
           </div>
 

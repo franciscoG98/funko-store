@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import { FormGroup, TextField, Button} from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import CheckboxAvenger from "./checkboxAvenger"
+import CheckboxAvenger from "./checkboxAvenger";
 
 const useStyles = makeStyles({
     root: {
@@ -27,6 +27,8 @@ const useStyles = makeStyles({
         display: "none"
     } */
 });
+
+
 const marvel = ["Avenger", "X-men", "Fantastic Four"];
 const dc = ["Justice League", "Legend", "Villain"];
 
@@ -40,32 +42,27 @@ const CRUForm = () => {
     };
     return (
 
-        <FormGroup>
-            <form className={classes.root} noValidate autoComplete="off">Agregar Producto
-                <TextField id="standard-basic" label="Name your Funko" />
-                <TextField id="standard-basic" label="Describe your funko" />
-                <TextField id="standard-basic" label="Price your Funko" type="number"/>
-                <TextField id="standard-basic" label="Take a photo of your Funko" />
-                <br/>
-                <InputLabel htmlFor="uncontrolled-native">Where is your Funko from?</InputLabel>
-                <NativeSelect
-                    onChange={handleChange} //la vamos a usar
-                    name="comic"
-                    className={classes.selectEmpty}
-                    inputProps={{ 'aria-label': 'age' }}
-                    >
-                    <option value="">Choose</option>
-                    <option value='Marvel'>Marvel</option>
-                    <option value='DC'>DC</option>
-               </NativeSelect>
-                <br/>
-                <CheckboxAvenger  props={value === "Marvel" ? marvel : dc}/>
-                <br/>
-                <Button variant="contained" color="primary" onClick={() => { alert('andò') }}>
-                    Upload your Funko!
-                </Button>
-            </form>
-        </FormGroup>
+        <div style={{flexDirection: 'column', display: 'flex'}} >
+            <TextField id="standard-basic1" label="Name your Funko"/>
+            <TextField id="standard-basic2" label="Describe your funko" />
+            <TextField id="standard-basic2" label="Price your Funko" type="number"/>
+            <TextField id="standard-basic3" label="Take a photo of your Funko" />
+            <br/>
+            <InputLabel htmlFor="uncontrolled-native">Where is your Funko from?</InputLabel>
+            <NativeSelect
+                onChange={handleChange} //la vamos a usar
+                name="comic"
+                className={classes.selectEmpty}
+                inputProps={{ 'aria-label': 'age' }}
+                >
+                <option value="">Choose</option>
+                <option value='Marvel'>Marvel</option>
+                <option value='DC'>DC</option>
+            </NativeSelect>
+            <br/>
+            <CheckboxAvenger  props={value === "Marvel" ? marvel : dc}/>
+            <br/>
+        </div>
     )
 }
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
+// import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -39,12 +39,13 @@ const handleChange = (event) => {
       <div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Choose Category</FormLabel>
-            {props.props.map((p)=>(
+            {props.props.map((p,i)=>(
               <FormControlLabel
+              key={i} 
               control={<Checkbox checked={false} onChange={handleChange} name={p} />}
               label={p}
             />
-            ))}     
+            ))}
           <FormHelperText>Be careful</FormHelperText>
         </FormControl>
         

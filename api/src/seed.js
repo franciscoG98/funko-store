@@ -43,7 +43,7 @@ const initialProducts = [
     name: "Iron Man",
     description: "Este es el funko de I am Iron Man, alias Tony Stark",
     price: 100,
-    imagen: "https://images-na.ssl-images-amazon.com/images/I/51NxDkgYNBL._AC_SX569_.jpg",
+    imagen: "https://http2.mlstatic.com/funko-pop-marvel-avengers-infinity-war-iron-man-figura-de-vi-D_NQ_NP_723986-MCO31542984644_072019-F.jpg",
     stock: "true",
   },
   {
@@ -99,7 +99,7 @@ const initialProducts = [
     name: "Batman",
     description: "Este es el funko de Batman",
     price: 500,
-    imagen: "https://www.google.com/url?sa=i&url=https%3A%2F%2Farticulo.mercadolibre.com.ar%2FMLA-627633895-funko-pop-batman-armored-legion-of-collectors-_JM&psig=AOvVaw2LnHV2AtGbX05S9pdTjeYa&ust=1604777096599000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDXpOTS7uwCFQAAAAAdAAAAABAF",
+    imagen: "https://cdn.discordapp.com/attachments/774280442564182059/774714514465751080/61si8R5UMML.png",
     stock: "true",
   },
   {
@@ -113,7 +113,7 @@ const initialProducts = [
     name: "White Canary",
     description: "Este es el funko de White Canary alias Sara Lance",
     price: 500,
-    imagen: "https://images-na.ssl-images-amazon.com/images/I/51C0nvNl57L.jpg",
+    imagen: "https://hottopic.scene7.com/is/image/HotTopic/10720103_av1?$pdp_hero_large$",
     stock: "true",
   },
  

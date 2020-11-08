@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Axios from 'axios';
+import AddProducts from '../../CRUForm/AddProduct'
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -62,6 +63,10 @@ export default function ListProducts() {
     
   return (
 
+    <div>
+
+      <AddProducts/>
+
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
         <TableHead >
@@ -90,5 +95,7 @@ export default function ListProducts() {
         </TableBody>
       </Table>
     </TableContainer>
+
+    </div>
   );
 }

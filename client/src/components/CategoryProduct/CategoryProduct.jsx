@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 // import Funkos from './funkos';
-import './Products.css';
 import Axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
-const Products = () => {
+const CategoryProduct = () => {
+
+    const name = useParams();
+    console.log(name.nombreCat);
 
     const [products, setProducts]= useState([])
 
     useEffect(()=>{
-    Axios("http://localhost:3001/products")
-        .then(r => setProducts(r.data))
-    },[])
+    Axios(`http://localhost:3001/products/category/${name.nombreCat}`)
+        .then(r => setProducts(r.data.products))
+    },[name.nombreCat])
 
     if(!products){
-        return <p>cargando</p>
+        return <p>Cargando...</p>
     }
 
     return (
@@ -31,4 +34,4 @@ const Products = () => {
 
 }
 
-export default Products;
+export default CategoryProduct;
