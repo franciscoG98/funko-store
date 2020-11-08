@@ -174,33 +174,47 @@ server.put('/category/:id', (req, res) =>{
 	
 })
 
-// 	Product.findByPk(idProducto, {include: [Categories]})
-// 	.then(producto => {
-// 	deleteProduct = producto;
-// 	deleteProduct.destroy({
-// 	where: { idCategoria }
-//    });
-// })
-// .then(()=>{
-// 	res.json({msg: "successfully deleted"})
-// })
-// .catch(err => {
-// 	res.json(err)
-// })
-// }
-
-server.get('/search', (req, res, next) => {
-	const {term} = req.query
-	console.log(req.query)
-	
-	 Product.findOne({
-		 where: {id: term}
-	  })
-		.then(products => {
-			res.send(products);
+//Borrar Producto 	
+server.delete("/:id", (req, res) => {
+	const {id} = req.params;
+	if(!id) {
+		res.json({msg: "Debe seleccionar un producto a eliminar"})
+	} else {
+			Product.destroy( {where: {id}})
+		.then(() => {
+			res.json({msg: "Producto Eliminado"})
 		})
-		.catch("no esta"); 
-});
+		.catch(err => {
+			res.json({err})
+		}) 
+	}	
+})
 
+//modificar producto
+server.put('/:id', (req, res) =>{
+	const {id} = req.params;
+	const {name, description, stock, imagen, price} = req.body;
+	const producto = {
+		name,
+		description,
+		stock,
+		imagen,
+		price
+	}
+
+	if (!id || !producto){
+		res.status(400).json({msj: "invalid or missing data"});
+	} else {
+		Product.update(producto,
+			{where: { id: id } })
+			.then(prod => {
+				res.json(prod)
+			})
+			.catch(err => {
+				res.json(err)
+			  })
+	}
+	
+})
 
 module.exports = server;
