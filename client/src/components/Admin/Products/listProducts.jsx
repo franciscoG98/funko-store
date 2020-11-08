@@ -51,11 +51,19 @@ const useStyles = makeStyles({
 export default function ListProducts() {
     const classes = useStyles();
     const [producto, setProducto]= useState([])
+
+
+    function getProduct(){
+      Axios("http://localhost:3001/products")
+        .then(r => setProducto(r.data))
+    }
     
     useEffect(()=>{
-    Axios("http://localhost:3001/products")
-        .then(r => setProducto(r.data))
+      getProduct()
     },[])
+
+
+   
 
     if(!producto){
         return <p>cargando</p>
@@ -65,7 +73,7 @@ export default function ListProducts() {
 
     <div>
 
-      <AddProducts/>
+      <AddProducts  getProduct={getProduct} />
 
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
