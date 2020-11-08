@@ -4,13 +4,9 @@ const { Op } = require("sequelize");
 
 server.get('/', (req, res, next) => {
     const {query} = req.query
-<<<<<<< HEAD
 
-	
-=======
     //console.log(typeof query)
->>>>>>> d1a65c9fdedec893e51a9e9e237dafa79d3eb3c5
-	
+
 	 Product.findAll({
        where: {
         [Op.or]: [
