@@ -51,21 +51,36 @@ const useStyles = makeStyles({
 export default function BasicTable() {
     const classes = useStyles();
     const [category, setCategory]= useState([])
+    const [newCategory, setNewCategory] = useState({
+      name: "",
+      description: ""
+    })
+
+    function getCategory(){
+      Axios("http://localhost:3001/products/category")
+        .then(r => setCategory(r.data.categories))
+    }
     
     useEffect(()=>{
-    Axios("http://localhost:3001/products/category")
-        .then(r => setCategory(r.data.categories))
+      getCategory()
     },[])
 
     if(!category){
         return <p>cargando</p>
+    }
+
+    const onChange = e => {
+      setNewCategory({
+        ...newCategory,
+        [e.target.name]: e.target.value
+      })
     }
     
   return (
 
     <div>
 
-      <FormDialog/>
+      <FormDialog  getCategory={getCategory} cambio={onChange} newCategory={newCategory} />
 
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
