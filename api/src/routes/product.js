@@ -119,7 +119,9 @@ server.get("/category/:nombreCat", (req, res) => {
 	.then(categoria => {
 		res.json(categoria)
 	})
-
+	.catch(err => {
+		res.json(err)
+	  })
 
 })
 
