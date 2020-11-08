@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Axios from 'axios';
 import FormDialog from './DialogCRUDCat'  
+import Button from '@material-ui/core/Button';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -100,13 +101,17 @@ export default function BasicTable() {
               </TableCell>
               <TableCell align="center">{cat.name}</TableCell>
               <TableCell align="center">{cat.description}</TableCell>
-              <TableCell className={classes.buttons} align="center"> <EditIcon/>   <DeleteIcon /></TableCell>
+              <TableCell className={classes.buttons} align="center"> 
+                <Button size="small" color="primary"> <EditIcon/> </Button> 
+                <Button size="small" color="primary"> <DeleteIcon /></Button>   
+                
+              </TableCell>
             </TableRow>
           )) }
         </TableBody>
       </Table>
     </TableContainer>
-
+    <br/>
     </div>
   );
 }
