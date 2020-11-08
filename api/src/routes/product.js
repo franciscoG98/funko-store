@@ -2,7 +2,7 @@ const server = require('express').Router();
 const { Product, Categories } = require('../db.js');
 
 server.post('/', function (req, res, next) {
-    let { name, description, price, imagen, stock, categoryId} = req.body;
+    let { name, description, price, imagen, stock, categoria} = req.body;
 	Product.create({
 	name: name,
 	description: description,
@@ -11,7 +11,7 @@ server.post('/', function (req, res, next) {
 	imagen: imagen,
 	})
 	.then((product) => 
-	  Categories.findByPk(categoryId).then((category) => product.addCategories(category))
+	  Categories.findOne({where: {name: categoria}}).then((category) => product.addCategories(category))
 	)
 	.then(() => res.sendStatus(201))
 	.catch(next);
