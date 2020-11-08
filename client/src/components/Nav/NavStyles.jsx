@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
       position: 'relative',
       borderRadius: theme.shape.borderRadius,
       backgroundColor: fade(theme.palette.common.white, 0.15),
+      opacity: '70%',
       '&:hover': {
         backgroundColor: fade(theme.palette.common.white, 0.25),
       },
