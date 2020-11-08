@@ -1,5 +1,5 @@
 const server = require('express').Router();
-const { Product, Categories } = require('../db.js');
+const { Product } = require('../db.js');
 const { Op } = require("sequelize");
 
 server.get('/', (req, res, next) => {
@@ -23,7 +23,9 @@ server.get('/', (req, res, next) => {
 		.then(products => {
 			res.send(products);
 		})
-		.catch("no esta"); 
+		.catch(err => {
+			res.json(err);
+		}); 
 });
 
 module.exports = server;
