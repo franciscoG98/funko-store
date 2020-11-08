@@ -3,8 +3,8 @@ import React from 'react';
 import './ProductStyle.jsx';
 
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
+import {CardActionArea, CardActions} from '@material-ui/core/';
+//import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
@@ -49,7 +49,7 @@ const Product = ({f}) => {
           className={classes.media}
           image= {f.imagen}
 
-          title="Contemplative Reptile"
+          title={f.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -69,11 +69,11 @@ const Product = ({f}) => {
       <CardActions>
         <Button size="small" color="primary">
         <AddShoppingCartRoundedIcon />
-          Add To Cart
+          Add To Cart 
         </Button>
         <Button size="small" color="primary" onClick={() => handleOpen()}>
             <OpenInNewRoundedIcon />
-            More
+            More 
         </Button>
 
         <Modal

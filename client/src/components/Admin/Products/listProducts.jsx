@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Axios from 'axios';
 import AddProducts from '../../CRUForm/AddProduct'
+import Button from '@material-ui/core/Button';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -21,28 +22,31 @@ const StyledTableCell = withStyles((theme) => ({
       fontSize: 14,
     },
   }))(TableCell);
+
 const useStyles = makeStyles({
   tableContainer: {
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(64, 81, 181, .3)',
     color: 'black',
-    width: 750,
+    width: 900,
     justifyContent: 'space-between',
     margin: 'auto',
     marginTop: "15px",
     display: 'flex',
     padding: 30,
-    
+    flexDirection: "row"
   },
   table:{
     justifyContent: "center",
-   
+    flexDirection: "row"
 
   },
-  buttons:{
-      color: "#A5B7FF",
+  Button:{
+      display: "flex",
+      marginLeft: "62%",
   },
+  
   
 });
 
@@ -73,7 +77,7 @@ export default function ListProducts() {
 
     <div>
 
-      <AddProducts  getProduct={getProduct} />
+      <AddProducts getProduct={getProduct} />
 
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
@@ -90,20 +94,20 @@ export default function ListProducts() {
         <TableBody>
           { producto.map(prod => (
             <TableRow key={prod.id}>
-              <TableCell component="th" scope="row">
-                {prod.id}
-              </TableCell>
-              <TableCell align="left">{prod.name}</TableCell>
-              <TableCell align="center">{prod.description}</TableCell>
-              <TableCell align="center">{prod.price}</TableCell>
-              <TableCell align="center">{prod.stock}</TableCell>
-              <TableCell className={classes.buttons} align="center"> <EditIcon/>   <DeleteIcon /></TableCell>
+              <TableCell  scope="row"> {prod.id}</TableCell>
+              <TableCell scope="row" align="left">{prod.name}</TableCell>
+              <TableCell scope="row" align="left">{prod.description}</TableCell>
+              <TableCell scope="row" align="center">{prod.price}</TableCell>
+              <TableCell scope="row" align="center">{prod.stock === "true" ? <p>Disponible</p> : <p style={{color: "red"}}>Pocas Unidades</p>}</TableCell>
+              <TableCell scope="row" align="center"> 
+                <Button size="small" color="primary"><EditIcon/></Button> 
+                <Button size="small" color="primary"><DeleteIcon/></Button></TableCell>
             </TableRow>
           )) }
         </TableBody>
       </Table>
     </TableContainer>
-
+    <br></br>
     </div>
   );
 }
