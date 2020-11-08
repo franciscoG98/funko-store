@@ -3,6 +3,7 @@ const { Product, Categories } = require('../db.js');
 
 server.get('/', (req, res, next) => {
     const {query} = req.query
+
 	
 	
 	 Product.findAll({
