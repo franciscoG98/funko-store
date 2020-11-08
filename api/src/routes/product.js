@@ -120,8 +120,8 @@ server.get("/category/:nombreCat", (req, res) => {
 		res.json(categoria)
 	})
 	.catch(err => {
-		res.json(err)
-	  })
+		res.json({err})
+	}) 
 
 })
 
@@ -185,7 +185,18 @@ server.put('/category/:id', (req, res) =>{
 // })
 // }
 
-
+server.get('/search', (req, res, next) => {
+	const {term} = req.query
+	console.log(req.query)
+	
+	 Product.findOne({
+		 where: {id: term}
+	  })
+		.then(products => {
+			res.send(products);
+		})
+		.catch("no esta"); 
+});
 
 
 module.exports = server;

@@ -32,12 +32,13 @@
 } */
 
 .marvel {
-  background-image: url('https://i.pinimg.com/originals/c9/c2/71/c9c271b39a321d4764c04b8ea4da1b62.jpg');
-
+  background-image: url("https://i.pinimg.com/originals/c9/c2/71/c9c271b39a321d4764c04b8ea4da1b62.jpg");
+  background-repeat: repeat-y;
 }
 
 .dc {
-  background-image: url('https://wallpapercave.com/wp/IWeDuiF.jpg');
+  background-image: url("https://wallpapercave.com/wp/IWeDuiF.jpg");
+  background-repeat: repeat-y;
 }
 
 .switch {
@@ -46,9 +47,9 @@
   display: inline-block;
   align-items: center;
   color: white;
-  justify-content: center;  
-  position: relative;  
-} 
+  justify-content: center;
+  position: relative;
+}
 
 .divswitch {
   display: flex;

@@ -92,7 +92,7 @@ const initialProducts = [
     name: "Batman con kiryptoarmadura",
     description: "Este es el funko de Batman con el traje de kryptonita de Batman vs Superman",
     price: 500,
-    imagen: "https://www.google.com/url?sa=i&url=https%3A%2F%2Farticulo.mercadolibre.com.ar%2FMLA-627633895-funko-pop-batman-armored-legion-of-collectors-_JM&psig=AOvVaw2LnHV2AtGbX05S9pdTjeYa&ust=1604777096599000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDXpOTS7uwCFQAAAAAdAAAAABAF",
+    imagen: "https://i5.walmartimages.com/asr/c736dd92-c8c9-4b6f-9f0e-1963111de155_1.ff6517eacfd8aae94d837d5d0a911d64.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff",
     stock: "true",
   },
   {

@@ -53,16 +53,16 @@ const Product = ({f}) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Funko Name: {f.name}
+            {f.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Description: {f.description}
+           <span style={{fontWeight: "bold"}}> Description: </span> {f.description}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            ${f.price}
+          <span style={{fontWeight: "bold"}}> Price: </span> ${f.price}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-              hay stock: icono
+            {f.stock === "true" ? <p>Disponible</p> : <p style={{color: "red"}}>Pocas Unidades</p>}
           </Typography>
         </CardContent>
       </CardActionArea>
