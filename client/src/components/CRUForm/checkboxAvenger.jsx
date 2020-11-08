@@ -1,6 +1,6 @@
 //renderizar un componente a traves de un select
 //o sea:  si selecciono avengers que se renderize un grupo de checkboxes con "avengers", "x-men", etc
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
+import Axios from 'axios';
 
 //const marvel = ["Avenger", "x-men", "Fantastic Four"];
 
@@ -21,32 +22,33 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-export default function CheckboxAvenger(props) {
+export default function CheckboxAvenger({cambio}) {
     const classes = useStyles();
-    const [state, setState] = React.useState({
-        Avengers: false,
-        Xmen: false,
-        Fantastic4: false,
-    }
-    );
-console.log(props.props)
-const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-    };
+    const [state, setState] = useState([]);
+
+    useEffect(() => {
+      Axios("http://localhost:3001/products/category")
+      .then(r => {
+        setState(r.data.categories)
+      })
+    }, [])
+
+
+
     
   
     return (
       <div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Choose Category</FormLabel>
-            {props.props.map((p,i)=>(
+            {state.map((p)=>(
               <FormControlLabel
-              key={i} 
-              control={<Checkbox checked={false} onChange={handleChange} name={p} />}
-              label={p}
+              key={p.id} 
+              control={<Checkbox  name="categoria" />}
+              label={p.name}
             />
             ))}
-          <FormHelperText>Be careful</FormHelperText>
+          {/* <FormHelperText>Be careful</FormHelperText> */}
         </FormControl>
         
       </div>

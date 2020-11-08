@@ -1,15 +1,17 @@
 #image {
-    width: 64%;
-    float: left;
+  width: 64%;
+  float: left;
 }
 
-#info{
-    width: 30%;
-    float: right;
-    padding-left: 30px;
+#info {
+  width: 30%;
+  float: right;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
-img{
-    width: 400px;
-    height: 'auto'
+img {
+  width: 400px;
+  height: "auto";
 }

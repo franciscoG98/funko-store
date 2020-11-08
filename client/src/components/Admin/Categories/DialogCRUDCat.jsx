@@ -6,8 +6,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Axios from 'axios';
 
-export default function FormDialog() {
+export default function FormDialog({getCategory, cambio, newCategory}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -18,39 +19,49 @@ export default function FormDialog() {
     setOpen(false);
   };
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+    await Axios.post("http://localhost:3001/products/category", newCategory)
+    getCategory();
+    setOpen(false)
+  }
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Agregar Categoria
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleSubmit}>
         <DialogTitle id="form-dialog-title">Agregar Categoría</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Nombra y describe tu categoria
           </DialogContentText>
           <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Category Name"
-            type="text"
-            fullWidth
-          />
-          <TextField
           autoFocus
           margin="dense"
           id="name"
-          label="Description"
+          label="Nombre de la Categoria"
           type="text"
+          name="name"
+          onChange={cambio}
           fullWidth
         />
+          <TextField
+            margin="dense"
+            id="name"
+            label="Descripción"
+            type="text"
+            fullWidth
+            name="description"
+            onChange={cambio}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button type="submit" color="primary" onClick={handleSubmit}>
             Agregar
           </Button>
         </DialogActions>
