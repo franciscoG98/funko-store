@@ -32,35 +32,32 @@ const useStyles = makeStyles({
 const marvel = ["Avenger", "X-men", "Fantastic Four"];
 const dc = ["Justice League", "Legend", "Villain"];
 
-const CRUForm = () => {
-    const [value, setValue] = useState("Marvel");
+const CRUForm = ({cambio}) => {
     const classes = useStyles();
-
-    const handleChange = (el)=>{
-        setValue(el.target.value)
-        
-    };
+    
     return (
 
         <div style={{flexDirection: 'column', display: 'flex'}} >
-            <TextField id="standard-basic1" label="Name your Funko"/>
-            <TextField id="standard-basic2" label="Describe your funko" />
-            <TextField id="standard-basic2" label="Price your Funko" type="number"/>
-            <TextField id="standard-basic3" label="Take a photo of your Funko" />
+            <TextField id="standard-basic1" label="Name your Funko" name="name"  onChange={cambio} />
+            <TextField id="standard-basic2" label="Describe your funko" name="description"   onChange={cambio} />
+            <TextField id="standard-basic2" label="Price your Funko" type="number" name="price"  onChange={cambio} />
+            <TextField id="standard-basic3" label="Take a photo of your Funko" name="imagen"   onChange={cambio} />
+            <TextField id="standard-basic3" label="Stock" name="stock"  onChange={cambio} />
             <br/>
             <InputLabel htmlFor="uncontrolled-native">Where is your Funko from?</InputLabel>
             <NativeSelect
-                onChange={handleChange} //la vamos a usar
-                name="comic"
+                onChange={cambio} //la vamos a usar
+                name="categoria"
                 className={classes.selectEmpty}
                 inputProps={{ 'aria-label': 'age' }}
                 >
-                <option value="">Choose</option>
-                <option value='Marvel'>Marvel</option>
-                <option value='DC'>DC</option>
+                <option onChange={cambio} name="categoria" >Choose</option>
+                <option onChange={cambio} name="categoria" >Marvel</option>
+                <option onChange={cambio} name="categoria" >DC</option>
             </NativeSelect>
+            {/* <CheckboxAvenger  name="categoria" onChange={cambio}/>  */}
             <br/>
-            <CheckboxAvenger  props={value === "Marvel" ? marvel : dc}/>
+            
             <br/>
         </div>
     )

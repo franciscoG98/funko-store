@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -6,9 +6,18 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import CRUForm from './CRUForm';
+import Axios from 'axios';
 
-const AddProduct = () => {
+const AddProduct = ({getProduct}) => {
   const [open, setOpen] = React.useState(false);
+  const [product, setProduct] = useState({
+    name: "",
+    description: "",
+    imagen:"", 
+    stock: null,
+    categoria: "",
+    price: null,
+  })
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,23 +27,37 @@ const AddProduct = () => {
     setOpen(false);
   };
 
+  const onChange = (e) => {
+    setProduct({
+      ...product,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    await Axios.post("http://localhost:3001/products", product)
+    getProduct()
+    setOpen(false)
+  } 
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
       Agregar Producto
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleSubmit}>
         <DialogTitle id="form-dialog-title">Agregar Producto</DialogTitle>
         <DialogContent>
 
-            <CRUForm />
+            <CRUForm product={product} cambio={onChange} />
 
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button type="submit" color="primary" onClick={handleSubmit}>
             Agregar Producto
           </Button>
         </DialogActions>
