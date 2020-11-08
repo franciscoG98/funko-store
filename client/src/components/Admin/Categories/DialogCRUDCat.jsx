@@ -7,8 +7,19 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Axios from 'axios';
+import { makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+
+  buttons:{
+      display: "flex",
+      marginLeft: "62%",
+      },
+  
+});
 
 export default function FormDialog({getCategory, cambio, newCategory}) {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -28,9 +39,7 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Agregar Categoria
-      </Button>
+      
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleSubmit}>
         <DialogTitle id="form-dialog-title">Agregar Categoría</DialogTitle>
         <DialogContent>
@@ -66,6 +75,11 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Button variant="contained" className={classes.buttons} color="primary" onClick={handleClickOpen}>
+        Agregar Categoria
+      </Button>
+      
     </div>
   );
 }
