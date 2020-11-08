@@ -39,7 +39,7 @@ const AddProduct = ({getProduct}) => {
     await Axios.post("http://localhost:3001/products", product)
     getProduct()
     setOpen(false)
-  }
+  } 
 
   return (
     <div>
