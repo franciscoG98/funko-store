@@ -119,7 +119,9 @@ server.get("/category/:nombreCat", (req, res) => {
 	.then(categoria => {
 		res.json(categoria)
 	})
-
+	.catch(err => {
+		res.json({err})
+	}) 
 
 })
 
@@ -151,12 +153,16 @@ server.delete('/:idProducto/category/:idCategoria', (req, res) => {
 //Modificar Categoria
 server.put('/category/:id', (req, res) =>{
 	const {id} = req.params;
-	const {categoria} = req.body;
+	const {name, description} = req.body;
+	const category = {
+		name,
+		description
+	}
 
-	if (!id || !categoria){
+	if (!id || !category){
 		res.status(400).json({msj: "invalid or missing data"});
 	} else {
-		Categories.update(categoria,
+		Categories.update(category,
 			{where: { id: id } })
 			.then(cat => {
 				res.json(cat)
