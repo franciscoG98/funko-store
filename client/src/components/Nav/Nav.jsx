@@ -7,7 +7,6 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-
 import SearchBar from '../SearchBar/SearchBar'
 import SideBar from '../SideBar/SideBar';
 
@@ -24,11 +23,14 @@ import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 
 import {Link} from 'react-router-dom';
 
+
 export default function PrimarySearchAppBar() {
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [side, setSide] = React.useState(false);
+ 
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
