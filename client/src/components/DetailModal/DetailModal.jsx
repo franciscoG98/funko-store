@@ -15,7 +15,7 @@ export default function DetailModal({f}) {
             <div id='info'>
                 <h3>{name}</h3>
                 <p>{description}</p>
-                <p>Stock:{stock === "true" ? <p>Disponible</p> : <p style={{color: "red"}}>Pocas Unidades</p>}</p>
+                <p>Stock:{stock > 0 ? <span>Disponible</span> : <span style={{color: "red"}}>No hay stock ura</span>}</p>
                 <span>Price: ${price}</span>
                 <Button variant="contained" color="primary"> Añadir al Carrito </Button>
             </div>
