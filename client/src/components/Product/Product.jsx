@@ -43,7 +43,7 @@ const Product = ({f}) => {
   // fin estado
 
   return (
-    <Card className={classes.root} display='flex'>
+    <Card className={classes.root} >
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -62,7 +62,7 @@ const Product = ({f}) => {
           <span style={{fontWeight: "bold"}}> Price: </span> ${f.price}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {f.stock === "true" ? <p>Disponible</p> : <p style={{color: "red"}}>Pocas Unidades</p>}
+            {f.stock === "true" ? <span>Disponible</span> : <span style={{color: "red"}}>Pocas Unidades</span>}
           </Typography>
         </CardContent>
       </CardActionArea>
