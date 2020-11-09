@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         allowNull: false
       },
       stock: {
-        type: DataTypes.ENUM("true", "false"),
+        type: DataTypes.INTEGER,
       }
   });
 
