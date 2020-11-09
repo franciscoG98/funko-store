@@ -22,7 +22,7 @@ const AddProduct = ({getProduct}) => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+ 
   const handleClose = () => {
     setOpen(false);
   };

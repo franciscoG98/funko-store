@@ -12,6 +12,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import Axios from 'axios';
 import AddProducts from '../../CRUForm/AddProduct'
 import Button from '@material-ui/core/Button';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -55,7 +59,7 @@ const useStyles = makeStyles({
 export default function ListProducts() {
     const classes = useStyles();
     const [producto, setProducto]= useState([])
-
+    
 
     function getProduct(){
       Axios("http://localhost:3001/products")
@@ -68,8 +72,26 @@ export default function ListProducts() {
     },[])
 
    const  deleteProduct = async (id) => {
-      await Axios.delete(`http://localhost:3001/products/${id}`)   
-      getProduct()
+    MySwal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Axios.delete(`http://localhost:3001/products/${id}`)
+        .then(() => getProduct())
+        MySwal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+
    }
    
    
@@ -82,7 +104,7 @@ export default function ListProducts() {
 
     <div>
 
-      <AddProducts getProduct={getProduct} />
+      <AddProducts getProduct={getProduct}  />
 
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
