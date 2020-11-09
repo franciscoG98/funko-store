@@ -26,6 +26,8 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
     setOpen(true);
   };
 
+
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -45,17 +47,17 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
         <DialogContent>
           <DialogContentText>
             Nombra y describe tu categoria
-          </DialogContentText>
-          <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Nombre de la Categoria"
-          type="text"
-          name="name"
-          onChange={cambio}
-          fullWidth
-        />
+          </DialogContentText>              
+             <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Nombre de la Categoria"
+              type="text"
+              name="name"
+              onChange={cambio}
+              fullWidth
+               />
           <TextField
             margin="dense"
             id="name"
@@ -65,6 +67,8 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
             name="description"
             onChange={cambio}
           />
+
+         
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

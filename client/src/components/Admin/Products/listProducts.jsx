@@ -61,12 +61,17 @@ export default function ListProducts() {
       Axios("http://localhost:3001/products")
         .then(r => setProducto(r.data))
     }
+
     
     useEffect(()=>{
       getProduct()
     },[])
 
-
+   const  deleteProduct = async (id) => {
+      await Axios.delete(`http://localhost:3001/products/${id}`)   
+      getProduct()
+   }
+   
    
 
     if(!producto){
@@ -101,7 +106,7 @@ export default function ListProducts() {
               <TableCell scope="row" align="center">{prod.stock === "true" ? <p>Disponible</p> : <p style={{color: "red"}}>Pocas Unidades</p>}</TableCell>
               <TableCell scope="row" align="center"> 
                 <Button size="small" color="primary"><EditIcon/></Button> 
-                <Button size="small" color="primary"><DeleteIcon/></Button></TableCell>
+                <Button size="small" color="primary" onClick={() => deleteProduct(prod.id)}><DeleteIcon/></Button></TableCell>
             </TableRow>
           )) }
         </TableBody>

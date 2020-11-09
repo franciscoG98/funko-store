@@ -57,6 +57,7 @@ export default function BasicTable() {
       description: ""
     })
 
+
     function getCategory(){
       Axios("http://localhost:3001/products/category")
         .then(r => setCategory(r.data.categories))
@@ -65,6 +66,11 @@ export default function BasicTable() {
     useEffect(()=>{
       getCategory()
     },[])
+
+    const deleteCategory = async (id) => {
+      await Axios.delete(`http://localhost:3001/products/category/${id}`)
+      getCategory()
+    }
 
     if(!category){
         return <p>cargando</p>
@@ -81,7 +87,7 @@ export default function BasicTable() {
 
     <div>
 
-      <FormDialog  getCategory={getCategory} cambio={onChange} newCategory={newCategory} />
+      <FormDialog  getCategory={getCategory} cambio={onChange} newCategory={newCategory}/>
 
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
@@ -103,7 +109,7 @@ export default function BasicTable() {
               <TableCell align="center">{cat.description}</TableCell>
               <TableCell className={classes.buttons} align="center"> 
                 <Button size="small" color="primary"> <EditIcon/> </Button> 
-                <Button size="small" color="primary"> <DeleteIcon /></Button>   
+                <Button size="small" color="primary" onClick={() => deleteCategory(cat.id)}> <DeleteIcon /></Button>   
                 
               </TableCell>
             </TableRow>
