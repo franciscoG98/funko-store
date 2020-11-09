@@ -7,6 +7,7 @@ import ListCategories from './components/Admin/Categories/ListCategories';
 import ListProducts from "./components/Admin/Products/listProducts";
 import CategoryProduct from './components/CategoryProduct/CategoryProduct';
 import Button from '@material-ui/core/Button';
+import Search from "./components/SearchBar/Search";
 
 
 
@@ -41,6 +42,8 @@ function App() {
 
           < Route exact path= '/product/:nombreCat' component= {CategoryProduct} />              
         
+          < Route exact path= '/products/search/:search' component= {Search} />              
+
       
       </BrowserRouter>
 

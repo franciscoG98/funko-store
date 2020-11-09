@@ -34,10 +34,12 @@
 .marvel {
   background-image: url("https://i.pinimg.com/originals/c9/c2/71/c9c271b39a321d4764c04b8ea4da1b62.jpg");
   background-repeat: repeat-y;
+  height: 200vh;
 }
 
 .dc {
   background-image: url("https://wallpapercave.com/wp/IWeDuiF.jpg");
+  height: 200vh;
   background-repeat: repeat-y;
 }
 
