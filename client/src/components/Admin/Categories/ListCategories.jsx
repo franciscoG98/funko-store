@@ -12,6 +12,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import Axios from 'axios';
 import FormDialog from './DialogCRUDCat'  
 import Button from '@material-ui/core/Button';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -56,6 +61,7 @@ export default function BasicTable() {
       name: "",
       description: ""
     })
+    
 
 
     function getCategory(){
@@ -63,13 +69,32 @@ export default function BasicTable() {
         .then(r => setCategory(r.data.categories))
     }
     
-    useEffect(()=>{
-      getCategory()
+    useEffect(()=>{ 
+        getCategory()
     },[])
 
-    const deleteCategory = async (id) => {
-      await Axios.delete(`http://localhost:3001/products/category/${id}`)
-      getCategory()
+    const deleteCategory = (id) => {
+      MySwal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Axios.delete(`http://localhost:3001/products/category/${id}`)
+          .then(() => getCategory())
+          MySwal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+
+     
     }
 
     if(!category){
@@ -82,6 +107,8 @@ export default function BasicTable() {
         [e.target.name]: e.target.value
       })
     }
+
+   
     
   return (
 
