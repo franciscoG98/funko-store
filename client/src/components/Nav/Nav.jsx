@@ -18,8 +18,6 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import useStyles from './NavStyles';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
-import SettingsIcon from '@material-ui/icons/Settings';
-import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 
 import {Link} from 'react-router-dom';
 
@@ -29,7 +27,7 @@ export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [side, setSide] = React.useState(false);
+ 
  
 
   const isMenuOpen = Boolean(anchorEl);

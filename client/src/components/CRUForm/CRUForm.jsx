@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import CheckboxAvenger from "./checkboxAvenger";
+
 
 const useStyles = makeStyles({
     root: {
@@ -29,16 +29,18 @@ const useStyles = makeStyles({
 });
 
 
-const marvel = ["Avenger", "X-men", "Fantastic Four"];
-const dc = ["Justice League", "Legend", "Villain"];
+
+
 
 const CRUForm = ({cambio}) => {
     const classes = useStyles();
     
+
+    
     return (
 
-        <div style={{flexDirection: 'column', display: 'flex'}} >
-            <TextField id="standard-basic1" label="Name your Funko" name="name"  onChange={cambio} />
+        <div style={{flexDirection: 'column', display: 'flex', width: "100%"}} >
+            <TextField fullWidth id="standard-basic1" label="Name your Funko" name="name"  onChange={cambio} />
             <TextField id="standard-basic2" label="Describe your funko" name="description"   onChange={cambio} />
             <TextField id="standard-basic2" label="Price your Funko" type="number" name="price"  onChange={cambio} />
             <TextField id="standard-basic3" label="Take a photo of your Funko" name="imagen"   onChange={cambio} />
@@ -53,7 +55,9 @@ const CRUForm = ({cambio}) => {
                 >
                 <option onChange={cambio} name="categoria" >Choose</option>
                 <option onChange={cambio} name="categoria" >Marvel</option>
-                <option onChange={cambio} name="categoria" >DC</option>
+                <option onChange={cambio} name="categoria" >DC Comics</option>
+                <option onChange={cambio} name="categoria" >Avengers</option>
+                <option onChange={cambio} name="categoria" >X-Men</option>
             </NativeSelect>
             {/* <CheckboxAvenger  name="categoria" onChange={cambio}/>  */}
             <br/>

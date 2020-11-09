@@ -43,10 +43,10 @@ const AddProduct = ({getProduct}) => {
 
   return (
     <div>
-      <Button variant="contained" color="primary"  display="flex" marginLeft="62%" onClick={handleClickOpen}>
+      <Button variant="contained" color="primary"  display="flex" onClick={handleClickOpen}>
       Agregar Producto
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleSubmit}>
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title"  onSubmit={handleSubmit}>
         <DialogTitle id="form-dialog-title">Agregar Producto</DialogTitle>
         <DialogContent>
 
