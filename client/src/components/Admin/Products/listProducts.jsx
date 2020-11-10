@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles} from '@material-ui/core/styles';
-
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
-// import Button from '@material-ui/core/Button';
-
-// chicos probe traer los icons con destructuring pero me rompe  todo el codigo, dejo los impor antiguos comentados por las dudas
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-
+import {Delete, Edit} from '@material-ui/icons';
 import Axios from 'axios';
 import AddProducts from '../../CRUForm/AddProduct'
 import Swal from 'sweetalert2'
@@ -60,7 +47,6 @@ const useStyles = makeStyles({
 });
 
 
-
 export default function ListProducts() {
     const classes = useStyles();
     const [producto, setProducto]= useState([])
@@ -71,7 +57,7 @@ export default function ListProducts() {
         .then(r => setProducto(r.data))
     }
 
-    
+    //component did mount
     useEffect(()=>{
       getProduct()
     },[])
@@ -108,9 +94,7 @@ export default function ListProducts() {
   return (
 
     <div>
-
       <AddProducts getProduct={getProduct}  />
-
       <TableContainer className={classes.tableContainer} component={Paper}>
         <Table  className={classes.table} aria-label="simple table">
           <TableHead >
@@ -134,8 +118,8 @@ export default function ListProducts() {
                   {prod.stock > 0 ? <p style={{color: "green"}}>{prod.stock}</p> : <p style={{color: "red"}}>{prod.stock}</p>}
                 </TableCell>
                 <TableCell scope="row" align="center"> 
-                  <Button size="small" color="primary"><EditIcon/></Button> 
-                  <Button size="small" color="primary" onClick={() => deleteProduct(prod.id)}><DeleteIcon/></Button></TableCell>
+                  <Button size="small" color="primary"><Edit/></Button> 
+                  <Button size="small" color="primary" onClick={() => deleteProduct(prod.id)}><Delete/></Button></TableCell>
               </TableRow>
             )) }
           </TableBody>

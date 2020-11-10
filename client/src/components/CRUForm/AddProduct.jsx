@@ -15,7 +15,7 @@ const AddProduct = ({getProduct}) => {
     description: "",
     imagen:"", 
     stock: null,
-    categoria: "",
+    categoria: [],
     price: null,
   })
 
@@ -30,14 +30,16 @@ const AddProduct = ({getProduct}) => {
   const onChange = (e) => {
     setProduct({
       ...product,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      
     })
   }
 
   const handleSubmit = async e => {
+    
     e.preventDefault()
     await Axios.post("http://localhost:3001/products", product)
-    getProduct()
+    console.log(getProduct)
     setOpen(false)
   } 
 

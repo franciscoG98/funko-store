@@ -3,6 +3,7 @@ import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import CheckboxAvenger from './checkboxAvenger'
 
 
 const useStyles = makeStyles({
@@ -23,9 +24,7 @@ const useStyles = makeStyles({
     formControl: {
         minWidth: 120,
     },
-    /* checkbox : {
-        display: "none"
-    } */
+    
 });
 
 
@@ -33,21 +32,20 @@ const useStyles = makeStyles({
 
 
 const CRUForm = ({cambio}) => {
-    const classes = useStyles();
+   // const classes = useStyles();
     
-
     
     return (
 
         <div style={{flexDirection: 'column', display: 'flex', width: "100%"}} >
-            <TextField fullWidth id="standard-basic1" label="Name your Funko" name="name"  onChange={cambio} />
+            <TextField fullWidth id="standard-basic1" label="Name your Funko" name="name" onChange={cambio}/>
             <TextField id="standard-basic2" label="Describe your funko" name="description"   onChange={cambio} />
             <TextField id="standard-basic2" label="Price your Funko" type="number" name="price"  onChange={cambio} />
             <TextField id="standard-basic3" label="Take a photo of your Funko" name="imagen"   onChange={cambio} />
             <TextField id="standard-basic3" label="Stock" name="stock"  onChange={cambio} />
             <br/>
             <InputLabel htmlFor="uncontrolled-native">Where is your Funko from?</InputLabel>
-            <NativeSelect
+            {/* <NativeSelect
                 onChange={cambio} //la vamos a usar
                 name="categoria"
                 className={classes.selectEmpty}
@@ -58,8 +56,8 @@ const CRUForm = ({cambio}) => {
                 <option onChange={cambio} name="categoria" >DC Comics</option>
                 <option onChange={cambio} name="categoria" >Avengers</option>
                 <option onChange={cambio} name="categoria" >X-Men</option>
-            </NativeSelect>
-            {/* <CheckboxAvenger  name="categoria" onChange={cambio}/>  */}
+            </NativeSelect> */}
+            <CheckboxAvenger  name="categoria" onChange={handleCheck}/>  
             <br/>
             
             <br/>

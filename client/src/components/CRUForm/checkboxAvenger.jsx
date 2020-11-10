@@ -9,7 +9,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Axios from 'axios';
 
-//const marvel = ["Avenger", "x-men", "Fantastic Four"];
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
 export default function CheckboxAvenger({cambio}) {
     const classes = useStyles();
     const [state, setState] = useState([]);
-
+    const [check, setCheck] = useState([]);
+    
     useEffect(() => {
       Axios("http://localhost:3001/products/category")
       .then(r => {
@@ -32,6 +32,12 @@ export default function CheckboxAvenger({cambio}) {
       })
     }, [])
 
+    const handleCheck = (e) => {
+      setCheck({
+        ...check,
+        [e.target.name]: e.target.value,
+      })
+    }
 
 
     
@@ -43,7 +49,7 @@ export default function CheckboxAvenger({cambio}) {
             {state.map((p)=>(
               <FormControlLabel
               key={p.id} 
-              control={<Checkbox  name="categoria" />}
+              control={<Checkbox onChange={handleCheck} name="categoria" />}
               label={p.name}
             />
             ))}
