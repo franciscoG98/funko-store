@@ -6,6 +6,7 @@ module.exports = (sequelize) => {
         id: {
             type:DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true
         }, // a checkear lo del id
         name: {
             type: DataTypes.STRING,
