@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles} from '@material-ui/core/styles';
 
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-
-// chicos probe traer los icons con destructuring pero me rompe  todo el codigo, dejo los impor antiguos comentados por las dudas
+import{ Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 
 import Axios from 'axios';
-import AddProducts from '../../CRUForm/AddProduct'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import EditProduct from "../../CRUForm/EditProduct";
+import AddProducts from '../../CRUForm/AddProduct';
 
 const MySwal = withReactContent(Swal)
 
@@ -54,11 +43,9 @@ const useStyles = makeStyles({
 
   },
   Button:{
-      display: "flex",
-      marginLeft: "62%",
+    display: "flex",
+    marginLeft: "62%",
   },
-  
-  
 });
 
 
@@ -100,18 +87,16 @@ export default function ListProducts() {
     })
 
    }
-   
-   
 
     if(!producto){
-        return <p>cargando</p>
+      return <p>cargando</p>
     }
     
   return (
 
     <div>
 
-      <AddProducts getProduct={getProduct}  />
+      <AddProducts getProduct={getProduct} />
 
 
     <TableContainer className={classes.tableContainer} component={Paper}>
@@ -133,7 +118,7 @@ export default function ListProducts() {
               <TableCell scope="row" align="left">{prod.name}</TableCell>
               <TableCell scope="row" align="left">{prod.description}</TableCell>
               <TableCell scope="row" align="center">{prod.price}</TableCell>
-              <TableCell scope="row" align="center">{prod.stock === "true" ? <p>Disponible</p> : <p style={{color: "red"}}>Pocas Unidades</p>}</TableCell>
+              <TableCell scope="row" align="center">{prod.stock > 0 ? <p style={{color: "green"}}>{prod.stock}</p> : <p style={{color: "red"}}>{prod.stock}</p>}</TableCell>
               <TableCell scope="row" align="center"> 
                 <Button size="small" color="primary" onClick={() => setEdit(true)}>
                    <EditProduct getProduct={getProduct} id={prod.id} edit={edit} setEdit={setEdit} /> 

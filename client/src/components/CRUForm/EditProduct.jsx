@@ -43,7 +43,7 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
             description: r.data.producto.description,
             imagen:r.data.producto.imagen, 
             stock: r.data.producto.stock,
-            categoria: r.data.producto.categories[0].name,
+            // categoria: r.data.producto.categories[0].name, comento esto porque rompe
             price: r.data.producto.price,
          })
      })

@@ -62,7 +62,7 @@ const Product = ({f}) => {
           <span style={{fontWeight: "bold"}}> Price: </span> ${f.price}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {f.stock > 0 ? <span>Diponible</span> : <span style={{color: "red"}}>No hay stock ura</span>}
+            {f.stock > 0 ? <span>Diponible</span> : <span style={{color: "red"}}>No hay unidades disponibles</span>}
           </Typography>
         </CardContent>
       </CardActionArea>
