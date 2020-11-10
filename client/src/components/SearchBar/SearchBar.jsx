@@ -7,7 +7,9 @@ const SearchBar = ({classes}) => {
   const [query, setQuery] = useState({
     query: ""
   });
-   
+  
+
+ 
   function onChange(e){
     setQuery({
       ...query,
@@ -17,12 +19,10 @@ const SearchBar = ({classes}) => {
 
   
   
-  return (
-    
+  return ( 
     <>
-    
       <div className={classes.search}>   
-        <Link to={`/products/search/${query.query}`} >
+        <Link to={`/products/search/${query.query}`}  >
         <SearchIcon />
         </Link>
       
@@ -37,16 +37,8 @@ const SearchBar = ({classes}) => {
       onChange={onChange}
       />
       
-  </div>
-
-
-
-
-
+     </div>
     </>
-
-    
-    
   );
 }
 
