@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 
 
 
-const CRUForm = ({cambio}) => {
+const CRUForm = ({cambio, product, edit}) => {
     const classes = useStyles();
     
 
@@ -40,11 +40,11 @@ const CRUForm = ({cambio}) => {
     return (
 
         <div style={{flexDirection: 'column', display: 'flex', width: "100%"}} >
-            <TextField fullWidth id="standard-basic1" label="Name your Funko" name="name"  onChange={cambio} />
-            <TextField id="standard-basic2" label="Describe your funko" name="description"   onChange={cambio} />
-            <TextField id="standard-basic2" label="Price your Funko" type="number" name="price"  onChange={cambio} />
-            <TextField id="standard-basic3" label="Take a photo of your Funko" name="imagen"   onChange={cambio} />
-            <TextField id="standard-basic3" label="Stock" name="stock"  onChange={cambio} />
+            <TextField fullWidth id="standard-basic1" label="Name your Funko" name="name" value={edit && product.name} onChange={cambio} />
+            <TextField id="standard-basic2" label="Describe your funko" name="description" value={edit && product.description}   onChange={cambio} />
+            <TextField id="standard-basic2" label="Price your Funko" type="number" name="price" value={edit && product.price}  onChange={cambio} />
+            <TextField id="standard-basic3" label="Take a photo of your Funko" name="imagen" value={edit && product.imagen}   onChange={cambio} />
+            <TextField id="standard-basic3" label="Stock" name="stock" value={edit && product.stock}  onChange={cambio} />
             <br/>
             <InputLabel htmlFor="uncontrolled-native">Where is your Funko from?</InputLabel>
             <NativeSelect
@@ -52,8 +52,9 @@ const CRUForm = ({cambio}) => {
                 name="categoria"
                 className={classes.selectEmpty}
                 inputProps={{ 'aria-label': 'age' }}
+                
                 >
-                <option onChange={cambio} name="categoria" >Choose</option>
+                <option onChange={cambio} name="categoria" >{edit ? product.categoria : "Chosee"}</option>
                 <option onChange={cambio} name="categoria" >Marvel</option>
                 <option onChange={cambio} name="categoria" >DC Comics</option>
                 <option onChange={cambio} name="categoria" >Avengers</option>

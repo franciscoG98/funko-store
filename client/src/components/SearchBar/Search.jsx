@@ -11,12 +11,14 @@ const Search = () => {
     const query = useParams();
     const [products, setProducts]= useState([])
     useEffect(()=>{
-    Axios(`http://localhost:3001/search?query=${query.search}`)
+        Axios(`http://localhost:3001/search?query=${query.search}`)
         .then(r => setProducts(r.data))
         .catch(err => {
             console.log(err)
         })
     },[query.search])
+    
+
 
     if(!products){
         return <p>Cargando...</p>

@@ -8,12 +8,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import Axios from 'axios';
 import FormDialog from './DialogCRUDCat'  
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import EditIcon from '@material-ui/icons/Edit';
+import EditCat from "./EditCat";
+
+
 
 const MySwal = withReactContent(Swal)
 
@@ -37,7 +40,7 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
     margin: 'auto',
     marginTop: "15px",
-    display: 'flex',
+    display: 'flex', 
     padding: 30,
     
   },
@@ -58,10 +61,11 @@ export default function BasicTable() {
     const classes = useStyles();
     const [category, setCategory]= useState([])
     const [newCategory, setNewCategory] = useState({
+      id: "",
       name: "",
       description: ""
     })
-    
+    const [edit, setEdit] = useState(false)
 
 
     function getCategory(){
@@ -92,11 +96,28 @@ export default function BasicTable() {
             'success'
           )
         }
-      })
-
-     
+      })    
     }
 
+    const updateCategory = (nombre) => {
+        Axios(`http://localhost:3001/products/category/${nombre}`)
+        .then(r => {
+            setNewCategory({
+              id: r.data.id,
+              name: r.data.name,
+              description: r.data.description
+            })
+            if(!r.data.id){
+              setEdit(false)
+            } else {
+              setEdit(true)
+            }
+        })
+    }
+
+
+   
+    
     if(!category){
         return <p>cargando</p>
     }
@@ -114,7 +135,7 @@ export default function BasicTable() {
 
     <div>
 
-      <FormDialog  getCategory={getCategory} cambio={onChange} newCategory={newCategory}/>
+    <FormDialog  getCategory={getCategory} cambio={onChange} newCategory={newCategory}  />
 
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
@@ -135,7 +156,9 @@ export default function BasicTable() {
               <TableCell align="center">{cat.name}</TableCell>
               <TableCell align="center">{cat.description}</TableCell>
               <TableCell className={classes.buttons} align="center"> 
-                <Button size="small" color="primary"> <EditIcon/> </Button> 
+                <Button size="small" color="primary" onClick={() => updateCategory(cat.name)} > 
+                      <EditCat getCategory={getCategory} cambio={onChange} newCategory={newCategory} edit={edit} setEdit={setEdit} />
+                </Button> 
                 <Button size="small" color="primary" onClick={() => deleteCategory(cat.id)}> <DeleteIcon /></Button>   
                 
               </TableCell>

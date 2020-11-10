@@ -8,12 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import Axios from 'axios';
 import AddProducts from '../../CRUForm/AddProduct'
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import EditProduct from "../../CRUForm/EditProduct";
 
 const MySwal = withReactContent(Swal)
 
@@ -59,7 +59,7 @@ const useStyles = makeStyles({
 export default function ListProducts() {
     const classes = useStyles();
     const [producto, setProducto]= useState([])
-    
+    const [edit, setEdit] = useState(false)
 
     function getProduct(){
       Axios("http://localhost:3001/products")
@@ -127,7 +127,9 @@ export default function ListProducts() {
               <TableCell scope="row" align="center">{prod.price}</TableCell>
               <TableCell scope="row" align="center">{prod.stock === "true" ? <p>Disponible</p> : <p style={{color: "red"}}>Pocas Unidades</p>}</TableCell>
               <TableCell scope="row" align="center"> 
-                <Button size="small" color="primary"><EditIcon/></Button> 
+                <Button size="small" color="primary" onClick={() => setEdit(true)}>
+                   <EditProduct getProduct={getProduct} id={prod.id} edit={edit} setEdit={setEdit} /> 
+                </Button> 
                 <Button size="small" color="primary" onClick={() => deleteProduct(prod.id)}><DeleteIcon/></Button></TableCell>
             </TableRow>
           )) }

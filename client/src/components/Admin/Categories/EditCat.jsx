@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function FormDialog({getCategory, cambio, newCategory}) {
+export default function FormDialog({getCategory, cambio, newCategory, edit, setEdit}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -33,18 +33,19 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
     setOpen(false);
   };
 
-  const handleSubmit = async e => {
+
+  const handleActualizar = async e => {
     e.preventDefault();
-    await Axios.post("http://localhost:3001/products/category" , newCategory)
+    await Axios.put("http://localhost:3001/products/category/" + newCategory.id, newCategory)
     getCategory();
     setOpen(false)
+    setEdit(false)
   }
-
 
   return (
     <div>
       
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleSubmit}>
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleActualizar}>
         <DialogTitle id="form-dialog-title">Agregar Categoría</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -57,6 +58,7 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
               label="Nombre de la Categoria"
               type="text"
               name="name"
+              value={edit && newCategory.name}
               onChange={cambio}
               fullWidth
                />
@@ -67,6 +69,7 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
             type="text"
             fullWidth
             name="description"
+            value={edit && newCategory.description}
             onChange={cambio}
           />
 
@@ -75,14 +78,15 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
-          </Button>       
-            <Button type="submit" color="primary" onClick={handleSubmit}>
-            Agregar
-          </Button>      
+          </Button>
+          
+         <Button type="submit" color="primary" onClick={handleActualizar}>
+          Editar
+        </Button>
         </DialogActions>
       </Dialog>
-      <Button variant="contained" className={classes.buttons} color="primary" onClick={handleClickOpen}>
-        Agregar Categoria
+      <Button   color="primary" onClick={handleClickOpen}>
+            <EditIcon />
       </Button>
       
       
