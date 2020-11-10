@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles} from '@material-ui/core/styles';
+
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,10 +9,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+
+// chicos probe traer los icons con destructuring pero me rompe  todo el codigo, dejo los impor antiguos comentados por las dudas
 import DeleteIcon from '@material-ui/icons/Delete';
+
+
+
 import Axios from 'axios';
 import AddProducts from '../../CRUForm/AddProduct'
-import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import EditProduct from "../../CRUForm/EditProduct";
@@ -106,6 +113,7 @@ export default function ListProducts() {
 
       <AddProducts getProduct={getProduct}  />
 
+
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
         <TableHead >
@@ -131,12 +139,12 @@ export default function ListProducts() {
                    <EditProduct getProduct={getProduct} id={prod.id} edit={edit} setEdit={setEdit} /> 
                 </Button> 
                 <Button size="small" color="primary" onClick={() => deleteProduct(prod.id)}><DeleteIcon/></Button></TableCell>
-            </TableRow>
-          )) }
-        </TableBody>
-      </Table>
-    </TableContainer>
-    <br></br>
+              </TableRow>
+            )) }
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <br></br>
     </div>
   );
 }
