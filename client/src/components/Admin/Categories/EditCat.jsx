@@ -44,7 +44,6 @@ export default function FormDialog({getCategory, cambio, newCategory, edit, setE
 
   return (
     <div>
-      
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleActualizar}>
         <DialogTitle id="form-dialog-title">Agregar Categoría</DialogTitle>
         <DialogContent>
@@ -85,11 +84,7 @@ export default function FormDialog({getCategory, cambio, newCategory, edit, setE
         </Button>
         </DialogActions>
       </Dialog>
-      <Button   color="primary" onClick={handleClickOpen}>
-            <EditIcon />
-      </Button>
-      
-      
+      <EditIcon  color="primary" onClick={handleClickOpen}/>
     </div>
   );
 }
