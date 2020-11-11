@@ -69,7 +69,7 @@ const CRUForm = ({cambio, product, edit}) => {
                 >       
             {state.map((p)=>(
                <>
-                   <option key={p.id} value={edit ? product.categoria[0].name : p.name} onChange={cambio} name="categoria" >{ p.name}</option>   
+                   <option key={p.id}  onChange={cambio} name="categoria" >{ p.name}</option>   
                </>
             ))} 
              </NativeSelect>
@@ -82,7 +82,7 @@ const CRUForm = ({cambio, product, edit}) => {
                 >       
             {state.map((p)=>(
                <>
-                   <option key={p.id} value={edit ? product.categoria[1].name : p.name} onChange={cambio} name="categoria2" >{p.name}</option>   
+                   <option key={p.id + 1 } onChange={cambio} name="categoria2" >{p.name}</option>   
                </>
             ))} 
              </NativeSelect>

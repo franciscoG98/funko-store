@@ -48,7 +48,7 @@ const Product = ({f}) => {
         <CardMedia
           className={classes.media}
           image= {f.imagen}
-
+          onClick={() => handleOpen()}
           title={f.name}
         />
         <CardContent>
@@ -67,10 +67,10 @@ const Product = ({f}) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+      {f.stock > 0 ? <Button size="small" color="primary">       
         <AddShoppingCartRoundedIcon />
           Add To Cart 
-        </Button>
+        </Button>: null}        
         <Button size="small" color="primary" onClick={() => handleOpen()}>
             <OpenInNewRoundedIcon />
             More 

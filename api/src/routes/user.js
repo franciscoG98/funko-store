@@ -28,10 +28,21 @@ const { User } = require('../db.js');
 
         // if (isAdmin){ 
 
-        // }
-        
-       
-    
+        // }         
 });
+
+server.delete("/:id", (req, res) => {
+    const {id} = req.params;
+
+    if(!id){
+        res.status(404).json({msg: "Seleccione un usuario a eliminar"})
+    } else {
+        User.destroy({where: {id}})
+        .then(() => res.json({msg: "Usuario eliminado"}))
+        .catch(err => res.json(err))
+    }
+
+
+})
 
 module.exports = server;

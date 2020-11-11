@@ -17,6 +17,7 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
     imagen:"", 
     stock: null,
     categoria: "",
+    categoria2: "",
     price: null,
   })
 
@@ -37,24 +38,29 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
 
   useEffect(() => {
      Axios.get("http://localhost:3001/products/" + id)    
-     .then(r => {
+     .then(r => {     
          setProduct({
             name: r.data.producto.name,
             description: r.data.producto.description,
             imagen:r.data.producto.imagen, 
             stock: r.data.producto.stock,
-            categoria: r.data.producto.categories, 
+            categoria: r.data.producto.categories[0].name,
+            categoria2: r.data.producto.categories[1].name ,
             price: r.data.producto.price,
          })
+         
      })
   }, [id])
 
+
   const handleSubmit = async e => {
     e.preventDefault()
+    console.log(product)
     await Axios.put("http://localhost:3001/products/" + id, product)
     getProduct()
     setOpen(false)
     setEdit(false)
+
   } 
 
   return (

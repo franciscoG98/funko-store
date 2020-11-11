@@ -23,22 +23,22 @@ server.post('/', function (req, res, next) {
 	.catch(next);
 })
 
-server.put('/:id', function(req, res) {
-    const productId = req.params;
-    const data = req.body;
+// server.put('/:id', function(req, res) {
+//     const productId = req.params;
+//     const data = req.body;
 
-	if (!productId || !data) res.status(400).json({msj: "Datos incorrectos"});
+// 	if (!productId || !data) res.status(400).json({msj: "Datos incorrectos"});
 	
-	Product.update(data,
-		{where: { id: productId.id } })
-		.then(product => {
-			res.status(200);
-			res.send(product)
-		})
-		.catch(err => {
-			console.log(err)
-		  })
-	})
+// 	Product.update(data,
+// 		{where: { id: productId.id } })
+// 		.then(product => {
+// 			res.status(200);
+// 			res.send(product)
+// 		})
+// 		.catch(err => {
+// 			console.log(err)
+// 		  })
+// 	})
 
 server.get('/', (req, res, next) => {
 	Product.findAll()
@@ -197,32 +197,67 @@ server.delete("/:id", (req, res) => {
 })
 
 //modificar producto
-server.put('/:id', (req, res) =>{
+server.put('/:id', (req, res, next) =>{
 	const {id} = req.params;
-	const {name, description, stock, imagen, price} = req.body;
+	const {name, description, stock, imagen, price, categoria, categoria2} = req.body;
+	let prod;
 	const producto = {
 		name,
 		description,
 		stock,
 		imagen,
-		price
+		price,
 	}
 
 	if (!id || !producto){
 		res.status(400).json({msj: "invalid or missing data"});
 	} else {
-		Product.update(producto,
-			{where: { id: id } })
-			.then(prod => {
-				res.json(prod)
+		Product.findByPk(id)
+			.then(product => {
+				prod = product
+				return product.update(producto)
+			})	
+			.then(() => {
+				Categories.findOne({where: {name: categoria}}).then(category => prod.setCategories(category))
+			})	
+			.then(() => {
+				Categories.findOne({where: {name: categoria2}}).then(category => prod.setCategories(category))
 			})
-			.catch(err => {
-				res.json(err)
-			  })
+			.then(() => res.status(201))
+			.catch((err) => console.log(err))
 	}
-	
+
+
 })
 
 
 
 module.exports = server;
+
+
+// if (!id || !producto){
+// 	res.status(400).json({msj: "invalid or missing data"});
+// } else {
+// 	Product.update(producto,
+// 		{where: { id: id } })
+// 		.then(prod => {
+// 			res.json(prod)
+// 		})
+// 		.catch(err => {
+// 			res.json(err)
+// 		  })
+// }
+
+// Product.update(producto,
+// 	{where: { id: id } })
+// 	.then((product) => {
+// 		prod = product
+// 		return Categories.findOne({where: {name: categoria}}).then((category) => prod.setCategory([category]))
+// 	}	 
+// 	)
+// 	.then( () => 	 
+// 	  Categories.findOne({where: {name: categoria2}}).then((category) => prod.setCategory([category]))
+// 	)
+// 	.then(() => res.sendStatus(201))
+// 	.catch(next);
+// }
