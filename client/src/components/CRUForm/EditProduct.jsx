@@ -23,6 +23,7 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
     imagen:"", 
     stock: null,
     categoria: "",
+    categoria2: "",
     price: null,
   })
 
@@ -59,18 +60,22 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
               description: producto.description,
               imagen: producto.imagen, 
               stock: producto.stock,
-              // categoria: producto.categories[0].name, 
+              categoria: producto.categories[0].name,
+              categoria2: producto.categories[1].name ,
               price: producto.price,
            })
   }, [id])
+
 
   const handleSubmit = async e => {
     e.preventDefault()
     await dispatch( editProduct(id, product) );
     //  Axios.put("http://localhost:3001/products/" + id, product)
+
     getProduct()
     setOpen(false)
     setEdit(false)
+
   } 
 
   return (
