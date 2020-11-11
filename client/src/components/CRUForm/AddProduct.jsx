@@ -22,6 +22,7 @@ const AddProduct = ({getProduct}) => {
     imagen:"", 
     stock: null,
     categoria: "",
+    categoria2: "",
     price: null,
   })
 
@@ -39,7 +40,8 @@ const AddProduct = ({getProduct}) => {
       [e.target.name]: e.target.value
     })
   }
-
+  
+  
   const handleSubmit = async e => {
     e.preventDefault()
     await dispatch( addProduct(product) );
