@@ -1,11 +1,12 @@
 const { DataTypes } = require('sequelize');
 
-
 module.exports = (sequelize) => {
-    sequelize.define("LineaDeOrden", {
+    sequelize.define("lineadeorden", {
         id: {
             type:DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true,
+            unique: true,
         }, // a checkear lo del id
         name: {
             type: DataTypes.STRING,
