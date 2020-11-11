@@ -56,11 +56,11 @@ export function deleteProduct(id) {
     return (dispatch) => {
         return Axios.delete(`http://localhost:3001/products/${id}`)
         .then(json => {
-            console.log(json);
             dispatch({ type: "DELETE_PRODUCT", payload: id });
         })
     }    
 }
+
 
 
 
