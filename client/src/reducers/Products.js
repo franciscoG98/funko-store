@@ -1,6 +1,8 @@
 
 const initialState = {
     products: [],
+    product: [],
+    searchProduct: [],
 }
 
 export default (state = initialState, action) => {
@@ -8,13 +10,13 @@ export default (state = initialState, action) => {
         case "GET_PRODUCTS":
             return {
                 ...state,
-                products: [...state.products, action.payload.data]
+                products: action.payload.data
             }
 
         case "ADD_PRODUCTS":
             return {
                 ...state,
-                products: [...state.products].push(action.payload)
+                products: [...state.products]
             }
         
         case "EDIT_PRODUCT":
@@ -26,7 +28,19 @@ export default (state = initialState, action) => {
         case "SEARCH_PRODUCTS":
             return {
                 ...state,
-                products: [...state.products, action.payload.data]
+                searchProduct: [action.payload.data]
+            }
+        
+        case "GET_PRODUCTID":
+            return {
+                ...state,
+                product: [action.payload.data.producto]
+            }
+
+        case "DELETE_PRODUCT":
+            return {
+                ...state,
+                products: [...state.products]
             }
 
         

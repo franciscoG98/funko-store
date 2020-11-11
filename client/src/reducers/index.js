@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import ProductReducers from "./modalReducers";
-import CategoryReducers from "./tweetReducers";
+import ProductReducers from "./Products";
+import CategoryReducers from "./Categories";
 
 
 

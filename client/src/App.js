@@ -8,6 +8,8 @@ import ListProducts from "./components/Admin/Products/listProducts";
 import CategoryProduct from './components/CategoryProduct/CategoryProduct';
 import Button from '@material-ui/core/Button';
 import Search from "./components/SearchBar/Search";
+import { Provider } from 'react-redux';
+import store from'./store';
 
 
 
@@ -16,40 +18,44 @@ function App() {
   
 
   return (
+
+    <Provider store= {store}>
+
     <div className= { marvel === true ? 'marvel' : 'dc' }>
 
-      <BrowserRouter> 
+      <BrowserRouter>         
 
-          < Nav /> 
+            < Nav /> 
 
-            <div className= 'divswitch'>
+              <div className= 'divswitch'>
 
-              <div className= 'switch'>
-                <Button variant="contained" color="primary" onClick= {() => setMarvel(true)}> Marvel </Button>
-              </div> 
+                <div className= 'switch'>
+                  <Button variant="contained" color="primary" onClick= {() => setMarvel(true)}> Marvel </Button>
+                </div> 
 
-              <div className= 'switch'>
-                <Button variant="contained" color="primary" onClick= {() => setMarvel(false)}>   DC    </Button> 
-              </div>
+                <div className= 'switch'>
+                  <Button variant="contained" color="primary" onClick= {() => setMarvel(false)}>   DC    </Button> 
+                </div>
 
-            </div>          
-       
-          < Route exact path= '/' component= {Products} />
-
-          < Route exact path= '/admin/categories' component= {ListCategories} />
-
-          < Route exact path= '/admin/products' component= {ListProducts} />
-
-          < Route exact path= '/product/:nombreCat' component= {CategoryProduct} />              
+              </div>          
         
-          < Route exact path= '/products/search/:search' component= {Search} />              
+            < Route exact path= '/' component= {Products} />
 
-            
+            < Route exact path= '/admin/categories' component= {ListCategories} />
+
+            < Route exact path= '/admin/products' component= {ListProducts} />
+
+            < Route exact path= '/product/:nombreCat' component= {CategoryProduct} />              
+          
+            < Route exact path= '/products/search/:search' component= {Search} />              
+
+           
       
       </BrowserRouter>
 
-
     </div>
+
+    </Provider>
   );
 }
 
