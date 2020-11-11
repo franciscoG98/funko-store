@@ -69,7 +69,7 @@ export default function ListProducts() {
     
     useEffect(()=>{
       getProduct()
-    },[productos])
+    },[])
 
    const  deleteProducts = async (id) => {
     MySwal.fire({

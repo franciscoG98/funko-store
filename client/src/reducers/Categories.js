@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
         case "DELETE_CATEGORY":
             return {
                 ...state,
-                categories: state.categories
+                categories: state.categories.filter((p) => p.id !== action.payload)
             }
 
         case "GET_CATEGORY_NAME":

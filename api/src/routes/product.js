@@ -3,7 +3,7 @@ const { Product, Categories } = require('../db.js');
 
 server.post('/', function (req, res, next) {
 	let producto;
-    let { name, description, price, imagen, stock, categoria} = req.body;
+    let { name, description, price, imagen, stock, categoria, categoria2} = req.body;
 	Product.create({
 	name: name,
 	description: description,
@@ -13,12 +13,12 @@ server.post('/', function (req, res, next) {
 	})
 	.then((product) => {
 		producto = product
-		Categories.findOne({where: {name: categoria}}).then((category) => producto.addCategories(category))
+		return Categories.findOne({where: {name: categoria}}).then((category) => producto.addCategories(category))
 	}	 
 	)
-	// .then( () => 	 
-	//   Categories.findOne({where: {name: categoria2}}).then((category) => producto.addCategories(category))
-	// )
+	.then( () => 	 
+	  Categories.findOne({where: {name: categoria2}}).then((category) => producto.addCategories(category))
+	)
 	.then(() => res.sendStatus(201))
 	.catch(next);
 })
