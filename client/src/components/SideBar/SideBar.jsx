@@ -10,6 +10,10 @@ import Axios from 'axios';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories, filterProducts } from '../../actions/Categories';
+
+
 
 
 const useStyles = makeStyles({
@@ -30,12 +34,18 @@ const useStyles = makeStyles({
 
 const SideBar = () => {
     const classes = useStyles();
-    const [category, setCategory]= React.useState([])
+    // const [category, setCategory]= React.useState([])
+    const dispatch = useDispatch();
+    const category = useSelector(state => state.Category.categories);
+    console.log(category);
+    // console.log(category);
+    
     
     useEffect(()=>{
-    Axios("http://localhost:3001/products/category")
-        .then(r => setCategory(r.data.categories))
-    },[])
+    // Axios("http://localhost:3001/products/category")
+    //     .then(r => setCategory(r.data.categories))
+    dispatch( getCategories() );
+    }, [])
 
     const [state, setState] = React.useState({
       left: false,
@@ -60,15 +70,17 @@ const SideBar = () => {
       >
         <List>
             {/* estos elementos son los que vana aparecer en la seccion de arriba */}
-          {category.map((text) => (
-            <ListItem button key={text.id}>
+          {!category ? <p>cargando...</p> : category.map((text) => (
+            <Link className= {classes.font} to= {`/product/${text.name}`} >
+              
+                  <ListItem button key={text.id}>
 
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-              <Link className= {classes.font} to= {`/product/${text.name}`} >
-                  <ListItemText fontWeight= 'fontWeightBold' primary={text.name} />
-              </Link>
+                    {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              
+                    <ListItemText fontWeight= 'fontWeightBold' primary={text.name} />              
 
-            </ListItem>
+                  </ListItem>
+            </Link>
           ))}
         </List>
 

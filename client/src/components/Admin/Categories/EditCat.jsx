@@ -10,6 +10,10 @@ import Axios from 'axios';
 import { makeStyles} from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 
+import { useDispatch } from 'react-redux';
+import { editCategory } from '../../../actions/Categories';
+
+
 
 const useStyles = makeStyles({
 
@@ -21,12 +25,12 @@ const useStyles = makeStyles({
 
 export default function FormDialog({getCategory, cambio, newCategory, edit, setEdit}) {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
 
 
   const handleClose = () => {
@@ -36,7 +40,8 @@ export default function FormDialog({getCategory, cambio, newCategory, edit, setE
 
   const handleActualizar = async e => {
     e.preventDefault();
-    await Axios.put("http://localhost:3001/products/category/" + newCategory.id, newCategory)
+    await dispatch( editCategory(newCategory.id, newCategory) );
+    // Axios.put("http://localhost:3001/products/category/" + newCategory.id, newCategory)
     getCategory();
     setOpen(false)
     setEdit(false)
