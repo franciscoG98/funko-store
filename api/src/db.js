@@ -37,8 +37,8 @@ const { Product, Categories , Order } = sequelize.models;
 Categories.belongsToMany(Product, {through:'categoryp'})
 Product.belongsToMany(Categories,{through:'categoryp'})
 
-Product.belongsToMany(Order, {through: 'lineadeorden'})
-Order.belongsToMany(Product, {through: 'lineadeorden'})
+Product.belongsToMany(Order, {through: 'orderline'})
+Order.belongsToMany(Product, {through: 'orderline'})
 
 
 module.exports = {
