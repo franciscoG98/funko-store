@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CheckboxAvenger({cambio}) {
     const classes = useStyles();
     const [state, setState] = useState([]);
+    
 
     useEffect(() => {
       Axios("http://localhost:3001/products/category")
@@ -32,22 +33,20 @@ export default function CheckboxAvenger({cambio}) {
       })
     }, [])
 
-
-
-    
-  
     return (
       <div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Choose Category</FormLabel>
             {state.map((p)=>(
+              
               <FormControlLabel
               key={p.id} 
-              control={<Checkbox  name="categoria" />}
+              control={<Checkbox value={p.name} name="categoria" onChange={cambio} />}
+              //control={<Checkbox  name="categoria2" onChange={cambio} />}
               label={p.name}
-            />
-            ))}
-        
+              />
+               
+            ))} 
         </FormControl>
         
       </div>
