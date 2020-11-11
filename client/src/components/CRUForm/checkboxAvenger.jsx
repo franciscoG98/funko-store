@@ -8,6 +8,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Axios from 'axios';
+import { getCategories } from '../../actions/Categories';
+import { useDispatch, useSelector } from 'react-redux';
 
 //const marvel = ["Avenger", "x-men", "Fantastic Four"];
 
@@ -23,22 +25,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CheckboxAvenger({cambio}) {
     const classes = useStyles();
-    const [state, setState] = useState([]);
-    
+
+    const dispatch = useDispatch();
+    const categories = useSelector(state => state.Category.categories);
+    // const [state, setState] = useState([]);
+
 
     useEffect(() => {
-      Axios("http://localhost:3001/products/category")
-      .then(r => {
-        setState(r.data.categories)
-      })
+      // Axios("http://localhost:3001/products/category")
+      // .then(r => {
+      //   setState(r.data.categories)
+      // })
+      dispatch( getCategories() );
     }, [])
 
     return (
       <div className={classes.root}>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Choose Category</FormLabel>
-            {state.map((p)=>(
-              
+
+            {categories.map((p)=>(
+
               <FormControlLabel
               key={p.id} 
               control={<Checkbox value={p.name} name="categoria" onChange={cambio} />}

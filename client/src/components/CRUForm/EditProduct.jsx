@@ -8,9 +8,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import CRUForm from './CRUForm';
 import Axios from 'axios';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'; 
+import { editProduct, getProductId } from '../../actions/Products';
+
+
 
 const EditProduct = ({getProduct, id, setEdit, edit}) => {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const producto = useSelector(state => state.Product.product);
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -37,26 +43,35 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
   }
 
   useEffect(() => {
-     Axios.get("http://localhost:3001/products/" + id)    
-     .then(r => {     
-         setProduct({
-            name: r.data.producto.name,
-            description: r.data.producto.description,
-            imagen:r.data.producto.imagen, 
-            stock: r.data.producto.stock,
-            categoria: r.data.producto.categories[0].name,
-            categoria2: r.data.producto.categories[1].name ,
-            price: r.data.producto.price,
-         })
-         
-     })
+    //  Axios.get("http://localhost:3001/products/" + id)    
+    //  .then(r => {
+    //      setProduct({
+    //         name: r.data.producto.name,
+    //         description: r.data.producto.description,
+    //         imagen:r.data.producto.imagen, 
+    //         stock: r.data.producto.stock,
+    //         categoria: r.data.producto.categories[0].name, 
+    //         price: r.data.producto.price,
+    //      })
+    //  })
+    dispatch( getProductId(id) );
+    setProduct({
+              name:producto.name,
+              description: producto.description,
+              imagen: producto.imagen, 
+              stock: producto.stock,
+              categoria: producto.categories[0].name,
+              categoria2: producto.categories[1].name ,
+              price: producto.price,
+           })
   }, [id])
 
 
   const handleSubmit = async e => {
     e.preventDefault()
-    console.log(product)
-    await Axios.put("http://localhost:3001/products/" + id, product)
+    await dispatch( editProduct(id, product) );
+    //  Axios.put("http://localhost:3001/products/" + id, product)
+
     getProduct()
     setOpen(false)
     setEdit(false)

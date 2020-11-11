@@ -8,8 +8,14 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import CRUForm from './CRUForm';
 import Axios from 'axios';
 
+import { useDispatch } from 'react-redux';
+import { addProduct, getProducts } from '../../actions/Products'; 
+
+
+
 const AddProduct = ({getProduct}) => {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -38,8 +44,11 @@ const AddProduct = ({getProduct}) => {
   
   const handleSubmit = async e => {
     e.preventDefault()
-    await Axios.post("http://localhost:3001/products", product)
-    getProduct()
+    await dispatch( addProduct(product) );
+    // Axios.post("http://localhost:3001/products", product)
+    await dispatch( getProducts() );
+    // getProduct();
+    
     setOpen(false)
   } 
 

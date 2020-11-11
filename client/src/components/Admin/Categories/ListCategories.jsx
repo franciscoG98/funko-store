@@ -16,9 +16,10 @@ import withReactContent from 'sweetalert2-react-content'
 import EditIcon from '@material-ui/icons/Edit';
 import EditCat from "./EditCat";
 
+import { useDispatch, useSelector } from 'react-redux'; 
+import { getCategories, editCategory, getCategoryName, deleteCategory } from '../../../actions/Categories';
 
-
-const MySwal = withReactContent(Swal)
+const MySwal = withReactContent(Swal);
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -59,7 +60,11 @@ const useStyles = makeStyles({
 
 export default function BasicTable() {
     const classes = useStyles();
-    const [category, setCategory]= useState([])
+    const dispatch = useDispatch(); 
+    const categoryName = useSelector(state => state.Category.categoryByName);
+    const category = useSelector(state => state.Category.categories);
+    // const [category, setCategory]= useState([])
+    
     const [newCategory, setNewCategory] = useState({
       id: "",
       name: "",
@@ -68,16 +73,17 @@ export default function BasicTable() {
     const [edit, setEdit] = useState(false)
 
 
-    function getCategory(){
-      Axios("http://localhost:3001/products/category")
-        .then(r => setCategory(r.data.categories))
+    function getCategory() {            
+      dispatch( getCategories() );
+      // Axios("http://localhost:3001/products/category")
+      //   .then(r => setCategory(r.data.categories))
     }
     
     useEffect(()=>{ 
-        getCategory()
+        dispatch( getCategories() )
     },[])
 
-    const deleteCategory = (id) => {
+    const deleteCategories = (id) => {
       MySwal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -88,8 +94,14 @@ export default function BasicTable() {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          Axios.delete(`http://localhost:3001/products/category/${id}`)
-          .then(() => getCategory())
+          // Axios.delete(`http://localhost:3001/products/category/${id}`)
+
+          dispatch( deleteCategory(id) );
+          dispatch( getCategories() );
+          
+
+          // .then(() => getCategory())
+          // getCategory()
           MySwal.fire(
             'Deleted!',
             'Your file has been deleted.',
@@ -100,19 +112,31 @@ export default function BasicTable() {
     }
 
     const updateCategory = (nombre) => {
-        Axios(`http://localhost:3001/products/category/${nombre}`)
-        .then(r => {
-            setNewCategory({
-              id: r.data.id,
-              name: r.data.name,
-              description: r.data.description
-            })
-            if(!r.data.id){
-              setEdit(false)
-            } else {
-              setEdit(true)
-            }
-        })
+        // Axios(`http://localhost:3001/products/category/${nombre}`)
+        // .then(r => {
+        //     setNewCategory({
+        //       id: r.data.id,
+        //       name: r.data.name,
+        //       description: r.data.description
+        //     })
+        //     if(!r.data.id){
+        //       setEdit(false)
+        //     } else {
+        //       setEdit(true)
+        //     }
+        // })
+        dispatch( getCategoryName(nombre) );
+        
+        setNewCategory({
+                id: categoryName.id,
+                name: categoryName.name,
+                description: categoryName.description
+              })
+              if(!categoryName.id){
+                setEdit(false)
+              } else {
+                setEdit(true)
+              }
     }
 
 
@@ -148,7 +172,7 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          { category.map(cat => (
+          { !category ? <p>cargando...</p> : category.map(cat => (
             <TableRow key={cat.id}>
               <TableCell component="th" scope="row">
                 {cat.id}
@@ -159,7 +183,7 @@ export default function BasicTable() {
                 <Button size="small" color="primary" onClick={() => updateCategory(cat.name)} > 
                       <EditCat getCategory={getCategory} cambio={onChange} newCategory={newCategory} edit={edit} setEdit={setEdit} />
                 </Button> 
-                <Button size="small" color="primary" onClick={() => deleteCategory(cat.id)}> <DeleteIcon /></Button>   
+                <Button size="small" color="primary" onClick={() => deleteCategories(cat.id)}> <DeleteIcon /></Button>   
                 
               </TableCell>
             </TableRow>
