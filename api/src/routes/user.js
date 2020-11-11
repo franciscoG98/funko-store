@@ -1,10 +1,9 @@
 const server = require('express').Router();
 const { User } = require('../db.js');
-//const { Op } = require("sequelize");
+
 
 //route for a user creation depending on if is admin or not.
     server.post('/', function (req, res, next) {
-        let user;
 
         let { fullname, email, phone, address, purchase, isAdmin} = req.body;
 
@@ -12,20 +11,24 @@ const { User } = require('../db.js');
             if (!fullname || !email || !address || !phone || !purchase) {
                 return res.status(400).json({ msg: "Invalid or missing data" });
               }
-        }else{
-            User.create({
-                fullname,
-                email,
-                phone,
-                address,
-                purchase
-            })
-            .then(
-                (userCreated) => 
-            { res.status(200).json({ msg: "User created", user: userCreated })
-            })
-            .catch(next);
-        }
+            }else{
+                User.create({
+                    fullname,
+                    email,
+                    phone,
+                    address,
+                    purchase
+                })
+                .then(
+                    (userCreated) => 
+                { res.status(200).json({ msg: "User created", user: userCreated })
+                })
+                .catch(next);
+            }
+
+        // if (isAdmin){ 
+
+        // }
         
        
     
