@@ -27,7 +27,7 @@ export function filterProducts(nombreCat) {
         return Axios(`http://localhost:3001/products/category/${nombreCat}`)
         // .then(products => products.json())
         .then(json => {
-            console.log(json);
+            // console.log(json);
             dispatch({ type: "FILTER_PRODUCTS", payload: json });
         })
     }    
@@ -38,7 +38,7 @@ export function getCategories() {
         Axios("http://localhost:3001/products/category") 
         // .then(categories => categories.json())
         .then(json => {
-            console.log(json.data.categories);
+            // console.log(json.data.categories);
             dispatch({ type: 'GET_CATEGORIES', payload: json.data.categories });
         })
     }    
