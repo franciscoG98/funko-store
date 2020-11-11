@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
         case "DELETE_PRODUCT":
             return {
                 ...state,
-                products: [...state.products]
+                products: state.products.filter((p) => p.id !== action.payload)
             }
 
         

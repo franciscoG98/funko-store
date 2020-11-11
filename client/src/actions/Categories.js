@@ -48,7 +48,7 @@ export function deleteCategory(id) {
     return (dispatch) => {
         return Axios.delete(`http://localhost:3001/products/category/${id}`)
         .then(() => {
-            dispatch({ type: 'DELETE_CATEGORY' });
+            dispatch({ type: 'DELETE_CATEGORY', payload: id });
         })
     }    
 }
