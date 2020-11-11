@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import CheckboxAvenger from "./checkboxAvenger";
+import Axios from "axios";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 const useStyles = makeStyles({
@@ -35,10 +39,19 @@ const useStyles = makeStyles({
 const CRUForm = ({cambio, product, edit}) => {
     const classes = useStyles();
     
+    const [state, setState] = useState([]);
+    
+
+    useEffect(() => {
+      Axios("http://localhost:3001/products/category")
+      .then(r => {
+        setState(r.data.categories)
+      })
+    }, [])
 
     
     return (
-
+ 
         <div style={{flexDirection: 'column', display: 'flex', width: "100%"}} >
             <TextField fullWidth id="standard-basic1" label="Name your Funko" name="name" value={edit && product.name} onChange={cambio} />
             <TextField id="standard-basic2" label="Describe your funko" name="description" value={edit && product.description}   onChange={cambio} />
@@ -53,15 +66,26 @@ const CRUForm = ({cambio, product, edit}) => {
                 className={classes.selectEmpty}
                 inputProps={{ 'aria-label': 'age' }}
                 
-                >
-                <option onChange={cambio} name="categoria" >{edit ? product.categoria : "Chosee"}</option>
-                <option onChange={cambio} name="categoria" >Marvel</option>
-                <option onChange={cambio} name="categoria" >DC Comics</option>
-                <option onChange={cambio} name="categoria" >Avengers</option>
-                <option onChange={cambio} name="categoria" >X-Men</option>
-            </NativeSelect>
-            {/* <CheckboxAvenger  name="categoria" onChange={cambio}/>  */}
+                >       
+            {state.map((p)=>(
+               <>
+                   <option key={p.id} value={edit ? product.categoria[0].name : p.name} onChange={cambio} name="categoria" >{ p.name}</option>   
+               </>
+            ))} 
+             </NativeSelect>
             <br/>
+            <NativeSelect
+                onChange={cambio} //la vamos a usar
+                name="categoria2"
+                className={classes.selectEmpty}
+                inputProps={{ 'aria-label': 'age' }}        
+                >       
+            {state.map((p)=>(
+               <>
+                   <option key={p.id} value={edit ? product.categoria[1].name : p.name} onChange={cambio} name="categoria2" >{p.name}</option>   
+               </>
+            ))} 
+             </NativeSelect>
             
             <br/>
         </div>
@@ -70,3 +94,28 @@ const CRUForm = ({cambio, product, edit}) => {
 
 export default CRUForm; 
 
+  {/* <NativeSelect
+                onChange={cambio} //la vamos a usar
+                name="categoria"
+                className={classes.selectEmpty}
+                inputProps={{ 'aria-label': 'age' }}
+                
+                >
+                <option onChange={cambio} name="categoria" >{edit ? product.categoria : "Chosee"}</option>
+                <option onChange={cambio} name="categoria" >Marvel</option>
+                <option onChange={cambio} name="categoria" >DC Comics</option>
+                <option onChange={cambio} name="categoria" >Avengers</option>
+                <option onChange={cambio} name="categoria" >X-Men</option>
+            </NativeSelect> */}
+
+
+            // <FormControlLabel
+            //   key={p.id} 
+            //   control={<Checkbox value={p.name} name="categoria" onChange={cambio} />}
+            //   label={p.name}
+            //   />
+
+            //   <FormControlLabel
+            //   key={p.id + 5}              
+            //   control={<Checkbox  value={p.name}  name="categoria2" onChange={cambio} />}
+            //   label={p.name}
