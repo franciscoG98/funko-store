@@ -24,12 +24,19 @@ const {
   Product,
   Categories,
   categoryp,
+  User,
+  Order,
+  Orderline,
+
 } = require("./src/db.js");
 
 const {
   initialCategories,
   initialProducts,
   categoryProducts,
+  initialUsers,
+  initialOrders,
+  initialOrderlines,
 } = require("./src/seed.js");
 
 //const Category = require("./src/models/Category.js");
@@ -50,4 +57,14 @@ conn
   .then(() => {
     categoryp.bulkCreate(categoryProducts);
   })
+  .then(() => {
+    User.bulkCreate(initialUsers);
+  })
+  .then(() => {
+    Order.bulkCreate(initialOrders);
+  })
+  .then(() => {
+    Orderline.bulkCreate(initialOrderlines);
+  })
+
   .catch((error) => console.log('Error al bulkcreate', error))
