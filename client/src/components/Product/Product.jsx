@@ -11,6 +11,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import useStyles from './ProductStyle';
+  
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../actions/Order';
 
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
@@ -40,6 +43,8 @@ const Product = ({f}) => {
     setOpen(false);
   };
 
+  const dispatch = useDispatch();
+
   // fin estado
 
   return (
@@ -67,10 +72,10 @@ const Product = ({f}) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-      {f.stock > 0 ? <Button size="small" color="primary">       
+      {f.stock > 0 ? <Button size="small" color="primary" onClick={() => dispatch( addItem(f.id) )}>
         <AddShoppingCartRoundedIcon />
           Add To Cart 
-        </Button>: null}        
+        </Button>: null}
         <Button size="small" color="primary" onClick={() => handleOpen()}>
             <OpenInNewRoundedIcon />
             More 
