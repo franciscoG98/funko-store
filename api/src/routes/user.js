@@ -1,5 +1,6 @@
 const server = require('express').Router();
-const { User } = require('../db.js');
+const { User, Order, orderline } = require('../db.js');
+
 
 server.get('/', (req, res) => {
     User.findAll()
@@ -71,5 +72,25 @@ server.delete("/:id", (req, res) => {
 
 
 })
+
+//POST a carrito
+
+server.post('/users/:idUser/cart', (req, res) =>{
+	const {idUser} = req.params;
+	const {price, quantity, state, orderline} = req.body;
+	
+	/* if (!idUser){
+		res.status(400).json({msj: "You have to be a logged user"})}else {; *///esto va alfront
+	 
+    Order.findOrCreate({
+        where:{
+            userId: idUser,
+            state: 'cart',    
+            }
+    })
+})
+	
+
+
 
 module.exports = server;
