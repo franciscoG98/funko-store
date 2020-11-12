@@ -18,7 +18,8 @@ export function editProduct(id, newProduct) {
         // .then(product => product.json())
         .then(json => {
             dispatch({ type: "EDIT_PRODUCT", payload: json });
-        });
+        })
+        .catch(err =>  console.log(err))
    }    
 }
 
@@ -61,6 +62,15 @@ export function deleteProduct(id) {
     }    
 }
 
+
+export function selectProductEdit (id){
+    return(dispacth) => {
+        dispacth({
+            type: "SELECT_PRODUCT_ID",
+            payload: id
+        })
+    }
+}
 
 
 

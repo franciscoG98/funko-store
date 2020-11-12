@@ -41,7 +41,7 @@ server.post('/', function (req, res, next) {
 // 	})
 
 server.get('/', (req, res, next) => {
-	Product.findAll()
+	Product.findAll({include: [Categories]})
 		.then(products => {
 			res.send(products);
 		})
@@ -207,6 +207,8 @@ server.put('/:id', (req, res, next) =>{
 		stock,
 		imagen,
 		price,
+		categoria,
+	    categoria2
 	}
 
 	if (!id || !producto){
@@ -215,15 +217,9 @@ server.put('/:id', (req, res, next) =>{
 		Product.findByPk(id)
 			.then(product => {
 				prod = product
-				return product.update(producto)
+				product.update(producto)
 			})	
-			.then(() => {
-				Categories.findOne({where: {name: categoria}}).then(category => prod.setCategories(category))
-			})	
-			.then(() => {
-				Categories.findOne({where: {name: categoria2}}).then(category => prod.setCategories(category))
-			})
-			.then(() => res.status(201))
+			.then(() => res.status(200).json({msg: "Producto Actualizado"}))
 			.catch((err) => console.log(err))
 	}
 

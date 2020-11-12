@@ -9,14 +9,14 @@ import CRUForm from './CRUForm';
 import Axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
-import { editProduct, getProductId } from '../../actions/Products';
+import { editProduct, getProductId, getProducts } from '../../actions/Products';
 
 
 
-const EditProduct = ({getProduct, id, setEdit, edit}) => {
+const EditProduct = ({getProduct, setEdit, edit, producto}) => {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
-  const producto = useSelector(state => state.Product.product);
+ 
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -26,7 +26,6 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
     categoria2: "",
     price: null,
   })
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -43,39 +42,33 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
   }
 
   useEffect(() => {
-    //  Axios.get("http://localhost:3001/products/" + id)    
-    //  .then(r => {
-    //      setProduct({
-    //         name: r.data.producto.name,
-    //         description: r.data.producto.description,
-    //         imagen:r.data.producto.imagen, 
-    //         stock: r.data.producto.stock,
-    //         categoria: r.data.producto.categories[0].name, 
-    //         price: r.data.producto.price,
-    //      })
-    //  })
-    dispatch( getProductId(id) );
+ 
+    dispatch( getProducts() );  
     setProduct({
-              name:producto.name,
+              name: producto.name,
               description: producto.description,
               imagen: producto.imagen, 
               stock: producto.stock,
-              categoria: producto.categories[0].name,
-              categoria2: producto.categories[1].name ,
+              // categoria: producto.categories[0].name,
+              // categoria2: producto.categories[1].name ,
               price: producto.price,
            })
-  }, [id])
+        
+            
+  }, [])
 
 
-  const handleSubmit = async e => {
+  const handleSubmit =  e => {
     e.preventDefault()
-    await dispatch( editProduct(id, product) );
+    
+    dispatch( editProduct(producto.id, product) )
+    
+    dispatch(getProducts())
+    
     //  Axios.put("http://localhost:3001/products/" + id, product)
-
-    getProduct()
+   // getProduct()
     setOpen(false)
     setEdit(false)
-
   } 
 
   return (
@@ -104,3 +97,16 @@ const EditProduct = ({getProduct, id, setEdit, edit}) => {
 }
 
 export default EditProduct; 
+
+   //  Axios.get("http://localhost:3001/products/" + id)    
+    //  .then(r => {
+    //      setProduct({
+    //         name: r.data.producto.name,
+    //         description: r.data.producto.description,
+    //         imagen:r.data.producto.imagen, 
+    //         stock: r.data.producto.stock,
+    //         categoria: r.data.producto.categories[0].name, 
+    //         price: r.data.producto.price,
+    //      })
+    //  })
+    

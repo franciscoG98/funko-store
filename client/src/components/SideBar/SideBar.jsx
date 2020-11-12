@@ -37,7 +37,7 @@ const SideBar = () => {
     // const [category, setCategory]= React.useState([])
     const dispatch = useDispatch();
     const category = useSelector(state => state.Category.categories);
-    console.log(category);
+
     // console.log(category);
     
     

@@ -12,7 +12,8 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { useDispatch } from 'react-redux';
 import { editCategory } from '../../../actions/Categories';
-
+import { useState } from 'react';
+ 
 
 
 const useStyles = makeStyles({
@@ -23,24 +24,35 @@ const useStyles = makeStyles({
   }
 });
 
-export default function FormDialog({getCategory, cambio, newCategory, edit, setEdit}) {
+export default function FormDialog({getCategory, cambio, newCategory, edit, setEdit, cat, setNewCategory}) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-
+  const [categoria, setCategoria] = useState({
+    name: cat.name,
+    description: cat.description
+  })
   const handleClickOpen = () => {
     setOpen(true);
   };
-
+  
 
   const handleClose = () => {
     setOpen(false);
   };
 
+  const handleChange = e => {
+    setCategoria({
+      ...categoria,
+      [e.target.name]: e.target.value
+    })
+  }
+  
+
 
   const handleActualizar = async e => {
     e.preventDefault();
-    await dispatch( editCategory(newCategory.id, newCategory) );
+    await dispatch( editCategory(cat.id, categoria) );
     // Axios.put("http://localhost:3001/products/category/" + newCategory.id, newCategory)
     getCategory();
     setOpen(false)
@@ -62,8 +74,8 @@ export default function FormDialog({getCategory, cambio, newCategory, edit, setE
               label="Nombre de la Categoria"
               type="text"
               name="name"
-              value={edit && newCategory.name}
-              onChange={cambio}
+              onChange={handleChange}
+              value={edit && categoria.name}
               fullWidth
                />
           <TextField
@@ -73,8 +85,8 @@ export default function FormDialog({getCategory, cambio, newCategory, edit, setE
             type="text"
             fullWidth
             name="description"
-            value={edit && newCategory.description}
-            onChange={cambio}
+            onChange={handleChange}
+            value={edit && categoria.description}
           />
 
          

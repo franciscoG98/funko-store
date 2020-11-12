@@ -9,16 +9,18 @@ export function addCategory(category) {
             .then(json => {
                 dispatch({ type: 'ADD_CATEGORY', payload: json });
             })
+            
     }    
 }
 
 export function editCategory(id, newCategory) {
     return (dispatch) => {
-        return Axios.put("http://localhost:3001/products/category" + id, newCategory)
+        return Axios.put("http://localhost:3001/products/category/" + id, newCategory)
         // .then(products => products.json())
         .then(json => {
             dispatch({ type: "EDIT_CATEGORY", payload: json });
         })
+        .catch(err => console.log(err))
     }    
 }
 
