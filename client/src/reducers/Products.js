@@ -2,7 +2,7 @@
 const initialState = {
     products: [],
     product: [],
-    searchProduct: [],
+    searchProduct: [],    
 }
 
 export default (state = initialState, action) => {
@@ -21,20 +21,20 @@ export default (state = initialState, action) => {
         
         case "EDIT_PRODUCT":
             return {
-                ...state,
-                products: [...state.products, action.payload]
+                ...state,             
+                products: [...state.products, action.payload  ]        
             }
 
         case "SEARCH_PRODUCTS":
             return {
                 ...state,
-                searchProduct: [action.payload.data]
+                searchProduct: action.payload.data
             }
         
         case "GET_PRODUCTID":
             return {
                 ...state,
-                product: [action.payload.data.producto]
+                product: action.payload.data.producto
             }
 
         case "DELETE_PRODUCT":
