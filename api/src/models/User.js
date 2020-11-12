@@ -24,9 +24,6 @@ module.exports = (sequelize) => {
           type: DataTypes.STRING,
           allowNull: false
       },
-      purchases: {
-          type: DataTypes.INTEGER,
-      },
       isAdmin: {
           type: DataTypes.BOOLEAN,
           defaultValue: false
