@@ -10,6 +10,9 @@ import Swal from 'sweetalert2';
 import Axios from 'axios';
 import EditProduct from "../../CRUForm/EditProduct";
 import AddProducts from '../../CRUForm/AddProduct';
+import { getProducts, deleteProduct } from '../../../actions/Products';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const MySwal = withReactContent(Swal)
 
@@ -52,12 +55,15 @@ const useStyles = makeStyles({
 
 export default function ListProducts() {
     const classes = useStyles();
-    const [producto, setProducto]= useState([])
-    const [edit, setEdit] = useState(false)
+    // const [producto, setProducto]= useState([])
+    const [edit, setEdit] = useState(false);
+    const dispatch = useDispatch();
+    const productos = useSelector(state => state.Product.products);
 
     function getProduct(){
-      Axios("http://localhost:3001/products")
-        .then(r => setProducto(r.data))
+      // Axios("http://localhost:3001/products")
+      //   .then(r => setProducto(r.data))
+      dispatch( getProducts() );
     }
 
     
@@ -65,7 +71,7 @@ export default function ListProducts() {
       getProduct()
     },[])
 
-   const  deleteProduct = async (id) => {
+   const  deleteProducts = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -76,19 +82,23 @@ export default function ListProducts() {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.delete(`http://localhost:3001/products/${id}`)
-        .then(() => getProduct())
+        // Axios.delete(`http://localhost:3001/products/${id}`)
+        dispatch( deleteProduct(id) )
+        
         MySwal.fire(
           'Deleted!',
           'Your file has been deleted.',
           'success'
         )
       }
-    })
+    }).catch(err => {
+      console.log(err);
+    });
+    
 
    }
 
-    if(!producto){
+    if(!productos){
       return <p>cargando</p>
     }
     
@@ -112,7 +122,7 @@ export default function ListProducts() {
           </TableRow>
         </TableHead>
         <TableBody>
-          { producto.map(prod => (
+          { productos.map(prod => (
             <TableRow key={prod.id}>
               <TableCell  scope="row"> {prod.id}</TableCell>
               <TableCell scope="row" align="left">{prod.name}</TableCell>
@@ -123,7 +133,7 @@ export default function ListProducts() {
                 <Button size="small" color="primary" onClick={() => setEdit(true)}>
                    <EditProduct getProduct={getProduct} id={prod.id} edit={edit} setEdit={setEdit} /> 
                 </Button> 
-                <Button size="small" color="primary" onClick={() => deleteProduct(prod.id)}><DeleteIcon/></Button></TableCell>
+                <Button size="small" color="primary" onClick={() => deleteProducts(prod.id)}><DeleteIcon/></Button></TableCell>
               </TableRow>
             )) }
           </TableBody>

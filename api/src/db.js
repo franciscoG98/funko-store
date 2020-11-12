@@ -44,6 +44,7 @@ Order.belongsToMany(Product, {through: Orderline})
 User.hasMany(Order)
 Order.belongsTo(User)
 
+
 Order.hasMany(Orderline)
 Orderline.belongsTo(Order)
 
