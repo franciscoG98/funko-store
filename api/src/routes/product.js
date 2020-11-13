@@ -1,5 +1,5 @@
 const server = require('express').Router();
-const { Product, Categories } = require('../db.js');
+const { Product, Categories, categoryp } = require('../db.js');
 
 server.post('/', function (req, res, next) {
 	let producto;
@@ -206,27 +206,34 @@ server.put('/:id', (req, res, next) =>{
 		description,
 		stock,
 		imagen,
-		price,
-		categoria,
-	    categoria2
-	}
+		price
+		};
 
 	if (!id || !producto){
 		res.status(400).json({msj: "invalid or missing data"});
 	} else {
 		Product.findByPk(id)
-			.then(product => {
-				prod = product
-				product.update(producto)
-			})	
-			.then(() => res.status(200).json({msg: "Producto Actualizado"}))
-			.catch((err) => console.log(err))
+		.then(product => {
+			prod = product
+			product.update(producto)
+			.then(() => {
+			   return  Categories.findOne({where: {name: categoria} }).then((category) => prod.setCategories(category))
+			})
+			.then((data) => {
+			    Categories.findOne({where: {name: categoria2}}).then((categories) => prod.addCategories(categories))
+			})
+			.then(() => res.sendStatus(201))
+			.catch(next)
+			
+		
+		})
+
 	}
 
+});
 
-})
-
-
+// if (typeof e === 'object') return { productId: id, categoryId: e.id };
+// 							else return { productId: id, categoryId: e };
 
 module.exports = server;
 
@@ -257,3 +264,52 @@ module.exports = server;
 // 	.then(() => res.sendStatus(201))
 // 	.catch(next);
 // }
+
+// then(() => {
+// 	productsInCategory.destroy({ where: { productId: id } }).then(() =>
+// 		productsInCategory.bulkCreate(
+// 			categories.map((e) => {
+// 				if (typeof e === 'object') return { productId: id, categoryId: e.id };
+// 				else return { productId: id, categoryId: e };
+// 			})
+// 		)
+// 	);
+// })
+// .then(() => res.sendStatus(200));
+// } catch (error) {
+// console.log(error);
+// }
+
+
+// Product.update(producto,
+// 	{where: { id: id } })
+// 	.then(() => {
+// 		Categories.findOne({where: {name: categoria}})
+// 		.then((category) => prod.setCategories([category]))
+// 		.then( () => 	 
+// 		  Categories.findOne({where: {name: categoria2}})
+// 		  .then((category) => prod.setCategories([category]))
+// 			)
+// 	  })		
+
+
+// Product.update(producto,{ where: {id: id}})	
+// .then(() => {
+// 		categoryp.destroy({ where: {productId : id}})
+// 		.then(() => {
+// 			categoryp.bulkCreate(
+// 				categories.map((e) => {
+// 					Categories.findOne({where: {name: e}})
+// 					.then(categoria =>{
+// 						if (typeof categoria === 'object') return {  categoryId: categoria.id, productId: id  };
+// 							else return {categoryId: categoria.name , productId: id } 
+// 					})
+// 				})
+// 			)
+// 		})
+	
+// })
+// .then(() => res.sendStatus(200))
+// .catch(error => {
+// 	console.log(error)
+// })
