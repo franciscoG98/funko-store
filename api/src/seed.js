@@ -147,10 +147,90 @@ const categoryProducts = [
   { categoryId: 6, productId: 12 },
   { categoryId: 7, productId: 13 },
 ];
+let initialUsers = [
+  {
+    fullname: "Ele Gonzalez",
+    email: "ele@admin.com",
+    phone: "123456789",
+    address: "Av siempre viva 123",
+    state: "Argentina",
+    isAdmin: true
+  },
+  
+];
+let initialOrders = [
+  {
+    total: 1000,
+    state: "cart",
+  },
+  {
+    total: 1000,
+    state: "created",
+  },
+  {
+    total: 1000,
+    state: "processing",
+  },
+  {
+    total: 1000,
+    state: "canceled",
+  },
+  {
+    total: 1000,
+    state: "completed",
+  },
+]
 
+  let initialOrderlines = [ 
+  {
+    productId: 3,
+    orderId: 1,
+    quantity: 6,
+    price: 50,
+  },
+  {
+    productId: 2,
+    orderId: 1,
+    quantity: 3,
+    price: 12,
+  },
+  {
+    productId: 5,
+    orderId: 2,
+    quantity: 7,
+    price: 2354,
+  },
+  {
+    productId: 7,
+    orderId: 2,
+    quantity: 5,
+    price: 123,
+  },
+  {
+    productId: 12,
+    orderId: 3,
+    quantity: 3,
+    price: 5022,
+  },
+  {
+    productId: 11,
+    orderId: 3,
+    quantity: 1,
+    price: 43,
+  },
+  {
+    productId: 2,
+    orderId: 3,
+    quantity: 2,
+    price: 2,
+  },
 
+]
 module.exports = {
   initialCategories,
   initialProducts,
-  categoryProducts
+  categoryProducts,
+  initialUsers,
+  initialOrders,
+  initialOrderlines,
 };

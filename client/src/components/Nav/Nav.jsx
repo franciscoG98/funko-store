@@ -9,26 +9,20 @@ import Menu from '@material-ui/core/Menu';
 
 import SearchBar from '../SearchBar/SearchBar'
 import SideBar from '../SideBar/SideBar';
+import ShoppingCart from '../CartOrder/ShoppingCart';
+import {Link} from 'react-router-dom';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
-
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import useStyles from './NavStyles';
-import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
-
-
-import {Link} from 'react-router-dom';
-
 
 export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
- 
- 
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -92,7 +86,8 @@ export default function PrimarySearchAppBar() {
       <MenuItem>
         <IconButton aria-label="" color="inherit">
           <Badge badgeContent={11} color="secondary">
-            <ShoppingCartRoundedIcon />
+            {/* <ShoppingCartRoundedIcon /> */}
+            <ShoppingCart />
           </Badge>
         </IconButton>
         <p>Notifications</p>
@@ -136,7 +131,8 @@ export default function PrimarySearchAppBar() {
             </IconButton>
             <IconButton aria-label="show 0 new notifications" color="inherit">
               <Badge badgeContent={0} color="secondary">
-                <ShoppingCartRoundedIcon />
+                {/* <ShoppingCartRoundedIcon /> */}
+                <ShoppingCart />
               </Badge>
             </IconButton>
             <IconButton

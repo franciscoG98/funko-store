@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
         case "EDIT_CATEGORY":
             return {
                 ...state,
-                categories: [...state.categories, action.payload]
+                categories: [...state.categories, action.payload ]
             }
 
         case "FILTER_PRODUCTS":
@@ -41,7 +41,7 @@ export default (state = initialState, action) => {
         case "GET_CATEGORY_NAME":
             return {
                 ...state,
-                categoryByName: [action.payload.data]
+                categoryByName: action.payload.data
             }
 
 

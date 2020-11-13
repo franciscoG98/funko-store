@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 // import Funkos from './funkos';
 import './Products.css';
-import Axios from 'axios';
+// import Axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from '../../actions/Products';
 

@@ -68,7 +68,7 @@ export default function ListProducts() {
 
     
     useEffect(()=>{
-      getProduct()
+      dispatch( getProducts())
     },[])
 
    const  deleteProducts = async (id) => {
@@ -131,7 +131,7 @@ export default function ListProducts() {
               <TableCell scope="row" align="center">{prod.stock > 0 ? <p style={{color: "green"}}>{prod.stock}</p> : <p style={{color: "red"}}>{prod.stock}</p>}</TableCell>
               <TableCell scope="row" align="center"> 
                 <Button size="small" color="primary" onClick={() => setEdit(true)}>
-                   <EditProduct getProduct={getProduct} id={prod.id} edit={edit} setEdit={setEdit} /> 
+                   <EditProduct getProduct={getProduct} producto={prod} edit={edit} setEdit={setEdit} /> 
                 </Button> 
                 <Button size="small" color="primary" onClick={() => deleteProducts(prod.id)}><DeleteIcon/></Button></TableCell>
               </TableRow>
