@@ -7,6 +7,7 @@ import CheckboxAvenger from "./checkboxAvenger";
 import Axios from "axios";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import {useSelector} from "react-redux"
 
 
 const useStyles = makeStyles({
@@ -69,7 +70,7 @@ const CRUForm = ({cambio, product, edit}) => {
                 >       
             {state.map((p)=>(
                <>
-                   <option key={p.id}  onChange={cambio} name="categoria" >{ p.name}</option>   
+                   <option key={p.id}  onChange={cambio} name="categoria" >{p.name}</option>   
                </>
             ))} 
              </NativeSelect>
@@ -82,7 +83,7 @@ const CRUForm = ({cambio, product, edit}) => {
                 >       
             {state.map((p)=>(
                <>
-                   <option key={p.id + 1 } onChange={cambio} name="categoria2" >{p.name}</option>   
+                   <option key={p.id + 1 }  onChange={cambio} name="categoria2" >{p.name}</option>   
                </>
             ))} 
              </NativeSelect>

@@ -28,7 +28,7 @@ const StyledTableCell = withStyles((theme) => ({
       color: theme.palette.common.white,
     },
     body: {
-      fontSize: 14,
+      fontSize: 14, 
     },
   }))(TableCell);
 const useStyles = makeStyles({
@@ -66,7 +66,6 @@ export default function BasicTable() {
     // const [category, setCategory]= useState([])
     
     const [newCategory, setNewCategory] = useState({
-      id: "",
       name: "",
       description: ""
     })
@@ -111,33 +110,7 @@ export default function BasicTable() {
       })    
     }
 
-    const updateCategory = (nombre) => {
-        // Axios(`http://localhost:3001/products/category/${nombre}`)
-        // .then(r => {
-        //     setNewCategory({
-        //       id: r.data.id,
-        //       name: r.data.name,
-        //       description: r.data.description
-        //     })
-        //     if(!r.data.id){
-        //       setEdit(false)
-        //     } else {
-        //       setEdit(true)
-        //     }
-        // })
-        dispatch( getCategoryName(nombre) );
-        
-        setNewCategory({
-                id: categoryName.id,
-                name: categoryName.name,
-                description: categoryName.description
-              })
-              if(!categoryName.id){
-                setEdit(false)
-              } else {
-                setEdit(true)
-              }
-    }
+    
 
 
    
@@ -180,8 +153,8 @@ export default function BasicTable() {
               <TableCell align="center">{cat.name}</TableCell>
               <TableCell align="center">{cat.description}</TableCell>
               <TableCell className={classes.buttons} align="center"> 
-                <Button size="small" color="primary" onClick={() => updateCategory(cat.name)} > 
-                      <EditCat getCategory={getCategory} cambio={onChange} newCategory={newCategory} edit={edit} setEdit={setEdit} />
+                <Button size="small" color="primary" onClick={() => setEdit(true)} > 
+                      <EditCat getCategory={getCategory} cambio={onChange} cat={cat} setNewCategory={setNewCategory}  newCategory={newCategory} edit={edit} setEdit={setEdit} />
                 </Button> 
                 <Button size="small" color="primary" onClick={() => deleteCategories(cat.id)}> <DeleteIcon /></Button>   
                 
@@ -195,3 +168,18 @@ export default function BasicTable() {
     </div>
   );
 }
+
+
+       // Axios(`http://localhost:3001/products/category/${nombre}`)
+        // .then(r => {
+        //     setNewCategory({
+        //       id: r.data.id,
+        //       name: r.data.name,
+        //       description: r.data.description
+        //     })
+        //     if(!r.data.id){
+        //       setEdit(false)
+        //     } else {
+        //       setEdit(true)
+        //     }
+        // })
