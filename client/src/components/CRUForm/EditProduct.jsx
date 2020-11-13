@@ -49,8 +49,8 @@ const EditProduct = ({getProduct, setEdit, edit, producto}) => {
               description: producto.description,
               imagen: producto.imagen, 
               stock: producto.stock,
-              // categoria: producto.categories[0].name,
-              // categoria2: producto.categories[1].name ,
+              categoria: producto.categories[0].name,
+              categoria2: producto.categories[1].name ,
               price: producto.price,
            })
         
