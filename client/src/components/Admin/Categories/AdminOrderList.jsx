@@ -53,23 +53,22 @@ const useStyles = makeStyles({
 
 
 
-export default function ListProducts() {
+export default function AdminOrderList() {
   const classes = useStyles();
   // const [producto, setProducto]= useState([])
   // const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
   const itemsList = useSelector(state => state.Order.items);
  
-  function getProduct() {
-    // Axios("http://localhost:3001/products")
-    //   .then(r => setProducto(r.data))
-    dispatch(getProducts());
-  }
+  
+    function getAdminOrder (){
+      dispatch(getAdminOrder());
+    }
 
-
-  useEffect(() => {
-    dispatch(getProducts())
-  }, [])
+  
+    useEffect(() => {
+      dispatch(getAdminOrder())
+    },[])
 
     //  const  deleteProducts = async (id) => {
     //   MySwal.fire({
@@ -98,15 +97,15 @@ export default function ListProducts() {
 
     //  }
 
-  if (!itemsList) {
-    return <p>cargando</p>
-  }
+    if (!itemsList) {
+      return <p>cargando</p>
+    }
 
   return (
 
     <div>
 
-      <AddProducts getProduct={getProduct} />
+      {/* <AddProducts getProduct={getProduct} /> */}
 
 
       <TableContainer className={classes.tableContainer} component={Paper}>
@@ -124,7 +123,7 @@ export default function ListProducts() {
 
 
           <TableBody>
-          {console.log(itemsList)}
+          console.log(itemsList)
             {itemsList.map((item, i) => (
               <TableRow key={i}>
                 <TableCell scope="row"> {item.state}</TableCell>

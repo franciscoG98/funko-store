@@ -20,9 +20,9 @@ export function addItem(id) {
 
 export function getAdminOrder() {
     return (dispatch) => {
-     return axios.get(`http://localhost:3001/orders/`)
+     return Axios.get(`http://localhost:3001/orders`)
         .then(res => {
-          dispatch({ type: 'GET_ADMIN_ORDER', orders: res.data,
+          dispatch({ type: 'GET_ADMIN_ORDER', payload: json,//orders: res.data
           });
         })
     };
