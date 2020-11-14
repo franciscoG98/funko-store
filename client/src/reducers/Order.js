@@ -17,6 +17,11 @@ export default (state = initialState, action) => {
                 items: [...state.items, action.payload]
             }
 
+        case 'GET_ADMIN_ORDER':
+            return {
+                ...state,
+                items: [action.payload.data]
+            }
         default: return state;
     
     }
