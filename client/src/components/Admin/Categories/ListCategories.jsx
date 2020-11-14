@@ -8,16 +8,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Axios from 'axios';
+// import Axios from 'axios';
 import FormDialog from './DialogCRUDCat'  
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
 import EditCat from "./EditCat";
 
 import { useDispatch, useSelector } from 'react-redux'; 
-import { getCategories, editCategory, getCategoryName, deleteCategory } from '../../../actions/Categories';
+import { getCategories, deleteCategory } from '../../../actions/Categories';
+// editCategory, getCategoryName, 
 
 const MySwal = withReactContent(Swal);
 
@@ -61,7 +62,7 @@ const useStyles = makeStyles({
 export default function BasicTable() {
     const classes = useStyles();
     const dispatch = useDispatch(); 
-    const categoryName = useSelector(state => state.Category.categoryByName);
+    // const categoryName = useSelector(state => state.Category.categoryByName);
     const category = useSelector(state => state.Category.categories);
     // const [category, setCategory]= useState([])
     
@@ -72,7 +73,7 @@ export default function BasicTable() {
     const [edit, setEdit] = useState(false)
 
 
-    function getCategory() {            
+    function getCategory() {
       dispatch( getCategories() );
       // Axios("http://localhost:3001/products/category")
       //   .then(r => setCategory(r.data.categories))
@@ -80,6 +81,7 @@ export default function BasicTable() {
     
     useEffect(()=>{ 
         dispatch( getCategories() )
+        // eslint-disable-next-line
     },[])
 
     const deleteCategories = (id) => {

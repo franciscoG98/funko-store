@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Search from "./components/SearchBar/Search";
 import { Provider } from 'react-redux';
 import store from'./store';
-
+import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';
 
 
 function App() {
@@ -40,6 +40,8 @@ function App() {
               </div>          
         
             < Route exact path= '/' component= {Products} />
+
+            < Route exact path= '/ShoppingCart2' component= { ShoppingCart2 } />
 
             < Route exact path= '/admin/categories' component= {ListCategories} />
 

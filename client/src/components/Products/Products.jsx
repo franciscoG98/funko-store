@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Product from '../Product/Product';
 // import Funkos from './funkos';
 import './Products.css';
@@ -17,7 +17,8 @@ const Products = () => {
     useEffect(()=>{
     // Axios("http://localhost:3001/products")
     //     .then(r => setProducts(r.data))
-    dispatch( getProducts() );
+        dispatch( getProducts() );
+        // eslint-disable-next-line
     },[])
 
     if(!products){

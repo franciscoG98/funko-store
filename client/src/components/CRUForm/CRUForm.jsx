@@ -3,11 +3,11 @@ import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import CheckboxAvenger from "./checkboxAvenger";
+// import CheckboxAvenger from "./checkboxAvenger";
 import Axios from "axios";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import {useSelector} from "react-redux"
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
+// import {useSelector} from "react-redux"
 
 
 const useStyles = makeStyles({
@@ -48,6 +48,7 @@ const CRUForm = ({cambio, product, edit}) => {
       .then(r => {
         setState(r.data.categories)
       })
+      // eslint-disable-next-line
     }, [])
 
     
@@ -95,7 +96,7 @@ const CRUForm = ({cambio, product, edit}) => {
 
 export default CRUForm; 
 
-  {/* <NativeSelect
+  /* <NativeSelect
                 onChange={cambio} //la vamos a usar
                 name="categoria"
                 className={classes.selectEmpty}
@@ -107,7 +108,7 @@ export default CRUForm;
                 <option onChange={cambio} name="categoria" >DC Comics</option>
                 <option onChange={cambio} name="categoria" >Avengers</option>
                 <option onChange={cambio} name="categoria" >X-Men</option>
-            </NativeSelect> */}
+            </NativeSelect> */
 
 
             // <FormControlLabel

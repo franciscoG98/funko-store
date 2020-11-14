@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+// , useState
 import Product from '../Product/Product';
-// import Funkos from './funkos';
-import Axios from 'axios';
+// import Axios from 'axios';
 import {useParams} from "react-router-dom"
 import { searchProducts } from '../../actions/Products';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +22,7 @@ const Search = () => {
         //     console.log(err)
         // })
         dispatch( searchProducts(query.search) );
+        // eslint-disable-next-line
     },[query.search])
     
 
