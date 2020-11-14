@@ -162,22 +162,27 @@ let initialOrders = [
   {
     total: 1000,
     state: "cart",
+    userId: 1
   },
   {
-    total: 1000,
+    total: 2000,
     state: "created",
+    userId: 1
   },
   {
     total: 1000,
     state: "processing",
+    userId: 1
   },
   {
     total: 1000,
     state: "canceled",
+    userId: 1
   },
   {
     total: 1000,
     state: "completed",
+    userId: 1
   },
 ]
 
