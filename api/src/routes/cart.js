@@ -4,17 +4,26 @@ const OrderLine = require('../models/OrderLine.js');
 
 //GET a carrito
 
-server.get('/:idUser/cart', (res, req){
+server.get('/:idUser/cart', (req, res)=>{
 
-   const {idUser} = req.params
-   const {cart} = req.body
-
-   cart.findOne({
-      where : {idUser}
-   })
-   .then((e)=> res.json(e))
-   .catch(err=> res.json(err))
-})
+    const {idUser} = req.params
+    Order.findOne({
+       where : {
+           userId: idUser,
+           state: 'cart',
+        }
+    }).then((orderFound) => {
+        orderId = orderFound.id; 
+        return OrderLine.findAll({
+            where:{
+                orderId: orderId,
+                productId: productId,
+                }
+            })
+        })
+    .then((e)=> res.json(e))
+    .catch(err=> res.json(err))
+ })
 
 //POST a carrito
 
