@@ -1,6 +1,7 @@
 const initialState = {
     items: [],
-    orderItem: []
+    orderItem: [],
+    cart: []
 }
 
 
@@ -15,7 +16,7 @@ export default (state = initialState, action) => {
         case "REMOVE_ITEM":
             return {
                 ...state,
-                items: [...state.items, action.payload]
+                items: state.items.filter((i) => i.id !== action.payload)
             }
 
         case 'GET_ADMIN_ORDER':
@@ -24,6 +25,14 @@ export default (state = initialState, action) => {
                 orderItem: action.payload.data
             }
         default: return state;
+        case "UPDATE_ORDER_LINE":
+            return {
+                ...state,
+                cart: action.payload
+            }
+
+
+        default: return state; 
     
     }
 }

@@ -37,6 +37,7 @@ const {
   initialUsers,
   initialOrders,
   initialOrderlines,
+  //orderlines
 } = require("./src/seed.js");
 
 //const Category = require("./src/models/Category.js");
@@ -65,6 +66,8 @@ conn
   })
   .then(() => {
     Orderline.bulkCreate(initialOrderlines);
-  })
+  })/* .then(() => {
+    orderl.bulkCreate(orderlines);
+  }) */
 
   .catch((error) => console.log('Error al bulkcreate', error))
