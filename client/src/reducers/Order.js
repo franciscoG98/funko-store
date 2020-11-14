@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
                 ...state,
                 orderItem: action.payload.data
             }
-        default: return state;
+      
         case "UPDATE_ORDER_LINE":
             return {
                 ...state,
