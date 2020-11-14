@@ -25,10 +25,10 @@ server.get('/:idUser/cart', (req, res)=>{
 
 //POST a carrito
 
-server.post('/:idUser/cart', (req, res) =>{
+/* server.post('/:idUser/cart', (req, res) =>{
    const {idUser} = req.params;
    const  orderlines  = req.body; //esto seria el arrMap[orderlines] 
-   const { productId, price, quantity } = orderlines;	
+   //const { productId, price, quantity } = orderlines;	
    return Order.findOrCreate({
         where:{
             userId: idUser,
@@ -38,10 +38,10 @@ server.post('/:idUser/cart', (req, res) =>{
         idOrd = orderCreated[0].id
         return Orderline.findOrCreate({
             where:{                
-                orderId: idOrd,           //1          //1
-                productId: orderlines.productId,     //1          //1
-                quantity: orderlines.quantity,    //2          //3 
-                price: orderlines.price,              //10         //20
+                orderId: idOrd,                         //1          //1
+                productId: orderlines.productId,        //1          //1
+                quantity: orderlines.quantity,          //2          //3 
+                price: orderlines.price,                //10         //20
                 }
             })
     }).then((lineCreated)=> {
@@ -52,7 +52,39 @@ server.post('/:idUser/cart', (req, res) =>{
         })
         }).then((r)=> res.json(r))
         .catch(err=> res.json(err))
-}) 
+})  */
+
+server.post('/:idUser/cart', async(req, res) =>{
+    const {idUser} = req.params;
+    const  orderlines  = req.body;  
+    const Orden = await Order.findOrCreate({
+        where:{
+            userId: idUser,
+            state: 'cart',    
+            }
+        })
+         idOrd = Orden[0].id
+         const orderFound = await Orderline.findOne({
+            where:{                
+            orderId: idOrd,                        
+            productId: orderlines.productId,               
+            }})
+        if(orderFound){
+        return orderFound.update({
+            productId: orderlines.productId,
+            quantity: orderlines.quantity,
+            price: orderlines.price,
+        }).then((r)=> res.json(r))
+            } else {
+            return Orderline.create({               
+                 orderId: idOrd,                        
+                 productId: orderlines.productId,        
+                 quantity: orderlines.quantity,         
+                 price: orderlines.price,                  
+             })
+             .then((r)=> res.json(r))
+        }     
+})
 
 server.put('/:idUser/cart', (req, res) =>{
     const {idUser} = req.params;
@@ -72,7 +104,6 @@ server.put('/:idUser/cart', (req, res) =>{
                  }
              })
      }).then((lineFound)=> {
-          console.log(lineFound)
         lineFound.update({
              productId: productId,
              quantity: quantity,
@@ -81,25 +112,15 @@ server.put('/:idUser/cart', (req, res) =>{
          }).then((r)=> res.json("OK"))
          .catch(err=> res.json(err))
  })
-   
+ 
+ //GET /users
+ server.get('/:id/orders', (req, res)=>{
+    const {id} = req.params
+    return Order.findAll({ where:{userId: id} })
+    .then((e)=> res.json(e))
+    .catch(err=> res.json(err))
+    })
+
 
 module.exports = server
 
-/* 
-FRONT
-agregar a tabla de orderlines cada linea de order. 
-cómo me traigo eso del front y como lo agrego?
-array de lineas [{},{},{}]
-*/
- /* orderlines.forEach(element => {
-        return OrderLine.create({
-            productId: element.productId,
-            quantity: element.quantity,
-            price: element.price,
-            orderId: order.id
-        })}
-    ); */
-	//const { y, price, productId, } = req.body.orderlines;// array de objetos [{cuantos batman},{cuantos sperman},{}] req.body[i]
-	
-	/* if (!idUser){
-		res.status(400).json({msj: "You have to be a logged user"})}else {; //esto va alfront*/
