@@ -2,6 +2,19 @@ const server = require('express').Router();
 const { User, Order, orderline } = require('../db.js');
 const OrderLine = require('../models/OrderLine.js');
 
+//GET a carrito
+
+server.get('/:idUser/cart', (res, req){
+
+   const {idUser} = req.params
+   const {cart} = req.body
+
+   cart.findOne({
+      where : {idUser}
+   })
+   .then((e)=> res.json(e))
+   .catch(err=> res.json(err))
+})
 
 //POST a carrito
 
