@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Axios from 'axios';
+// import Axios from 'axios';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 
@@ -44,12 +44,14 @@ const SideBar = () => {
     useEffect(()=>{
     // Axios("http://localhost:3001/products/category")
     //     .then(r => setCategory(r.data.categories))
-    dispatch( getCategories() );
+      dispatch( getCategories() );
+      // eslint-disable-next-line
     }, [])
 
     const [state, setState] = React.useState({
       left: false,
     });
+    
   
     const toggleDrawer = (anchor, open) => (event) => {
       if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
