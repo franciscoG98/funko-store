@@ -18,12 +18,12 @@ export function addItem(id) {
 //     }
 // }
 
+//traer ordenes para el componente AdminOrdenList
 export function getAdminOrder() {
     return (dispatch) => {
      return Axios.get(`http://localhost:3001/orders`)
-        .then(res => {
-          dispatch({ type: 'GET_ADMIN_ORDER', payload: json,//orders: res.data
-          });
+        .then(json => {
+          dispatch({ type: 'GET_ADMIN_ORDER', payload: json });
         })
     };
   }

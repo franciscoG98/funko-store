@@ -123,13 +123,13 @@ export default function AdminOrderList() {
 
 
           <TableBody>
-          console.log(itemsList)
+        
             {itemsList.map((item, i) => (
               <TableRow key={i}>
-                <TableCell scope="row"> {item.state}</TableCell>
                 <TableCell scope="row" align="left">{item.quantity}</TableCell>
-
                 <TableCell scope="row" align="left">{item.price}</TableCell>
+
+                <TableCell scope="row"> {item.state}</TableCell>
                 <TableCell scope="row" align="center">{item.total}</TableCell>
                 {/* <TableCell scope="row" align="center">{item.stock > 0 ? <p style={{color: "green"}}>{item.stock}</p> : <p style={{color: "red"}}>{item.stock}</p>}</TableCell>
               <TableCell scope="row" align="center"> 
