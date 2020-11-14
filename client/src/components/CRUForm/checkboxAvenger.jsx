@@ -1,13 +1,14 @@
 //renderizar un componente a traves de un select
 //o sea:  si selecciono avengers que se renderize un grupo de checkboxes con "avengers", "x-men", etc
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
+// useState,
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 // import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Axios from 'axios';
+// import Axios from 'axios';
 import { getCategories } from '../../actions/Categories';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -37,6 +38,7 @@ export default function CheckboxAvenger({cambio}) {
       //   setState(r.data.categories)
       // })
       dispatch( getCategories() );
+      // eslint-disable-next-line
     }, [])
 
     return (

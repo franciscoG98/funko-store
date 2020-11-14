@@ -6,10 +6,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Edit';
 import CRUForm from './CRUForm';
-import Axios from 'axios';
+// import Axios from 'axios';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'; 
-import { editProduct, getProductId, getProducts } from '../../actions/Products';
+import { useDispatch } from 'react-redux'; 
+// , useSelector
+import { editProduct, getProducts } from '../../actions/Products';
+// , getProductId
 
 
 
@@ -53,6 +55,7 @@ const EditProduct = ({getProduct, setEdit, edit, producto}) => {
               categoria2: producto.categories[1].name ,
               price: producto.price,
            })
+           // eslint-disable-next-line
         
             
   }, [])
