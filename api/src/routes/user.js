@@ -1,5 +1,5 @@
 const server = require('express').Router();
-const { User } = require('../db.js');
+const { User, Order } = require('../db.js');
 
 server.get('/', (req, res) => {
     User.findAll()
@@ -68,8 +68,20 @@ server.delete("/:id", (req, res) => {
         .then(() => res.json({msg: "Usuario eliminado"}))
         .catch(err => res.json(err))
     }
-
-
 })
+
+// 
+
+server.delete('/:idUser/cart/', (req,res) => {
+    const {idUser} = req.params;
+    if(!id) {
+        res.status(404).json({msg: "Seleccione una órden a eliminar"})
+    }
+    else {
+        Order.destroy( {where: {id: idUser}} )
+    }
+})
+
+
 
 module.exports = server;
