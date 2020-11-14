@@ -1,6 +1,10 @@
+// Este archivo es un proyecto de un pequeño niño barilochense, que algun dia tuvo un sueño...
+// No lo borren porfa, algun dia lo voy a ahcer andar y va a quedar mejor que el carrito actual
+
+
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {Button, Dialog, Typography, TextField } from '@material-ui/core';
+import {Button, Dialog, Typography } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
@@ -74,20 +78,16 @@ const ShoppingCart = () => {
                 Shopping Cart
             </DialogTitle>
 
+            <DialogContent divider>
                 {order.map( (i) => {
-                    <DialogContent divider>
-                        <Typography>
+                    <Typography>
+                        <img src={i.imagen}/>
+                        <span>{i.name}   ${i.price}</span>
 
-                            {console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa:\n',i.name)}
-
-                            <img src={i.imagen}/>
-                            <span>{i.name}   ${i.price}</span>
-
-                        </Typography>
-                    </DialogContent>
+                    </Typography>
                 })}
 
-
+            </DialogContent>
 
             <DialogActions>
                 <Button autoFocus onClick={() => alert('aca tendria que saltar a otro coso pa comprar vieron')} color="primary">

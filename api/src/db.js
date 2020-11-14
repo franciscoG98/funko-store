@@ -37,14 +37,15 @@ const { Product, Categories , Order, User, Orderline } = sequelize.models;
 Categories.belongsToMany(Product, {through:'categoryp'})
 Product.belongsToMany(Categories,{through:'categoryp'})
 
+// n a n
 Product.belongsToMany(Order, {through: Orderline})
 Order.belongsToMany(Product, {through: Orderline})
 
-
+// 1 a n
 User.hasMany(Order)
 Order.belongsTo(User)
 
-
+// 1 a n
 Order.hasMany(Orderline)
 Orderline.belongsTo(Order)
 
