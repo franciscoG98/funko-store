@@ -57,40 +57,14 @@ export default function AdminOrderList() {
   // const [producto, setProducto]= useState([])
   // const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
-  const itemsList = useSelector(state => state.Order.items);
- 
-  console.log(itemsList)
+  const itemsList = useSelector(state => state.Order.orderItem);
+
   
     useEffect(() => {
       dispatch(getAdminOrders())
     },[])
 
-    //  const  deleteProducts = async (id) => {
-    //   MySwal.fire({
-    //     title: 'Are you sure?',
-    //     text: "You won't be able to revert this!",
-    //     icon: 'warning',
-    //     showCancelButton: true,
-    //     confirmButtonColor: '#3085d6',
-    //     cancelButtonColor: '#d33',
-    //     confirmButtonText: 'Yes, delete it!'
-    //   }).then((result) => {
-    //     if (result.isConfirmed) {
-    //       // Axios.delete(`http://localhost:3001/products/${id}`)
-    //       dispatch( deleteProduct(id) )
-
-    //       MySwal.fire(
-    //         'Deleted!',
-    //         'Your file has been deleted.',
-    //         'success'
-    //       )
-    //     }
-    //   }).catch(err => {
-    //     console.log(err);
-    //   });
-
-
-    //  }
+  
 
     if (!itemsList) {
       return <p>cargando</p>
@@ -99,8 +73,6 @@ export default function AdminOrderList() {
   return (
 
     <div>
-
-      {/* <AddProducts getProduct={getProduct} /> */}
 
 
       <TableContainer className={classes.tableContainer} component={Paper}>
@@ -120,18 +92,18 @@ export default function AdminOrderList() {
           <TableBody>
         
             {itemsList.map(item => (
-              <TableRow key={item.id}>
-                <TableCell scope="row" align="left">{item.id}</TableCell>
-                <TableCell scope="row" align="left">{item.total}</TableCell>
-                <TableCell scope="row"> {item.state}</TableCell>
-                <TableCell scope="row" align="center">{item.userId}</TableCell>
-                {/* <TableCell scope="row" align="center">{item.stock > 0 ? <p style={{color: "green"}}>{item.stock}</p> : <p style={{color: "red"}}>{item.stock}</p>}</TableCell>
-              <TableCell scope="row" align="center"> 
-                <Button size="small" color="primary" onClick={() => setEdit(true)}>
-                   <Edititemuct getitemuct={getitemuct} itemucto={item} edit={edit} setEdit={setEdit} /> 
-                </Button> 
-                <Button size="small" color="primary" onClick={() => deleteitemucts(item.id)}><DeleteIcon/></Button></TableCell> */}
-              </TableRow>
+               <TableRow key={item.id}>
+               <TableCell scope="row" align="center"> {console.log(item)}  {item.id}</TableCell>
+               <TableCell scope="row" align="center">{item.total}</TableCell>
+               <TableCell scope="row" align="center"> {item.state}</TableCell>
+               <TableCell scope="row" align="center">{item.userId}</TableCell>
+               {/* <TableCell scope="row" align="center">{item.stock > 0 ? <p style={{color: "green"}}>{item.stock}</p> : <p style={{color: "red"}}>{item.stock}</p>}</TableCell>
+             <TableCell scope="row" align="center"> 
+               <Button size="small" color="primary" onClick={() => setEdit(true)}>
+                  <Edititemuct getitemuct={getitemuct} itemucto={item} edit={edit} setEdit={setEdit} /> 
+               </Button> 
+               <Button size="small" color="primary" onClick={() => deleteitemucts(item.id)}><DeleteIcon/></Button></TableCell> */}
+             </TableRow>
             ))}
           </TableBody>
         </Table>

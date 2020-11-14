@@ -1,5 +1,6 @@
 const initialState = {
     items: [],
+    orderItem: []
 }
 
 
@@ -20,7 +21,7 @@ export default (state = initialState, action) => {
         case 'GET_ADMIN_ORDER':
             return {
                 ...state,
-                items: [action.payload.data]
+                orderItem: action.payload.data
             }
         default: return state;
     
