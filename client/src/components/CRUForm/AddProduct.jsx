@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import CRUForm from './CRUForm';
-import Axios from 'axios';
+// import Axios from 'axios';
 
 import { useDispatch } from 'react-redux';
 import { addProduct, getProducts } from '../../actions/Products'; 

@@ -12,13 +12,14 @@ import Menu from '@material-ui/core/Menu';
 import SearchBar from '../SearchBar/SearchBar'
 import SideBar from '../SideBar/SideBar';
 // import ShoppingCart from '../CartOrder/ShoppingCart';
-import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 
+import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import {Link} from 'react-router-dom';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 
 import useStyles from './NavStyles';
 
@@ -110,6 +111,17 @@ export default function PrimarySearchAppBar() {
         </Link>
         <p>Notifications</p>
       </MenuItem>
+
+        {/* Settings */}
+        <MenuItem>
+        <IconButton aria-label="" color="inherit">
+          <Badge badgeContent={11} color="secondary">
+            <SettingsRoundedIcon />
+          </Badge>
+        </IconButton>
+        <p>Settings</p>
+      </MenuItem>
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -162,7 +174,7 @@ export default function PrimarySearchAppBar() {
             </IconButton> */}
 
             {/* carrito 2 */}
-            <Link to= '/ShoppingCart2' >
+            <Link to= '/ShoppingCart2' style= {{textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new notifications" color="inherit">
                 <Badge badgeContent={order.length} color="secondary">
                   <ShoppingCartRoundedIcon />
@@ -172,6 +184,22 @@ export default function PrimarySearchAppBar() {
 
             {/* user */}
             <IconButton
+              aria-label="show 0 new notifications" 
+              color="inherit"
+              // edge="end"
+              // aria-label="account of current user"
+              // aria-controls={menuId}
+              // aria-haspopup="true"
+              // onClick={handleProfileMenuOpen}
+              // color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+
+            {/* la tuerquitas visteSSS */}
+            <IconButton 
+              // aria-label="show 0 new notifications" 
+              // color="inherit"
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -179,8 +207,11 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <Badge badgeContent={0} color="secondary">
+                <SettingsRoundedIcon />
+              </Badge>
             </IconButton>
+
           </div>
           
           <div className={classes.sectionMobile}>

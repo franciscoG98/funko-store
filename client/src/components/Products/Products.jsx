@@ -17,7 +17,8 @@ const Products = () => {
     useEffect(()=>{
     // Axios("http://localhost:3001/products")
     //     .then(r => setProducts(r.data))
-    dispatch( getProducts() );
+        dispatch( getProducts() );
+        // eslint-disable-next-line
     },[])
 
     if(!products){

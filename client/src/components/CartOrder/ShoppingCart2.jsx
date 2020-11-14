@@ -1,7 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
+// import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+
 
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
@@ -59,6 +69,7 @@ const ShoppingCart2 = () =>  {
       arrMap.push({
         id: order[i].id,
         name: order[i].name,
+        imagen: order[i].imagen,
         price: order[i].price,
         quantity: 1
       })
@@ -108,16 +119,19 @@ const ShoppingCart2 = () =>  {
       <TableContainer component={Paper} >
         <Table className={classes.table} aria-label="customized table">
 
+            {/* titulo */}
           <TableHead>
             <TableRow>
               <StyledTableCell align="left"></StyledTableCell>
               <StyledTableCell align="left">Funko Name</StyledTableCell>
+              <StyledTableCell align="left"></StyledTableCell>
               <StyledTableCell align="right">Quantity</StyledTableCell>
               <StyledTableCell align="right">Subtotal</StyledTableCell>
 
             </TableRow>
           </TableHead>
 
+          {/* cuerpo */}
           <TableBody>
             {arrMap.map( i => (
 
@@ -126,13 +140,18 @@ const ShoppingCart2 = () =>  {
                   <Button size="small" color="primary" onClick={() => deleteItem()}><DeleteRoundedIcon/></Button>
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.name}</StyledTableCell>
+                <StyledTableCell align="left">
+                  <img src={i.imagen} alt='funko image' style={{width:'auto', height: '60px'}}/>
+                </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
                 <StyledTableCell align="right">${i.price * i.quantity}</StyledTableCell>
               </StyledTableRow>
             ))}
 
+              {/* parte de abajo */}
             <StyledTableCell align="left">TOTAL:</StyledTableCell>
-            <StyledTableCell align="right">      </StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>            
             <StyledTableCell align="right">${total(order)} </StyledTableCell>
             <StyledTableCell align="right">
               <Button autoFocus onClick={() => alert('aca tendria que saltar a otro coso pa comprar vieron')} color="primary">
