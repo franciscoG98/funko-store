@@ -8,7 +8,7 @@ import ListProducts from "./components/Admin/Products/listProducts";
 import CategoryProduct from './components/CategoryProduct/CategoryProduct';
 import Button from '@material-ui/core/Button';
 import Search from "./components/SearchBar/Search";
-import AdminOrderList from './components/Admin/Categories/AdminOrderList';
+import AdminOrderList from './components/Admin/Products/AdminOrderList';
 import { Provider } from 'react-redux';
 import store from'./store';
 import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';

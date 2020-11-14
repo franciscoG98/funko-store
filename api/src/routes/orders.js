@@ -24,5 +24,32 @@ server.get("/", (req, res) => {
     })
 })
 
+//Modificar orden   PUT 
+server.put('/orders/:id', (req, res) =>{
+const {total, state, quantity, price} = req.body;
+const {id} = req.params;
+
+
+	const orden = {
+		total,
+        state,
+        quantity,
+        price
+	}
+
+	if (!id || !orden){
+		res.status(400).json({msj: "invalid or missing data"});
+	} else {
+		Order.update(orden,
+			{where: { id: id } })
+			.then(ord => {
+				res.json(ord)
+			})
+			.catch(err => {
+				res.json(err)
+			  })
+	}
+	
+})
 
 module.exports = server;
