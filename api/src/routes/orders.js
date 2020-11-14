@@ -62,6 +62,21 @@ server.get('/', (req, res) => {
     })
 })
 
+// retorna una orden en particular
+server.get('/:id', (req, res) => {
+	const { id } = req.params;
+	Order.findOne({
+		where: {
+			orderId: id
+		}
+	})
+	.then(o => {
+		res.json(o)
+	})
+	.catch(err => {
+		res.json(err)
+	})
+})
 
 
 module.exports = server;
