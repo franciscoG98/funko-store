@@ -35,3 +35,12 @@ export function deleteItem(id) {
 //     }
 // }
 
+//traer ordenes para el componente AdminOrdenList
+export function getAdminOrders() {
+    return (dispatch) => {
+     return Axios.get(`http://localhost:3001/orders`)
+        .then(json => {
+          dispatch({ type: 'GET_ADMIN_ORDER', payload: json });
+        })
+    };
+  }
