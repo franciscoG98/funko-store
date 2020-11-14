@@ -1,6 +1,7 @@
 const server = require('express').Router();
 const { User, Order } = require('../db.js');
 
+
 server.get('/', (req, res) => {
     User.findAll()
     .then(user => {
@@ -81,6 +82,9 @@ server.delete('/:idUser/cart/', (req,res) => {
         Order.destroy( {where: {id: idUser}} )
     }
 })
+
+
+	
 
 
 
