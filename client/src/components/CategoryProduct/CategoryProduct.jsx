@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+// , useState
 import Product from '../Product/Product';
-// import Funkos from './funkos';
-import Axios from 'axios';
+// import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { filterProducts } from '../../actions/Categories';

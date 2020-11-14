@@ -7,7 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 
-import Axios from 'axios';
+// import Axios from 'axios';
 import EditProduct from "../../CRUForm/EditProduct";
 import AddProducts from '../../CRUForm/AddProduct';
 import { getProducts, deleteProduct } from '../../../actions/Products';
@@ -69,6 +69,7 @@ export default function ListProducts() {
     
     useEffect(()=>{
       dispatch( getProducts())
+      // eslint-disable-next-line
     },[])
 
    const  deleteProducts = async (id) => {
