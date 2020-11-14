@@ -59,7 +59,7 @@ export default function ListProducts() {
   // const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
   const itemsList = useSelector(state => state.Order.items);
-
+ 
   function getProduct() {
     // Axios("http://localhost:3001/products")
     //   .then(r => setProducto(r.data))
@@ -71,32 +71,32 @@ export default function ListProducts() {
     dispatch(getProducts())
   }, [])
 
-  //    const  deleteProducts = async (id) => {
-  //     MySwal.fire({
-  //       title: 'Are you sure?',
-  //       text: "You won't be able to revert this!",
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#3085d6',
-  //       cancelButtonColor: '#d33',
-  //       confirmButtonText: 'Yes, delete it!'
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         // Axios.delete(`http://localhost:3001/products/${id}`)
-  //         dispatch( deleteProduct(id) )
+    //  const  deleteProducts = async (id) => {
+    //   MySwal.fire({
+    //     title: 'Are you sure?',
+    //     text: "You won't be able to revert this!",
+    //     icon: 'warning',
+    //     showCancelButton: true,
+    //     confirmButtonColor: '#3085d6',
+    //     cancelButtonColor: '#d33',
+    //     confirmButtonText: 'Yes, delete it!'
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       // Axios.delete(`http://localhost:3001/products/${id}`)
+    //       dispatch( deleteProduct(id) )
 
-  //         MySwal.fire(
-  //           'Deleted!',
-  //           'Your file has been deleted.',
-  //           'success'
-  //         )
-  //       }
-  //     }).catch(err => {
-  //       console.log(err);
-  //     });
+    //       MySwal.fire(
+    //         'Deleted!',
+    //         'Your file has been deleted.',
+    //         'success'
+    //       )
+    //     }
+    //   }).catch(err => {
+    //     console.log(err);
+    //   });
 
 
-  //    }
+    //  }
 
   if (!itemsList) {
     return <p>cargando</p>
@@ -111,6 +111,7 @@ export default function ListProducts() {
 
       <TableContainer className={classes.tableContainer} component={Paper}>
         <Table className={classes.table} aria-label="simple table">
+
           <TableHead >
             <TableRow>
               <StyledTableCell align="center">Estado</StyledTableCell>
@@ -120,13 +121,17 @@ export default function ListProducts() {
               {/* <StyledTableCell align="center">Editar/Eliminar</StyledTableCell> */}
             </TableRow>
           </TableHead>
+
+
           <TableBody>
-            {itemsList.map(item => (
-              <TableRow key={item.id}>
-                <TableCell scope="row"> {item.id}</TableCell>
-                <TableCell scope="row" align="left">{item.name}</TableCell>
-                <TableCell scope="row" align="left">{item.description}</TableCell>
-                <TableCell scope="row" align="center">{item.price}</TableCell>
+          {console.log(itemsList)}
+            {itemsList.map((item, i) => (
+              <TableRow key={i}>
+                <TableCell scope="row"> {item.state}</TableCell>
+                <TableCell scope="row" align="left">{item.quantity}</TableCell>
+
+                <TableCell scope="row" align="left">{item.price}</TableCell>
+                <TableCell scope="row" align="center">{item.total}</TableCell>
                 {/* <TableCell scope="row" align="center">{item.stock > 0 ? <p style={{color: "green"}}>{item.stock}</p> : <p style={{color: "red"}}>{item.stock}</p>}</TableCell>
               <TableCell scope="row" align="center"> 
                 <Button size="small" color="primary" onClick={() => setEdit(true)}>
