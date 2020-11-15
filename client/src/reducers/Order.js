@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
         case 'GET_USER_ORDER':
             return {
                 ...state,
-                // userItem: action.payload.data -->tengo que ver que es lo que recibo
+                userItem: action.payload.data //-->tengo que ver que es lo que recibo
             }
 
         case "UPDATE_ORDER_LINE":
