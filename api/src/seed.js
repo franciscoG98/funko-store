@@ -1,27 +1,35 @@
 const initialCategories = [
-  { name: "Marvel", 
-    description: "Categoría Marvel", 
+  {
+    name: "Marvel",
+    description: "Categoría Marvel",
   },
-  { name: "DC Comics", 
-    description: "Categoría DC Comics", 
+  {
+    name: "DC Comics",
+    description: "Categoría DC Comics",
   },
-  { name: "Avengers", 
-    description: "Categoría Avengers", 
+  {
+    name: "Avengers",
+    description: "Categoría Avengers",
   },
-  { name: "X-Men", 
-    description: "Categoría X-Men", 
+  {
+    name: "X-Men",
+    description: "Categoría X-Men",
   },
-  { name: "Fantastic Four", 
-    description: "Categoría Fantastic Four", 
+  {
+    name: "Fantastic Four",
+    description: "Categoría Fantastic Four",
   },
-  { name: "Justice League", 
-    description: "Categoría Justice League", 
+  {
+    name: "Justice League",
+    description: "Categoría Justice League",
   },
-  { name: "Legend", 
-    description: "Categoría Legend", 
+  {
+    name: "Legend",
+    description: "Categoría Legend",
   },
-  { name: "Young Titans", 
-    description: "Categoría Young Titans", 
+  {
+    name: "Young Titans",
+    description: "Categoría Young Titans",
   },
 ];
 const initialProducts = [
@@ -116,7 +124,7 @@ const initialProducts = [
     imagen: "https://hottopic.scene7.com/is/image/HotTopic/10720103_av1?$pdp_hero_large$",
     stock: 10,
   },
- 
+
 ];
 
 const categoryProducts = [
@@ -156,7 +164,22 @@ let initialUsers = [
     state: "Argentina",
     isAdmin: true
   },
-  
+  {
+    fullname: "Pancho Gonzalez",
+    email: "pancho@admin.com",
+    phone: "123456789",
+    address: "Av siempre viva 123",
+    state: "Argentina",
+    isAdmin: false
+  },
+  {
+    fullname: "Homero Simpson",
+    email: "homero@admin.com",
+    phone: "123456789",
+    address: "Av siempre viva 123",
+    state: "Argentina",
+    isAdmin: false
+  }
 ];
 let initialOrders = [
   {
@@ -184,9 +207,34 @@ let initialOrders = [
     state: "completed",
     userId: 1
   },
+  {
+    total: 1000,
+    state: "cart",
+    userId: 2
+  },
+  {
+    total: 1000,
+    state: "canceled",
+    userId: 2
+  },
+  {
+    total: 1000,
+    state: "cart",
+    userId: 3
+  },
+  {
+    total: 1000,
+    state: "canceled",
+    userId: 3
+  },
+  {
+    total: 1000,
+    state: "completed",
+    userId: 3
+  },
 ]
 
-  let initialOrderlines = [ 
+let initialOrderlines = [
   {
     productId: 3,
     orderId: 1,

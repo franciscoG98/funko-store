@@ -1,4 +1,6 @@
 const { Router } = require('express');
+
+// WARNING!!! LEER BIEN ANTES DE TOCAR
 // import all routers;
 const productRouter = require('./product.js');
 const searchRouter = require('./search.js');
@@ -13,8 +15,8 @@ const router = Router();
 // router.use('/auth', authRouter);
 router.use('/products', productRouter);
 router.use('/search', searchRouter);
-router.use('/user', userRouter);
+router.use('/user', userRouter); 
 router.use('/orders', orderRouter);
-router.use('/users', cartRouter);
+router.use('/users', cartRouter); //---> cart.js 
 
 module.exports = router;
