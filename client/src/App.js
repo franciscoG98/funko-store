@@ -9,54 +9,57 @@ import CategoryProduct from './components/CategoryProduct/CategoryProduct';
 import Button from '@material-ui/core/Button';
 import Search from "./components/SearchBar/Search";
 import AdminOrderList from './components/Admin/Products/AdminOrderList';
+import UserOrderList from './components/CartOrder/UserOrderList';
 import { Provider } from 'react-redux';
-import store from'./store';
+import store from './store';
 import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';
 
 
 function App() {
   const [marvel, setMarvel] = useState(false);
-  
+
 
   return (
 
-    <Provider store= {store}>
+    <Provider store={store}>
 
-    <div className= { marvel === true ? 'marvel' : 'dc' }>
+      <div className={marvel === true ? 'marvel' : 'dc'}>
 
-      <BrowserRouter>         
+        <BrowserRouter>
 
-            < Nav /> 
+          < Nav />
 
-              <div className= 'divswitch'>
+          <div className='divswitch'>
 
-                <div className= 'switch'>
-                  <Button variant="contained" color="primary" onClick= {() => setMarvel(true)}> Marvel </Button>
-                </div> 
+            <div className='switch'>
+              <Button variant="contained" color="primary" onClick={() => setMarvel(true)}> Marvel </Button>
+            </div>
 
-                <div className= 'switch'>
-                  <Button variant="contained" color="primary" onClick= {() => setMarvel(false)}>   DC    </Button> 
-                </div>
+            <div className='switch'>
+              <Button variant="contained" color="primary" onClick={() => setMarvel(false)}>   DC    </Button>
+            </div>
 
-              </div>          
-        
-            < Route exact path= '/' component= {Products} />
+          </div>
 
-            < Route exact path= '/ShoppingCart2' component= { ShoppingCart2 } />
+          < Route exact path='/' component={Products} />
 
-            < Route exact path= '/admin/categories' component= {ListCategories} />
+          < Route exact path='/ShoppingCart2' component={ShoppingCart2} />
 
-            < Route exact path= '/admin/products' component= {ListProducts} />
+          < Route exact path='/admin/categories' component={ListCategories} />
 
-            < Route exact path= '/product/:nombreCat' component= {CategoryProduct} />              
-          
-            < Route exact path= '/products/search/:search' component= {Search} />              
+          < Route exact path='/admin/products' component={ListProducts} />
 
-            < Route exact path= '/products/admin' component= {AdminOrderList} />
-      
-      </BrowserRouter>
+          < Route exact path='/product/:nombreCat' component={CategoryProduct} />
 
-    </div>
+          < Route exact path='/products/search/:search' component={Search} />
+
+          < Route exact path='/products/admin' component={AdminOrderList} />
+
+          < Route exact path='/products/user' component={UserOrderList} />
+
+        </BrowserRouter>
+
+      </div>
 
     </Provider>
   );

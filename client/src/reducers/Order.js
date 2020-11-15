@@ -1,7 +1,8 @@
 const initialState = {
     items: [],
     orderItem: [],
-    cart: []
+    cart: [],
+    userItem: []
 }
 
 
@@ -12,7 +13,7 @@ export default (state = initialState, action) => {
                 ...state,
                 items: [...state.items, action.payload.data.producto]
             }
-        
+
         case "REMOVE_ITEM":
             return {
                 ...state,
@@ -24,7 +25,13 @@ export default (state = initialState, action) => {
                 ...state,
                 orderItem: action.payload.data
             }
-      
+
+        case 'GET_USER_ORDER':
+            return {
+                ...state,
+                // userItem: action.payload.data -->tengo que ver que es lo que recibo
+            }
+
         case "UPDATE_ORDER_LINE":
             return {
                 ...state,
@@ -32,7 +39,7 @@ export default (state = initialState, action) => {
             }
 
 
-        default: return state; 
-    
+        default: return state;
+
     }
 }
