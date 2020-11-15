@@ -1,6 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+
+import { deleteItem, UpdateOrderLine } from '../../actions/Order';
+
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
 import Table from '@material-ui/core/Table';
@@ -46,6 +50,7 @@ const useStyles = makeStyles({
 
 const ShoppingCart2 = () =>  {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
 
   const order = useSelector(state => state.Order.items);
@@ -61,21 +66,29 @@ const ShoppingCart2 = () =>  {
       let  iddd = order[i].id ;
       let orderLine = idArr.indexOf(iddd);
 
+
       arrMap[orderLine].quantity +=1;
+      dispatch( UpdateOrderLine(arrMap[orderLine]) )
 
     } else {
       idArr.push(order[i].id);
-
-      arrMap.push({
+ 
+      let SendOrderLine = {
         id: order[i].id,
         name: order[i].name,
         imagen: order[i].imagen,
         price: order[i].price,
         quantity: 1
-      })
+      }
+
+      dispatch( UpdateOrderLine(SendOrderLine, 1) ); 
+
+      arrMap.push(SendOrderLine);
     }
   }
   // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
+
+  
 
 
   // funcion que calcula el total
@@ -88,7 +101,7 @@ const ShoppingCart2 = () =>  {
     return t;
   }
 
-  const  deleteItem = async () => {
+  const  deleteItemCart = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -99,7 +112,7 @@ const ShoppingCart2 = () =>  {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        // dispatch( deleteProduct(id) ) habria que cambiar esto por la accion de borrar item del carrito
+        dispatch( deleteItem(id) ) 
         
         MySwal.fire(
           'Deleted!',
@@ -137,7 +150,7 @@ const ShoppingCart2 = () =>  {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button size="small" color="primary" onClick={() => deleteItem()}><DeleteRoundedIcon/></Button>
+                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.id)}><DeleteRoundedIcon/></Button>
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.name}</StyledTableCell>
                 <StyledTableCell align="left">
