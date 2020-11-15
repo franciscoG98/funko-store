@@ -24,35 +24,7 @@ const { Op } = require("sequelize");
 //     })
 // })
 
-//Modificar orden   PUT 
-server.put('/:id', (req, res) => {
-    const { state } = req.body;
-    const { id } = req.params;
 
-
-    if (!id || !state) {
-        res.status(400).json({ msj: "invalid or missing data" });
-    } else {
-        Order.findOne({
-            where: {
-                [Op.and]: [
-                    { id: UserId }, { state: 'cart' }
-                ]
-            }
-        })
-            .then(respuesta => {
-                console.log(respuesta)
-                // respuesta.update(state)
-            })
-            .then(updateState => {
-                res.json(updateState)
-            })
-            .catch(err => {
-                res.json(err)
-            })
-    }
-
-})
 
 server.get('/', (req, res) => {
     Order.findAll()
@@ -66,19 +38,40 @@ server.get('/', (req, res) => {
 
 // retorna una orden en particular
 server.get('/:id', (req, res) => {
-	const { id } = req.params;
-	Order.findOne({
-		where: {
-			orderId: id
-		}
-	})
-	.then(o => {
-		res.json(o)
-	})
-	.catch(err => {
-		res.json(err)
-	})
+    const { id } = req.params;
+    Order.findOne({
+        where: {
+            orderId: id
+        }
+    })
+        .then(o => {
+            res.json(o)
+        })
+        .catch(err => {
+            res.json(err)
+        })
 })
 
+server.put('/:id', (req, res) => {
+    const { id } = req.params;
+    let { state } = req.body;
+
+    if (!id || !state) {
+        res.status(400).json({ msj: "invalid or missing data" });
+    } else {
+        Order.findOne({
+            where: {
+                id: id
+            }
+        })
+            .then(order => {
+                order.update({ state })
+            })
+            .then(res.status(201).json({ msj: 'Order successfully updated!' }))
+            .catch(err => {
+                res.json({ err });
+            })
+    }
+})
 
 module.exports = server;
