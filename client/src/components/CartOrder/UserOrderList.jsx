@@ -83,7 +83,7 @@ export default function UserOrderList() {
   const userList = useSelector(state => state.Order.userItem);
   const userInfoList = useSelector(state => state.Order.userInfo);
 
-  console.log(userInfoList)
+  // console.log(userInfoList)
 
   //action UserOrderList
   useEffect(() => {
@@ -138,41 +138,34 @@ export default function UserOrderList() {
       <br></br>
       <br></br>
 
-      {/* GRID info User */}
-      <div className={classes2.root}>
-        <Paper className={classes2.paper}>
-          <Grid container spacing={2}>
-            <Grid item>
-              <ButtonBase className={classes2.image}>
-                <img className={classes2.img} alt="complex" src="https://memegenerator.net/img/images/17273162.jpg" />
-              </ButtonBase>
-            </Grid>
-            {userInfoList.map(info => {
-              <Grid item xs={12} sm container>
-                <Grid item xs container direction="column" spacing={2}>
-                  <Grid item xs key={info.id}>
-                    <Typography gutterBottom variant="subtitle1">{info.fullname}</Typography>
-                    <Typography variant="body2" gutterBottom> {info.email} </Typography>
-                    <Typography variant="body2" color="textSecondary"> {info.phone} </Typography>
-                    <Typography variant="body2" color="textSecondary"> {info.address} </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                      Remove
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item>
-                  <Typography variant="subtitle1">$19.00</Typography>
-                </Grid>
-              </Grid>
-            })}
-
-          </Grid>
-        </Paper>
-      </div>
+      {/* antes era un GRID info User */}
+      <TableContainer className={classes.tableContainer} component={Paper}>
 
 
+        <TableHead >
+          <TableRow>
+            <StyledTableCell align="center">User Information</StyledTableCell>
+
+          </TableRow>
+        </TableHead>
+
+
+        <TableBody>
+
+          {userInfoList.map(info => (
+
+            <TableRow key={info.id}>
+              <TableCell scope="row" align="center">  {info.fullname}</TableCell>
+              <TableCell scope="row" align="center">{info.address}</TableCell>
+              <TableCell scope="row" align="center"> {info.email}</TableCell>
+              <TableCell scope="row" align="center">{info.phone}</TableCell>
+
+            </TableRow>
+          ))}
+
+        </TableBody>
+
+      </TableContainer>
       <br></br>
     </div>
 
