@@ -48,7 +48,7 @@ export function getAdminOrders() {
 //traer ordenes para el componente UserOrdenList
 export function getUserOrders() {
     return (dispatch) => {
-        return Axios.get(`http://localhost:3001/user`)
+        return Axios.get(`http://localhost:3001/1/cart`)
             .then(json => {
                 dispatch({ type: 'GET_USER_ORDER', payload: json });
             })
