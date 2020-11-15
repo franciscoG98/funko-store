@@ -81,9 +81,10 @@ export default function UserOrderList() {
 
   const dispatch = useDispatch();
   const userList = useSelector(state => state.Order.userItem);
-  const userInfo = useSelector(state => state.Order.userInfo);
+  const userInfoList = useSelector(state => state.Order.userInfo);
 
-  console.log(userInfo)
+  console.log(userInfoList)
+
   //action UserOrderList
   useEffect(() => {
     dispatch(getUserOrders())
@@ -94,7 +95,7 @@ export default function UserOrderList() {
     dispatch(getUserInfo())
   }, [])
 
-  if (!userList) {
+  if (!userInfoList) {
     return <p>cargando</p>
   }
 
@@ -102,7 +103,7 @@ export default function UserOrderList() {
 
     <div>
 
-
+      {/* Order table */}
       <TableContainer className={classes.tableContainer} component={Paper}>
         <Table className={classes.table} aria-label="simple table">
 
@@ -134,7 +135,10 @@ export default function UserOrderList() {
         </Table>
       </TableContainer>
 
-      (
+      <br></br>
+      <br></br>
+
+      {/* GRID info User */}
       <div className={classes2.root}>
         <Paper className={classes2.paper}>
           <Grid container spacing={2}>
@@ -143,7 +147,7 @@ export default function UserOrderList() {
                 <img className={classes2.img} alt="complex" src="https://memegenerator.net/img/images/17273162.jpg" />
               </ButtonBase>
             </Grid>
-            {userInfo.map(info => {
+            {userInfoList.map(info => {
               <Grid item xs={12} sm container>
                 <Grid item xs container direction="column" spacing={2}>
                   <Grid item xs key={info.id}>
@@ -167,7 +171,7 @@ export default function UserOrderList() {
           </Grid>
         </Paper>
       </div>
-  )
+
 
       <br></br>
     </div>
