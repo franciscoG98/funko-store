@@ -79,6 +79,7 @@ export default function UserOrderList() {
               <StyledTableCell align="center">Product Id</StyledTableCell>
               <StyledTableCell align="center">Price </StyledTableCell>
               <StyledTableCell align="center">Quantity</StyledTableCell>
+              <StyledTableCell align="center">Total</StyledTableCell>
 
             </TableRow>
           </TableHead>
@@ -93,6 +94,7 @@ export default function UserOrderList() {
                 <TableCell scope="row" align="center">{item.productId}</TableCell>
                 <TableCell scope="row" align="center"> {item.price}</TableCell>
                 <TableCell scope="row" align="center">{item.quantity}</TableCell>
+                <TableCell scope="row" align="center">{item.quantity * item.price}</TableCell>
               </TableRow>
             ))}
           </TableBody>
