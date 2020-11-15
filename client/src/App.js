@@ -55,7 +55,7 @@ function App() {
 
           < Route exact path='/products/admin' component={AdminOrderList} />
 
-          < Route exact path='/products/user' component={UserOrderList} />
+          < Route exact path='/user/product' component={UserOrderList} />
 
         </BrowserRouter>
 
