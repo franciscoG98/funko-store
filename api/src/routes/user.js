@@ -1,5 +1,6 @@
 const server = require('express').Router();
 const { User, Order } = require('../db.js');
+const { Op } = require("sequelize");
 
 
 server.get('/', (req, res) => {
@@ -71,20 +72,18 @@ server.delete("/:id", (req, res) => {
     }
 })
 
-// 
+
 
 server.delete('/:idUser/cart/', (req,res) => {
     const {idUser} = req.params;
-    if(!id) {
+    if(!idUser) {
         res.status(404).json({msg: "Seleccione una órden a eliminar"})
     }
     else {
-        Order.destroy( {where: {id: idUser}} )
+       Order.destroy( {where: {id: idUser} } )
     }
+   
 })
-
-
-	
 
 
 
