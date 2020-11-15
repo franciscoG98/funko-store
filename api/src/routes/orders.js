@@ -16,13 +16,30 @@ server.get("/", (req, res) => {
             ]
         }
     })
-    .then(ordenes => {
-        res.json({ordenes})
-    })
-    .catch(err => {
-        res.json(err)
-    })
+        .then(ordenes => {
+            res.json({ ordenes })
+        })
+        .catch(err => {
+            res.json(err)
+        })
 })
 
+server.put('/orders/:id', (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!id || !status) {
+        res.status(400).json({ msj: "invalid or missing data" });
+    } else {
+        Order.update(status,
+            { where: { userId: id } })
+            .then(newState => {
+                res.json(newState)
+            })
+            .catch(err => {
+                res.json(err)
+            })
+    }
+})
 
 module.exports = server;
