@@ -6,8 +6,14 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 
-import { getUserOrders } from '../../actions/Order';
+import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
+
+//estilos GRID
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import ButtonBase from '@material-ui/core/ButtonBase';
+
 
 const MySwal = withReactContent(Swal)
 
@@ -46,20 +52,47 @@ const useStyles = makeStyles({
   },
 });
 
+//estilos GRID
+const useStylesGrid = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
 
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '120%',
+    maxHeight: '120%',
+  },
+}));
 
 export default function UserOrderList() {
   const classes = useStyles();
+  const classes2 = useStylesGrid();
 
   const dispatch = useDispatch();
   const userList = useSelector(state => state.Order.userItem);
+  const userInfo = useSelector(state => state.Order.userInfo);
 
-  console.log(userList)
+  console.log(userInfo)
+  //action UserOrderList
   useEffect(() => {
     dispatch(getUserOrders())
   }, [])
 
-
+  //action grid
+  useEffect(() => {
+    dispatch(getUserInfo())
+  }, [])
 
   if (!userList) {
     return <p>cargando</p>
@@ -100,7 +133,46 @@ export default function UserOrderList() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      (
+      <div className={classes2.root}>
+        <Paper className={classes2.paper}>
+          <Grid container spacing={2}>
+            <Grid item>
+              <ButtonBase className={classes2.image}>
+                <img className={classes2.img} alt="complex" src="https://memegenerator.net/img/images/17273162.jpg" />
+              </ButtonBase>
+            </Grid>
+            {userInfo.map(info => {
+              <Grid item xs={12} sm container>
+                <Grid item xs container direction="column" spacing={2}>
+                  <Grid item xs key={info.id}>
+                    <Typography gutterBottom variant="subtitle1">{info.fullname}</Typography>
+                    <Typography variant="body2" gutterBottom> {info.email} </Typography>
+                    <Typography variant="body2" color="textSecondary"> {info.phone} </Typography>
+                    <Typography variant="body2" color="textSecondary"> {info.address} </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body2" style={{ cursor: 'pointer' }}>
+                      Remove
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Typography variant="subtitle1">$19.00</Typography>
+                </Grid>
+              </Grid>
+            })}
+
+          </Grid>
+        </Paper>
+      </div>
+  )
+
       <br></br>
     </div>
+
+
   );
 }
+

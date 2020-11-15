@@ -2,7 +2,8 @@ const initialState = {
     items: [],
     orderItem: [],
     cart: [],
-    userItem: []
+    userItem: [],
+    userInfo: []
 }
 
 
@@ -29,13 +30,19 @@ export default (state = initialState, action) => {
         case 'GET_USER_ORDER':
             return {
                 ...state,
-                userItem: action.payload.data //-->tengo que ver que es lo que recibo
+                userItem: action.payload.data
             }
 
         case "UPDATE_ORDER_LINE":
             return {
                 ...state,
                 cart: action.payload
+            }
+
+        case "GET_USER_INFO":
+            return {
+                ...state,
+                userInfo: action.payload.data
             }
 
 

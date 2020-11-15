@@ -54,3 +54,12 @@ export function getUserOrders() {
             })
     };
 }
+
+export function getUserInfo() {
+    return (dispatch) => {
+        return Axios.get(`http://localhost:3001/1`)
+            .then(json => {
+                dispatch({ type: 'GET_USER_ORDER', payload: json });
+            })
+    };
+}
