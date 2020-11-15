@@ -54,7 +54,7 @@ export default function UserOrderList() {
   const dispatch = useDispatch();
   const userList = useSelector(state => state.Order.userItem);
 
-
+  console.log(userList)
   useEffect(() => {
     dispatch(getUserOrders())
   }, [])
@@ -75,10 +75,10 @@ export default function UserOrderList() {
 
           <TableHead >
             <TableRow>
-              <StyledTableCell align="center">FullName</StyledTableCell>
-              <StyledTableCell align="center">Email</StyledTableCell>
-              <StyledTableCell align="center">Phone Number</StyledTableCell>
-              <StyledTableCell align="center">Address</StyledTableCell>
+              <StyledTableCell align="center">orden Id</StyledTableCell>
+              <StyledTableCell align="center">Product Id</StyledTableCell>
+              <StyledTableCell align="center">Price </StyledTableCell>
+              <StyledTableCell align="center">Quantity</StyledTableCell>
 
             </TableRow>
           </TableHead>
@@ -89,16 +89,10 @@ export default function UserOrderList() {
             {userList.map(item => (
 
               <TableRow key={item.id}>
-                <TableCell scope="row" align="center"> {console.log(item)}  {item.fullname}</TableCell>
-                <TableCell scope="row" align="center">{item.email}</TableCell>
-                <TableCell scope="row" align="center"> {item.phone}</TableCell>
-                <TableCell scope="row" align="center">{item.address}</TableCell>
-                {/* <TableCell scope="row" align="center">{item.stock > 0 ? <p style={{color: "green"}}>{item.stock}</p> : <p style={{color: "red"}}>{item.stock}</p>}</TableCell>
-             <TableCell scope="row" align="center"> 
-               <Button size="small" color="primary" onClick={() => setEdit(true)}>
-                  <Edititemuct getitemuct={getitemuct} itemucto={item} edit={edit} setEdit={setEdit} /> 
-               </Button> 
-               <Button size="small" color="primary" onClick={() => deleteitemucts(item.id)}><DeleteIcon/></Button></TableCell> */}
+                <TableCell scope="row" align="center">  {item.orderId}</TableCell>
+                <TableCell scope="row" align="center">{item.productId}</TableCell>
+                <TableCell scope="row" align="center"> {item.price}</TableCell>
+                <TableCell scope="row" align="center">{item.quantity}</TableCell>
               </TableRow>
             ))}
           </TableBody>
