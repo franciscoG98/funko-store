@@ -11,6 +11,7 @@ import Search from "./components/SearchBar/Search";
 import AdminOrderList from './components/Admin/Products/AdminOrderList';
 import UserOrderList from './components/CartOrder/UserOrderList';
 import { Provider } from 'react-redux';
+import Register from "./components/User/form";
 import store from './store';
 import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';
 
@@ -56,6 +57,9 @@ function App() {
           < Route exact path='/products/admin' component={AdminOrderList} />
 
           < Route exact path='/user/product' component={UserOrderList} />
+
+          < Route exact path='/register' component={Register} />
+
 
         </BrowserRouter>
 
