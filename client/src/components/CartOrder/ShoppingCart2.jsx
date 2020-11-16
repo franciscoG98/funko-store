@@ -74,7 +74,7 @@ const ShoppingCart2 = () =>  {
       idArr.push(order[i].id);
  
       let SendOrderLine = {
-        id: order[i].id,
+        productId: order[i].id,
         name: order[i].name,
         imagen: order[i].imagen,
         price: order[i].price,
