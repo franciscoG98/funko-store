@@ -86,6 +86,7 @@ server.post('/:idUser/cart', async(req, res) =>{
                  price: orderlines.price,                  
              })
              .then((r)=> res.json(r))
+             .catch(err=> res.json(err))
         }     
 })
 
