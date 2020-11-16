@@ -5,9 +5,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 // import CheckboxAvenger from "./checkboxAvenger";
 import Axios from "axios";
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
 // import {useSelector} from "react-redux"
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 const useStyles = makeStyles({
@@ -62,6 +63,7 @@ const CRUForm = ({cambio, product, edit}) => {
             <TextField id="standard-basic3" label="Stock" name="stock" value={edit && product.stock}  onChange={cambio} />
             <br/>
             <InputLabel htmlFor="uncontrolled-native">Where is your Funko from?</InputLabel>
+<<<<<<< HEAD
             <NativeSelect
                 onChange={cambio} //la vamos a usar
                 name="categoria"
@@ -90,7 +92,34 @@ const CRUForm = ({cambio, product, edit}) => {
                </>
             ))} 
              </NativeSelect>
+=======
+                <NativeSelect
+            onChange={cambio} //la vamos a usar
+            name="categoria"
+            className={classes.selectEmpty}
+            inputProps={{ 'aria-label': 'age' }}
+>>>>>>> 22a855564511ec26fc7cc571b0d3b5139fb9794a
             
+            >       
+              {state.map((p)=>(
+           <>
+               <option key={p.id}  onChange={cambio} name="categoria" >{ p.name}</option>   
+           </>
+               ))} 
+         </NativeSelect>
+        <br/>
+        <NativeSelect
+            onChange={cambio} //la vamos a usar
+            name="categoria2"
+            className={classes.selectEmpty}
+            inputProps={{ 'aria-label': 'age' }}        
+            >       
+        {state.map((p)=>(
+           <>
+               <option key={p.id + 1 }  onChange={cambio} name="categoria2" >{ p.name}</option>   
+           </>
+        ))} 
+         </NativeSelect>
             <br/>
         </div>
     )
@@ -113,13 +142,38 @@ export default CRUForm;
             </NativeSelect> */
 
 
-            // <FormControlLabel
-            //   key={p.id} 
-            //   control={<Checkbox value={p.name} name="categoria" onChange={cambio} />}
-            //   label={p.name}
-            //   />
+            // 
 
             //   <FormControlLabel
             //   key={p.id + 5}              
             //   control={<Checkbox  value={p.name}  name="categoria2" onChange={cambio} />}
             //   label={p.name}
+
+
+
+        //     <NativeSelect
+        //     onChange={cambio} //la vamos a usar
+        //     name="categoria"
+        //     className={classes.selectEmpty}
+        //     inputProps={{ 'aria-label': 'age' }}
+            
+        //     >       
+        // {state.map((p)=>(
+        //    <>
+        //        <option key={p.id}  onChange={cambio} name="categoria" >{ p.name}</option>   
+        //    </>
+        // ))} 
+        //  </NativeSelect>
+        // <br/>
+        // <NativeSelect
+        //     onChange={cambio} //la vamos a usar
+        //     name="categoria2"
+        //     className={classes.selectEmpty}
+        //     inputProps={{ 'aria-label': 'age' }}        
+        //     >       
+        // {state.map((p)=>(
+        //    <>
+        //        <option key={p.id + 1 }  onChange={cambio} name="categoria2" >{ p.name}</option>   
+        //    </>
+        // ))} 
+        //  </NativeSelect>

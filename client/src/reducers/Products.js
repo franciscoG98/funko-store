@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
         case "EDIT_PRODUCT":
             return {
                 ...state,             
-                products: [...state.products, action.payload  ]        
+                products:  [...state.products, action.payload    ]    
             }
 
         case "SEARCH_PRODUCTS":

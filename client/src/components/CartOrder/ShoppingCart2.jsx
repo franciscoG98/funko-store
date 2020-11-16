@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { deleteItem, UpdateOrderLine, getCarrito } from '../../actions/Order';
 
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ShoppingCart2 = () =>  {
+const ShoppingCart2 = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -101,14 +101,14 @@ const ShoppingCart2 = () =>  {
   // funcion que calcula el total
   let t = 0;
   const total = (arr) => {
-    for(let i=0; i< arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
 
       t += arr[i].price
     }
     return t;
   }
 
-  const  deleteItemCart = async (id) => {
+  const deleteItemCart = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -119,8 +119,8 @@ const ShoppingCart2 = () =>  {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch( deleteItem(id) ) 
-        
+        dispatch(deleteItem(id))
+
         MySwal.fire(
           'Deleted!',
           'Your file has been deleted.',
@@ -130,17 +130,16 @@ const ShoppingCart2 = () =>  {
     }).catch(err => {
       console.log(err);
     });
-    
 
    }
  
 
   return (
-    <div style={{width:'70%', margin:'auto'}}>
+    <div style={{ width: '70%', margin: 'auto' }}>
       <TableContainer component={Paper} >
         <Table className={classes.table} aria-label="customized table">
 
-            {/* titulo */}
+          {/* titulo */}
           <TableHead>
             <TableRow>
               <StyledTableCell align="left"></StyledTableCell>
@@ -158,25 +157,26 @@ const ShoppingCart2 = () =>  {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.id)}><DeleteRoundedIcon/></Button>
+                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.id)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.name}</StyledTableCell>
                 <StyledTableCell align="left">
-                  <img src={i.imagen} alt='funko image' style={{width:'auto', height: '60px'}}/>
+                  <img src={i.imagen} alt='funko image' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
                 <StyledTableCell align="right">${i.price * i.quantity}</StyledTableCell>
               </StyledTableRow>
             ))}
 
-              {/* parte de abajo */}
+            {/* parte de abajo */}
             <StyledTableCell align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>            
+            <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right">${total(order)} </StyledTableCell>
             <StyledTableCell align="right">
+
               <Link to="/user/product">
-              <Button autoFocus onClick={() => alert('Compraste!')} color="primary">
+              <Button autoFocus color="primary">
                   Buy
                 </Button>
               </Link>
