@@ -108,6 +108,7 @@ export default function Register(){
             placeholder = 'eg: (postal code) address'
             label= 'Address'
             />
+        
             <Button onClick={onSubmit}>Sign Up</Button>
 
         </Form>
