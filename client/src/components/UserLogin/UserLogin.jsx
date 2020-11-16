@@ -17,8 +17,8 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Funko´s Fan Page!
+            <Link color="yellow" href="https://soyhenry.com/" target="_blank">
+                Powered by Henry
       </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
