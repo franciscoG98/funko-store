@@ -53,8 +53,11 @@ server.get('/:idUser/cart', (req, res)=>{
         }).then((r)=> res.json(r))
         .catch(err=> res.json(err))
 })  */
+//recibimos una orderline , completa (cada vez que agregan un producto, ya sea que el prod esté en el carro o no)
+//compro un capi, recibo: {id: (id de OL), orderid: ..., prodId: 1, quant:1, price: 10}
+//compro otro capi, recibo: {id: (id de OL), orderid: ", prodId: 1, quant:2, price: 20}
 
-server.post('/:idUser/cart', async(req, res) =>{
+server.post('/:idUser/cart', async(req, res) =>{ 
     const {idUser} = req.params;
     const  orderlines  = req.body;  
     const Orden = await Order.findOrCreate({

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 
-import { deleteItem, UpdateOrderLine } from '../../actions/Order';
+import { deleteItem, UpdateOrderLine, getCarrito } from '../../actions/Order';
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
@@ -54,26 +54,37 @@ const ShoppingCart2 = () =>  {
 
 
   const order = useSelector(state => state.Order.items);
-
+  const carro = useSelector(state => state.Order.carrito)
+  console.log(carro)
+  /* 
+  order [ { esto es un GET a product/id
+    id: 1 name: capi, etc
+  },]
+*/
+ useEffect(() => {
+    dispatch(getCarrito(1))
+  }, [])
   // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
-  let arrMap = [];
-  let idArr = [];
+  let arrMap = [];// orden entera
+  let idArr = [];//junta los id para ver si los tiene 
 
   for(let i=0; i<order.length; i++) {
 
     if(idArr.includes(order[i].id)) {
       
-      let  iddd = order[i].id ;
-      let orderLine = idArr.indexOf(iddd);
-
-
+      let  iddd = order[i].id ;//guarda id del producto para buscarla en la orden
+      let orderLine = idArr.indexOf(iddd); //busca donde esta en la orden para modificar la OL
       arrMap[orderLine].quantity +=1;
-      dispatch( UpdateOrderLine(arrMap[orderLine]) )
+      dispatch( UpdateOrderLine(arrMap[orderLine]), 1)
 
     } else {
       idArr.push(order[i].id);
- 
       let SendOrderLine = {
+        productId: order[i].id,
+        price: order[i].price,
+        quantity: 1
+      }
+      let pushOrderLine = {
         id: order[i].id,
         name: order[i].name,
         imagen: order[i].imagen,
@@ -83,14 +94,10 @@ const ShoppingCart2 = () =>  {
 
       dispatch( UpdateOrderLine(SendOrderLine, 1) ); 
 
-      arrMap.push(SendOrderLine);
+      arrMap.push(pushOrderLine);
     }
   }
   // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
-
-  
-
-
   // funcion que calcula el total
   let t = 0;
   const total = (arr) => {
@@ -126,6 +133,7 @@ const ShoppingCart2 = () =>  {
     
 
    }
+ 
 
   return (
     <div style={{width:'70%', margin:'auto'}}>
@@ -146,7 +154,7 @@ const ShoppingCart2 = () =>  {
 
           {/* cuerpo */}
           <TableBody>
-            {arrMap.map( i => (
+            {carro.map( i => (
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
@@ -167,7 +175,7 @@ const ShoppingCart2 = () =>  {
             <StyledTableCell align="right"></StyledTableCell>            
             <StyledTableCell align="right">${total(order)} </StyledTableCell>
             <StyledTableCell align="right">
-              <Button autoFocus onClick={() => alert('aca tendria que saltar a otro coso pa comprar vieron')} color="primary">
+              <Button autoFocus onClick={() => alert('Compraste!')} color="primary">
                   Buy
                 </Button>
             </StyledTableCell>
