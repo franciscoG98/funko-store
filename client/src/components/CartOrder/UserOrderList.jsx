@@ -2,18 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
-
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 
 import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
-
-//estilos GRID
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
-
 
 const MySwal = withReactContent(Swal)
 
@@ -140,32 +134,49 @@ export default function UserOrderList() {
 
       {/* antes era un GRID info User */}
       <TableContainer className={classes.tableContainer} component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
 
+          <TableHead >
+            <TableRow>
+              <StyledTableCell scope="row" align="center">User Information</StyledTableCell>
+            </TableRow>
+          </TableHead>
+
+
+          <TableBody>
+
+            {userInfoList.map(info => (
+
+              <TableRow key={info.id}>
+                <TableCell scope="row" align="center">Name: {info.fullname}</TableCell>
+                <TableCell scope="row" align="center">Address: {info.address}</TableCell>
+                <TableCell scope="row" align="center">Email:{info.email}</TableCell>
+                <TableCell scope="row" align="center">Phone Number:{info.phone}</TableCell>
+
+              </TableRow>
+            ))}
+
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+
+      <TableContainer className={classes.tableContainer} component={Paper}>
 
         <TableHead >
           <TableRow>
-            <StyledTableCell align="center">User Information</StyledTableCell>
-
+            <StyledTableCell align="center">Payment Information</StyledTableCell>
           </TableRow>
         </TableHead>
 
+        <ButtonGroup align="center" variant="text" color="primary" aria-label="text primary button group">
+          <Button>Credit Card</Button>
+          <Button>Cash</Button>
+        </ButtonGroup>
 
-        <TableBody>
-
-          {userInfoList.map(info => (
-
-            <TableRow key={info.id}>
-              <TableCell scope="row" align="center">  {info.fullname}</TableCell>
-              <TableCell scope="row" align="center">{info.address}</TableCell>
-              <TableCell scope="row" align="center"> {info.email}</TableCell>
-              <TableCell scope="row" align="center">{info.phone}</TableCell>
-
-            </TableRow>
-          ))}
-
-        </TableBody>
 
       </TableContainer>
+
       <br></br>
     </div>
 
