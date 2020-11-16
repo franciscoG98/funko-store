@@ -60,39 +60,39 @@ const ShoppingCart2 = () =>  {
   order [ { esto es un GET a product/id
     id: 1 name: capi, etc
   },]
-*/
+*/const userId = 1
  useEffect(() => {
-    dispatch(getCarrito(1))
+    dispatch(getCarrito(userId))
   }, [])
   // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
   let arrMap = [];// orden entera
   let idArr = [];//junta los id para ver si los tiene 
 
   for(let i=0; i<order.length; i++) {
-
+    
     if(idArr.includes(order[i].id)) {
       
       let  iddd = order[i].id ;//guarda id del producto para buscarla en la orden
       let orderLine = idArr.indexOf(iddd); //busca donde esta en la orden para modificar la OL
       arrMap[orderLine].quantity +=1;
-      dispatch( UpdateOrderLine(arrMap[orderLine]), 1)
+      dispatch( UpdateOrderLine(arrMap[orderLine]), userId)
 
     } else {
       idArr.push(order[i].id);
       let SendOrderLine = {
         productId: order[i].id,
-        price: order[i].price,
+        price: order[i].price, 
         quantity: 1
       }
       let pushOrderLine = {
-        id: order[i].id,
+        productId: order[i].id,
         name: order[i].name,
         imagen: order[i].imagen,
         price: order[i].price,
         quantity: 1
       }
-
-      dispatch( UpdateOrderLine(SendOrderLine, 1) ); 
+      
+      dispatch( UpdateOrderLine(SendOrderLine, userId) ); 
 
       arrMap.push(pushOrderLine);
     }
@@ -176,7 +176,7 @@ const ShoppingCart2 = () =>  {
             <StyledTableCell align="right">${total(order)} </StyledTableCell>
             <StyledTableCell align="right">
               <Link to="/user/product">
-              <Button autoFocus onClick={() => alert('aca tendria que saltar a otro coso pa comprar vieron')} color="primary">
+              <Button autoFocus onClick={() => alert('Compraste!')} color="primary">
                   Buy
                 </Button>
               </Link>
