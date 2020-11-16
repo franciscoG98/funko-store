@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 import Register from "./components/User/form";
 import store from './store';
 import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';
+import UserLogin from './components/UserLogin/UserLogin';
 
 
 function App() {
@@ -59,6 +60,9 @@ function App() {
           < Route exact path='/user/:id/product/' component={UserOrderList} />
 
           < Route exact path='/register' component={Register} />
+
+          < Route exact path='/login' component={UserLogin} />
+
 
 
         </BrowserRouter>
