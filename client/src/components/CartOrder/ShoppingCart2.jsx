@@ -74,7 +74,7 @@ const ShoppingCart2 = () => {
       idArr.push(order[i].id);
 
       let SendOrderLine = {
-        id: order[i].id,
+        productId: order[i].id,
         name: order[i].name,
         imagen: order[i].imagen,
         price: order[i].price,
@@ -167,8 +167,9 @@ const ShoppingCart2 = () => {
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right">${total(order)} </StyledTableCell>
             <StyledTableCell align="right">
-              <Link to={`/user/1/product`}>
-                <Button autoFocus onClick={() => alert('aca tendria que saltar a otro coso pa comprar vieron')} color="primary">
+
+              <Link to="/user/product">
+              <Button autoFocus color="primary">
                   Buy
                 </Button>
               </Link>
