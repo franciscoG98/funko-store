@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal)
 
@@ -74,6 +75,8 @@ export default function UserOrderList() {
   const classes = useStyles();
   const classes2 = useStylesGrid();
 
+  const id = useParams();
+
   const dispatch = useDispatch();
   const userList = useSelector(state => state.Order.userItem);
   const userInfoList = useSelector(state => state.Order.userInfo);
@@ -82,12 +85,12 @@ export default function UserOrderList() {
 
   //action UserOrderList
   useEffect(() => {
-    dispatch(getUserOrders())
+    dispatch(getUserOrders(id))
   }, [])
 
   //action grid
   useEffect(() => {
-    dispatch(getUserInfo())
+    dispatch(getUserInfo(id))
   }, [])
 
   if (!userInfoList) {

@@ -46,18 +46,18 @@ export function getAdminOrders() {
 }
 
 //traer ordenes para el componente UserOrdenList
-export function getUserOrders() {
+export function getUserOrders(id) {
     return (dispatch) => {
-        return Axios.get(`http://localhost:3001/users/1/cart`)
+        return Axios.get(`http://localhost:3001/users/${id}/cart`)
             .then(json => {
                 dispatch({ type: 'GET_USER_ORDER', payload: json });
             })
     };
 }
 
-export function getUserInfo() {
+export function getUserInfo(id) {
     return (dispatch) => {
-        return Axios.get(`http://localhost:3001/user/2`)
+        return Axios.get(`http://localhost:3001/user/${id}`)
             .then(json => {
                 dispatch({ type: 'GET_USER_INFO', payload: json });
             })
