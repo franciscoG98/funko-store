@@ -44,6 +44,7 @@ const useStyles = makeStyles({
     display: "flex",
     marginLeft: "62%",
   },
+
 });
 
 //estilos GRID
@@ -165,14 +166,20 @@ export default function UserOrderList() {
 
         <TableHead >
           <TableRow>
-            <StyledTableCell align="center">Payment Information</StyledTableCell>
+            <StyledTableCell width="200px" align="center">Payment Information</StyledTableCell>
+
+            <TableCell scope="row" width="800px" align="center" >
+              <ButtonGroup align="center" variant="text" color="primary" aria-label="text primary button group">
+                <Button>Credit Card</Button>
+                <Button>Cash</Button>
+              </ButtonGroup>
+            </TableCell>
+
+
           </TableRow>
         </TableHead>
 
-        <ButtonGroup align="center" variant="text" color="primary" aria-label="text primary button group">
-          <Button>Credit Card</Button>
-          <Button>Cash</Button>
-        </ButtonGroup>
+
 
 
       </TableContainer>
