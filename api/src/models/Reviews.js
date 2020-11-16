@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
 
   sequelize.define('reviews', {
     qualification: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     description: {
