@@ -68,7 +68,8 @@ const CRUForm = ({cambio, product, edit}) => {
                 className={classes.selectEmpty}
                 inputProps={{ 'aria-label': 'age' }}
                 
-                >       
+                >      
+                <option>Selecciona</option> 
             {state.map((p)=>(
                <>
                    <option key={p.id}  onChange={cambio} name="categoria" >{p.name}</option>   
@@ -81,7 +82,8 @@ const CRUForm = ({cambio, product, edit}) => {
                 name="categoria2"
                 className={classes.selectEmpty}
                 inputProps={{ 'aria-label': 'age' }}        
-                >       
+                >   
+                <option>Selecciona</option>    
             {state.map((p)=>(
                <>
                    <option key={p.id + 1 }  onChange={cambio} name="categoria2" >{p.name}</option>   
