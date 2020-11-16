@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
                 items: [...state.items, action.payload.data.producto]
             }
         
-        case "REMOVE_ITEM":
+        case "DELETE_ITEM":
             return {
                 ...state,
                 items: state.items.filter((i) => i.id !== action.payload)
