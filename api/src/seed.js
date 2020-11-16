@@ -38,7 +38,7 @@ const initialProducts = [
     description: "Este es el funko del Capi",
     price: 100,
     imagen: "https://lafrikileria.com/14056-large_default/funko-pop-capitan-america-avengers.jpg",
-    stock: 10,
+    stock: 0,
   },
   {
     name: "Capitana Marvel",
@@ -66,7 +66,7 @@ const initialProducts = [
     description: "Este es el funko de Wolverine, alias Logan",
     price: 100,
     imagen: "https://funkollection.es/wp-content/uploads/2019/10/img_159639_b8aa192ff58a991a1d18178ac1b44081_1.jpg",
-    stock: 0,
+    stock: 4,
   },
   {
     name: "Mystique",

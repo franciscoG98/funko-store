@@ -2,10 +2,15 @@ import React from 'react'
 import './DetailModalStyle.css';
 import Button from '@material-ui/core/Button';
 
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../actions/Order';
+import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
+import Typography from '@material-ui/core/Typography';
 
 export default function DetailModal({f}) {
 
     const {name, description, price, imagen, stock} = f;
+    const dispatch = useDispatch();
 
     return (
         <div>
@@ -13,15 +18,36 @@ export default function DetailModal({f}) {
                 <img src={imagen} alt='funko img' />
             </div>
             <div id='info'>
-                <h3>{name}</h3>
+                {/* <h3>{name}</h3>
                 <p>{description}</p>
-    <               p>Stock:{stock > 5 ? <span>Disponible</span> : <span style={{color: "red"}}>{stock} unidades en stock</span>}</p>
                 <span>Price: ${price}</span>
-                {stock === 0 ?  <span style={{color: "red"}}>Producto no disponible para comprar</span> : (
+                <p>Stock:{stock > 5 ? <span>Disponible</span> : <span style={{color: "red"}}>{stock} unidades en stock</span>}</p>
+                 */}
 
-                <Button variant="contained" color="primary"> Añadir al Carrito </Button>
+                <Typography gutterBottom variant="h5" component="h2">
+                    {name}
+                </Typography>
+
+                <Typography variant="body2" color="textSecondary" component="p">
+                    {description}
+                </Typography>
+                <br />
+                <Typography variant="body2" color="textSecondary" component="p">
+                    Stock:{stock > 5 ? <span>Disponible</span> : <span style={{color: "red"}}>{stock} unidades en stock</span>}
+                </Typography>
+                <br />
+                <Typography variant="body2" color="textSecondary" component="p">
+                    Price: ${price}
+                </Typography>
+
+
+                <br />
+                {stock > 0 ? <Button color="primary" onClick={() => dispatch( addItem(f.id) )}>
+                <AddShoppingCartRoundedIcon />
+                Add To Cart 
+                </Button>: null}
                     
-               )}
+               {/* )} */}
             </div>
         </div>
     )
