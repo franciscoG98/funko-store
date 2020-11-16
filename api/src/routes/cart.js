@@ -131,14 +131,13 @@ server.post('/:id/passwordReset', (req, res) => {
         where: {
             id: id,
         },
-    }).then((data) => {
-        data.update({
-            password: resetPassword,
-        })
-            .then((newPass) => {
-                res.json(newPass);
-            });
     })
+        .then((data) => {
+            data.update({ password: resetPassword })
+        })
+        .then((newPass) => {
+            res.json(newPass)
+        })
         .catch(err => {
             res.status(400).json(err)
         })
