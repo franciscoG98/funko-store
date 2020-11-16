@@ -183,6 +183,7 @@ export default function PrimarySearchAppBar() {
             </Link>
 
             {/* user */}
+            <Link to = "/register" style= {{textDecoration: 'none', color: 'white' }} >
             <IconButton
               aria-label="show 0 new notifications" 
               color="inherit"
@@ -195,6 +196,7 @@ export default function PrimarySearchAppBar() {
             >
               <AccountCircle />
             </IconButton>
+            </Link>
 
             {/* la tuerquitas visteSSS */}
             <IconButton 

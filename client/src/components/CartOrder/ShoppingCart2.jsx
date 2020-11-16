@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-
+import {Link} from "react-router-dom"
 
 import { deleteItem, UpdateOrderLine } from '../../actions/Order';
 
@@ -167,9 +167,11 @@ const ShoppingCart2 = () =>  {
             <StyledTableCell align="right"></StyledTableCell>            
             <StyledTableCell align="right">${total(order)} </StyledTableCell>
             <StyledTableCell align="right">
+              <Link to="/user/product">
               <Button autoFocus onClick={() => alert('aca tendria que saltar a otro coso pa comprar vieron')} color="primary">
                   Buy
                 </Button>
+              </Link>
             </StyledTableCell>
 
           </TableBody>

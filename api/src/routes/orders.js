@@ -32,7 +32,7 @@ server.get('/', (req, res) => {
             res.json(o)
         })
         .catch(err => {
-            res.json(err)
+            res.json({err})
         })
 })
 
@@ -48,7 +48,7 @@ server.get('/:id', (req, res) => {
             res.json(o)
         })
         .catch(err => {
-            res.json(err)
+            res.json({err})
         })
 })
 
