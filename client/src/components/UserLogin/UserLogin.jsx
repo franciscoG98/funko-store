@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 function Copyright() {
@@ -18,7 +18,7 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+                Funko´s Fan Page!
       </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -27,7 +27,11 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+    todo: {
+        backgroundColor: 'white',
+    },
     paper: {
+        // color: 'black',
         marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
@@ -40,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
+        // backgroundColor: 'white',
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -50,7 +55,7 @@ export default function UserLogin() {
     const classes = useStyles();
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container className={classes.todo} component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
