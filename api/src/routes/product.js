@@ -1,13 +1,13 @@
 const server = require('express').Router();
 const { Product, Categories, categoryp, Reviews } = require('../db.js');
 
-server.get('/:id/review', (req, res) => {
+server.get('/:id/review', (req, res, next) => {
 	const { id } = req.params;
 	Product.findOne( { where: {id}, include: [Reviews] } )
 	.then(prod => {
-		res.send(prod);
+		res.json(prod.reviews);
 	})
-	.catch(next);  
+	
 })
 
 server.post('/', function (req, res, next) {
