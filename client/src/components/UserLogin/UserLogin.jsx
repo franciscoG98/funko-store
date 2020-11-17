@@ -34,7 +34,13 @@ export default function UserLogin() {
 
     const dispatch = useDispatch();
 
+    function handleChange(e) {
+        console.log(e);
+    }
 
+    function handleSubmit(e) {
+        console.log(e);
+    }
 
     return (
         <Container className={classes.todo} component="main" maxWidth="xs">
@@ -57,6 +63,7 @@ export default function UserLogin() {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        onChange={handleChange}
                     />
                     <TextField
                         variant="outlined"
@@ -68,6 +75,7 @@ export default function UserLogin() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handleChange}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -79,6 +87,7 @@ export default function UserLogin() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onSubmit={handleSubmit}
                     >
                         Sign In
           </Button>
