@@ -1,5 +1,5 @@
 const server = require('express').Router();
-const { User, Order, Orderline } = require('../db.js');
+const { Product, User, Order, Orderline } = require('../db.js');
 //const  = require('../models/OrderLine.js');
 
 //GET a carrito
@@ -10,15 +10,19 @@ server.get('/:idUser/cart', (req, res) => {
         where: {
             userId: idUser,
             state: 'cart',
-        }
-    }).then((orderFound) => {
+        },
+        include: [Product, Orderline]
+    }) /* .then((orderFound) => {
         idOrder = orderFound.id;
+
         return Orderline.findAll({
             where: {
-                orderId: idOrder,
-            }
-        })
-    })
+                orderId: idOrder,  
+            },
+            //include: {all: true, nested: true}  
+        } 
+        )
+    })  */
         .then((e) => res.json(e))
         .catch(err => res.json(err))
 })
@@ -53,10 +57,14 @@ server.get('/:idUser/cart', (req, res) => {
         }).then((r)=> res.json(r))
         .catch(err=> res.json(err))
 })  */
+//recibimos una orderline , completa (cada vez que agregan un producto, ya sea que el prod esté en el carro o no)
+//compro un capi, recibo: {id: (id de OL), orderid: ..., prodId: 1, quant:1, price: 10}
+//compro otro capi, recibo: {id: (id de OL), orderid: ", prodId: 1, quant:2, price: 20}
 
-server.post('/:idUser/cart', async (req, res) => {
-    const { idUser } = req.params;
-    const orderlines = req.body;
+server.post('/:idUser/cart', async(req, res) =>{ 
+    const {idUser} = req.params;
+    console.log(idUser)
+    const  orderlines  = req.body;  
     const Orden = await Order.findOrCreate({
         where: {
             userId: idUser,
@@ -75,16 +83,17 @@ server.post('/:idUser/cart', async (req, res) => {
             productId: orderlines.productId,
             quantity: orderlines.quantity,
             price: orderlines.price,
-        }).then((r) => res.json(r))
-    } else {
-        return Orderline.create({
-            orderId: idOrd,
-            productId: orderlines.productId,
-            quantity: orderlines.quantity,
-            price: orderlines.price,
-        })
-            .then((r) => res.json(r))
-    }
+        }).then((r)=> res.json(r))
+            } else {
+            return Orderline.create({               
+                 orderId: idOrd,                        
+                 productId: orderlines.productId,        
+                 quantity: orderlines.quantity,         
+                 price: orderlines.price,                  
+             })
+             .then((r)=> res.json(r))
+             .catch(err=> res.json(err))
+        }     
 })
 
 server.put('/:idUser/cart', (req, res) => {
