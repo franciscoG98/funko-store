@@ -11,23 +11,18 @@ server.get('/:idUser/cart', (req, res) => {
             userId: idUser,
             state: 'cart',
         },
-        
-    }).then((orderFound) => {
+        include: [Product, Orderline]
+    }) /* .then((orderFound) => {
         idOrder = orderFound.id;
+
         return Orderline.findAll({
             where: {
                 orderId: idOrder,  
             },
-            include: [{
-                model: Product,
-            through: {
-                attibutes: ["name", "imagen"],
-            },
-            }]
+            //include: {all: true, nested: true}  
         } 
-             
         )
-    })
+    })  */
         .then((e) => res.json(e))
         .catch(err => res.json(err))
 })

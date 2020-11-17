@@ -5,6 +5,7 @@ const initialState = {
     userItem: [],
     userInfo: [],
     carrito: [],
+    cartProd: [],
 }
 
 
@@ -49,7 +50,8 @@ export default (state = initialState, action) => {
         case "GET_CART":
             return {
                 ...state,
-                carrito: action.payload.data
+                carrito: action.payload.data.orderlines,
+                cartProd: action.payload.data.products
             }
 
 
