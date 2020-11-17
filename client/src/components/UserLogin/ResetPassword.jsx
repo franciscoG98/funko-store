@@ -15,6 +15,21 @@ import useStyles from './UserLoginStyles';
 export default function ResetPassword() {
     const classes = useStyles();
 
+
+
+    const handleSubmit = e => {
+        e.preventDefault()
+
+        dispatch({/*aca despachar la accion RESET_PASSWORD*/ })
+
+    }
+
+
+
+
+
+
+
     return (
         <Container className={classes.todo} component="main" maxWidth="xs">
             <CssBaseline />
@@ -59,6 +74,7 @@ export default function ResetPassword() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={handleSubmit}
                     >
                         Reset
                     </Button>

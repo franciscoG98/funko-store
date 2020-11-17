@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-
-import Axios from 'axios';
 
 import { getAdminOrders } from '../../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,16 +56,16 @@ export default function AdminOrderList() {
   const dispatch = useDispatch();
   const itemsList = useSelector(state => state.Order.orderItem);
 
-  
-    useEffect(() => {
-      dispatch(getAdminOrders())
-    },[])
 
-  
+  useEffect(() => {
+    dispatch(getAdminOrders())
+  }, [])
 
-    if (!itemsList) {
-      return <p>cargando</p>
-    }
+
+
+  if (!itemsList) {
+    return <p>cargando</p>
+  }
 
   return (
 
@@ -84,26 +81,26 @@ export default function AdminOrderList() {
               <StyledTableCell align="center">Total</StyledTableCell>
               <StyledTableCell align="center">Estado</StyledTableCell>
               <StyledTableCell align="center">UserId</StyledTableCell>
-           
+
             </TableRow>
           </TableHead>
 
 
           <TableBody>
-        
+
             {itemsList.map(item => (
-               <TableRow key={item.id}>
-               <TableCell scope="row" align="center"> {console.log(item)}  {item.id}</TableCell>
-               <TableCell scope="row" align="center">{item.total}</TableCell>
-               <TableCell scope="row" align="center"> {item.state}</TableCell>
-               <TableCell scope="row" align="center">{item.userId}</TableCell>
-               {/* <TableCell scope="row" align="center">{item.stock > 0 ? <p style={{color: "green"}}>{item.stock}</p> : <p style={{color: "red"}}>{item.stock}</p>}</TableCell>
+              <TableRow key={item.id}>
+                <TableCell scope="row" align="center"> {console.log(item)}  {item.id}</TableCell>
+                <TableCell scope="row" align="center">{item.total}</TableCell>
+                <TableCell scope="row" align="center"> {item.state}</TableCell>
+                <TableCell scope="row" align="center">{item.userId}</TableCell>
+                {/* <TableCell scope="row" align="center">{item.stock > 0 ? <p style={{color: "green"}}>{item.stock}</p> : <p style={{color: "red"}}>{item.stock}</p>}</TableCell>
              <TableCell scope="row" align="center"> 
                <Button size="small" color="primary" onClick={() => setEdit(true)}>
                   <Edititemuct getitemuct={getitemuct} itemucto={item} edit={edit} setEdit={setEdit} /> 
                </Button> 
                <Button size="small" color="primary" onClick={() => deleteitemucts(item.id)}><DeleteIcon/></Button></TableCell> */}
-             </TableRow>
+              </TableRow>
             ))}
           </TableBody>
         </Table>
