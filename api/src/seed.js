@@ -279,6 +279,20 @@ let initialOrderlines = [
   },
 
 ]
+
+let initialRates = [
+
+  {
+    id: 1,
+    qualification: 1, // wolverine
+    description: 'un capo el logan se la re banca quien pudiera tener adamantium en el cuerpo',
+    prodId: 5,
+    userId: 1,
+  }
+
+]
+
+
 module.exports = {
   initialCategories,
   initialProducts,
