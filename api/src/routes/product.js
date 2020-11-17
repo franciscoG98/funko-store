@@ -1,6 +1,7 @@
 const server = require('express').Router();
 const { Product, Categories, categoryp, Reviews } = require('../db.js');
 
+// ruta get a todas las reviews de un producto
 server.get('/:id/review', (req, res, next) => {
 	const { id } = req.params;
 	Product.findOne( { where: {id}, include: [Reviews] } )
