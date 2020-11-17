@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         unique: true,
       },
       phone: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.BIGINT,
           allowNull: false
       },
       address: {

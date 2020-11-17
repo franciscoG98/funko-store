@@ -12,12 +12,6 @@ import {useDispatch} from 'react-redux'
 import { addUser } from '../../actions/User'
  
  
-//cosas que seguramente van a tener que importar npm install @hookform/resolvers, npm add yup libphonenumber-js
-//tengo que agregar Redux para almacenar el estado global, hacer las action y los reducers
-//por ahora hay una carpeta mentirosa manejando los estados para que funque la demo.
-//index.js esta modificado un poquitin, hay que borrar despues.
- 
- 
 const schema = yup.object().shape({
     fullname: yup
       .string()
@@ -108,7 +102,7 @@ export default function Register(){
             required
             />
         
-            <Button onClick={onSubmit}>Sign Up</Button>
+            <Button>Sign Up</Button>
  
         </Form>
        </MainContainer>
