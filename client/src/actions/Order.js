@@ -11,7 +11,17 @@ export function addItem(id) {
     }
 }
 
-export function UpdateOrderLine(orderlines, idUser) {
+export function getCarrito(idUser, idProd) {
+    return (dispatch) => {
+        return Axios(`http://localhost:3001/users/${idUser}/cart`)
+            .then(json => {
+                dispatch({ type: 'GET_CART', payload: json });
+            })
+    }
+}
+
+
+export function UpdateOrderLine(orderlines,  idUser) {
     return (dispatch) => {
         return Axios.post(`http://localhost:3001/users/${idUser}/cart`, orderlines)
             .then(json => {
