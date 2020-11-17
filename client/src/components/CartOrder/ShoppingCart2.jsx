@@ -62,7 +62,7 @@ const ShoppingCart2 = () => {
   },]
 */const userId = 1
  useEffect(() => {
-    dispatch(getCarrito(userId))
+    dispatch(getCarrito(1))
   }, [])
   // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
   let arrMap = [];// orden entera

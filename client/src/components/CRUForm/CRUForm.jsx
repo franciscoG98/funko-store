@@ -63,44 +63,14 @@ const CRUForm = ({cambio, product, edit}) => {
             <TextField id="standard-basic3" label="Stock" name="stock" value={edit && product.stock}  onChange={cambio} />
             <br/>
             <InputLabel htmlFor="uncontrolled-native">Where is your Funko from?</InputLabel>
-<<<<<<< HEAD
-            <NativeSelect
-                onChange={cambio} //la vamos a usar
-                name="categoria"
-                className={classes.selectEmpty}
-                inputProps={{ 'aria-label': 'age' }}
-                
-                >      
-                <option>Selecciona</option> 
-            {state.map((p)=>(
-               <>
-                   <option key={p.id}  onChange={cambio} name="categoria" >{p.name}</option>   
-               </>
-            ))} 
-             </NativeSelect>
-            <br/>
-            <NativeSelect
-                onChange={cambio} //la vamos a usar
-                name="categoria2"
-                className={classes.selectEmpty}
-                inputProps={{ 'aria-label': 'age' }}        
-                >   
-                <option>Selecciona</option>    
-            {state.map((p)=>(
-               <>
-                   <option key={p.id + 1 }  onChange={cambio} name="categoria2" >{p.name}</option>   
-               </>
-            ))} 
-             </NativeSelect>
-=======
                 <NativeSelect
             onChange={cambio} //la vamos a usar
             name="categoria"
             className={classes.selectEmpty}
             inputProps={{ 'aria-label': 'age' }}
->>>>>>> 22a855564511ec26fc7cc571b0d3b5139fb9794a
             
-            >       
+            >   
+            <option>Selecciona</option>     
               {state.map((p)=>(
            <>
                <option key={p.id}  onChange={cambio} name="categoria" >{ p.name}</option>   

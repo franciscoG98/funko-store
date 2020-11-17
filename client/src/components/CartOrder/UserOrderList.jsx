@@ -85,24 +85,14 @@ export default function UserOrderList() {
 
   //action UserOrderList
   useEffect(() => {
-<<<<<<< HEAD
     dispatch(getUserOrders())
     dispatch(getUserInfo())
   })
-=======
-    dispatch(getUserOrders(id))
-  }, [])
->>>>>>> 22a855564511ec26fc7cc571b0d3b5139fb9794a
 
  /*  //action grid
   useEffect(() => {
-<<<<<<< HEAD
     
   }, []) */
-=======
-    dispatch(getUserInfo(id))
-  }, [])
->>>>>>> 22a855564511ec26fc7cc571b0d3b5139fb9794a
 
   if (!userInfoList) {
     return <p>cargando</p>

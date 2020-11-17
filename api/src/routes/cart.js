@@ -1,5 +1,5 @@
 const server = require('express').Router();
-const { User, Order, Orderline } = require('../db.js');
+const { Product, User, Order, Orderline } = require('../db.js');
 //const  = require('../models/OrderLine.js');
 
 //GET a carrito
@@ -10,14 +10,23 @@ server.get('/:idUser/cart', (req, res) => {
         where: {
             userId: idUser,
             state: 'cart',
-        }
+        },
+        
     }).then((orderFound) => {
         idOrder = orderFound.id;
         return Orderline.findAll({
             where: {
-                orderId: idOrder,
-            }
-        })
+                orderId: idOrder,  
+            },
+            include: [{
+                model: Product,
+            through: {
+                attibutes: ["name", "imagen"],
+            },
+            }]
+        } 
+             
+        )
     })
         .then((e) => res.json(e))
         .catch(err => res.json(err))
@@ -59,6 +68,7 @@ server.get('/:idUser/cart', (req, res) => {
 
 server.post('/:idUser/cart', async(req, res) =>{ 
     const {idUser} = req.params;
+    console.log(idUser)
     const  orderlines  = req.body;  
     const Orden = await Order.findOrCreate({
         where: {
