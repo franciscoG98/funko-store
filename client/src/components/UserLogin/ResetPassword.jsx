@@ -11,25 +11,12 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import FingerprintIcon from '@material-ui/icons/Fingerprint';
 
 import useStyles from './UserLoginStyles';
 
-//footer Copyright
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="yellow" href="https://soyhenry.com/" target="_blank">
-                Powered by Henry
-      </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-// login Form
-export default function UserLogin() {
+// Reset password Form
+export default function ResetPassword() {
     const classes = useStyles();
 
     return (
@@ -37,22 +24,26 @@ export default function UserLogin() {
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <FingerprintIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
-        </Typography>
+                    Forgot Password
+                </Typography>
+                {/* <Typography component="h3" variant="h5">
+                    Lose your password?, Please enter your email
+                    address and create a new password
+                </Typography> */}
                 <form className={classes.form} noValidate>
                     <TextField
                         variant="outlined"
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
+                        name="password"
+                        label="New Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
                     />
                     <TextField
                         variant="outlined"
@@ -60,7 +51,7 @@ export default function UserLogin() {
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Confirm New Password"
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -76,25 +67,12 @@ export default function UserLogin() {
                         color="primary"
                         className={classes.submit}
                     >
-                        Sign In
-          </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="/lost-password" variant="body2">
-                                Forgot password?
-              </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="/register" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
+                        Reset
+                    </Button>
+
                 </form>
             </div>
-            <Box mt={8}>
-                <Copyright />
-            </Box>
+
         </Container>
     );
 }
