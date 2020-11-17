@@ -3,6 +3,17 @@ const { User, Order } = require('../db.js');
 const { Op } = require("sequelize");
 
 
+server.get('/', (req, res)=>{
+    User.findAll()
+    .then(user =>{
+        res.status(200).json(user)
+    })
+    .catch(err => {
+        res.json({ err });
+    })
+})
+
+
 server.get('/:id', (req, res) => {
     const { id } = req.params;
 
