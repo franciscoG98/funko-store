@@ -14,7 +14,8 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import loginUser from '../../actions/Login';
+import { loginUser } from '../../actions/Login';
+
 
 import useStyles from './UserLoginStyles';
 
@@ -33,7 +34,7 @@ function Copyright() {
 }
 
 // login Form
-export default function UserLogin() {
+function UserLogin() {
     const classes = useStyles();
 
     const dispatch = useDispatch();
@@ -48,9 +49,11 @@ export default function UserLogin() {
     }
 
     //axios for submit data
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault()
-        await dispatch(loginUser(login));
+
+        dispatch(loginUser(login));
+
     }
 
 
@@ -127,3 +130,5 @@ export default function UserLogin() {
         </Container>
     );
 }
+
+export default UserLogin;
