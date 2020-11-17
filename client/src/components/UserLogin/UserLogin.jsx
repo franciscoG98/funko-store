@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+//Material
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +14,7 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import loginUser from '../../actions/Login';
 
 import useStyles from './UserLoginStyles';
 
@@ -34,13 +38,23 @@ export default function UserLogin() {
 
     const dispatch = useDispatch();
 
+    const [login, setLogin] = useState({
+        email: "",
+        password: "",
+    })
+
     function handleChange(e) {
-        console.log(e);
+        setLogin({ ...login, [e.target.id]: e.target.value })
     }
 
-    function handleSubmit(e) {
-        console.log(e);
+    //axios for submit data
+    const handleSubmit = async e => {
+        e.preventDefault()
+        await dispatch(loginUser(login));
     }
+
+
+
 
     return (
         <Container className={classes.todo} component="main" maxWidth="xs">
@@ -52,23 +66,25 @@ export default function UserLogin() {
                 <Typography component="h1" variant="h5">
                     Sign in
         </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
+                        required={true}
                         fullWidth
                         id="email"
                         label="Email Address"
+                        placeholder="soyhenry@funkos.com"
                         name="email"
                         autoComplete="email"
                         autoFocus
                         onChange={handleChange}
+
                     />
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
+                        required={true}
                         fullWidth
                         name="password"
                         label="Password"
@@ -87,7 +103,7 @@ export default function UserLogin() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onSubmit={handleSubmit}
+                    // onSubmit={handleSubmit}
                     >
                         Sign In
           </Button>

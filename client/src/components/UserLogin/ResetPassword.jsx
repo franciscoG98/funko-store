@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,8 +15,7 @@ import useStyles from './UserLoginStyles';
 // Reset password Form
 export default function ResetPassword() {
     const classes = useStyles();
-
-
+    const dispatch = useDispatch();
 
     const handleSubmit = e => {
         e.preventDefault()
