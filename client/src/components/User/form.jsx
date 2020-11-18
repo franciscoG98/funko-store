@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as yup from 'yup'
 import {useData} from './components/datacont'//borrar la porqueria esta.
+import useStyles from './components/formStyles';
 
 //cosas que seguramente van a tener que importar npm install @hookform/resolver, npm add yup libphonenumber-js
 //tengo que agregar Redux para almacenar el estado global, hacer las action y los reducers
@@ -47,6 +48,8 @@ const schema = yup.object().shape({
 
 export default function Register(){
 
+   const classes = useStyles();
+
    const {setValues, data} = useData();
 
    const {register, watch, handleSubmit, errors} = useForm({
@@ -68,7 +71,7 @@ export default function Register(){
    }
 
     return(
-        <MainContainer>
+        <MainContainer className={classes.todo}>
         <Header/> 
         <Form onSubmit = {handleSubmit(onSubmit)}>
             <Input 

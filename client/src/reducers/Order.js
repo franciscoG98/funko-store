@@ -3,7 +3,9 @@ const initialState = {
     orderItem: [],
     cart: [],
     userItem: [],
-    userInfo: []
+    userInfo: [],
+    carrito: [],
+    cartProd: [],
 }
 
 
@@ -44,6 +46,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 userInfo: action.payload.data
+            }
+        case "GET_CART":
+            return {
+                ...state,
+                carrito: action.payload.data.orderlines,
+                cartProd: action.payload.data.products
             }
 
 

@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import Reviews from "../Reviews/Reviews";
 import useStyles from './ProductStyle';
   
 import { useDispatch } from 'react-redux';
@@ -69,6 +69,9 @@ const Product = ({f}) => {
           <Typography variant="body2" color="textSecondary" component="p">
             {f.stock > 0 ? <span>Diponible</span> : <span style={{color: "red"}}>No hay unidades disponibles</span>}
           </Typography>
+            <br/>
+            <Reviews />
+
         </CardContent>
       </CardActionArea>
       <CardActions>

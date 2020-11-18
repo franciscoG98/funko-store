@@ -10,7 +10,7 @@ import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-const MySwal = withReactContent(Swal)
+//const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -22,7 +22,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const useStyles = makeStyles({
+ const useStyles = makeStyles({
   tableContainer: {
     border: 0,
     borderRadius: 3,
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
 
 });
 
-//estilos GRID
+/* //estilos GRID
 const useStylesGrid = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -69,11 +69,11 @@ const useStylesGrid = makeStyles((theme) => ({
     maxWidth: '120%',
     maxHeight: '120%',
   },
-}));
+})); */
 
 export default function UserOrderList() {
   const classes = useStyles();
-  const classes2 = useStylesGrid();
+  //const classes2 = useStylesGrid();
 
   const id = useParams();
 
@@ -85,13 +85,14 @@ export default function UserOrderList() {
 
   //action UserOrderList
   useEffect(() => {
-    dispatch(getUserOrders(id))
-  }, [])
+    dispatch(getUserOrders())
+    dispatch(getUserInfo())
+  })
 
-  //action grid
+ /*  //action grid
   useEffect(() => {
-    dispatch(getUserInfo(id))
-  }, [])
+    
+  }, []) */
 
   if (!userInfoList) {
     return <p>cargando</p>

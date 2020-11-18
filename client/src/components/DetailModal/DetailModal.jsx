@@ -1,7 +1,7 @@
 import React from 'react'
 import './DetailModalStyle.css';
 import Button from '@material-ui/core/Button';
-
+import Reviews from "../Reviews/Reviews";
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../actions/Order';
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
@@ -39,10 +39,12 @@ export default function DetailModal({f}) {
                 <Typography variant="body2" color="textSecondary" component="p">
                     Price: ${price}
                 </Typography>
-
+                <br/>
+                <Reviews />  
 
                 <br />
                 {stock > 0 ? <Button color="primary" onClick={() => dispatch( addItem(f.id) )}>
+                
                 <AddShoppingCartRoundedIcon />
                 Add To Cart 
                 </Button>: null}
