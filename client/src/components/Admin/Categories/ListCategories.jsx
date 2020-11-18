@@ -44,6 +44,7 @@ const useStyles = makeStyles({
     marginTop: "15px",
     display: 'flex', 
     padding: 30,
+    opacity: '88%',
     
   },
   table:{
