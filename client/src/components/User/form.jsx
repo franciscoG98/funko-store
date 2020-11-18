@@ -10,9 +10,12 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as yup from 'yup'
 import {useDispatch} from 'react-redux'
 import { addUser } from '../../actions/User'
- 
+
  
 const schema = yup.object().shape({
+    username: yup
+      .string()
+      .required('Username is required'),
     fullname: yup
       .string()
       .matches(/^([^0-9]*)$/, "Full name should not contain numbers")
@@ -30,9 +33,16 @@ const schema = yup.object().shape({
      .required('A phone number is required'),
      address: yup
      .string()
-     .required("Address is a required field")
+     .required("Address is a required field"),
+     password: yup
+     .string()
+     .min(7)
+     .required("Password is a required field"),
+    passwordConfirmation: yup
+    .string()
+       .oneOf([yup.ref('password'), null], 'Passwords must match')
   });
-  
+
  
   const normalizePhoneNumber = (value) => {
     const phoneNumber = parsePhoneNumberFromString(value)
@@ -46,22 +56,34 @@ const schema = yup.object().shape({
   };
   
 export default function Register(){
-   
+
    const dispatch = useDispatch();
   
    const {register, handleSubmit, errors} = useForm({
        mode: "onBlur",
-       resolver: yupResolver(schema)
+       resolver: yupResolver(schema),
       });
- 
-   const onSubmit = (data) =>{  
+
+
+      const onSubmit = (data, e) =>{  
        dispatch(addUser(data));
+       e.target.reset();
    }
  
     return(
         <MainContainer>
         <Header/> 
         <Form onSubmit = {handleSubmit(onSubmit)}>
+            <Input 
+            ref = {register}
+            name = 'username'
+            type = 'text'
+            placeholder = 'Your username'
+            label = 'Username'
+            error = {!!errors.username}
+            helperText = {errors?.username?.message}
+            required
+            />
             <Input 
             ref = {register} 
             name='fullname' 
@@ -98,8 +120,26 @@ export default function Register(){
             type = 'address'
             placeholder = 'eg: (postal code) address'
             label= 'Address'
-            error={!!errors.address}
             required
+            />
+            <Input
+            ref = {register}
+            name = 'password'
+            type = 'password'
+            placeholder = 'Write your password'
+            label = 'Password'
+            error={!!errors.password}
+            helperText={errors?.password?.message}
+            required
+            />
+            <Input
+            ref = {register}
+            name = 'passwordConfirmation'
+            type = 'password'
+            label = 'Repeat Password'
+            placeholder = 'Repeat your password'
+            error = {!!errors.password}
+            helperText = {errors?.passwordConfirmation?.message}
             />
         
             <Button>Sign Up</Button>
