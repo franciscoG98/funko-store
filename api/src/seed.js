@@ -157,28 +157,34 @@ const categoryProducts = [
 ];
 let initialUsers = [
   {
-    fullname: "Ele Gonzalez",
+    username: "Ele",
+    fullname: "Elena Gonzalez",
     email: "ele@admin.com",
     phone: "123456789",
     address: "Av siempre viva 123",
     state: "Argentina",
-    isAdmin: true
+    isAdmin: true,
+    password: "password"
   },
   {
-    fullname: "Pancho Gonzalez",
+    username: "Panchito",
+    fullname: "Francisco Gonzalez",
     email: "pancho@admin.com",
     phone: "123456789",
     address: "Av siempre viva 123",
     state: "Argentina",
-    isAdmin: false
+    isAdmin: false,
+    password: "SoyPancho"
   },
   {
+    username: "Homero",
     fullname: "Homero Simpson",
     email: "homero@admin.com",
     phone: "123456789",
     address: "Av siempre viva 123",
     state: "Argentina",
-    isAdmin: false
+    isAdmin: false,
+    password: "LisaNecesitaFrenos"
   }
 ];
 let initialOrders = [
@@ -279,6 +285,20 @@ let initialOrderlines = [
   },
 
 ]
+
+let initialRates = [
+
+  {
+    id: 1,
+    qualification: 1, // wolverine
+    description: 'un capo el logan se la re banca quien pudiera tener adamantium en el cuerpo',
+    prodId: 5,
+    userId: 1,
+  }
+
+]
+
+
 module.exports = {
   initialCategories,
   initialProducts,

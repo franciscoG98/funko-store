@@ -14,12 +14,13 @@ import SideBar from '../SideBar/SideBar';
 // import ShoppingCart from '../CartOrder/ShoppingCart';
 
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 import useStyles from './NavStyles';
 
@@ -61,13 +62,13 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      style= {{opacity: '80%', marginTop: '34px', paddingRight: '30px'}}
+      style={{ opacity: '80%', marginTop: '34px', paddingRight: '30px' }}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to= '/admin/categories'> Categories </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style= {{textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to= '/admin/products'> Products </Link> </MenuItem>
-      
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem>
+
     </Menu>
   );
 
@@ -102,7 +103,7 @@ export default function PrimarySearchAppBar() {
         </IconButton> */}
 
         {/* carrito 2 */}
-        <Link to= '/ShoppingCart2' >
+        <Link to='/ShoppingCart2' >
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />
@@ -112,8 +113,8 @@ export default function PrimarySearchAppBar() {
         <p>Notifications</p>
       </MenuItem>
 
-        {/* Settings */}
-        <MenuItem>
+      {/* Settings */}
+      <MenuItem>
         <IconButton aria-label="" color="inherit">
           <Badge badgeContent={11} color="secondary">
             <SettingsRoundedIcon />
@@ -148,16 +149,25 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <SideBar /> 
+            <SideBar />
           </IconButton>
 
           {/* Menu */}
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link style= {{textDecoration: 'none', color: 'white' }} to= '/'> Funko's Store </Link>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to='/'> Funko's Store </Link>
           </Typography>
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+
+            {/* github signIn */}
+            <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
+              <IconButton aria-label="show 0 new mails" color="inherit">
+                <Badge badgeContent={0} color="secondary">
+                  <GitHubIcon />
+                </Badge>
+              </IconButton>
+            </Link>
 
             {/* mensajito */}
             <IconButton aria-label="show 0 new mails" color="inherit">
@@ -174,7 +184,7 @@ export default function PrimarySearchAppBar() {
             </IconButton> */}
 
             {/* carrito 2 */}
-            <Link to= '/ShoppingCart2' style= {{textDecoration: 'none', color: 'white' }} >
+            <Link to='/ShoppingCart2' style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new notifications" color="inherit">
                 <Badge badgeContent={order.length} color="secondary">
                   <ShoppingCartRoundedIcon />
@@ -183,23 +193,23 @@ export default function PrimarySearchAppBar() {
             </Link>
 
             {/* user */}
-            <Link to = "/register" style= {{textDecoration: 'none', color: 'white' }} >
-            <IconButton
-              aria-label="show 0 new notifications" 
-              color="inherit"
+            <Link to="/register" style={{ textDecoration: 'none', color: 'white' }} >
+              <IconButton
+                aria-label="show 0 new notifications"
+                color="inherit"
               // edge="end"
               // aria-label="account of current user"
               // aria-controls={menuId}
               // aria-haspopup="true"
               // onClick={handleProfileMenuOpen}
               // color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+              >
+                <AccountCircle />
+              </IconButton>
             </Link>
 
             {/* la tuerquitas visteSSS */}
-            <IconButton 
+            <IconButton
               // aria-label="show 0 new notifications" 
               // color="inherit"
               edge="end"
@@ -215,7 +225,7 @@ export default function PrimarySearchAppBar() {
             </IconButton>
 
           </div>
-          
+
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
@@ -227,11 +237,11 @@ export default function PrimarySearchAppBar() {
 
               <MoreIcon />
 
-              
+
             </IconButton>
           </div>
 
-            <SearchBar classes={classes}/>
+          <SearchBar classes={classes} />
 
         </Toolbar>
       </AppBar>

@@ -8,8 +8,19 @@ import Button from './components/button'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as yup from 'yup'
+<<<<<<< HEAD
 import {useDispatch} from 'react-redux'
 import { addUser } from '../../actions/User'
+=======
+import {useData} from './components/datacont'//borrar la porqueria esta.
+import useStyles from './components/formStyles';
+
+//cosas que seguramente van a tener que importar npm install @hookform/resolver, npm add yup libphonenumber-js
+//tengo que agregar Redux para almacenar el estado global, hacer las action y los reducers
+//por ahora hay una carpeta mentirosa manejando los estados para que funque la demo.
+//index.js esta modificado un poquitin, hay que borrar despues.
+
+>>>>>>> acecbca9a16e55f8705ce39f677f8ea1b8a4a461
 
  
 const schema = yup.object().shape({
@@ -57,9 +68,23 @@ const schema = yup.object().shape({
   
 export default function Register(){
 
+<<<<<<< HEAD
    const dispatch = useDispatch();
   
    const {register, handleSubmit, errors} = useForm({
+=======
+   const classes = useStyles();
+
+   const {setValues, data} = useData();
+
+   const {register, watch, handleSubmit, errors} = useForm({
+       defaultValues: {
+           fullname: data.fullname, 
+           email: data.email,
+           phoneNumber: data.phone,
+           address: data.address
+        },
+>>>>>>> acecbca9a16e55f8705ce39f677f8ea1b8a4a461
        mode: "onBlur",
        resolver: yupResolver(schema),
       });
@@ -71,7 +96,7 @@ export default function Register(){
    }
  
     return(
-        <MainContainer>
+        <MainContainer className={classes.todo}>
         <Header/> 
         <Form onSubmit = {handleSubmit(onSubmit)}>
             <Input 

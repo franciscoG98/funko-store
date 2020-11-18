@@ -56,4 +56,20 @@ server.put("/:id/reviews/:idReviews", (req, res) => {
         }) 
 })
 
+server.delete('/:id/review/:idReview', (req, res) => {
+    const {id, idReview} = req.params;
+    if(!id) {
+        res.json({msg:"You must select a review to delete"})
+    } else {
+        Reviews.destroy( { where: {idReview} } )
+        .then(() => {
+            res.json({msg: "Review deleted successfully"})
+        })
+        .catch( err => {
+            res.json( {err} )
+        })
+    }
+
+})
+
 module.exports = server;
