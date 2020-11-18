@@ -8,6 +8,7 @@ import Button from './components/button'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as yup from 'yup'
+<<<<<<< HEAD
 import {useData} from './components/datacont'//borrar la porqueria esta.
 import useStyles from './components/formStyles';
 
@@ -16,8 +17,16 @@ import useStyles from './components/formStyles';
 //por ahora hay una carpeta mentirosa manejando los estados para que funque la demo.
 //index.js esta modificado un poquitin, hay que borrar despues.
 
+=======
+import {useDispatch} from 'react-redux'
+import { addUser } from '../../actions/User'
+>>>>>>> userform
 
+ 
 const schema = yup.object().shape({
+    username: yup
+      .string()
+      .required('Username is required'),
     fullname: yup
       .string()
       .matches(/^([^0-9]*)$/, "Full name should not contain numbers")
@@ -26,12 +35,26 @@ const schema = yup.object().shape({
       .string()
       .email("Email should have correct format")
       .required("Email is a required field"),
-     // phoneNumber: yup
-     //.string()
-    //.required('Phone Number is a required field')
+     phone: yup
+     .number()
+     .typeError("That doesn't look like a phone number")
+     .positive("A phone number can't start with a minus")
+     .integer("A phone number can't include a decimal point")
+     .min(8)
+     .required('A phone number is required'),
+     address: yup
+     .string()
+     .required("Address is a required field"),
+     password: yup
+     .string()
+     .min(7)
+     .required("Password is a required field"),
+    passwordConfirmation: yup
+    .string()
+       .oneOf([yup.ref('password'), null], 'Passwords must match')
   });
-  
 
+ 
   const normalizePhoneNumber = (value) => {
     const phoneNumber = parsePhoneNumberFromString(value)
     if(!phoneNumber){
@@ -43,11 +66,9 @@ const schema = yup.object().shape({
     );
   };
   
-//Me falta agregarle el codigo de pais. Todavia no pude hacer que los campos del telefono funcionen como quiero
-//Me reniega cuando le pongo Regex y me saltan carteles de que es un campo requerido inclusive cuando lo completo.
-
 export default function Register(){
 
+<<<<<<< HEAD
    const classes = useStyles();
 
    const {setValues, data} = useData();
@@ -59,21 +80,35 @@ export default function Register(){
            phoneNumber: data.phone,
            address: data.address
         },
+=======
+   const dispatch = useDispatch();
+  
+   const {register, handleSubmit, errors} = useForm({
+>>>>>>> userform
        mode: "onBlur",
-       resolver: yupResolver(schema)
-   });
+       resolver: yupResolver(schema),
+      });
 
-   const hasPhone = watch('hasPhone')
-   
-   const onSubmit = (data)=>{
-       console.log(data)
-       setValues(data);
+
+      const onSubmit = (data, e) =>{  
+       dispatch(addUser(data));
+       e.target.reset();
    }
-
+ 
     return(
         <MainContainer className={classes.todo}>
         <Header/> 
         <Form onSubmit = {handleSubmit(onSubmit)}>
+            <Input 
+            ref = {register}
+            name = 'username'
+            type = 'text'
+            placeholder = 'Your username'
+            label = 'Username'
+            error = {!!errors.username}
+            helperText = {errors?.username?.message}
+            required
+            />
             <Input 
             ref = {register} 
             name='fullname' 
@@ -96,12 +131,12 @@ export default function Register(){
             />
             <Input
             ref = {register}
-            id = 'phoneNumber'
+            name = 'phone'
             type = 'tel'
             label = 'Phone Number'
             onChange = {e => e.target.value = normalizePhoneNumber(e.target.value)}
-            //error={!!errors.phoneNumber}
-            //helperText={errors?.phoneNumber?.message}
+            error={!!errors.phone}
+            helperText={errors?.phone?.message}
             required
             />
             <Input
@@ -110,10 +145,30 @@ export default function Register(){
             type = 'address'
             placeholder = 'eg: (postal code) address'
             label= 'Address'
+            required
+            />
+            <Input
+            ref = {register}
+            name = 'password'
+            type = 'password'
+            placeholder = 'Write your password'
+            label = 'Password'
+            error={!!errors.password}
+            helperText={errors?.password?.message}
+            required
+            />
+            <Input
+            ref = {register}
+            name = 'passwordConfirmation'
+            type = 'password'
+            label = 'Repeat Password'
+            placeholder = 'Repeat your password'
+            error = {!!errors.password}
+            helperText = {errors?.passwordConfirmation?.message}
             />
         
-            <Button onClick={onSubmit}>Sign Up</Button>
-
+            <Button>Sign Up</Button>
+ 
         </Form>
        </MainContainer>
     )

@@ -29,6 +29,7 @@ server.get('/:id', (req, res) => {
 
 //route for a user creation depending on if is admin or not.
 server.post('/', function (req, res, next) {
+<<<<<<< HEAD
 
     let { fullname, email, phone, address, isAdmin } = req.body;
 
@@ -37,6 +38,16 @@ server.post('/', function (req, res, next) {
             return res.status(400).json({ msg: "Invalid or missing data" });
         }
     } else {
+=======
+ 
+    let { fullname, email, phone, address, purchases, isAdmin } = req.body;
+ 
+    //if (!isAdmin) {
+       // if (!fullname || !email || !address || !phone ) {
+          //  return res.status(400).json({ msg: "Invalid or missing data" });
+       // }
+   // } else {
+>>>>>>> userform
         User.create({
             fullname,
             email,
@@ -44,16 +55,17 @@ server.post('/', function (req, res, next) {
             address
         })
             .then(
-                (userCreated) => {
-                    res.status(200).json({ msg: "User created", user: userCreated })
+                userCreated => {
+                    res.status(200).json({ msg: "User created" , user: userCreated })
                 })
             .catch(next);
-    }
-
+   // }
+ 
     // if (isAdmin){ 
-
+ 
     // }         
 });
+
 
 server.put('/:id', (req, res) => {
     const { id } = req.params;
