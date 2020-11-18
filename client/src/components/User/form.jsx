@@ -9,6 +9,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as yup from 'yup'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import {useDispatch} from 'react-redux'
+import { addUser } from '../../actions/User'
+=======
+>>>>>>> 641b868f2dace5cdb435f5d1b7d63e363c964d51
 import {useData} from './components/datacont'//borrar la porqueria esta.
 import useStyles from './components/formStyles';
 
@@ -17,10 +23,14 @@ import useStyles from './components/formStyles';
 //por ahora hay una carpeta mentirosa manejando los estados para que funque la demo.
 //index.js esta modificado un poquitin, hay que borrar despues.
 
+<<<<<<< HEAD
 =======
 import {useDispatch} from 'react-redux'
 import { addUser } from '../../actions/User'
 >>>>>>> userform
+=======
+>>>>>>> acecbca9a16e55f8705ce39f677f8ea1b8a4a461
+>>>>>>> 641b868f2dace5cdb435f5d1b7d63e363c964d51
 
  
 const schema = yup.object().shape({
@@ -69,6 +79,13 @@ const schema = yup.object().shape({
 export default function Register(){
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+   const dispatch = useDispatch();
+  
+   const {register, handleSubmit, errors} = useForm({
+=======
+>>>>>>> 641b868f2dace5cdb435f5d1b7d63e363c964d51
    const classes = useStyles();
 
    const {setValues, data} = useData();
@@ -80,11 +97,15 @@ export default function Register(){
            phoneNumber: data.phone,
            address: data.address
         },
+<<<<<<< HEAD
 =======
    const dispatch = useDispatch();
   
    const {register, handleSubmit, errors} = useForm({
 >>>>>>> userform
+=======
+>>>>>>> acecbca9a16e55f8705ce39f677f8ea1b8a4a461
+>>>>>>> 641b868f2dace5cdb435f5d1b7d63e363c964d51
        mode: "onBlur",
        resolver: yupResolver(schema),
       });
