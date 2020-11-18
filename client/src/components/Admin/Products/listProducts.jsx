@@ -38,7 +38,8 @@ const useStyles = makeStyles({
     marginTop: "15px",
     display: 'flex',
     padding: 30,
-    flexDirection: "row"
+    flexDirection: "row",
+    opacity: '88%',
   },
   table:{
     justifyContent: "center",
