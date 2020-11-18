@@ -7,6 +7,7 @@ import { makeStyles, withTheme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     todo: {
         backgroundColor: 'white',
+        opacity: '88%'
     },
     paper: {
         // color: 'black',
