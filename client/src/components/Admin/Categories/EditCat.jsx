@@ -21,6 +21,9 @@ const useStyles = makeStyles({
   buttons:{
       display: "flex",
       marginLeft: "62%"
+  },
+  op: {
+    opacity: '88%',
   }
 });
 
@@ -61,7 +64,7 @@ export default function FormDialog({getCategory, cambio, newCategory, edit, setE
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleActualizar}>
+      <Dialog className= {classes.op} open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleActualizar}>
         <DialogTitle id="form-dialog-title">Agregar Categoría</DialogTitle>
         <DialogContent>
           <DialogContentText>
