@@ -20,14 +20,17 @@ const useStyles = makeStyles({
     list: {
       width: 250,
     },
-    fullList: {
+    fullList: { 
       width: 'auto',
     },
     font: {
       textDecoration: 'none',
       color: '#191970',
       fontSize: '20'
-    }
+    },
+    op: {
+      opacity: '95%'
+    },
   });
   
 
@@ -92,16 +95,16 @@ const SideBar = () => {
     );
   
     return (
-      <div>
+      <div >
         {['left'].map((anchor) => (
 
-          <React.Fragment key={anchor}>
+          <React.Fragment className= {classes.op} key={anchor}>
 
             {/* <Button onClick={toggleDrawer(anchor, true)}>  </Button> */}
 
             <MenuIcon onClick={toggleDrawer(anchor, true)} />
 
-            <SwipeableDrawer
+            <SwipeableDrawer className= {classes.op}
               anchor={anchor}
               open={state[anchor]}
               onClose={toggleDrawer(anchor, false)}

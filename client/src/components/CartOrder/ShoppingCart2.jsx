@@ -32,6 +32,7 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     fontSize: 14,
   },
+  
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
@@ -47,6 +48,9 @@ const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
+  op: {
+    opacity: '88%'
+  }
 });
 
 const ShoppingCart2 = () => {
@@ -160,7 +164,7 @@ const ShoppingCart2 = () => {
    //console.log('orderlines despues de la ifi:\n', carro)
 
   return (
-    <div style={{ width: '70%', margin: 'auto' }}>
+    <div className={classes.op} style={{ width: '70%', margin: 'auto' }}>
       <TableContainer component={Paper} >
         <Table className={classes.table} aria-label="customized table">
 
