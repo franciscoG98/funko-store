@@ -1,6 +1,7 @@
 const server = require('express').Router();
 const { Product, User, Order, Orderline } = require('../db.js');
 //const  = require('../models/OrderLine.js');
+// const bcrypt = require('bcryptjs'); esto es el require para hashear la contraseña
 
 //GET a carrito
 
@@ -61,10 +62,10 @@ server.get('/:idUser/cart', (req, res) => {
 //compro un capi, recibo: {id: (id de OL), orderid: ..., prodId: 1, quant:1, price: 10}
 //compro otro capi, recibo: {id: (id de OL), orderid: ", prodId: 1, quant:2, price: 20}
 
-server.post('/:idUser/cart', async(req, res) =>{ 
-    const {idUser} = req.params;
+server.post('/:idUser/cart', async (req, res) => {
+    const { idUser } = req.params;
     console.log(idUser)
-    const  orderlines  = req.body;  
+    const orderlines = req.body;
     const Orden = await Order.findOrCreate({
         where: {
             userId: idUser,
@@ -83,17 +84,17 @@ server.post('/:idUser/cart', async(req, res) =>{
             productId: orderlines.productId,
             quantity: orderlines.quantity,
             price: orderlines.price,
-        }).then((r)=> res.json(r))
-            } else {
-            return Orderline.create({               
-                 orderId: idOrd,                        
-                 productId: orderlines.productId,        
-                 quantity: orderlines.quantity,         
-                 price: orderlines.price,                  
-             })
-             .then((r)=> res.json(r))
-             .catch(err=> res.json(err))
-        }     
+        }).then((r) => res.json(r))
+    } else {
+        return Orderline.create({
+            orderId: idOrd,
+            productId: orderlines.productId,
+            quantity: orderlines.quantity,
+            price: orderlines.price,
+        })
+            .then((r) => res.json(r))
+            .catch(err => res.json(err))
+    }
 })
 
 server.put('/:idUser/cart', (req, res) => {
@@ -152,6 +153,26 @@ server.post('/:id/passwordReset', (req, res) => {
         })
 
 });
+
+//HASHEAAR PASSWORD debe ir inmediatamente despues de la creacion del usuario en el POST
+// bcrypt.genSalt(10, (err, salt) => {
+//     bcrypt.hash(newUser.password, salt, (err, hash) => {
+//         if (err) throw err;
+//         newUser.password = hash;
+//         newUser
+//             .save()
+//             .then(user => {
+//                 req.flash(
+//                     'success_msg',
+//                     'You are now registered and can log in'
+//                 );
+//                 res.redirect('/users/login');
+//             })
+//             .catch(err => console.log(err));
+//     });
+// });
+
+
 
 module.exports = server
 
