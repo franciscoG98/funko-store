@@ -6,9 +6,9 @@ const useStyles = makeStyles((theme)=>({
 
     root: {
         margin: theme.spacing(3, 0, 2),
-        fontFamily: 'Permanent Marker',
+        fontFamily: 'Philosopher',
         textAlign: 'center',
-        fontSize: '40px',
+        fontSize: '48px',
         color: '#3f51b5',
         textShadow: '1px 1px white'
     }
