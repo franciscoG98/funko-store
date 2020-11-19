@@ -1,5 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import useStyles from './NavStyles';
+import './Nav.css';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,36 +14,34 @@ import Menu from '@material-ui/core/Menu';
 
 import SearchBar from '../SearchBar/SearchBar'
 import SideBar from '../SideBar/SideBar';
-// import ShoppingCart from '../CartOrder/ShoppingCart';
 
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
-import { Link } from 'react-router-dom';
-
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Avatar from '../User/components/avatar.jsx'
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-import useStyles from './NavStyles';
+
 
 export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
+  const order = useSelector(state => state.Order.items);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const order = useSelector(state => state.Order.items);
+  const [userEl, setUserEl] = React.useState(null);  
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isUserMenuOpen = Boolean(userEl);
+
+  //menu desplegable categories-products
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
   };
 
   const handleMenuClose = () => {
@@ -48,11 +49,29 @@ export default function PrimarySearchAppBar() {
     handleMobileMenuClose();
   };
 
+  //version mobile
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };  
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  //componente de usuario logueado
+
+  const handleLoggedUserMenu = (event) => {
+       setUserEl(event.currentTarget);
+  };
+
+  const handleUserMenuClose = () => {
+    setUserEl(null);
+  };
+
   const menuId = 'primary-search-account-menu';
+
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -62,15 +81,36 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      style={{ opacity: '80%', marginTop: '34px', paddingRight: '30px' }}
+      style={{ opacity: '80%', marginTop: '52px', marginLeft: '39px' }}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/categories'> Categories </Link> </MenuItem>
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem>
 
-    </Menu>
+    </Menu>    
   );
+
+  
+  const renderUserMenu = (
+    <Menu
+      userEl={userEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isUserMenuOpen}
+      onClose={handleUserMenuClose}
+      style={{ opacity: '80%', marginTop: '-838px', paddingRight: '0px', display: 'flex', marginLeft: '-255px'/* , marginBottom: '875px' */ }}
+    >
+      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
+      <MenuItem onClick={handleMenuClose}>  <img class="circle" src='https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg' alt='profile pic' style={{ width: 'auto', height: '60px' }} /> <span className='signedas'> Signed as you </span> </MenuItem>
+      <MenuItem onClick={handleMenuClose}> <span className= 'signout'> Sign out </span> </MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem> */}
+
+    </Menu>    
+  );  
 
 
   // aca esta la version mobile
@@ -136,6 +176,8 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+
+  
   // aca termina la version mobile
 
   return (
@@ -223,9 +265,26 @@ export default function PrimarySearchAppBar() {
                 <SettingsRoundedIcon />
               </Badge>
             </IconButton>
+         
 
           </div>
 
+          <IconButton
+              // aria-label="show 0 new notifications" 
+              color="inherit"
+              /* edge="end" */
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleLoggedUserMenu}
+              color="inherit"
+            >
+              <Badge badgeContent={0} color="secondary">
+                <Avatar />
+              </Badge>
+            </IconButton>
+
+         
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
@@ -241,12 +300,17 @@ export default function PrimarySearchAppBar() {
             </IconButton>
           </div>
 
+          
+
+
           <SearchBar classes={classes} />
 
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
+      {renderUserMenu}
       {renderMenu}
+      
     </div>
   );
 }
