@@ -30,7 +30,7 @@ server.get('/:id', (req, res) => {
 //route for a user creation depending on if is admin or not.
 server.post('/', function (req, res, next) {
  
-    let { fullname, email, phone, address, purchases, isAdmin } = req.body;
+    let { username, fullname, email, phone, address, purchases, isAdmin, password } = req.body;
  
     //if (!isAdmin) {
        // if (!fullname || !email || !address || !phone ) {
@@ -38,10 +38,12 @@ server.post('/', function (req, res, next) {
        // }
    // } else {
         User.create({
+            username,
             fullname,
             email,
             phone,
-            address
+            address,
+            password
         })
             .then(
                 userCreated => {
@@ -58,7 +60,7 @@ server.post('/', function (req, res, next) {
 
 server.put('/:id', (req, res) => {
     const { id } = req.params;
-    let { fullname, email, phone, address, purchases, isAdmin } = req.body;
+    let { username, fullname, email, phone, address, purchases, isAdmin, password } = req.body;
 
     if (!id) {
         res.status(404).json({ msg: "Seleccione un usuario a eliminar" })
@@ -66,7 +68,7 @@ server.put('/:id', (req, res) => {
     else {
         User.findByPk(id)
             .then(user => {
-                user.update({ fullname, email, phone, address, purchases, isAdmin })
+                user.update({ username, fullname, email, phone, address, purchases, isAdmin, password })
             })
             .then(res.status(201).json({ msj: 'Usuario modificado' }))
             .catch(err => {
