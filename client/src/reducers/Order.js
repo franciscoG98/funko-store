@@ -34,13 +34,13 @@ export default (state = initialState, action) => {
         case 'GET_USER_ORDER':
             return {
                 ...state,
-                userItem: action.payload.data
+                userItem: action.payload
             }
 
         case "UPDATE_ORDER_LINE":
             return {
                 ...state,
-                carrito: action.payload
+                cart: action.payload
             }
 
         case "GET_USER_INFO":
