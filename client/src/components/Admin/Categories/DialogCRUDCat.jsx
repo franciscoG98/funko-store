@@ -90,7 +90,7 @@ export default function FormDialog({getCategory, cambio, newCategory}) {
           </Button>      
         </DialogActions>
       </Dialog>
-      <Button variant="contained" className={classes.buttons} color="primary" onClick={handleClickOpen}>
+      <Button style={{color: 'white', backgroundColor: '#303030'}} variant="contained" className={classes.buttons} color="primary" onClick={handleClickOpen}>
         Agregar Categoria
       </Button>
       

@@ -35,11 +35,11 @@ function App() {
           <div className='divswitch'>
 
             <div className='switch'>
-              <Button variant="contained" color="primary" onClick={() => setMarvel(true)}> Marvel </Button>
+              <Button variant="contained" style={{color: 'white', backgroundColor: '#303030'}} onClick={() => setMarvel(true)}> Marvel </Button>
             </div>
 
             <div className='switch'>
-              <Button variant="contained" color="primary" onClick={() => setMarvel(false)}>   DC    </Button>
+              <Button variant="contained" style={{color: 'white', backgroundColor: '#303030'}} onClick={() => setMarvel(false)}>   DC    </Button>
             </div>
 
           </div>
