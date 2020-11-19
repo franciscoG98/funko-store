@@ -17,11 +17,12 @@ export default (state = initialState, action) => {
                 items: [...state.items, action.payload.data.producto]
             }
 
-        
+
         case "DELETE_ITEM":
             return {
                 ...state,
-                items: state.items.filter((i) => i.id !== action.payload)
+                carrito: state.carrito.filter((i) => i.productId !== action.payload)
+                // carrito: console.log(action.payload)
             }
 
         case 'GET_ADMIN_ORDER':
@@ -39,7 +40,7 @@ export default (state = initialState, action) => {
         case "UPDATE_ORDER_LINE":
             return {
                 ...state,
-                cart: action.payload
+                carrito: action.payload
             }
 
         case "GET_USER_INFO":
