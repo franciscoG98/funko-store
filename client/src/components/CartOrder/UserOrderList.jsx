@@ -22,7 +22,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
- const useStyles = makeStyles({
+const useStyles = makeStyles({
   tableContainer: {
     border: 0,
     borderRadius: 3,
@@ -76,23 +76,25 @@ export default function UserOrderList() {
   //const classes2 = useStylesGrid();
 
   const id = useParams();
+  console.log(id.id)
 
   const dispatch = useDispatch();
   const userList = useSelector(state => state.Order.userItem);
   const userInfoList = useSelector(state => state.Order.userInfo);
 
-  // console.log(userInfoList)
+  console.log(userList)
+
 
   //action UserOrderList
   useEffect(() => {
-    dispatch(getUserOrders())
-    dispatch(getUserInfo())
+    dispatch(getUserOrders(id.id))
+    dispatch(getUserInfo(id.id))
   })
 
- /*  //action grid
-  useEffect(() => {
-    
-  }, []) */
+  /*  //action grid
+   useEffect(() => {
+     
+   }, []) */
 
   if (!userInfoList) {
     return <p>cargando</p>
@@ -120,7 +122,7 @@ export default function UserOrderList() {
 
           <TableBody>
 
-            {userList.map(item => (
+            {userList.orderlines.map(item => (
 
               <TableRow key={item.id}>
                 <TableCell scope="row" align="center">  {item.orderId}</TableCell>

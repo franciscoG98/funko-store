@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
-
+// import { useParams } from 'react-router';
 import { deleteItem, UpdateOrderLine, getCarrito } from '../../actions/Order';
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
@@ -32,7 +32,7 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     fontSize: 14,
   },
-  
+
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
@@ -57,48 +57,49 @@ const ShoppingCart2 = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-/*   {
-    "id": 1,
-    "total": 1000,
-    "state": "cart",
-    "createdAt": "2020-11-17T14:13:30.886Z",
-    "updatedAt": "2020-11-17T14:13:30.886Z",
-    "userId": 1,
-    "products": [],
-    "orderlines": []
-    } */
+  /*   {
+      "id": 1,
+      "total": 1000,
+      "state": "cart",
+      "createdAt": "2020-11-17T14:13:30.886Z",
+      "updatedAt": "2020-11-17T14:13:30.886Z",
+      "userId": 1,
+      "products": [],
+      "orderlines": []
+      } */
 
 
   const order = useSelector(state => state.Order.items);
   const carro = useSelector(state => state.Order.carrito)
   const cartProduct = useSelector(state => state.Order.cartProd);
-  
+
   /* 
   order [ { esto es un GET a product/id
     id: 1 name: capi, etc
   },]
 */const userId = 1
- useEffect(() => {
+  // const { userId } = useParams();
+  useEffect(() => {
     dispatch(getCarrito(userId))
   }, [])
   // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
   let arrMap = [];// orden entera
   let idArr = [];//junta los id para ver si los tiene 
 
-  for(let i=0; i<order.length; i++) {
-    
-    if(idArr.includes(order[i].id)) {
-      
-      let  iddd = order[i].id ;//guarda id del producto para buscarla en la orden
+  for (let i = 0; i < order.length; i++) {
+
+    if (idArr.includes(order[i].id)) {
+
+      let iddd = order[i].id;//guarda id del producto para buscarla en la orden
       let orderLine = idArr.indexOf(iddd); //busca donde esta en la orden para modificar la OL
-      arrMap[orderLine].quantity +=1;
-      dispatch( UpdateOrderLine(arrMap[orderLine], userId))
+      arrMap[orderLine].quantity += 1;
+      dispatch(UpdateOrderLine(arrMap[orderLine], userId))
 
     } else {
       idArr.push(order[i].id);
       let SendOrderLine = {
         productId: order[i].id,
-        price: order[i].price, 
+        price: order[i].price,
         quantity: 1
       }
       let pushOrderLine = {
@@ -108,8 +109,8 @@ const ShoppingCart2 = () => {
         price: order[i].price,
         quantity: 1
       }
-      
-      dispatch( UpdateOrderLine(SendOrderLine, userId) ); 
+
+      dispatch(UpdateOrderLine(SendOrderLine, userId));
 
       arrMap.push(pushOrderLine);
     }
@@ -126,6 +127,7 @@ const ShoppingCart2 = () => {
   }
 
   const deleteItemCart = async (id) => {
+    // console.log(id)
     MySwal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -148,20 +150,20 @@ const ShoppingCart2 = () => {
       console.log(err);
     });
 
-   };
-   //console.log('orderlines antes de la ifi:\n', carro)
-    
- 
-          
-     for (let index = 0; index < carro.length; index++) {
-      carro[index].prodName = cartProduct[index].name 
-      carro[index].prodImg = cartProduct[index].imagen 
-     } 
-     console.log(carro);
-    //console.log(cartProduct);
-   
-   
-   //console.log('orderlines despues de la ifi:\n', carro)
+  };
+  //console.log('orderlines antes de la ifi:\n', carro)
+
+
+
+  for (let index = 0; index < carro.length; index++) {
+    carro[index].prodName = cartProduct[index].name
+    carro[index].prodImg = cartProduct[index].imagen
+  }
+  console.log(carro.productId);
+  //console.log(cartProduct);
+
+
+  //console.log('orderlines despues de la ifi:\n', carro)
 
   return (
     <div className={classes.op} style={{ width: '70%', margin: 'auto' }}>
@@ -182,22 +184,22 @@ const ShoppingCart2 = () => {
 
           {/* cuerpo */}
           <TableBody>
-          {carro.map( i => (
-              
+            {carro.map(i => (
+
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.id)}><DeleteRoundedIcon /></Button>
+                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
-                   <img src={i.prodImg} alt='funko image' style={{ width: 'auto', height: '60px' }} /> 
+                  <img src={i.prodImg} alt='funko image' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
                 <StyledTableCell align="right">${i.price}</StyledTableCell>
               </StyledTableRow>
-            ))} 
-             
-            
+            ))}
+
+
             {/* parte de abajo */}
             <StyledTableCell align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
@@ -205,8 +207,8 @@ const ShoppingCart2 = () => {
             <StyledTableCell align="right">${total(carro)} </StyledTableCell>
             <StyledTableCell align="right">
 
-              <Link to="/user/product">
-              <Button autoFocus color="primary">
+              <Link to={`/user/1/product`}>
+                <Button autoFocus color="primary">
                   Buy
                 </Button>
               </Link>
