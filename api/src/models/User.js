@@ -1,9 +1,10 @@
 const { DataTypes } = require('sequelize');
+const bcrypt = require("bcrypt");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('user', {
+  const User = sequelize.define('user', {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -38,5 +39,26 @@ module.exports = (sequelize) => {
       }
 
   });
+User.beforeCreate((user, options) => {
+
+    return bcrypt.hash(user.password, 10)
+        .then(hash => {
+            user.password = hash;
+        })
+        .catch(err => { 
+            throw (err); 
+        });
+});
+/* User.beforeBulkCreate((user, options) => {
+
+    return bcrypt.hash(user.password, 10)
+        .then(hash => {
+            user.password = hash;
+        })
+        .catch(err => { 
+            throw (err); 
+        });
+}); */
+
 
 };
