@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito } from '../../actions/Order';
+import { deleteItem,/*  UpdateOrderLine, */ getCarrito } from '../../actions/Order';
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
@@ -21,7 +21,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { getProductId } from '../../actions/Products';
+//import { getProductId } from '../../actions/Products';
 const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
@@ -69,7 +69,7 @@ const ShoppingCart2 = () => {
       } */
 
 
-  const order = useSelector(state => state.Order.items);
+  //const order = useSelector(state => state.Order.items);
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
   console.log("carro1: " + carro); 
@@ -77,7 +77,7 @@ const ShoppingCart2 = () => {
   // const { userId } = useParams();
   useEffect(() => {
     dispatch(getCarrito(userId))
-  }, [])
+  }, )
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
@@ -203,7 +203,7 @@ const ShoppingCart2 = () => {
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
-                  <img src={i.prodImg} alt='funko image' style={{ width: 'auto', height: '60px' }} />
+                  <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
                 <StyledTableCell align="right">${i.price}</StyledTableCell>
