@@ -74,18 +74,18 @@ const Product = ({f}) => {
                 <span style={{fontFamily: 'Calibri', marginRight: '3px', fontSize: '16px', color: '#585858'}}> {f.price} </span>
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-                {f.stock > 0 ? <span style= {{opacity: '100%', color: '#33CC33', fontFamily:'Calibri', fontSize: '17px'}}>Available</span> : <span style={{color: "red", marginLeft: '1px', fontFamily:'Calibri', fontSize: '17px'}}>No Stock</span>}
+                {f.stock > 0 ? <span style= {{opacity: '100%', color: 'green', fontFamily:'Calibri', fontSize: '17px'}}>Available</span> : <span style={{color: "red", marginLeft: '1px', fontFamily:'Calibri', fontSize: '17px'}}>No Stock</span>}
             </Typography>
-                <br/>
+                
             <Reviews />
         </CardContent>
       </CardActionArea>
       <CardActions>
-      {f.stock > 0 ? <Button size="small" color="primary" onClick={() =>  dispatch(UpdateOrderLine(f, 1))}>
+      {f.stock > 0 ? <Button style={{color: '#585858'}} size="small" color="primary" onClick={() =>  dispatch(UpdateOrderLine(f, 1))}>
         <AddShoppingCartRoundedIcon />
           Add To Cart 
         </Button>: null}
-        <Button size="small" color="primary" onClick={() => handleOpen()}>
+        <Button style={{color: '#585858'}} size="small" color="primary" onClick={() => handleOpen()}>
             <OpenInNewRoundedIcon />
             More 
         </Button>
