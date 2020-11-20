@@ -1,6 +1,8 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import {makeStyles} from '@material-ui/core/styles'
+import { Box } from '@material-ui/core';
+import './haeder.css';
 
 const useStyles = makeStyles((theme)=>({
 
@@ -19,9 +21,13 @@ export default function Header () {
     const styles = useStyles();
 
     return(
-        <Typography className={styles.root} component = 'h1'>
+        // <Typography className={styles.root} component = 'h1'>
+        //     User Registration!
+        // </Typography>
+        <div className= 'user'>
             User Registration!
-        </Typography>
+
+        </div>
     )
 
 }
