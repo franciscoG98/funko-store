@@ -1,3 +1,86 @@
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black&display=swap");
+
+.marvel {
+  background-image: url("https://wallpaperaccess.com/full/14358.jpg");
+  background-repeat: repeat-y;
+  height: 500vh;
+  
+}
+
+.dc {
+  background-image: url("https://wallpapercave.com/wp/IWeDuiF.jpg");
+  height: 500vh;
+  background-repeat: repeat-y;
+}
+
+.switch {
+  margin: 10px;
+  padding-left: 5px;
+  display: inline-block;
+  align-items: center;
+  /* color: white; */
+  justify-content: center;
+  position: relative;
+}
+
+.divswitch {
+  display: flex;
+  justify-content: center;
+}
+
+.butt {
+  margin: 10px;
+  padding-left: 5px;
+  /* display: inline-block; */
+  height: 38px;
+  width: 79px;
+  overflow: hidden;
+  border-radius:4px;
+  color: white; 
+  background-color: #282828;
+  border-color: black;
+  border-style: hidden;
+  font-size: 20px;
+  /* font-weight: 300; */
+  font-family: Spicy Rice;
+  /* font-weight: bolder; */
+}
+
+.butt:hover {  
+    cursor: pointer;
+    background-color: red;
+    color: black;
+    transition-duration: 1s;
+}
+
+.butt2 {
+  margin: 10px;
+  padding-left: 5px;
+  /* display: inline-block; */
+  height: 38px;
+  width: 68px;
+  overflow: hidden;
+  border-radius:4px;
+  color: white; 
+  background-color: #282828;
+  border-color: black;
+  border-style: hidden;
+  font-size: 21px;
+  /* font-weight: 300; */
+  font-family: Trade Winds;
+  font-weight: bold;
+}
+
+.butt2:hover {  
+    cursor: pointer;
+    background-color: white;
+    color:rgb(34, 37, 194);
+    transition-duration: 1s;
+}
+
+
+
+
 /* .App {
   text-align: center;
 }
@@ -30,31 +113,3 @@
     transform: rotate(360deg);
   }
 } */
-
-.marvel {
-  background-image: url("https://wallpaperaccess.com/full/14358.jpg");
-  background-repeat: repeat-y;
-  height: 500vh;
-  
-}
-
-.dc {
-  background-image: url("https://wallpapercave.com/wp/IWeDuiF.jpg");
-  height: 500vh;
-  background-repeat: repeat-y;
-}
-
-.switch {
-  margin: 10px;
-  padding-left: 5px;
-  display: inline-block;
-  align-items: center;
-  color: white;
-  justify-content: center;
-  position: relative;
-}
-
-.divswitch {
-  display: flex;
-  justify-content: center;
-}
