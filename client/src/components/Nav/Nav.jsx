@@ -37,7 +37,7 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const isUserMenuOpen = Boolean(userEl);
-
+  
   //menu desplegable categories-products
 
   const handleProfileMenuOpen = (event) => {
@@ -101,7 +101,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-838px', paddingRight: '0px', display: 'flex', marginLeft: '-255px'/* , marginBottom: '875px' */ }}
+      style={{ opacity: '80%', marginTop: '-728px', marginLeft: '-255px' }}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
@@ -182,7 +182,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar style={{backgroundColor: '#202020'}} position="static">
         <Toolbar>
           {/* sidebar */}
           <IconButton

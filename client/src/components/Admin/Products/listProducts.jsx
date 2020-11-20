@@ -115,12 +115,12 @@ export default function ListProducts() {
       <Table  className={classes.table} aria-label="simple table">
         <TableHead >
           <TableRow>
-            <StyledTableCell align="center">Id</StyledTableCell>
-            <StyledTableCell align="center">Nombre</StyledTableCell>
-            <StyledTableCell align="center">Descripcion</StyledTableCell>
-            <StyledTableCell align="center">Precio</StyledTableCell>
-            <StyledTableCell align="center">Stock</StyledTableCell>
-            <StyledTableCell align="center">Editar/Eliminar</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Id</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Nombre</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Descripcion</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Precio</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Stock</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Editar/Eliminar</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -135,7 +135,7 @@ export default function ListProducts() {
                 <Button size="small" color="primary" onClick={() => setEdit(true)}>
                    <EditProduct getProduct={getProduct} producto={prod} edit={edit} setEdit={setEdit} /> 
                 </Button> 
-                <Button size="small" color="primary" onClick={() => deleteProducts(prod.id)}><DeleteIcon/></Button></TableCell>
+                <Button style={{color: '#303030'}} size="small" color="primary" onClick={() => deleteProducts(prod.id)}><DeleteIcon/></Button></TableCell>
               </TableRow>
             )) }
           </TableBody>
