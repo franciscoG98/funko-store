@@ -82,7 +82,7 @@ export default function UserOrderList() {
   const userList = useSelector(state => state.Order.userItem);
   const userInfoList = useSelector(state => state.Order.userInfo);
 
-  console.log(userList)
+  
 
 
   //action UserOrderList
@@ -99,6 +99,7 @@ export default function UserOrderList() {
   if (!userInfoList) {
     return <p>cargando</p>
   }
+  console.log(userList);
 
   return (
 
