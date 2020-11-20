@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
         case "DELETE_ITEM":
             return {
                 ...state,
-                carrito: state.carrito.filter((i) => i.productId !== action.payload)
+                cart: state.cart.filter((i) => i.productId !== action.payload)
                 // carrito: console.log(action.payload)
             }
 
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
         case 'GET_USER_ORDER':
             return {
                 ...state,
-                userItem: action.payload.data
+                userItem: action.payload.data.orderlines
             }
 
         case "UPDATE_ORDER_LINE":
@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
         case "GET_CART":
             return {
                 ...state,
-                carrito: action.payload.data.orderlines,
+                cart: action.payload.data.orderlines,
                 cartProd: action.payload.data.products
             }
 

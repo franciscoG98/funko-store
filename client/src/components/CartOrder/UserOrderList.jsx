@@ -89,7 +89,7 @@ export default function UserOrderList() {
   useEffect(() => {
     dispatch(getUserOrders(id.id))
     dispatch(getUserInfo(id.id))
-  })
+  },[])
 
   /*  //action grid
    useEffect(() => {
@@ -122,7 +122,7 @@ export default function UserOrderList() {
 
           <TableBody>
 
-            {userList.orderlines.map(item => (
+            {userList.map(item => (
 
               <TableRow key={item.id}>
                 <TableCell scope="row" align="center">  {item.orderId}</TableCell>

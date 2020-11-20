@@ -64,8 +64,8 @@ server.get('/:idUser/cart', (req, res) => {
 
 server.post('/:idUser/cart', async (req, res) => {
     const { idUser } = req.params;
-    console.log(idUser)
-    const orderlines = req.body;
+    //console.log(idUser)
+    const prod = req.body;
     const Orden = await Order.findOrCreate({
         where: {
             userId: idUser,
@@ -76,28 +76,28 @@ server.post('/:idUser/cart', async (req, res) => {
     const orderFound = await Orderline.findOne({
         where: {
             orderId: idOrd,
-            productId: orderlines.productId,
+            productId: prod.id,
         }
     })
     if (orderFound) {
         return orderFound.update({
-            productId: orderlines.productId,
-            quantity: orderlines.quantity,
-            price: orderlines.price,
+            productId: prod.id,
+            quantity: orderFound.quantity +1 ,
+            price: prod.price,
         }).then((r) => res.json(r))
     } else {
         return Orderline.create({
             orderId: idOrd,
-            productId: orderlines.productId,
-            quantity: orderlines.quantity,
-            price: orderlines.price,
+            productId: prod.id,
+            quantity: prod.quantity,
+            price: prod.price,
         })
             .then((r) => res.json(r))
             .catch(err => res.json(err))
     }
 })
 
-server.put('/:idUser/cart', (req, res) => {
+/* server.put('/:idUser/cart', (req, res) => {
     const { idUser } = req.params;
     //const  orderlines  = req.body; //esto seria el arrMap[orderlines] 
     const { productId, price, quantity } = req.body;
@@ -123,7 +123,7 @@ server.put('/:idUser/cart', (req, res) => {
     }).then((r) => res.json("OK"))
         .catch(err => res.json(err))
 })
-
+ */
 //GET /users
 server.get('/:id/orders', (req, res) => {
     const { id } = req.params
