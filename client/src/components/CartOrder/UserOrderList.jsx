@@ -82,10 +82,7 @@ export default function UserOrderList() {
   const userList = useSelector(state => state.Order.userItem);
   const userInfoList = useSelector(state => state.Order.userInfo);
 
-  
-
-
-  //action UserOrderList
+   //action UserOrderList
   useEffect(() => {
     dispatch(getUserOrders(id.id))
     dispatch(getUserInfo(id.id))

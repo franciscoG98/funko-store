@@ -127,7 +127,6 @@ const ShoppingCart2 = () => {
   }
 
   const deleteItemCart = async (id) => {
-    // console.log(id)
     MySwal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -152,8 +151,9 @@ const ShoppingCart2 = () => {
 
   };
   //console.log('orderlines antes de la ifi:\n', carro)
+  
 
-
+  
   const carro2 = carro.sort(function (a, b) {
       if (a.productId > b.productId) {
         return 1;
@@ -161,7 +161,6 @@ const ShoppingCart2 = () => {
       if (a.productId < b.productId) {
         return -1;
       }
-      // a must be equal to b
       return 0;
     });
     const prod2 = cartProduct.sort(function (a, b) {
@@ -171,21 +170,13 @@ const ShoppingCart2 = () => {
       if (a.id < b.id) {
         return -1;
       }
-      // a must be equal to b
       return 0;
     });
-  console.log("carr2: " + carro2);
-  console.log("prod2: " + prod2);
+
   for (let index = 0; index < carro.length; index++) {
     carro2[index].prodName = prod2[index].name
     carro2[index].prodImg = prod2[index].imagen
   }
-  console.log("carro: " + carro); 
-  //console.log("carr2: " + carro2);
-  //console.log(cartProduct);
-
-
-  //console.log('orderlines despues de la ifi:\n', carro)
 
   return (
     <div className={classes.op} style={{ width: '70%', margin: 'auto' }}>
@@ -200,10 +191,8 @@ const ShoppingCart2 = () => {
               <StyledTableCell align="left"></StyledTableCell>
               <StyledTableCell align="right">Quantity</StyledTableCell>
               <StyledTableCell align="right">Subtotal</StyledTableCell>
-
             </TableRow>
           </TableHead>
-
           {/* cuerpo */}
           <TableBody>
             {!carro2 ? <p>cargando...</p> : carro2.map(i => (
