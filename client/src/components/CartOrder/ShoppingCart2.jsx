@@ -50,7 +50,19 @@ const useStyles = makeStyles({
   },
   op: {
     opacity: '88%'
+  },
+  buy: {
+    color: 'black', 
+    fontFamily: 'Ubuntu', 
+    fontSize: '20px',
+    backgroundColor: '#F0F0F0',
+    '&:hover': {
+      color: 'white',
+      transition: '0.2s',
+      backgroundColor: '#303030',
+    }
   }
+  
 });
 
 const ShoppingCart2 = () => {
@@ -186,11 +198,11 @@ const ShoppingCart2 = () => {
           {/* titulo */}
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="left">Funko Name</StyledTableCell>
-              <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="right">Quantity</StyledTableCell>
-              <StyledTableCell align="right">Subtotal</StyledTableCell>
+              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="left"></StyledTableCell>
+              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="left">Funko Name</StyledTableCell>
+              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="left"></StyledTableCell>
+              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="right">Quantity</StyledTableCell>
+              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="right">Subtotal</StyledTableCell>
             </TableRow>
           </TableHead>
           {/* cuerpo */}
@@ -199,7 +211,7 @@ const ShoppingCart2 = () => {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
+                  <Button style= {{color:'black'}} size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
@@ -212,14 +224,14 @@ const ShoppingCart2 = () => {
 
 
             {/* parte de abajo */}
-            <StyledTableCell align="left">TOTAL:</StyledTableCell>
+            <StyledTableCell style= {{fontFamily: 'Cairo', fontSize: '20px', fontWeight: 'bold'}} align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right">${total(carro)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>
-                <Button autoFocus color="primary">
+                <Button className= {classes.buy}/* style= {{color: 'black', fontFamily: 'Cairo', fontSize: '20px'}} */ autoFocus color="primary">
                   Buy
                 </Button>
               </Link>

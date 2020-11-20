@@ -26,6 +26,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 import DetailModal from '../DetailModal/DetailModal'
+import { green } from '@material-ui/core/colors';
 
 
 const Product = ({f}) => {
@@ -58,29 +59,33 @@ const Product = ({f}) => {
           title={f.name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {f.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-           <span style={{fontWeight: "bold"}}> Description: </span> {f.description}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-          <span style={{fontWeight: "bold"}}> Price: </span> ${f.price}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {f.stock > 0 ? <span>Diponible</span> : <span style={{color: "red"}}>No hay unidades disponibles</span>}
-          </Typography>
-            <br/>
+            <Typography style={{fontFamily: 'Ubuntu', fontSize: '30px', fontWeight: 'light', fontStyle: 'normal'}} gutterBottom variant="h5" component="h2">
+                {f.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+                <span style={{fontFamily: 'Raleway', fontWeight: "bolder", marginLeft: '1px', fontSize: '15px', color: '#585858'}}> Description: </span> 
+                  <span style={{fontFamily: 'Calibri', marginLeft: '1px', fontSize: '15px', color: '#686868'}}>
+                    {f.description}
+                  </span>
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+                <span style={{fontFamily: 'Raleway', fontWeight: "bolder  ", marginLeft: '1px', fontSize: '15px', color: '#585858'}}> Price: </span> 
+                <span style={{fontFamily: 'Raleway', marginLeft: '1px', fontSize: '13px', color: '#585858', fontWeight: "bolder"}}> $ </span> 
+                <span style={{fontFamily: 'Calibri', marginRight: '3px', fontSize: '16px', color: '#585858'}}> {f.price} </span>
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+                {f.stock > 0 ? <span style= {{opacity: '100%', color: 'green', fontFamily:'Calibri', fontSize: '17px'}}>Available</span> : <span style={{color: "red", marginLeft: '1px', fontFamily:'Calibri', fontSize: '17px'}}>No Stock</span>}
+            </Typography>
+                
             <Reviews />
-
         </CardContent>
       </CardActionArea>
       <CardActions>
-      {f.stock > 0 ? <Button size="small" color="primary" onClick={() =>  dispatch(UpdateOrderLine(f, 1))}>
+      {f.stock > 0 ? <Button style={{color: '#585858'}} size="small" color="primary" onClick={() =>  dispatch(UpdateOrderLine(f, 1))}>
         <AddShoppingCartRoundedIcon />
           Add To Cart 
         </Button>: null}
-        <Button size="small" color="primary" onClick={() => handleOpen()}>
+        <Button style={{color: '#585858'}} size="small" color="primary" onClick={() => handleOpen()}>
             <OpenInNewRoundedIcon />
             More 
         </Button>
