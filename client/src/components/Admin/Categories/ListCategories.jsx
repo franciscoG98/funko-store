@@ -49,11 +49,12 @@ const useStyles = makeStyles({
   },
   table:{
     justifyContent: "center",
+
    
 
   },
   buttons:{
-      color: "#A5B7FF",
+      color: "#303030",
   },
   
 });
@@ -139,12 +140,12 @@ export default function BasicTable() {
 
     <TableContainer className={classes.tableContainer} component={Paper}>
       <Table  className={classes.table} aria-label="simple table">
-        <TableHead >
-          <TableRow>
-            <StyledTableCell>Id</StyledTableCell>
-            <StyledTableCell align="center">Categoría</StyledTableCell>
-            <StyledTableCell align="center">Descripcion</StyledTableCell>
-            <StyledTableCell align="center">Editar/Eliminar</StyledTableCell>
+        <TableHead style={{color: 'white', backgroundColor: '#303030'}}>
+          <TableRow style={{color: 'white', backgroundColor: '#303030'}}>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}}>Id</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Categoría</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Descripcion</StyledTableCell>
+            <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="center">Editar/Eliminar</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -156,10 +157,10 @@ export default function BasicTable() {
               <TableCell align="center">{cat.name}</TableCell>
               <TableCell align="center">{cat.description}</TableCell>
               <TableCell className={classes.buttons} align="center"> 
-                <Button size="small" color="primary" onClick={() => setEdit(true)} > 
+                <Button style={{color: 'white'}} size="small" onClick={() => setEdit(true)} > 
                       <EditCat getCategory={getCategory} cambio={onChange} cat={cat} setNewCategory={setNewCategory}  newCategory={newCategory} edit={edit} setEdit={setEdit} />
                 </Button> 
-                <Button size="small" color="primary" onClick={() => deleteCategories(cat.id)}> <DeleteIcon /></Button>   
+                <Button style={{color: '#303030'}} size="small" onClick={() => deleteCategories(cat.id)}> <DeleteIcon /></Button>   
                 
               </TableCell>
             </TableRow>

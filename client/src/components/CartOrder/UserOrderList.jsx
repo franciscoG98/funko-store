@@ -99,6 +99,7 @@ export default function UserOrderList() {
   if (!userInfoList) {
     return <p>cargando</p>
   }
+  console.log(userList);
 
   return (
 

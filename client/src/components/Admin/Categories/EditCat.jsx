@@ -63,10 +63,10 @@ export default function FormDialog({getCategory, cambio, newCategory, edit, setE
   }
 
   return (
-    <div>
-      <Dialog className= {classes.op} open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleActualizar}>
+    <div >
+      <Dialog  open={open} onClose={handleClose} aria-labelledby="form-dialog-title" onSubmit={handleActualizar}>
         <DialogTitle id="form-dialog-title">Agregar Categoría</DialogTitle>
-        <DialogContent>
+        <DialogContent >
           <DialogContentText>
             Nombra y describe tu categoria
           </DialogContentText>              
