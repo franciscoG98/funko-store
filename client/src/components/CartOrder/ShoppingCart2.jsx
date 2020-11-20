@@ -55,10 +55,10 @@ const useStyles = makeStyles({
     color: 'black', 
     fontFamily: 'Ubuntu', 
     fontSize: '20px',
-    backgroundColor: '#989898',
+    backgroundColor: '#F0F0F0',
     '&:hover': {
       color: 'white',
-      transition: '0.5s',
+      transition: '0.2s',
       backgroundColor: '#303030',
     }
   }

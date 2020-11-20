@@ -24,7 +24,7 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="yellow" href="https://soyhenry.com/" target="_blank">
+            <Link style= {{color: '#FFD700'}}  color="yellow" href="https://soyhenry.com/" target="_blank">
                 Powered by Henry
       </Link>{' '}
             {new Date().getFullYear()}
@@ -101,6 +101,7 @@ function UserLogin() {
                         label="Remember me"
                     />
                     <Button
+                        style= {{backgroundColor: '#303030'}}
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -112,12 +113,12 @@ function UserLogin() {
           </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link href="/lost-password" variant="body2">
+                            <Link style= {{color: '#303030'}}  href="/lost-password" variant="body2">
                                 Forgot password?
               </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="/register" variant="body2">
+                            <Link style= {{color: '#303030'}}  href="/register" variant="body2">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>
