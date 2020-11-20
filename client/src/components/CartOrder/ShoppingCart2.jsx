@@ -70,19 +70,19 @@ const ShoppingCart2 = () => {
 
 
   const order = useSelector(state => state.Order.items);
-  const carro = useSelector(state => state.Order.carrito)
+  const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
-
-  /* 
-  order [ { esto es un GET a product/id
-    id: 1 name: capi, etc
-  },]
-*/const userId = 1
+  console.log("carro1: " + carro); 
+  const userId = 1
   // const { userId } = useParams();
   useEffect(() => {
     dispatch(getCarrito(userId))
   }, [])
-  // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
+  //JELPER para renderizar
+  //carro:   [{prodId:1},{prodId:2}]
+  //cartProd:[{id:2},{id:1}]
+ 
+  /* // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
   let arrMap = [];// orden entera
   let idArr = [];//junta los id para ver si los tiene 
 
@@ -92,7 +92,7 @@ const ShoppingCart2 = () => {
 
       let iddd = order[i].id;//guarda id del producto para buscarla en la orden
       let orderLine = idArr.indexOf(iddd); //busca donde esta en la orden para modificar la OL
-      arrMap[orderLine].quantity += 1;
+      //arrMap[orderLine].quantity += 1;
       dispatch(UpdateOrderLine(arrMap[orderLine], userId))
 
     } else {
@@ -114,7 +114,7 @@ const ShoppingCart2 = () => {
 
       arrMap.push(pushOrderLine);
     }
-  }
+  } */
   // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
   // funcion que calcula el total
   let t = 0;
@@ -154,12 +154,34 @@ const ShoppingCart2 = () => {
   //console.log('orderlines antes de la ifi:\n', carro)
 
 
-
+  const carro2 = carro.sort(function (a, b) {
+      if (a.productId > b.productId) {
+        return 1;
+      }
+      if (a.productId < b.productId) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    });
+    const prod2 = cartProduct.sort(function (a, b) {
+      if (a.id > b.id) {
+        return 1;
+      }
+      if (a.id < b.id) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    });
+  console.log("carr2: " + carro2);
+  console.log("prod2: " + prod2);
   for (let index = 0; index < carro.length; index++) {
-    carro[index].prodName = cartProduct[index].name
-    carro[index].prodImg = cartProduct[index].imagen
+    carro2[index].prodName = prod2[index].name
+    carro2[index].prodImg = prod2[index].imagen
   }
-  console.log(carro.productId);
+  console.log("carro: " + carro); 
+  //console.log("carr2: " + carro2);
   //console.log(cartProduct);
 
 
@@ -184,7 +206,7 @@ const ShoppingCart2 = () => {
 
           {/* cuerpo */}
           <TableBody>
-            {carro.map(i => (
+            {!carro2 ? <p>cargando...</p> : carro2.map(i => (
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
