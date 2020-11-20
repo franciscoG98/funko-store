@@ -64,9 +64,9 @@ conn
   .then(() => {
     Order.bulkCreate(initialOrders);
   })
-   /*.then(() => {
+  .then(() => {
     Orderline.bulkCreate(initialOrderlines);
-  }) */
+  })
 
   .catch((error) => console.log('Error al bulkcreate', error))
 
