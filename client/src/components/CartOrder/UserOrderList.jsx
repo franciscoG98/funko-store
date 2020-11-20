@@ -82,7 +82,7 @@ export default function UserOrderList() {
   const userList = useSelector(state => state.Order.userItem);
   const userInfoList = useSelector(state => state.Order.userInfo);
 
-  console.log(userList)
+  
 
 
   //action UserOrderList
@@ -122,7 +122,7 @@ export default function UserOrderList() {
 
           <TableBody>
 
-            {userList.orderlines.map(item => (
+            {userList.map(item => (
 
               <TableRow key={item.id}>
                 <TableCell scope="row" align="center">  {item.orderId}</TableCell>
