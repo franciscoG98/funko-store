@@ -89,7 +89,7 @@ export default function UserOrderList() {
   useEffect(() => {
     dispatch(getUserOrders(id.id))
     dispatch(getUserInfo(id.id))
-  })
+  },[])
 
   /*  //action grid
    useEffect(() => {

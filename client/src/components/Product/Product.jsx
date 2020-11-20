@@ -13,7 +13,7 @@ import Reviews from "../Reviews/Reviews";
 import useStyles from './ProductStyle';
   
 import { useDispatch } from 'react-redux';
-import { addItem } from '../../actions/Order';
+import { UpdateOrderLine } from '../../actions/Order';
 
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
@@ -30,7 +30,7 @@ import { green } from '@material-ui/core/colors';
 
 
 const Product = ({f}) => {
-
+  
 
   const classes = useStyles();
 
@@ -47,6 +47,7 @@ const Product = ({f}) => {
   const dispatch = useDispatch();
 
   // fin estado
+  f.quantity = 1
 
   return (
     <Card className={classes.root} >
@@ -80,35 +81,35 @@ const Product = ({f}) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-              {f.stock > 0 ? <Button style={{color: '#585858', opacity: '100%'}} size="small" color="primary" onClick={() => dispatch( addItem(f.id) )}>
-            <AddShoppingCartRoundedIcon />
-              Add To Cart 
-            </Button>: null}
-            <Button style={{color: '#585858'}} size="small" color="primary" onClick={() => handleOpen()}>
-                <OpenInNewRoundedIcon />
-                More 
-            </Button>
+      {f.stock > 0 ? <Button size="small" color="primary" onClick={() =>  dispatch(UpdateOrderLine(f, 1))}>
+        <AddShoppingCartRoundedIcon />
+          Add To Cart 
+        </Button>: null}
+        <Button size="small" color="primary" onClick={() => handleOpen()}>
+            <OpenInNewRoundedIcon />
+            More 
+        </Button>
 
-            <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              className={classes.modal}
-              open={open}
-              onClose={handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-              >
-              <Fade in={open}>
-                <div className={classes.paper}>
-                  <DetailModal f={f}/>
-                </div>
-              </Fade>
-            </Modal>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+          >
+          <Fade in={open}>
+            <div className={classes.paper}>
+              <DetailModal f={f}/>
+            </div>
+          </Fade>
+        </Modal>
 
-        </CardActions>
+      </CardActions>
     </Card>
   );
 }

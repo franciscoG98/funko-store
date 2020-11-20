@@ -21,9 +21,9 @@ export function getCarrito(idUser, idProd) {
 }
 
 
-export function UpdateOrderLine(orderlines, idUser) {
+export function UpdateOrderLine(prod, idUser) {
     return (dispatch) => {
-        return Axios.post(`http://localhost:3001/users/${idUser}/cart`, orderlines)
+        return Axios.post(`http://localhost:3001/users/${idUser}/cart`, prod)
             .then(json => {
                 dispatch({ type: 'UPDATE_ORDER_LINE', payload: json });
             })
