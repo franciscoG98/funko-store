@@ -241,7 +241,7 @@ let initialOrders = [
 ]
 
 let initialOrderlines = [
-  {
+ /*  {
     productId: 3,
     orderId: 1,
     quantity: 6,
@@ -252,7 +252,7 @@ let initialOrderlines = [
     orderId: 1,
     quantity: 3,
     price: 12,
-  },
+  }, */
   {
     productId: 5,
     orderId: 2,
