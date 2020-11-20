@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito } from '../../actions/Order';
+import { deleteItem,/*  UpdateOrderLine, */ getCarrito } from '../../actions/Order';
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
@@ -21,7 +21,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { getProductId } from '../../actions/Products';
+//import { getProductId } from '../../actions/Products';
 const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
@@ -50,19 +50,7 @@ const useStyles = makeStyles({
   },
   op: {
     opacity: '88%'
-  },
-  buy: {
-    color: 'black', 
-    fontFamily: 'Ubuntu', 
-    fontSize: '20px',
-    backgroundColor: '#F0F0F0',
-    '&:hover': {
-      color: 'white',
-      transition: '0.2s',
-      backgroundColor: '#303030',
-    }
   }
-  
 });
 
 const ShoppingCart2 = () => {
@@ -81,7 +69,7 @@ const ShoppingCart2 = () => {
       } */
 
 
-  const order = useSelector(state => state.Order.items);
+  //const order = useSelector(state => state.Order.items);
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
   console.log("carro1: " + carro); 
@@ -89,7 +77,7 @@ const ShoppingCart2 = () => {
   // const { userId } = useParams();
   useEffect(() => {
     dispatch(getCarrito(userId))
-  }, [])
+  }, )
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
@@ -149,7 +137,7 @@ const ShoppingCart2 = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteItem(id))
+        dispatch(deleteItem(userId, id))
 
         MySwal.fire(
           'Deleted!',
@@ -198,11 +186,11 @@ const ShoppingCart2 = () => {
           {/* titulo */}
           <TableHead>
             <TableRow>
-              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="left"></StyledTableCell>
-              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="left">Funko Name</StyledTableCell>
-              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="left"></StyledTableCell>
-              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="right">Quantity</StyledTableCell>
-              <StyledTableCell style={{color: 'white', backgroundColor: '#303030'}} align="right">Subtotal</StyledTableCell>
+              <StyledTableCell align="left"></StyledTableCell>
+              <StyledTableCell align="left">Funko Name</StyledTableCell>
+              <StyledTableCell align="left"></StyledTableCell>
+              <StyledTableCell align="right">Quantity</StyledTableCell>
+              <StyledTableCell align="right">Subtotal</StyledTableCell>
             </TableRow>
           </TableHead>
           {/* cuerpo */}
@@ -211,11 +199,11 @@ const ShoppingCart2 = () => {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button style= {{color:'black'}} size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
+                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
-                  <img src={i.prodImg} alt='funko image' style={{ width: 'auto', height: '60px' }} />
+                  <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
                 <StyledTableCell align="right">${i.price}</StyledTableCell>
@@ -224,14 +212,14 @@ const ShoppingCart2 = () => {
 
 
             {/* parte de abajo */}
-            <StyledTableCell style= {{fontFamily: 'Cairo', fontSize: '20px', fontWeight: 'bold'}} align="left">TOTAL:</StyledTableCell>
+            <StyledTableCell align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right">${total(carro)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>
-                <Button className= {classes.buy}/* style= {{color: 'black', fontFamily: 'Cairo', fontSize: '20px'}} */ autoFocus color="primary">
+                <Button autoFocus color="primary">
                   Buy
                 </Button>
               </Link>
