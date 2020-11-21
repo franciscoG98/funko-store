@@ -77,7 +77,7 @@ const ShoppingCart2 = () => {
   // const { userId } = useParams();
   useEffect(() => {
     dispatch(getCarrito(userId))
-  }, )
+  },[] )
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
@@ -206,7 +206,7 @@ const ShoppingCart2 = () => {
                   <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
-                <StyledTableCell align="right">${i.price}</StyledTableCell>
+                <StyledTableCell align="right">${i.subtotal}</StyledTableCell>
               </StyledTableRow>
             ))}
 
@@ -215,7 +215,7 @@ const ShoppingCart2 = () => {
             <StyledTableCell align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right">${total(carro)} </StyledTableCell>
+            <StyledTableCell align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>

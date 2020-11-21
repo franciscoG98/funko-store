@@ -53,6 +53,7 @@ server.post('/:idUser/cart', async (req, res) => {
             productId: prod.id,
             quantity: orderFound.quantity +1 ,
             price: prod.price,
+            subtotal: orderFound.subtotal + prod.price
         }).then((r) => res.json(r))
     } else {
         return Orderline.create({
@@ -60,6 +61,7 @@ server.post('/:idUser/cart', async (req, res) => {
             productId: prod.id,
             quantity: prod.quantity,
             price: prod.price,
+            subtotal: prod.price * prod.quantity
         })
             .then((r) => res.json(r))
             .catch(err => res.json(err))
