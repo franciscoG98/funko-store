@@ -60,11 +60,7 @@ conn
   })
   .then(() => {
    const users = initialUsers.map(u => User.create(u, {individualHooks: true}))
-      /*User.bulkCreate(initialUsers, 
-          // para que ejecute el hook beforeCreate y hashee el pasword
-          {individualHooks: true});*/
     Promise.all(users) 
-  
   /* .then(() => {
     User.bulkCreate(initialUsers);
   }) */
@@ -77,8 +73,3 @@ conn
 })
   .catch((error) => console.log('Error al bulkcreate', error))
 
-
-/*  const users = initialUsers.map(u => User.create(u, {individualHooks: true}))
-      /*User.bulkCreate(initialUsers, 
-          // para que ejecute el hook beforeCreate y hashee el pasword
-          {individualHooks: true});*/ 
