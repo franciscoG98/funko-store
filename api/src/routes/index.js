@@ -10,6 +10,7 @@ const cartRouter = require('./cart.js');
 const reviewsRouter = require('./reviews.js');
 
 const authRouter = require('./auth.js');
+const server = require('./product.js');
 
 const router = Router();
 
