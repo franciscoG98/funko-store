@@ -30,10 +30,12 @@ export function UpdateOrderLine(prod, idUser) {
     }
 }
 
-export function deleteItem(id) {
+export function deleteItem(userId, id) {
     return (dispatch) => {
-        // console.log(id)
-        dispatch({ type: 'DELETE_ITEM', payload: id });
+        Axios.delete(`http://localhost:3001/users/${userId}/cart/${id}`)
+        .then(json => {
+            dispatch({ type: 'DELETE_ITEM', payload: id });
+        })
     }
 }
 

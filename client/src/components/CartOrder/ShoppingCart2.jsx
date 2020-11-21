@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito, updateGuestCart } from '../../actions/Order';
+import { deleteItem,/*  UpdateOrderLine, */ getCarrito } from '../../actions/Order';
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
@@ -21,7 +21,9 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { getProductId } from '../../actions/Products';
+//import { getProductId } from '../../actions/Products';
+import { total } from "./total.js"
+
 const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
@@ -69,7 +71,7 @@ const ShoppingCart2 = () => {
       } */
 
 
-  const order = useSelector(state => state.Order.items);
+  //const order = useSelector(state => state.Order.items);
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
   console.log("carro1: " + carro);
@@ -77,14 +79,8 @@ const ShoppingCart2 = () => {
   const user = false;
   // const { userId } = useParams();
   useEffect(() => {
-    if (user) {
-      dispatch(getCarrito(userId))
-    } else {
-      dispatch(updateGuestCart())
-    }
+    dispatch(getCarrito(userId))
   }, [])
-
-
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
@@ -123,15 +119,7 @@ const ShoppingCart2 = () => {
     }
   } */
   // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
-  // funcion que calcula el total
-  let t = 0;
-  const total = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
 
-      t += arr[i].price
-    }
-    return t;
-  }
 
   const deleteItemCart = async (id) => {
     MySwal.fire({
@@ -144,7 +132,7 @@ const ShoppingCart2 = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteItem(id))
+        dispatch(deleteItem(userId, id))
 
         MySwal.fire(
           'Deleted!',
@@ -210,10 +198,10 @@ const ShoppingCart2 = () => {
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
-                  <img src={i.prodImg} alt='funko image' style={{ width: 'auto', height: '60px' }} />
+                  <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
-                <StyledTableCell align="right">${i.price}</StyledTableCell>
+                <StyledTableCell align="right">${i.subtotal}</StyledTableCell>
               </StyledTableRow>
             ))}
 
@@ -222,7 +210,7 @@ const ShoppingCart2 = () => {
             <StyledTableCell align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right">${total(carro)} </StyledTableCell>
+            <StyledTableCell align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>
