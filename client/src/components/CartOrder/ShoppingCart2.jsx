@@ -22,6 +22,8 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 //import { getProductId } from '../../actions/Products';
+import { total } from "./total.js"
+
 const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
@@ -116,16 +118,8 @@ const ShoppingCart2 = () => {
     }
   } */
   // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
-  // funcion que calcula el total
-  let t = 0;
-  const total = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-
-      t += arr[i].price
-    }
-    return t;
-  }
-
+ 
+ 
   const deleteItemCart = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',

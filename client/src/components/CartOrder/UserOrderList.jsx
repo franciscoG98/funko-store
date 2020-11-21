@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { total } from './total';
 
 //const MySwal = withReactContent(Swal)
 
@@ -132,7 +133,15 @@ export default function UserOrderList() {
                 <TableCell scope="row" align="center">{item.quantity}</TableCell>
                 <TableCell scope="row" align="center">{item.subtotal}</TableCell>
               </TableRow>
+              
             ))}
+            <TableRow key="total">
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center">Total:</TableCell>
+                <TableCell scope="row" align="center">{total(userList)}</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
