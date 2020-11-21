@@ -22,6 +22,8 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 //import { getProductId } from '../../actions/Products';
+import { total } from "./total.js"
+
 const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
@@ -77,7 +79,7 @@ const ShoppingCart2 = () => {
   // const { userId } = useParams();
   useEffect(() => {
     dispatch(getCarrito(userId))
-  }, )
+  },[] )
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
@@ -116,16 +118,8 @@ const ShoppingCart2 = () => {
     }
   } */
   // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
-  // funcion que calcula el total
-  let t = 0;
-  const total = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-
-      t += arr[i].price
-    }
-    return t;
-  }
-
+ 
+ 
   const deleteItemCart = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',
@@ -206,7 +200,7 @@ const ShoppingCart2 = () => {
                   <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
-                <StyledTableCell align="right">${i.price}</StyledTableCell>
+                <StyledTableCell align="right">${i.subtotal}</StyledTableCell>
               </StyledTableRow>
             ))}
 
@@ -215,7 +209,7 @@ const ShoppingCart2 = () => {
             <StyledTableCell align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right">${total(carro)} </StyledTableCell>
+            <StyledTableCell align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>
