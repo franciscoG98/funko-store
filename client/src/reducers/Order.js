@@ -6,6 +6,8 @@ const initialState = {
     userInfo: [],
     carrito: [],
     cartProd: [],
+    guest: [],
+    guestUpdate: [],
 }
 
 
@@ -55,6 +57,18 @@ export default (state = initialState, action) => {
                 cartProd: action.payload.data.products
             }
 
+        case "GET_GUEST_CART":
+            return {
+                ...state,
+                carrito: [...action.payload]
+            }
+
+        case "UPDATE_GUEST_CART":
+            return {
+                ...state,
+                cart: action.payload.data.orderlines,
+                cartProd: action.payload.data.products
+            }
 
         default: return state;
 

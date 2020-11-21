@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useSelector } from 'react';
 
 import './ProductStyle.jsx';
 
 import Card from '@material-ui/core/Card';
-import {CardActionArea, CardActions} from '@material-ui/core/';
+import { CardActionArea, CardActions } from '@material-ui/core/';
 //import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -11,9 +11,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Reviews from "../Reviews/Reviews";
 import useStyles from './ProductStyle';
-  
+
 import { useDispatch } from 'react-redux';
-import { UpdateOrderLine } from '../../actions/Order';
+import { UpdateOrderLine, updateGuestCart, saveToLocalStorage } from '../../actions/Order';
 
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
@@ -26,22 +26,37 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 import DetailModal from '../DetailModal/DetailModal'
+import { useEffect } from 'react';
 
 
-const Product = ({f}) => {
-  
+const Product = ({ f }) => {
+
 
   const classes = useStyles();
 
   //estado
-  const [open, setOpen] = React.useState(false);
-  
+  const [open, setOpen] = useState(false);
+
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+
+  //---------------------------------------------------------------------------------
+
+
+  const userId = 1;
+  const user = false;
+  const handleOnClick = (f, userId) => {
+    if (user) {
+      dispatch(UpdateOrderLine(f, userId))
+    } else {
+      dispatch(saveToLocalStorage(f))
+    }
+  }
+  //---------------------------------------------------------------------------------
 
   const dispatch = useDispatch();
 
@@ -53,7 +68,7 @@ const Product = ({f}) => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image= {f.imagen}
+          image={f.imagen}
           onClick={() => handleOpen()}
           title={f.name}
         />
@@ -62,27 +77,27 @@ const Product = ({f}) => {
             {f.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-           <span style={{fontWeight: "bold"}}> Description: </span> {f.description}
+            <span style={{ fontWeight: "bold" }}> Description: </span> {f.description}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          <span style={{fontWeight: "bold"}}> Price: </span> ${f.price}
+            <span style={{ fontWeight: "bold" }}> Price: </span> ${f.price}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {f.stock > 0 ? <span>Diponible</span> : <span style={{color: "red"}}>No hay unidades disponibles</span>}
+            {f.stock > 0 ? <span>Diponible</span> : <span style={{ color: "red" }}>No hay unidades disponibles</span>}
           </Typography>
-            <br/>
-            <Reviews />
+          <br />
+          <Reviews />
 
         </CardContent>
       </CardActionArea>
       <CardActions>
-      {f.stock > 0 ? <Button size="small" color="primary" onClick={() =>  dispatch(UpdateOrderLine(f, 1))}>
-        <AddShoppingCartRoundedIcon />
-          Add To Cart 
-        </Button>: null}
+        {f.stock > 0 ? <Button size="small" color="primary" onClick={() => handleOnClick(f, userId)}>
+          <AddShoppingCartRoundedIcon />
+          Add To Cart
+        </Button> : null}
         <Button size="small" color="primary" onClick={() => handleOpen()}>
-            <OpenInNewRoundedIcon />
-            More 
+          <OpenInNewRoundedIcon />
+            More
         </Button>
 
         <Modal
@@ -96,10 +111,10 @@ const Product = ({f}) => {
           BackdropProps={{
             timeout: 500,
           }}
-          >
+        >
           <Fade in={open}>
             <div className={classes.paper}>
-              <DetailModal f={f}/>
+              <DetailModal f={f} />
             </div>
           </Fade>
         </Modal>

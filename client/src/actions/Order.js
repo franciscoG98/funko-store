@@ -74,3 +74,28 @@ export function getUserInfo(id) {
             })
     };
 }
+
+//
+export function updateGuestCart() {
+    return (dispatch) => {
+        const serializedData = localStorage.getItem("cart");
+        if (serializedData === null) {
+            return undefined;
+        }
+        // const dataParsed = JSON.parse(serializedData);
+        dispatch({ type: "UPDATE_GUEST_CART", payload: serializedData });
+    }
+}
+
+export function saveToLocalStorage(prod) {
+    return (dispatch) => {
+        let serializedData = JSON.stringify(prod);
+        if (!localStorage.getItem("cart")) {
+            localStorage.setItem("cart", serializedData);
+            dispatch({ type: "GET_GUEST_CART", payload: serializedData });
+        } else {
+            localStorage.setItem("cart", serializedData)
+        }
+    }
+}
+

@@ -3,14 +3,14 @@ const { User, Order } = require('../db.js');
 const { Op } = require("sequelize");
 
 
-server.get('/', (req, res)=>{
+server.get('/', (req, res) => {
     User.findAll()
-    .then(user =>{
-        res.status(200).json(user)
-    })
-    .catch(err => {
-        res.json({ err });
-    })
+        .then(user => {
+            res.status(200).json(user)
+        })
+        .catch(err => {
+            res.json({ err });
+        })
 })
 
 
@@ -29,32 +29,23 @@ server.get('/:id', (req, res) => {
 
 //route for a user creation depending on if is admin or not.
 server.post('/', function (req, res, next) {
- 
+
     let { username, fullname, email, phone, address, purchases, isAdmin, password } = req.body;
- 
-    //if (!isAdmin) {
-       // if (!fullname || !email || !address || !phone ) {
-          //  return res.status(400).json({ msg: "Invalid or missing data" });
-       // }
-   // } else {
-        User.create({
-            username,
-            fullname,
-            email,
-            phone,
-            address,
-            password
-        })
-            .then(
-                userCreated => {
-                    res.status(200).json({ msg: "User created" , user: userCreated })
-                })
-            .catch(next);
-   // }
- 
-    // if (isAdmin){ 
- 
-    // }         
+
+    User.create({
+        username,
+        fullname,
+        email,
+        phone,
+        address,
+        password
+    })
+        .then(
+            userCreated => {
+                res.status(200).json({ msg: "User created", user: userCreated })
+            })
+        .catch(next);
+
 });
 
 

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito } from '../../actions/Order';
+import { deleteItem, UpdateOrderLine, getCarrito, updateGuestCart } from '../../actions/Order';
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
@@ -72,16 +72,23 @@ const ShoppingCart2 = () => {
   const order = useSelector(state => state.Order.items);
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
-  console.log("carro1: " + carro); 
+  console.log("carro1: " + carro);
   const userId = 1
+  const user = false;
   // const { userId } = useParams();
   useEffect(() => {
-    dispatch(getCarrito(userId))
+    if (user) {
+      dispatch(getCarrito(userId))
+    } else {
+      dispatch(updateGuestCart())
+    }
   }, [])
+
+
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
- 
+
   /* // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
   let arrMap = [];// orden entera
   let idArr = [];//junta los id para ver si los tiene 
@@ -151,27 +158,27 @@ const ShoppingCart2 = () => {
 
   };
   //console.log('orderlines antes de la ifi:\n', carro)
-  
 
-  
+
+
   const carro2 = carro.sort(function (a, b) {
-      if (a.productId > b.productId) {
-        return 1;
-      }
-      if (a.productId < b.productId) {
-        return -1;
-      }
-      return 0;
-    });
-    const prod2 = cartProduct.sort(function (a, b) {
-      if (a.id > b.id) {
-        return 1;
-      }
-      if (a.id < b.id) {
-        return -1;
-      }
-      return 0;
-    });
+    if (a.productId > b.productId) {
+      return 1;
+    }
+    if (a.productId < b.productId) {
+      return -1;
+    }
+    return 0;
+  });
+  const prod2 = cartProduct.sort(function (a, b) {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  });
 
   for (let index = 0; index < carro.length; index++) {
     carro2[index].prodName = prod2[index].name
