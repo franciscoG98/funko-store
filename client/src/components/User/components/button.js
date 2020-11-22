@@ -17,7 +17,8 @@ export default function PrimaryButton({children, ...props}){
         type='submit'
         fullWidth
         variant = 'contained'
-        color = 'primary'
+        color = 'white'
+        backgroundColor ='#303030'
         className ={styles.root}
         {...props}
         >
