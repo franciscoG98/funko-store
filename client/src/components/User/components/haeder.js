@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme)=>({
         textShadow: '1px 1px white'
     },
     user: {
-        fontFamily: 'Cairo',
-        fontSize: '50px',
+        fontFamily: 'Trade Winds',
+        fontSize: '42.4px',
         color: '#303030'
     },
 }))
