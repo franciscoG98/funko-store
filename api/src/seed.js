@@ -241,47 +241,54 @@ let initialOrders = [
 ]
 
 let initialOrderlines = [
- /*  {
+  {
     productId: 3,
     orderId: 1,
     quantity: 6,
     price: 50,
+    subtotal: 300
   },
   {
     productId: 2,
     orderId: 1,
     quantity: 3,
-    price: 12,
-  }, */
+    price: 20,
+    subtotal: 60
+  },
   {
     productId: 5,
     orderId: 2,
     quantity: 7,
-    price: 2354,
+    price: 25,
+    subtotal: 175
   },
   {
     productId: 7,
     orderId: 2,
     quantity: 5,
-    price: 123,
+    price: 100,
+    subtotal: 500
   },
   {
     productId: 12,
     orderId: 3,
     quantity: 3,
-    price: 5022,
+    price: 300,
+    subtotal: 900
   },
   {
     productId: 11,
     orderId: 3,
     quantity: 1,
-    price: 43,
+    price: 50,
+    subtotal: 50
   },
   {
     productId: 2,
     orderId: 3,
     quantity: 2,
-    price: 2,
+    price: 20,
+    subtotal: 40
   },
 
 ]

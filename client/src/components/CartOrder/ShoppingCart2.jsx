@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito } from '../../actions/Order';
+import { deleteItem,/*  UpdateOrderLine, */ getCarrito } from '../../actions/Order';
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
@@ -21,7 +21,9 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { getProductId } from '../../actions/Products';
+//import { getProductId } from '../../actions/Products';
+import { total } from "./total.js"
+
 const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
@@ -69,7 +71,7 @@ const ShoppingCart2 = () => {
       } */
 
 
-  const order = useSelector(state => state.Order.items);
+  //const order = useSelector(state => state.Order.items);
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
   console.log("carro1: " + carro); 
@@ -77,7 +79,7 @@ const ShoppingCart2 = () => {
   // const { userId } = useParams();
   useEffect(() => {
     dispatch(getCarrito(userId))
-  }, [])
+  },[] )
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
@@ -116,18 +118,9 @@ const ShoppingCart2 = () => {
     }
   } */
   // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
-  // funcion que calcula el total
-  let t = 0;
-  const total = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
-
-      t += arr[i].price
-    }
-    return t;
-  }
-
+ 
+ 
   const deleteItemCart = async (id) => {
-    // console.log(id)
     MySwal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -138,7 +131,7 @@ const ShoppingCart2 = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteItem(id))
+        dispatch(deleteItem(userId, id))
 
         MySwal.fire(
           'Deleted!',
@@ -152,8 +145,9 @@ const ShoppingCart2 = () => {
 
   };
   //console.log('orderlines antes de la ifi:\n', carro)
+  
 
-
+  
   const carro2 = carro.sort(function (a, b) {
       if (a.productId > b.productId) {
         return 1;
@@ -161,7 +155,6 @@ const ShoppingCart2 = () => {
       if (a.productId < b.productId) {
         return -1;
       }
-      // a must be equal to b
       return 0;
     });
     const prod2 = cartProduct.sort(function (a, b) {
@@ -171,21 +164,13 @@ const ShoppingCart2 = () => {
       if (a.id < b.id) {
         return -1;
       }
-      // a must be equal to b
       return 0;
     });
-  console.log("carr2: " + carro2);
-  console.log("prod2: " + prod2);
+
   for (let index = 0; index < carro.length; index++) {
     carro2[index].prodName = prod2[index].name
     carro2[index].prodImg = prod2[index].imagen
   }
-  console.log("carro: " + carro); 
-  //console.log("carr2: " + carro2);
-  //console.log(cartProduct);
-
-
-  //console.log('orderlines despues de la ifi:\n', carro)
 
   return (
     <div className={classes.op} style={{ width: '70%', margin: 'auto' }}>
@@ -200,10 +185,8 @@ const ShoppingCart2 = () => {
               <StyledTableCell align="left"></StyledTableCell>
               <StyledTableCell align="right">Quantity</StyledTableCell>
               <StyledTableCell align="right">Subtotal</StyledTableCell>
-
             </TableRow>
           </TableHead>
-
           {/* cuerpo */}
           <TableBody>
             {!carro2 ? <p>cargando...</p> : carro2.map(i => (
@@ -214,10 +197,10 @@ const ShoppingCart2 = () => {
                 </StyledTableCell>
                 <StyledTableCell align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
-                  <img src={i.prodImg} alt='funko image' style={{ width: 'auto', height: '60px' }} />
+                  <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell align="right">{i.quantity}</StyledTableCell>
-                <StyledTableCell align="right">${i.price}</StyledTableCell>
+                <StyledTableCell align="right">${i.subtotal}</StyledTableCell>
               </StyledTableRow>
             ))}
 
@@ -226,7 +209,7 @@ const ShoppingCart2 = () => {
             <StyledTableCell align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right">${total(carro)} </StyledTableCell>
+            <StyledTableCell align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>

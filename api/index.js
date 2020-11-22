@@ -59,19 +59,17 @@ conn
     categoryp.bulkCreate(categoryProducts);
   })
   .then(() => {
+   const users = initialUsers.map(u => User.create(u, {individualHooks: true}))
+    Promise.all(users) 
+  /* .then(() => {
     User.bulkCreate(initialUsers);
-  })
+  }) */
   .then(() => {
     Order.bulkCreate(initialOrders);
   })
-   /*.then(() => {
+  .then(() => {
     Orderline.bulkCreate(initialOrderlines);
-  }) */
-
+  })
+})
   .catch((error) => console.log('Error al bulkcreate', error))
 
-
-/*  const users = initialUsers.map(u => User.create(u, {individualHooks: true}))
-      /*User.bulkCreate(initialUsers, 
-          // para que ejecute el hook beforeCreate y hashee el pasword
-          {individualHooks: true});*/ 

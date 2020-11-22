@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { total } from './total';
 
 //const MySwal = withReactContent(Swal)
 
@@ -45,6 +46,9 @@ const useStyles = makeStyles({
     display: "flex",
     marginLeft: "62%",
   },
+  black: {
+    backgroundColor: '#303030',
+  }
 
 });
 
@@ -82,10 +86,7 @@ export default function UserOrderList() {
   const userList = useSelector(state => state.Order.userItem);
   const userInfoList = useSelector(state => state.Order.userInfo);
 
-  
-
-
-  //action UserOrderList
+   //action UserOrderList
   useEffect(() => {
     dispatch(getUserOrders(id.id))
     dispatch(getUserInfo(id.id))
@@ -111,11 +112,11 @@ export default function UserOrderList() {
 
           <TableHead >
             <TableRow>
-              <StyledTableCell align="center">orden Id</StyledTableCell>
-              <StyledTableCell align="center">Product Id</StyledTableCell>
-              <StyledTableCell align="center">Price </StyledTableCell>
-              <StyledTableCell align="center">Quantity</StyledTableCell>
-              <StyledTableCell align="center">Total</StyledTableCell>
+              <StyledTableCell className={classes.black} align="center">orden Id</StyledTableCell>
+              <StyledTableCell className={classes.black} align="center">Product Id</StyledTableCell>
+              <StyledTableCell className={classes.black} align="center">Price </StyledTableCell>
+              <StyledTableCell className={classes.black} align="center">Quantity</StyledTableCell>
+              <StyledTableCell className={classes.black} align="center">Total</StyledTableCell>
 
             </TableRow>
           </TableHead>
@@ -130,9 +131,17 @@ export default function UserOrderList() {
                 <TableCell scope="row" align="center">{item.productId}</TableCell>
                 <TableCell scope="row" align="center"> {item.price}</TableCell>
                 <TableCell scope="row" align="center">{item.quantity}</TableCell>
-                <TableCell scope="row" align="center">{item.quantity * item.price}</TableCell>
+                <TableCell scope="row" align="center">{item.subtotal}</TableCell>
               </TableRow>
+              
             ))}
+            <TableRow key="total">
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center">Total:</TableCell>
+                <TableCell scope="row" align="center">{total(userList)}</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
@@ -146,7 +155,7 @@ export default function UserOrderList() {
 
           <TableHead >
             <TableRow>
-              <StyledTableCell scope="row" align="center">User Information</StyledTableCell>
+              <StyledTableCell className={classes.black} scope="row" align="center">User Information</StyledTableCell>
             </TableRow>
           </TableHead>
 
@@ -173,7 +182,7 @@ export default function UserOrderList() {
 
         <TableHead >
           <TableRow>
-            <StyledTableCell width="200px" align="center">Payment Information</StyledTableCell>
+            <StyledTableCell className={classes.black} width="200px" align="center">Payment Information</StyledTableCell>
 
             <TableCell scope="row" width="800px" align="center" >
               <ButtonGroup align="center" variant="text" color="primary" aria-label="text primary button group">

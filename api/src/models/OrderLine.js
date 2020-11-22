@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        subtotal: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
         
     })
 }

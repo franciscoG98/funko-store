@@ -28,43 +28,12 @@ server.get('/:idUser/cart', (req, res) => {
         .catch(err => res.json(err))
 })
 
-//POST a carrito
-
-/* server.post('/:idUser/cart', (req, res) =>{
-   const {idUser} = req.params;
-   const  orderlines  = req.body; //esto seria el arrMap[orderlines] 
-   //const { productId, price, quantity } = orderlines;	
-   return Order.findOrCreate({
-        where:{
-            userId: idUser,
-            state: 'cart',    
-            }
-    }).then((orderCreated) => {
-        idOrd = orderCreated[0].id
-        return Orderline.findOrCreate({
-            where:{                
-                orderId: idOrd,                         //1          //1
-                productId: orderlines.productId,        //1          //1
-                quantity: orderlines.quantity,          //2          //3 
-                price: orderlines.price,                //10         //20
-                }
-            })
-    }).then((lineCreated)=> {
-       return lineCreated[0].update({
-            productId: orderlines.productId,
-            quantity: orderlines.quantity,
-            price: orderlines.price,
-        })
-        }).then((r)=> res.json(r))
-        .catch(err=> res.json(err))
-})  */
 //recibimos una orderline , completa (cada vez que agregan un producto, ya sea que el prod esté en el carro o no)
 //compro un capi, recibo: {id: (id de OL), orderid: ..., prodId: 1, quant:1, price: 10}
 //compro otro capi, recibo: {id: (id de OL), orderid: ", prodId: 1, quant:2, price: 20}
 
 server.post('/:idUser/cart', async (req, res) => {
     const { idUser } = req.params;
-    //console.log(idUser)
     const prod = req.body;
     const Orden = await Order.findOrCreate({
         where: {
@@ -84,6 +53,7 @@ server.post('/:idUser/cart', async (req, res) => {
             productId: prod.id,
             quantity: orderFound.quantity +1 ,
             price: prod.price,
+            subtotal: orderFound.subtotal + prod.price
         }).then((r) => res.json(r))
     } else {
         return Orderline.create({
@@ -91,39 +61,25 @@ server.post('/:idUser/cart', async (req, res) => {
             productId: prod.id,
             quantity: prod.quantity,
             price: prod.price,
+            subtotal: prod.price * prod.quantity
         })
             .then((r) => res.json(r))
             .catch(err => res.json(err))
     }
 })
 
-/* server.put('/:idUser/cart', (req, res) => {
-    const { idUser } = req.params;
-    //const  orderlines  = req.body; //esto seria el arrMap[orderlines] 
-    const { productId, price, quantity } = req.body;
-    return Order.findOne({
+//delete orderline
+server.delete('/:idUser/cart/:prodId', (req, res) => {
+    const { idUser, prodId } = req.params;
+     return Orderline.destroy({
         where: {
-            userId: idUser,
-            state: 'cart',
+            productId: prodId
         }
-    }).then((orderFound) => {
-        idO = orderFound.id
-        return Orderline.findOne({
-            where: {
-                orderId: idO,
-                productId: productId,
-            }
-        })
-    }).then((lineFound) => {
-        lineFound.update({
-            productId: productId,
-            quantity: quantity,
-            price: price
-        })
-    }).then((r) => res.json("OK"))
-        .catch(err => res.json(err))
+    })
+    .then(()=> res.json("Voló"))
+    .catch(err => res.json(err))
+   
 })
- */
 //GET /users
 server.get('/:id/orders', (req, res) => {
     const { id } = req.params
