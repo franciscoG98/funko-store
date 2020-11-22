@@ -43,6 +43,18 @@ export default (state = initialState, action) => {
                 carrito: action.payload
             }
 
+        case "INCREASE_ORDER_LINE":
+            return {
+                ...state,
+                carrito: action.payload
+            }
+
+        case "DECREASE_ORDER_LINE":
+            return {
+                ...state,
+                carrito: action.payload
+            }
+
         case "GET_USER_INFO":
             return {
                 ...state,
@@ -54,6 +66,7 @@ export default (state = initialState, action) => {
                 cart: action.payload.data.orderlines,
                 cartProd: action.payload.data.products
             }
+
 
 
         default: return state;

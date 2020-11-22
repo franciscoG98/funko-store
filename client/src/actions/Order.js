@@ -30,6 +30,26 @@ export function UpdateOrderLine(prod, idUser) {
     }
 }
 
+export function DecreaseOrderLine(prod, idUser) {
+    
+    return (dispatch) => {
+        prod.quantity -= 2;
+        return Axios.put(`http://localhost:3001/users/${idUser}/cart`, prod)
+            .then(json => {
+                dispatch({ type: 'DECREASE_ORDER_LINE', payload: json });
+            })
+    }
+}
+
+export function IncreaseOrderLine(prod, idUser) {
+    return (dispatch) => {
+        return Axios.put(`http://localhost:3001/users/${idUser}/cart`, prod)
+            .then(json => {
+                dispatch({ type: 'INCREASE_ORDER_LINE', payload: json });
+            })
+    }
+}
+
 export function deleteItem(userId, id) {
     return (dispatch) => {
         Axios.delete(`http://localhost:3001/users/${userId}/cart/${id}`)

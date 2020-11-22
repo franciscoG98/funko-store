@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem,/*  UpdateOrderLine, */ getCarrito } from '../../actions/Order';
+import { deleteItem, UpdateOrderLine, getCarrito, DecreaseOrderLine, IncreaseOrderLine } from '../../actions/Order';
+
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
@@ -15,6 +16,19 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+
+
+
+import Badge from '@material-ui/core/Badge';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+
+
+
+
 
 
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
@@ -204,7 +218,7 @@ const ShoppingCart2 = () => {
               <StyledTableCell className= {classes.cells} align="left"></StyledTableCell>
               <StyledTableCell className= {classes.cells} align="left">Funko</StyledTableCell>
               <StyledTableCell className= {classes.cells} align="left"></StyledTableCell>
-              <StyledTableCell className= {classes.cells} align="right">Quantity</StyledTableCell>
+              <StyledTableCell className= {classes.cells} align="center">Quantity</StyledTableCell>
               <StyledTableCell className= {classes.cells} align="right">Subtotal</StyledTableCell>
             </TableRow>
           </TableHead>
@@ -220,10 +234,38 @@ const ShoppingCart2 = () => {
                 <StyledTableCell align="left">
                   <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
-                <StyledTableCell style= {{fontSize: '18px', paddingRight: '42px'}} align="right">{i.quantity}</StyledTableCell>
+                <StyledTableCell style= {{fontSize: '18px', paddingRight: '42px'}} align="center">
+                    
+                  <ButtonGroup>
+                  <Button style= {{borderRight: '1px solid #bfbfbf' }}
+                    aria-label="reduce"
+                    onClick={(i) => 
+                      dispatch(DecreaseOrderLine (i, userId) )
+                    }
+                    >
+                    <RemoveIcon fontSize="small" />
+                    </Button>
+                    <span style={{display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '10px'}} >
+
+                    {i.quantity}
+
+                    </span>
+                      
+                    
+                    <Button style= {{/* marginLeft: '30px' */}}
+                      aria-label="increase"
+                      onClick={(i) => dispatch(IncreaseOrderLine (i, userId) ) } >
+                      <AddIcon fontSize="small" />
+                    </Button>
+                  </ButtonGroup>
+                    
+                </StyledTableCell>
                 <StyledTableCell style= {{fontSize: '17px', paddingRight: '30px'}} align="right">${i.subtotal}</StyledTableCell>
               </StyledTableRow>
             ))}
+
+
+          
 
 
             {/* parte de abajo */}
