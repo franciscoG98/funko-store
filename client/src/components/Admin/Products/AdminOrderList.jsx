@@ -77,10 +77,10 @@ export default function AdminOrderList() {
 
           <TableHead >
             <TableRow>
-              <StyledTableCell align="center">Id</StyledTableCell>
-              <StyledTableCell align="center">Total</StyledTableCell>
-              <StyledTableCell align="center">Estado</StyledTableCell>
-              <StyledTableCell align="center">UserId</StyledTableCell>
+              <StyledTableCell style= {{backgroundColor: '#303030'}} align="center">Id</StyledTableCell>
+              <StyledTableCell style= {{backgroundColor: '#303030'}} align="center">Total</StyledTableCell>
+              <StyledTableCell style= {{backgroundColor: '#303030'}} align="center">Estado</StyledTableCell>
+              <StyledTableCell style= {{backgroundColor: '#303030'}} align="center">UserId</StyledTableCell>
 
             </TableRow>
           </TableHead>

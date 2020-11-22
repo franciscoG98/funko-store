@@ -17,7 +17,7 @@ import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';
 import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
 
-let protectionTest = false;
+let protectionTest = true;
 
 function SecuredRoute(props) {
   return (

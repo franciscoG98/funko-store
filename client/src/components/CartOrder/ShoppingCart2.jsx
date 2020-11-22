@@ -227,10 +227,10 @@ const ShoppingCart2 = () => {
 
 
             {/* parte de abajo */}
-            <StyledTableCell style={{fontFamily: 'Cairo', fontSize: '22px'/* , fontWeight: 'bold' */}} align="left">TOTAL:</StyledTableCell>
+            <StyledTableCell style={{fontFamily: 'Cairo', fontSize: '23px'/* , fontWeight: 'bold' */}} align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell style= {{fontSize: '21px'}} align="right">${total(carro2)} </StyledTableCell>
+            <StyledTableCell style= {{fontSize: '19px'}} align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>
