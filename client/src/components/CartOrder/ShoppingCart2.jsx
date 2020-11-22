@@ -56,7 +56,7 @@ const useStyles = makeStyles({
   },
   cells: {
     backgroundColor: '#303030',
-    fontSize: '18px'
+    fontSize: '19.5px'
   },
   text: {
     fontSize: '17px',
@@ -220,8 +220,8 @@ const ShoppingCart2 = () => {
                 <StyledTableCell align="left">
                   <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
-                <StyledTableCell className= {classes.text} align="right">{i.quantity}</StyledTableCell>
-                <StyledTableCell className= {classes.text} align="right">${i.subtotal}</StyledTableCell>
+                <StyledTableCell style= {{fontSize: '18px', paddingRight: '42px'}} align="right">{i.quantity}</StyledTableCell>
+                <StyledTableCell style= {{fontSize: '17px', paddingRight: '30px'}} align="right">${i.subtotal}</StyledTableCell>
               </StyledTableRow>
             ))}
 
@@ -230,7 +230,7 @@ const ShoppingCart2 = () => {
             <StyledTableCell style={{fontFamily: 'Cairo', fontSize: '23px'/* , fontWeight: 'bold' */}} align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell style= {{fontSize: '19px'}} align="right">${total(carro2)} </StyledTableCell>
+            <StyledTableCell style= {{fontSize: '21px', paddingRight: '26px'}} align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>
