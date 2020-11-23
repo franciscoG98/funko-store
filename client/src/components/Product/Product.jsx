@@ -45,9 +45,7 @@ const Product = ({ f }) => {
   };
 
   //---------------------------------------------------------------------------------
-  // const [guest, setGuest] = useState(
-  //   [window.localStorage.getItem('guest')]
-  // )
+
 
 
   const userId = 1;
@@ -58,11 +56,7 @@ const Product = ({ f }) => {
       dispatch(UpdateOrderLine(f, userId))
     }
     else {
-      try {
-        dispatch(saveToLocalStorage(f))
-      } catch (e) {
-        console.log(e)
-      }
+      dispatch(saveToLocalStorage(f))
     }
 
   }

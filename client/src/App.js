@@ -18,17 +18,17 @@ import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
 import CommentBox from '../src/components/Reviews/commentbox';
 import Reviews from "../src/components/Reviews/Reviews"
-
+const loggedUser = true;
 function SecuredRoute(props) {
 
-  const loggedUser = useSelector(state => state.Login.login.user.isAdmin);
+  // const loggedUser = useSelector(state => state.Login.login.user.isAdmin);
 
   return (
-    <Route path={props.path} render= {data => loggedUser ? 
+    <Route path={props.path} render={data => loggedUser ?
 
-      (<props.component {...data}></props.component>)  : 
+      (<props.component {...data}></props.component>) :
 
-    (<Redirect to= {{pathname: '/'}}></Redirect>)}></Route>
+      (<Redirect to={{ pathname: '/' }}></Redirect>)}></Route>
   )
 }
 
@@ -62,30 +62,30 @@ function App() {
 
       <div className={marvel === true ? 'marvel' : 'dc'}>
         <BrowserRouter>
-         
-          < Nav />
-          
-          <div className='divswitch'>            
-              <button className= 'butt' onClick={() => setMarvel(true)}>  MARVEL  </button>
 
-              <button className= 'butt2' onClick={() => setMarvel(false)}>  DC  </button> 
+          < Nav />
+
+          <div className='divswitch'>
+            <button className='butt' onClick={() => setMarvel(true)}>  MARVEL  </button>
+
+            <button className='butt2' onClick={() => setMarvel(false)}>  DC  </button>
           </div>
-          
+
           < Route exact path='/' component={Products} />
-          < Route exact path='/ShoppingCart2' component={ShoppingCart2} />    
-          < Route exact path='/product/:nombreCat' component={CategoryProduct} />          
+          < Route exact path='/ShoppingCart2' component={ShoppingCart2} />
+          < Route exact path='/product/:nombreCat' component={CategoryProduct} />
           < Route exact path='/products/search/:search' component={Search} />
           < SecuredRoute exact path='/admin/categories' component={ListCategories} />
           < SecuredRoute exact path='/admin/products' component={ListProducts} />
           < SecuredRoute exact path='/products/admin' component={AdminOrderList} />
-          < SecuredRoute exact path= '/auth/promote/:id' />
+          < SecuredRoute exact path='/auth/promote/:id' />
           < Route exact path='/user/:id/product/' component={UserOrderList} />
           < Route exact path='/register' component={Register} />
           < Route exact path='/login' component={UserLogin} />
           < Route exact path='/lost-password' component={ResetPassword} />
 
-          <Route exact path='/:id/reviews' component = {CommentBox}/>
-          <Route exact path='/allreviews/:id' component = {Reviews}/>
+          <Route exact path='/:id/reviews' component={CommentBox} />
+          <Route exact path='/allreviews/:id' component={Reviews} />
         </BrowserRouter>
       </div>
 
