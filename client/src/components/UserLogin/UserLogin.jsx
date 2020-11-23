@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { loginUser } from '../../actions/Login';
 
+import { useHistory } from "react-router-dom";
 
 import useStyles from './UserLoginStyles';
 
@@ -26,7 +27,7 @@ function Copyright() {
             {'Copyright © '}
             <Link style= {{color: '#FFD700'}}  color="yellow" href="https://soyhenry.com/" target="_blank">
                 Powered by Henry
-      </Link>{' '}
+            </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
@@ -48,15 +49,17 @@ function UserLogin() {
         setLogin({ ...login, [e.target.id]: e.target.value })
     }
 
+    let history = useHistory();
+    
+
     //axios for submit data
     const handleSubmit = e => {
         e.preventDefault()
 
         dispatch(loginUser(login));
+        history.push("/");
 
     }
-
-
 
 
     return (
@@ -110,12 +113,12 @@ function UserLogin() {
                     // onSubmit={handleSubmit}
                     >
                         Sign In
-          </Button>
+                    </Button>
                     <Grid container>
                         <Grid item xs>
                             <Link style= {{color: '#303030'}}  href="/lost-password" variant="body2">
                                 Forgot password?
-              </Link>
+                            </Link>
                         </Grid>
                         <Grid item>
                             <Link style= {{color: '#303030'}}  href="/register" variant="body2">
