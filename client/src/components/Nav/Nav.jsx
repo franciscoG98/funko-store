@@ -196,7 +196,7 @@ export default function PrimarySearchAppBar() {
 
           {/* Menu */}
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link style={{ textDecoration: 'none', color: 'white' }} to='/'> Funko's Store </Link>
+            <Link style={{ textDecoration: 'none', color: 'white', fontFamily: 'Trade Winds', marginLeft: '22px' }} to='/'> Funko's Store </Link>
           </Typography>
 
           <div className={classes.grow} />

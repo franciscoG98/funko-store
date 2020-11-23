@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
-import Products from './components/Products/Products';
+import { Provider } from 'react-redux';
+import store from './store';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import './App.css';
+
+import Products from './components/Products/Products';
 import Nav from '../src/components/Nav/Nav';
-import { BrowserRouter, Route } from 'react-router-dom';
 import ListCategories from './components/Admin/Categories/ListCategories';
 import ListProducts from "./components/Admin/Products/listProducts";
 import CategoryProduct from './components/CategoryProduct/CategoryProduct';
-import Button from '@material-ui/core/Button';
 import Search from "./components/SearchBar/Search";
 import AdminOrderList from './components/Admin/Products/AdminOrderList';
 import UserOrderList from './components/CartOrder/UserOrderList';
-import { Provider } from 'react-redux';
 import Register from "./components/User/form";
-import store from './store';
 import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';
 import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
+import Review from '../src/components/Reviews/commentbox'
+
+let protectionTest = true;
+
+function SecuredRoute(props) {
+  return (
+    <Route path={props.path} render= {data => protectionTest  ? 
+
+      (<props.component {...data}></props.component>)  : 
+
+    (<Redirect to= {{pathname: '/'}}></Redirect>)}></Route>
+  )
+}
 
 
 function App() {
@@ -27,49 +40,30 @@ function App() {
     <Provider store={store}>
 
       <div className={marvel === true ? 'marvel' : 'dc'}>
-
         <BrowserRouter>
-
+         
           < Nav />
+          
+          <div className='divswitch'>            
+              <button className= 'butt' onClick={() => setMarvel(true)}>  MARVEL  </button>
 
-          <div className='divswitch'>
-
-            
-              <button className= 'butt' onClick={() => setMarvel(true)}> MARVEL </button>
-            
-
-            
-              <button className= 'butt2' onClick={() => setMarvel(false)}>   DC    </button>
-            
-
+              <button className= 'butt2' onClick={() => setMarvel(false)}>  DC  </button> 
           </div>
-
+          
           < Route exact path='/' component={Products} />
-
-          < Route exact path='/ShoppingCart2' component={ShoppingCart2} />
-
-          < Route exact path='/admin/categories' component={ListCategories} />
-
-          < Route exact path='/admin/products' component={ListProducts} />
-
-          < Route exact path='/product/:nombreCat' component={CategoryProduct} />
-
+          < Route exact path='/ShoppingCart2' component={ShoppingCart2} />    
+          < Route exact path='/product/:nombreCat' component={CategoryProduct} />          
           < Route exact path='/products/search/:search' component={Search} />
-
-          < Route exact path='/products/admin' component={AdminOrderList} />
-
+          < SecuredRoute exact path='/admin/categories' component={ListCategories} />
+          < SecuredRoute exact path='/admin/products' component={ListProducts} />
+          < SecuredRoute exact path='/products/admin' component={AdminOrderList} />
           < Route exact path='/user/:id/product/' component={UserOrderList} />
-
           < Route exact path='/register' component={Register} />
-
           < Route exact path='/login' component={UserLogin} />
-
           < Route exact path='/lost-password' component={ResetPassword} />
-
-
+          <Route exact path='/reviews' component = {Review}/>
 
         </BrowserRouter>
-
       </div>
 
     </Provider>

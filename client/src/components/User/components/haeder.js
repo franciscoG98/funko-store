@@ -10,13 +10,13 @@ const useStyles = makeStyles((theme)=>({
         margin: theme.spacing(3, 0, 2),
         fontFamily: 'Philosopher',
         textAlign: 'center',
-        fontSize: '48px',
+        fontSize: '20px',
         color: '#3f51b5',
         textShadow: '1px 1px white'
     },
     user: {
-        fontFamily: 'Cairo',
-        fontSize: '50px',
+        fontFamily: 'Trade Winds',
+        fontSize: '42.4px',
         color: '#303030'
     },
 }))

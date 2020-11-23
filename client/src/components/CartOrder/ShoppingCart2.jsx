@@ -34,6 +34,7 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     fontSize: 14,
   },
+ 
 
 }))(TableCell);
 
@@ -52,7 +53,27 @@ const useStyles = makeStyles({
   },
   op: {
     opacity: '88%'
-  }
+  },
+  cells: {
+    backgroundColor: '#303030',
+    fontSize: '19.5px'
+  },
+  text: {
+    fontSize: '17px',
+
+  },
+  buy: {
+    fontFamily: 'Cairo',
+    fontSize: '18px',
+    backgroundColor: '#f2f2f2',
+    color: 'black',
+    fontWeight: 'bold',
+    '&:hover': {
+      backgroundColor: '#303030',
+      color: 'white',
+      transition: '0.4s',
+    }
+  },
 });
 
 const ShoppingCart2 = () => {
@@ -180,11 +201,11 @@ const ShoppingCart2 = () => {
           {/* titulo */}
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="left">Funko Name</StyledTableCell>
-              <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="right">Quantity</StyledTableCell>
-              <StyledTableCell align="right">Subtotal</StyledTableCell>
+              <StyledTableCell className= {classes.cells} align="left"></StyledTableCell>
+              <StyledTableCell className= {classes.cells} align="left">Funko</StyledTableCell>
+              <StyledTableCell className= {classes.cells} align="left"></StyledTableCell>
+              <StyledTableCell className= {classes.cells} align="right">Quantity</StyledTableCell>
+              <StyledTableCell className= {classes.cells} align="right">Subtotal</StyledTableCell>
             </TableRow>
           </TableHead>
           {/* cuerpo */}
@@ -193,27 +214,27 @@ const ShoppingCart2 = () => {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
+                  <Button style={{color: 'black'}} size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
-                <StyledTableCell align="left">{i.prodName}</StyledTableCell>
+                <StyledTableCell className= {classes.text} align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
                   <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
-                <StyledTableCell align="right">{i.quantity}</StyledTableCell>
-                <StyledTableCell align="right">${i.subtotal}</StyledTableCell>
+                <StyledTableCell style= {{fontSize: '18px', paddingRight: '42px'}} align="right">{i.quantity}</StyledTableCell>
+                <StyledTableCell style= {{fontSize: '17px', paddingRight: '30px'}} align="right">${i.subtotal}</StyledTableCell>
               </StyledTableRow>
             ))}
 
 
             {/* parte de abajo */}
-            <StyledTableCell align="left">TOTAL:</StyledTableCell>
+            <StyledTableCell style={{fontFamily: 'Cairo', fontSize: '23px'/* , fontWeight: 'bold' */}} align="left">TOTAL:</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right">${total(carro2)} </StyledTableCell>
+            <StyledTableCell style= {{fontSize: '21px', paddingRight: '26px'}} align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>
-                <Button autoFocus color="primary">
+                <Button className= {classes.buy} /* autoFocus color="primary" */>
                   Buy
                 </Button>
               </Link>
