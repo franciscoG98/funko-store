@@ -64,6 +64,7 @@ server.post(
 // Logout
 server.get("/logout", isAuthenticated, (req, res) => {
   req.logOut();
+  window.localStorage.clear() 
   res.send({ message: "You've logged out from your account" });
 });
 

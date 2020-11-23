@@ -90,7 +90,6 @@ const Product = ({ f }) => {
             {f.stock > 0 ? <span style={{ opacity: '100%', color: 'green', fontFamily: 'Calibri', fontSize: '17px' }}>Available</span> : <span style={{ color: "red", marginLeft: '1px', fontFamily: 'Calibri', fontSize: '17px' }}>No Stock</span>}
           </Typography>
 
-          <Reviews />
         </CardContent>
       </CardActionArea>
       <CardActions>
