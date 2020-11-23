@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     description: {
-      type: DataTypes.ENUM('Useless', 'Poor', 'Ok', 'Good', 'Excellent' ),
+      type: DataTypes.TEXT,
       allowNull: false,
     }
   });

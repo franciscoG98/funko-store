@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../actions/Login';
 import { Link } from 'react-router-dom';
 import useStyles from './NavStyles';
 import './Nav.css';
@@ -23,12 +24,17 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-
-
 export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
   const order = useSelector(state => state.Order.items);
+  const dispatch = useDispatch();
+
+  // const loggedUser = localStorage.getItem("Login"); 
+  
+  const loggedUser = useSelector(state => state.Login.login.user.username);
+
+// console.log(loggedUser);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -101,12 +107,21 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-728px', marginLeft: '-255px' }}
-    >
-      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <img class="circle" src='https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg' alt='profile pic' style={{ width: 'auto', height: '60px' }} /> <span className='signedas'> Signed as you </span> </MenuItem>
-      <MenuItem onClick={handleMenuClose}> <span className= 'signout'> Sign out </span> </MenuItem>
+      style={{ opacity: '80%', marginTop: '-717px', marginLeft: '-272px' }}
+    >     
+    <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px'}} >
+      <MenuItem onClick={handleUserMenuClose}> <span className= 'signout'> Sign in! </span> </MenuItem>
+    </Link>
+    
+      
+      <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
+          <span className='signedas'> Signed as {loggedUser} </span>  
+      </MenuItem>
+      
+      <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px'}} >
+        <MenuItem onClick={handleUserMenuClose}> <span className= 'signout'> Sign out </span> </MenuItem>
+      </Link>
+
       {/* <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem> */}
 
     </Menu>    
@@ -196,7 +211,7 @@ export default function PrimarySearchAppBar() {
 
           {/* Menu */}
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link style={{ textDecoration: 'none', color: 'white' }} to='/'> Funko's Store </Link>
+            <Link style={{ textDecoration: 'none', color: 'white', fontFamily: 'Trade Winds', marginLeft: '22px' }} to='/'> Funko's Store </Link>
           </Typography>
 
           <div className={classes.grow} />
@@ -235,9 +250,11 @@ export default function PrimarySearchAppBar() {
             </Link>
 
             {/* user */}
-            <Link to="/register" style={{ textDecoration: 'none', color: 'white' }} >
+            
               <IconButton
                 aria-label="show 0 new notifications"
+                aria-controls={menuId}
+                onClick={handleLoggedUserMenu}
                 color="inherit"
               // edge="end"
               // aria-label="account of current user"
@@ -248,7 +265,7 @@ export default function PrimarySearchAppBar() {
               >
                 <AccountCircle />
               </IconButton>
-            </Link>
+         
 
             {/* la tuerquitas visteSSS */}
             <IconButton
@@ -269,20 +286,7 @@ export default function PrimarySearchAppBar() {
 
           </div>
 
-          <IconButton
-              // aria-label="show 0 new notifications" 
-              color="inherit"
-              /* edge="end" */
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleLoggedUserMenu}
-              color="inherit"
-            >
-              <Badge badgeContent={0} color="secondary">
-                <Avatar />
-              </Badge>
-            </IconButton>
+         
 
          
           <div className={classes.sectionMobile}>

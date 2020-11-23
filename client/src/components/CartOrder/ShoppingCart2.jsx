@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem,/*  UpdateOrderLine, */ getCarrito } from '../../actions/Order';
+import { deleteItem, UpdateOrderLine, getCarrito, DecreaseOrderLine, IncreaseOrderLine } from '../../actions/Order';
+
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
@@ -15,6 +16,19 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+
+
+
+import Badge from '@material-ui/core/Badge';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+
+
+
+
 
 
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
@@ -35,6 +49,7 @@ const StyledTableCell = withStyles((theme) => ({
     fontSize: 14,
   },
 
+
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
@@ -52,6 +67,34 @@ const useStyles = makeStyles({
   },
   op: {
     opacity: '88%'
+  },
+  cells: {
+    backgroundColor: '#303030',
+    fontSize: '19.5px'
+  },
+  quantitycell: {
+    backgroundColor: '#303030',
+    fontSize: '19.5px',
+    paddingRight: '42px'
+  },
+  text: {
+    fontSize: '17px',
+
+  },
+  buy: {
+    fontFamily: 'Cairo',
+    fontSize: '20px',
+    backgroundColor: '#f2f2f2',
+    color: 'black',
+    fontWeight: 'bold',
+    '&:hover': {
+      backgroundColor: '#303030',
+      color: 'white',
+      transition: '0.4s',
+    }
+  },
+  hover: {
+
   }
 });
 
@@ -129,7 +172,7 @@ const ShoppingCart2 = () => {
   const deleteItemCart = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "This will remove the funko from your cart!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -141,7 +184,7 @@ const ShoppingCart2 = () => {
 
         MySwal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'Your funko is no longer in the cart.',
           'success'
         )
       }
@@ -150,7 +193,8 @@ const ShoppingCart2 = () => {
     });
 
   };
-  //console.log('orderlines antes de la ifi:\n', carro)
+  console.log('orderlines antes de la ifi:\n', carro)
+
 
 
 
@@ -177,6 +221,14 @@ const ShoppingCart2 = () => {
     carro2[index].prodName = prod2[index].name
     carro2[index].prodImg = prod2[index].imagen
   }
+  /*  const handleAddIcon = function (prod, id){
+    prod.quantity += 1
+    dispatch(IncreaseOrderLine (prod, id)) 
+   }
+   const handleRemoveIcon = function (prod, id){
+    prod.quantity -= 1
+    dispatch(IncreaseOrderLine (prod, id)) 
+   } */
 
   return (
     <div className={classes.op} style={{ width: '70%', margin: 'auto' }}>
@@ -186,11 +238,11 @@ const ShoppingCart2 = () => {
           {/* titulo */}
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="left">Funko Name</StyledTableCell>
-              <StyledTableCell align="left"></StyledTableCell>
-              <StyledTableCell align="right">Quantity</StyledTableCell>
-              <StyledTableCell align="right">Subtotal</StyledTableCell>
+              <StyledTableCell className={classes.cells} align="left"></StyledTableCell>
+              <StyledTableCell className={classes.cells} align="left">Funko</StyledTableCell>
+              <StyledTableCell className={classes.cells} align="left"></StyledTableCell>
+              <StyledTableCell className={classes.quantitycell} align="center">Quantity</StyledTableCell>
+              <StyledTableCell className={classes.cells} align="right">Subtotal</StyledTableCell>
             </TableRow>
           </TableHead>
           {/* cuerpo */}
@@ -199,28 +251,54 @@ const ShoppingCart2 = () => {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
+                  <Button style={{ color: 'black' }} size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
-                <StyledTableCell align="left">{i.prodName}</StyledTableCell>
+                <StyledTableCell className={classes.text} align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
                   <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
-                <StyledTableCell align="right">{i.quantity}</StyledTableCell>
-                <StyledTableCell align="right">${i.subtotal}</StyledTableCell>
+                <StyledTableCell style={{ fontSize: '18px', paddingRight: '42px' }} align="center">
+
+                  <ButtonGroup>
+
+                    <Button className='hover'
+                      style={{ borderRight: '1px solid #bfbfbf' }}
+                      aria-label="reduce"
+                      onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseOrderLine(i, userId))}
+                    >
+                      <RemoveIcon fontSize="small" />
+                    </Button>
+                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '10px', marginRight: '11px' }} >
+
+                      {i.quantity}
+
+                    </span>
+                    <Button className='hover'
+                      aria-label="increase"
+                      onClick={() => dispatch(IncreaseOrderLine(i, userId))} >
+                      <AddIcon fontSize="small" />
+                    </Button>
+                  </ButtonGroup>
+
+                </StyledTableCell>
+                <StyledTableCell style={{ fontSize: '17px', paddingRight: '30px' }} align="right">${i.quantity * i.price}</StyledTableCell>
               </StyledTableRow>
             ))}
 
 
+
+
+
             {/* parte de abajo */}
-            <StyledTableCell align="left">TOTAL:</StyledTableCell>
+            <StyledTableCell style={{ fontFamily: 'Cairo', fontSize: '24px'/* , fontWeight: 'bold' */ }} align="left">TOTAL</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell align="right">${total(carro2)} </StyledTableCell>
+            <StyledTableCell style={{ fontSize: '25px' }} align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               {/* ternario aca que si es usuario 0 me redireccione a login */}
               <Link to={`/user/1/product`}>
-                <Button autoFocus color="primary">
+                <Button className={classes.buy} /* autoFocus color="primary" */>
                   Buy
                 </Button>
               </Link>

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './DetailModalStyle.css';
 import Button from '@material-ui/core/Button';
 import Reviews from "../Reviews/Reviews";
@@ -9,7 +10,8 @@ import Typography from '@material-ui/core/Typography';
 
 export default function DetailModal({f}) {
 
-    const {name, description, price, imagen, stock} = f;
+    const {name, description, price, imagen, stock, id} = f;
+    const user = true;
     const dispatch = useDispatch();
 
     return (
@@ -40,7 +42,6 @@ export default function DetailModal({f}) {
                     Price: ${price}
                 </Typography>
                 <br/>
-                <Reviews />  
 
                 <br />
                 {stock > 0 ? <Button color="primary" onClick={() => dispatch( addItem(f.id) )}>
@@ -48,7 +49,7 @@ export default function DetailModal({f}) {
                 <AddShoppingCartRoundedIcon />
                 Add To Cart 
                 </Button>: null}
-                    
+                {user ? <Link to={`/${id}/reviews`} >Add Your Review</Link> : null} 
                {/* )} */}
             </div>
         </div>

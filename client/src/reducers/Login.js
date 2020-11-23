@@ -10,6 +10,12 @@ export default (state = initialState, action) => {
                 ...state,
                 login: action.payload.data
             }
+
+        case "LOGOUT":
+            return {
+                login: []
+            }
+
         case "RESET_PASSWORD":
             return {
                 ...state,
