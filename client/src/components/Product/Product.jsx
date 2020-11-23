@@ -57,15 +57,13 @@ const Product = ({ f }) => {
     if (userId) {
       dispatch(UpdateOrderLine(f, userId))
     }
-    // else {
-    //   try {
-    //     // setGuest(f)
-    //     // window.localStorage.setItem('guest', f)
-    //     saveToLocalStorage(f)
-    //   } catch (e) {
-    //     console.log(e)
-    //   }
-    // }
+    else {
+      try {
+        dispatch(saveToLocalStorage(f))
+      } catch (e) {
+        console.log(e)
+      }
+    }
 
   }
   //---------------------------------------------------------------------------------
@@ -85,7 +83,6 @@ const Product = ({ f }) => {
           title={f.name}
         />
         <CardContent>
-<<<<<<< HEAD
           <Typography style={{ fontFamily: 'Ubuntu', fontSize: '30px', fontWeight: 'light', fontStyle: 'normal' }} gutterBottom variant="h5" component="h2">
             {f.name}
           </Typography>
@@ -104,27 +101,6 @@ const Product = ({ f }) => {
             {f.stock > 0 ? <span style={{ opacity: '100%', color: 'green', fontFamily: 'Calibri', fontSize: '17px' }}>Available</span> : <span style={{ color: "red", marginLeft: '1px', fontFamily: 'Calibri', fontSize: '17px' }}>No Stock</span>}
           </Typography>
 
-          <Reviews />
-=======
-            <Typography style={{fontFamily: 'Ubuntu', fontSize: '30px', fontWeight: 'light', fontStyle: 'normal'}} gutterBottom variant="h5" component="h2">
-                {f.name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-                <span style={{fontFamily: 'Raleway', fontWeight: "bolder", marginLeft: '1px', fontSize: '15px', color: '#585858'}}> Description: </span> 
-                  <span style={{fontFamily: 'Calibri', marginLeft: '1px', fontSize: '15px', color: '#686868'}}>
-                    {f.description}
-                  </span>
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-                <span style={{fontFamily: 'Raleway', fontWeight: "bolder  ", marginLeft: '1px', fontSize: '15px', color: '#585858'}}> Price: </span> 
-                <span style={{fontFamily: 'Raleway', marginLeft: '1px', fontSize: '13px', color: '#585858', fontWeight: "bolder"}}> $ </span> 
-                <span style={{fontFamily: 'Calibri', marginRight: '3px', fontSize: '16px', color: '#585858'}}> {f.price} </span>
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-                {f.stock > 0 ? <span style= {{opacity: '100%', color: 'green', fontFamily:'Calibri', fontSize: '17px'}}>Available</span> : <span style={{color: "red", marginLeft: '1px', fontFamily:'Calibri', fontSize: '17px'}}>No Stock</span>}
-            </Typography>
-                
->>>>>>> 664d9f032a1f95bc4f838212e7266ca280163149
         </CardContent>
       </CardActionArea>
       <CardActions>
