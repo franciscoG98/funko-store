@@ -71,37 +71,31 @@ server.post('/:idUser/cart', async (req, res) => {
 server.put('/:idUser/cart', async (req, res) => {
     const { idUser } = req.params;
     const prod = req.body;
-    const Orden = await Order.findOrCreate({
+    console.log(prod)
+    return Order.findOne({
         where: {
             userId: idUser,
             state: 'cart',
         }
-    })
-    idOrd = Orden[0].id
-    const orderFound = await Orderline.findOne({
+    }).then((Orden) => {
+      idOrd = Orden.id
+      return Orderline.findOne({
         where: {
             orderId: idOrd,
-            productId: prod.id,
-        }
+            productId: prod.productId,
+            }
+        }) 
     })
-    if (orderFound) {
-        return orderFound.update({
-            productId: prod.id,
-            quantity: prod.quantity +1,
-            price: prod.price,
-            subtotal: orderFound.subtotal + prod.price
-        }).then((r) => res.json(r))
-    } else {
-        return Orderline.create({
-            orderId: idOrd,
-            productId: prod.id,
+    .then((orderlineFound) => {
+        
+        return orderlineFound.update({
             quantity: prod.quantity,
             price: prod.price,
-            subtotal: prod.price * prod.quantity
+            subtotal: orderlineFound.subtotal + prod.price * prod.quantity
         })
-            .then((r) => res.json(r))
-            .catch(err => res.json(err))
-    }
+    }) 
+    .then((e) => res.json(e))
+    .catch(err => res.json(err))
 })
 
 

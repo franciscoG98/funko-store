@@ -158,7 +158,7 @@ const ShoppingCart2 = () => {
   const deleteItemCart = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "This will remove the funko from your cart!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -170,7 +170,7 @@ const ShoppingCart2 = () => {
 
         MySwal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'Your funko is no longer in the cart.',
           'success'
         )
       }
@@ -206,6 +206,14 @@ const ShoppingCart2 = () => {
     carro2[index].prodName = prod2[index].name
     carro2[index].prodImg = prod2[index].imagen
   }
+  /*  const handleAddIcon = function (prod, id){
+    prod.quantity += 1
+    dispatch(IncreaseOrderLine (prod, id)) 
+   }
+   const handleRemoveIcon = function (prod, id){
+    prod.quantity -= 1
+    dispatch(IncreaseOrderLine (prod, id)) 
+   } */
 
   return (
     <div className={classes.op} style={{ width: '70%', margin: 'auto' }}>
@@ -237,11 +245,10 @@ const ShoppingCart2 = () => {
                 <StyledTableCell style= {{fontSize: '18px', paddingRight: '42px'}} align="center">
                     
                   <ButtonGroup>
+                    
                   <Button style= {{borderRight: '1px solid #bfbfbf' }}
                     aria-label="reduce"
-                    onClick={(i) => 
-                      dispatch(DecreaseOrderLine (i, userId) )
-                    }
+                    onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseOrderLine (i, userId) )}
                     >
                     <RemoveIcon fontSize="small" />
                     </Button>
@@ -249,12 +256,10 @@ const ShoppingCart2 = () => {
 
                     {i.quantity}
 
-                    </span>
-                      
-                    
+                    </span>                    
                     <Button style= {{/* marginLeft: '30px' */}}
                       aria-label="increase"
-                      onClick={(i) => dispatch(IncreaseOrderLine (i, userId) ) } >
+                      onClick={() => dispatch(IncreaseOrderLine (i, userId) )} >
                       <AddIcon fontSize="small" />
                     </Button>
                   </ButtonGroup>

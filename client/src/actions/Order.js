@@ -31,9 +31,8 @@ export function UpdateOrderLine(prod, idUser) {
 }
 
 export function DecreaseOrderLine(prod, idUser) {
-    
+    prod.quantity -= 1;
     return (dispatch) => {
-        prod.quantity -= 2;
         return Axios.put(`http://localhost:3001/users/${idUser}/cart`, prod)
             .then(json => {
                 dispatch({ type: 'DECREASE_ORDER_LINE', payload: json });
@@ -43,6 +42,7 @@ export function DecreaseOrderLine(prod, idUser) {
 
 export function IncreaseOrderLine(prod, idUser) {
     return (dispatch) => {
+        prod.quantity += 1
         return Axios.put(`http://localhost:3001/users/${idUser}/cart`, prod)
             .then(json => {
                 dispatch({ type: 'INCREASE_ORDER_LINE', payload: json });
