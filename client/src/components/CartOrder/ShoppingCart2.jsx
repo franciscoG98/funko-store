@@ -72,13 +72,18 @@ const useStyles = makeStyles({
     backgroundColor: '#303030',
     fontSize: '19.5px'
   },
+  quantitycell: {
+    backgroundColor: '#303030',
+    fontSize: '19.5px',
+    paddingRight: '42px'
+  },
   text: {
     fontSize: '17px',
 
   },
   buy: {
     fontFamily: 'Cairo',
-    fontSize: '18px',
+    fontSize: '20px',
     backgroundColor: '#f2f2f2',
     color: 'black',
     fontWeight: 'bold',
@@ -88,6 +93,9 @@ const useStyles = makeStyles({
       transition: '0.4s',
     }
   },
+  hover: {
+
+  }
 });
 
 const ShoppingCart2 = () => {
@@ -226,7 +234,7 @@ const ShoppingCart2 = () => {
               <StyledTableCell className= {classes.cells} align="left"></StyledTableCell>
               <StyledTableCell className= {classes.cells} align="left">Funko</StyledTableCell>
               <StyledTableCell className= {classes.cells} align="left"></StyledTableCell>
-              <StyledTableCell className= {classes.cells} align="center">Quantity</StyledTableCell>
+              <StyledTableCell className= {classes.quantitycell} align="center">Quantity</StyledTableCell>
               <StyledTableCell className= {classes.cells} align="right">Subtotal</StyledTableCell>
             </TableRow>
           </TableHead>
@@ -246,18 +254,19 @@ const ShoppingCart2 = () => {
                     
                   <ButtonGroup>
                     
-                  <Button style= {{borderRight: '1px solid #bfbfbf' }}
+                  <Button className= 'hover'
+                    style= {{borderRight: '1px solid #bfbfbf' }}
                     aria-label="reduce"
                     onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseOrderLine (i, userId) )}
                     >
                     <RemoveIcon fontSize="small" />
                     </Button>
-                    <span style={{display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '10px'}} >
+                    <span style={{display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '10px', marginRight: '11px'}} >
 
                     {i.quantity}
 
                     </span>                    
-                    <Button style= {{/* marginLeft: '30px' */}}
+                    <Button className= 'hover'
                       aria-label="increase"
                       onClick={() => dispatch(IncreaseOrderLine (i, userId) )} >
                       <AddIcon fontSize="small" />
@@ -274,10 +283,10 @@ const ShoppingCart2 = () => {
 
 
             {/* parte de abajo */}
-            <StyledTableCell style={{fontFamily: 'Cairo', fontSize: '23px'/* , fontWeight: 'bold' */}} align="left">TOTAL:</StyledTableCell>
+            <StyledTableCell style={{fontFamily: 'Cairo', fontSize: '24px'/* , fontWeight: 'bold' */}} align="left">TOTAL</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell style= {{fontSize: '21px', paddingRight: '26px'}} align="right">${total(carro2)} </StyledTableCell>
+            <StyledTableCell style= {{fontSize: '25px'}} align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
               <Link to={`/user/1/product`}>
