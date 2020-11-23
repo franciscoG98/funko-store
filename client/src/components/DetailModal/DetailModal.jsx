@@ -10,8 +10,8 @@ import Typography from '@material-ui/core/Typography';
 
 export default function DetailModal({f}) {
 
-    const {name, description, price, imagen, stock} = f;
-    const user = false;
+    const {name, description, price, imagen, stock, id} = f;
+    const user = true;
     const dispatch = useDispatch();
 
     return (
@@ -42,7 +42,6 @@ export default function DetailModal({f}) {
                     Price: ${price}
                 </Typography>
                 <br/>
-                <Reviews />  
 
                 <br />
                 {stock > 0 ? <Button color="primary" onClick={() => dispatch( addItem(f.id) )}>
@@ -50,7 +49,7 @@ export default function DetailModal({f}) {
                 <AddShoppingCartRoundedIcon />
                 Add To Cart 
                 </Button>: null}
-                {user ? <Link to='/reviews'>Add Your Review</Link> : null} 
+                {user ? <Link to={`/${id}/reviews`} >Add Your Review</Link> : null} 
                {/* )} */}
             </div>
         </div>
