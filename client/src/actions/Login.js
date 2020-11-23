@@ -12,6 +12,12 @@ export function loginUser(loginBla) {
     }
 }
 
+export function logout() {
+    return (dispatch) => {
+        return dispatch({ type: "LOGOUT" });
+    }
+}
+
 export function passwordReset(id) {
     return (dispatch) => {
         return Axios.post(`http://localhost:3001/${id}/passwordReset`)

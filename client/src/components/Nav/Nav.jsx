@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../actions/Login';
 import { Link } from 'react-router-dom';
 import useStyles from './NavStyles';
 import './Nav.css';
@@ -27,13 +28,13 @@ export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
   const order = useSelector(state => state.Order.items);
+  const dispatch = useDispatch();
 
   // const loggedUser = localStorage.getItem("Login"); 
-  // console.log(loggedUser);
-
+  
   const loggedUser = useSelector(state => state.Login.login.user.username);
 
-console.log(loggedUser);
+// console.log(loggedUser);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
