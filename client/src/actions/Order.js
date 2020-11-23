@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { loadState, saveState } from '../localStorage/localStorage'; //local storage
 
 
 
@@ -33,9 +34,9 @@ export function UpdateOrderLine(prod, idUser) {
 export function deleteItem(userId, id) {
     return (dispatch) => {
         Axios.delete(`http://localhost:3001/users/${userId}/cart/${id}`)
-        .then(json => {
-            dispatch({ type: 'DELETE_ITEM', payload: id });
-        })
+            .then(json => {
+                dispatch({ type: 'DELETE_ITEM', payload: id });
+            })
     }
 }
 
@@ -77,27 +78,20 @@ export function getUserInfo(id) {
     };
 }
 
-//
+//-------------------------------------------------------------------------------------------
+// guest cart
 export function updateGuestCart() {
     return (dispatch) => {
-        const serializedData = localStorage.getItem("cart");
-        if (serializedData === null) {
-            return undefined;
-        }
-        // const dataParsed = JSON.parse(serializedData);
-        dispatch({ type: "UPDATE_GUEST_CART", payload: serializedData });
+        const cart = loadState()
+        dispatch({ type: "UPDATE_GUEST_CART", payload: cart });
     }
 }
 
 export function saveToLocalStorage(prod) {
     return (dispatch) => {
-        let serializedData = JSON.stringify(prod);
-        if (!localStorage.getItem("cart")) {
-            localStorage.setItem("cart", serializedData);
-            dispatch({ type: "GET_GUEST_CART", payload: serializedData });
-        } else {
-            localStorage.setItem("cart", serializedData)
-        }
+        saveState(prod)
+        dispatch({ type: "GET_GUEST_CART", payload: prod });
     }
 }
 
+//--------------------------------------------------------------------------------------------

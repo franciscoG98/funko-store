@@ -89,9 +89,9 @@ server.get('/:id/orders', (req, res) => {
 })
 
 //Reset password route
-server.post('/:id/passwordReset', (req, res) => {
+server.put('/:id/passwordReset', (req, res) => {
     const { id } = req.params;
-    const resetPassword = req.body;
+    const resetPassword = req.body.password;
 
     User.findOne({
         where: {
@@ -101,8 +101,8 @@ server.post('/:id/passwordReset', (req, res) => {
         .then((data) => {
             data.update({ password: resetPassword })
         })
-        .then((newPass) => {
-            res.json(newPass)
+        .then(() => {
+            res.json(`Your password was successfully updated`)
         })
         .catch(err => {
             res.status(400).json(err)

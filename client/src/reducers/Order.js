@@ -1,13 +1,15 @@
+import { loadState, saveState } from '../localStorage/localStorage'; //local storage
+
 const initialState = {
     items: [],
     orderItem: [],
     cart: [],
     userItem: [],
     userInfo: [],
-    carrito: [],
+    carrito: loadState() === undefined ? [] : loadState(),
     cartProd: [],
-    guest: [],
-    guestUpdate: [],
+
+
 }
 
 
@@ -60,13 +62,13 @@ export default (state = initialState, action) => {
         case "GET_GUEST_CART":
             return {
                 ...state,
-                carrito: [...action.payload]
+                carrito: action.payload
             }
 
         case "UPDATE_GUEST_CART":
             return {
                 ...state,
-                cart: action.payload.data.orderlines,
+                cart: action.payload.cart,
                 cartProd: action.payload.data.products
             }
 

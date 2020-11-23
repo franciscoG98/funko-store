@@ -13,7 +13,7 @@ import Reviews from "../Reviews/Reviews";
 import useStyles from './ProductStyle';
 
 import { useDispatch } from 'react-redux';
-import { UpdateOrderLine, updateGuestCart, saveToLocalStorage } from '../../actions/Order';
+import { UpdateOrderLine, saveToLocalStorage } from '../../actions/Order';
 
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
@@ -27,6 +27,7 @@ import Fade from '@material-ui/core/Fade';
 
 import DetailModal from '../DetailModal/DetailModal'
 import { green } from '@material-ui/core/colors';
+import { useEffect } from 'react';
 
 const Product = ({ f }) => {
 
@@ -48,12 +49,14 @@ const Product = ({ f }) => {
 
   const userId = 1;
   const user = false;
+
   const handleOnClick = (f, userId) => {
-    if (user) {
+    if (userId === 0) {
       dispatch(UpdateOrderLine(f, userId))
     } else {
-      dispatch(saveToLocalStorage(f))
+      dispatch(UpdateOrderLine(f, userId))
     }
+
   }
   //---------------------------------------------------------------------------------
 
@@ -94,7 +97,7 @@ const Product = ({ f }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => dispatch(UpdateOrderLine(f, 1))}>
+        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => handleOnClick(f, 1)}>
           <AddShoppingCartRoundedIcon />
           Add To Cart
         </Button> : null}

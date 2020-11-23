@@ -21,7 +21,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-//import { getProductId } from '../../actions/Products';
+import { updateGuestCart } from '../../actions/Order';
 import { total } from "./total.js"
 
 const MySwal = withReactContent(Swal)
@@ -79,8 +79,13 @@ const ShoppingCart2 = () => {
   const user = false;
   // const { userId } = useParams();
   useEffect(() => {
-    dispatch(getCarrito(userId))
+    if (user) {
+      dispatch(getCarrito(userId))
+    } else {
+      dispatch(updateGuestCart())
+    }
   }, [])
+
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
@@ -213,6 +218,7 @@ const ShoppingCart2 = () => {
             <StyledTableCell align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
+              {/* ternario aca que si es usuario 0 me redireccione a login */}
               <Link to={`/user/1/product`}>
                 <Button autoFocus color="primary">
                   Buy
