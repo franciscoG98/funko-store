@@ -21,7 +21,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { updateGuestCart } from '../../actions/Order';
+// import { updateGuestCart } from '../../actions/Order';
 import { total } from "./total.js"
 
 const MySwal = withReactContent(Swal)
@@ -82,7 +82,7 @@ const ShoppingCart2 = () => {
     if (user) {
       dispatch(getCarrito(userId))
     } else {
-      dispatch(updateGuestCart())
+      // dispatch(updateGuestCart())
     }
   }, [])
 

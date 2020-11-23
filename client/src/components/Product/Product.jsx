@@ -45,17 +45,27 @@ const Product = ({ f }) => {
   };
 
   //---------------------------------------------------------------------------------
+  // const [guest, setGuest] = useState(
+  //   [window.localStorage.getItem('guest')]
+  // )
 
 
   const userId = 1;
   const user = false;
 
-  const handleOnClick = (f, userId) => {
-    if (userId === 0) {
-      dispatch(UpdateOrderLine(f, userId))
-    } else {
+  const setToLocalStorage = (f, userId) => {
+    if (userId) {
       dispatch(UpdateOrderLine(f, userId))
     }
+    // else {
+    //   try {
+    //     // setGuest(f)
+    //     // window.localStorage.setItem('guest', f)
+    //     saveToLocalStorage(f)
+    //   } catch (e) {
+    //     console.log(e)
+    //   }
+    // }
 
   }
   //---------------------------------------------------------------------------------
@@ -97,7 +107,7 @@ const Product = ({ f }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => handleOnClick(f, 1)}>
+        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, 1)}>
           <AddShoppingCartRoundedIcon />
           Add To Cart
         </Button> : null}

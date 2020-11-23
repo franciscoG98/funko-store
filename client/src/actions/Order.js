@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { loadState, saveState } from '../localStorage/localStorage'; //local storage
+
 
 
 
@@ -80,18 +80,18 @@ export function getUserInfo(id) {
 
 //-------------------------------------------------------------------------------------------
 // guest cart
-export function updateGuestCart() {
-    return (dispatch) => {
-        const cart = loadState()
-        dispatch({ type: "UPDATE_GUEST_CART", payload: cart });
-    }
-}
+// export function updateGuestCart() {
+//     return (dispatch) => {
+//         const cart = loadState()
+//         dispatch({ type: "UPDATE_GUEST_CART", payload: cart });
+//     }
+// }
 
-export function saveToLocalStorage(prod) {
-    return (dispatch) => {
-        saveState(prod)
-        dispatch({ type: "GET_GUEST_CART", payload: prod });
-    }
-}
+// export function saveToLocalStorage(prod) {
+//     return (dispatch) => {
+//         saveState(prod)
+//         dispatch({ type: "GET_GUEST_CART", payload: prod });
+//     }
+// }
 
 //--------------------------------------------------------------------------------------------
