@@ -1,5 +1,4 @@
-const { isNotAuthenticated } = require("./passport-config");
-// , isAuthenticated
+const { isNotAuthenticated, isAuthenticated } = require("./passport-config");
 
 const server = require('express').Router();
 const passport = require("passport");
@@ -61,5 +60,11 @@ server.post(
     res.send({ user: req.user});
   }
 );
+
+// Logout
+server.get("/logout", isAuthenticated, (req, res) => {
+  req.logOut();
+  res.send({ message: "You've logged out from your account" });
+});
 
 module.exports = server;
