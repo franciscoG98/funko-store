@@ -1,3 +1,5 @@
+import { CardActionArea } from "@material-ui/core"
+
 const initialState = {
     items: [],
     orderItem: [],
@@ -6,14 +8,7 @@ const initialState = {
     userInfo: [],
     carrito: [],
     cartProd: [],
-<<<<<<< HEAD
-    guest: [],
-    guestUpdate: [],
-=======
-    incDec: [],
->>>>>>> cf75be429c1af62367f15cd68525a43c2cf8e95b
 }
-
 
 export default (state = initialState, action) => {
     switch (action.type) {

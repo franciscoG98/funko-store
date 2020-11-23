@@ -51,7 +51,6 @@ module.exports = (sequelize) => {
     });
     //hook update password
     User.addHook('beforeUpdate', (user) => {
-        // console.log(user);
         if (user.password) {
             user.password = bcrypt.hashSync(user.previous.password, bcrypt.genSaltSync(10), null);
         }

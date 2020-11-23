@@ -78,24 +78,24 @@ server.put('/:idUser/cart', async (req, res) => {
             state: 'cart',
         }
     }).then((Orden) => {
-      idOrd = Orden.id
-      return Orderline.findOne({
-        where: {
-            orderId: idOrd,
-            productId: prod.productId,
+        idOrd = Orden.id
+        return Orderline.findOne({
+            where: {
+                orderId: idOrd,
+                productId: prod.productId,
             }
-        }) 
-    })
-    .then((orderlineFound) => {
-        
-        return orderlineFound.update({
-            quantity: prod.quantity,
-            price: prod.price,
-            subtotal: (prod.price * prod.quantity)
         })
-    }) 
-    .then((e) => res.json(e))
-    .catch(err => res.json(err))
+    })
+        .then((orderlineFound) => {
+
+            return orderlineFound.update({
+                quantity: prod.quantity,
+                price: prod.price,
+                subtotal: (prod.price * prod.quantity)
+            })
+        })
+        .then((e) => res.json(e))
+        .catch(err => res.json(err))
 })
 
 
@@ -123,7 +123,7 @@ server.get('/:id/orders', (req, res) => {
 //Reset password route
 server.post('/:id/passwordReset', (req, res) => {
     const { id } = req.params;
-    const resetPassword = req.body;
+    const resetPassword = req.body.password;
 
     User.findOne({
         where: {
@@ -133,8 +133,8 @@ server.post('/:id/passwordReset', (req, res) => {
         .then((data) => {
             data.update({ password: resetPassword })
         })
-        .then((newPass) => {
-            res.json(newPass)
+        .then(() => {
+            res.json(`Password successfully updates`)
         })
         .catch(err => {
             res.status(400).json(err)
