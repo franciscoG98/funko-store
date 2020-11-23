@@ -18,7 +18,6 @@ import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
 import Review from '../src/components/Reviews/commentbox'
 
-
 function SecuredRoute(props) {
 
   const loggedUser = useSelector(state => state.Login.login.user.isAdmin);
