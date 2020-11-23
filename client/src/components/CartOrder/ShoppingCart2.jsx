@@ -179,7 +179,7 @@ const ShoppingCart2 = () => {
     });
 
   };
-  //console.log('orderlines antes de la ifi:\n', carro)
+  console.log('orderlines antes de la ifi:\n', carro)
   
 
   
@@ -265,7 +265,7 @@ const ShoppingCart2 = () => {
                   </ButtonGroup>
                     
                 </StyledTableCell>
-                <StyledTableCell style= {{fontSize: '17px', paddingRight: '30px'}} align="right">${i.subtotal}</StyledTableCell>
+                <StyledTableCell style= {{fontSize: '17px', paddingRight: '30px'}} align="right">${i.quantity * i.price}</StyledTableCell>
               </StyledTableRow>
             ))}
 

@@ -91,7 +91,7 @@ server.put('/:idUser/cart', async (req, res) => {
         return orderlineFound.update({
             quantity: prod.quantity,
             price: prod.price,
-            subtotal: orderlineFound.subtotal + prod.price * prod.quantity
+            subtotal: (prod.price * prod.quantity)
         })
     }) 
     .then((e) => res.json(e))
