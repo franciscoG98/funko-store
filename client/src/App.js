@@ -18,7 +18,7 @@ import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
 import Review from '../src/components/Reviews/commentbox'
 
-let protectionTest = true;
+let protectionTest = false;
 
 function SecuredRoute(props) {
   return (
