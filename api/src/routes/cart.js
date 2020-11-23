@@ -68,6 +68,38 @@ server.post('/:idUser/cart', async (req, res) => {
     }
 })
 
+server.put('/:idUser/cart', async (req, res) => {
+    const { idUser } = req.params;
+    const prod = req.body;
+    console.log(prod)
+    return Order.findOne({
+        where: {
+            userId: idUser,
+            state: 'cart',
+        }
+    }).then((Orden) => {
+      idOrd = Orden.id
+      return Orderline.findOne({
+        where: {
+            orderId: idOrd,
+            productId: prod.productId,
+            }
+        }) 
+    })
+    .then((orderlineFound) => {
+        
+        return orderlineFound.update({
+            quantity: prod.quantity,
+            price: prod.price,
+            subtotal: (prod.price * prod.quantity)
+        })
+    }) 
+    .then((e) => res.json(e))
+    .catch(err => res.json(err))
+})
+
+
+
 //delete orderline
 server.delete('/:idUser/cart/:prodId', (req, res) => {
     const { idUser, prodId } = req.params;
