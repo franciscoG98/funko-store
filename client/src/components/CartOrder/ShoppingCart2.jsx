@@ -95,6 +95,11 @@ const useStyles = makeStyles({
   },
   hover: {
 
+    '&:hover': {
+      backgroundColor: '#484848',
+      color: 'white',
+      transition: '0.7s',
+    }
   }
 });
 
@@ -261,7 +266,7 @@ const ShoppingCart2 = () => {
 
                   <ButtonGroup>
 
-                    <Button className='hover'
+                    <Button className={classes.hover}
                       style={{ borderRight: '1px solid #bfbfbf' }}
                       aria-label="reduce"
                       onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseOrderLine(i, userId))}
@@ -273,7 +278,7 @@ const ShoppingCart2 = () => {
                       {i.quantity}
 
                     </span>
-                    <Button className='hover'
+                    <Button className={classes.hover}
                       aria-label="increase"
                       onClick={() => dispatch(IncreaseOrderLine(i, userId))} >
                       <AddIcon fontSize="small" />

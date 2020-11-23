@@ -13,8 +13,7 @@ export default combineReducers({
     Product: ProductReducers,
     Category: CategoryReducers,
     Order: OrderReducers,
-
-    Review: ReviewReducer
+    Review: ReviewReducer,
     Login: LoginReducers,
     User: UserReducers,
 
