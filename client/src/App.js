@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import store from './store';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import './App.css';
@@ -18,11 +18,13 @@ import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
 import Review from '../src/components/Reviews/commentbox'
 
-let protectionTest = true;
 
 function SecuredRoute(props) {
+
+  const loggedUser = useSelector(state => state.Login.login.user.isAdmin);
+
   return (
-    <Route path={props.path} render= {data => protectionTest  ? 
+    <Route path={props.path} render= {data => loggedUser ? 
 
       (<props.component {...data}></props.component>)  : 
 
@@ -30,6 +32,25 @@ function SecuredRoute(props) {
   )
 }
 
+// function SecuredRoute(props) {
+
+//   const loggedUser = useSelector(state => state.Login.login.user.isAdmin);
+//   // const loggedUser = false;
+//   // const loggedUser = JSON.parse(localStorage.getItem("state")); 
+
+//   // console.log(loggedUser);  
+
+//   return (
+//     <Route path={props.path} render= {(data) => {
+
+//       if(loggedUser !== undefined && loggedUser !== null) {
+//         if (loggedUser == true) return (<props.component {...data}></props.component>)
+//         if (loggedUser == false) return (<Redirect to= {{pathname: '/'}}></Redirect>)
+//       }
+//     }}>
+//     </Route>
+//   )
+// }
 
 function App() {
   const [marvel, setMarvel] = useState(false);
@@ -57,11 +78,12 @@ function App() {
           < SecuredRoute exact path='/admin/categories' component={ListCategories} />
           < SecuredRoute exact path='/admin/products' component={ListProducts} />
           < SecuredRoute exact path='/products/admin' component={AdminOrderList} />
+          < SecuredRoute exact path= '/auth/promote/:id' />
           < Route exact path='/user/:id/product/' component={UserOrderList} />
           < Route exact path='/register' component={Register} />
           < Route exact path='/login' component={UserLogin} />
           < Route exact path='/lost-password' component={ResetPassword} />
-          <Route exact path='/reviews' component = {Review}/>
+          < Route exact path='/reviews' component = {Review}/>
 
         </BrowserRouter>
       </div>
