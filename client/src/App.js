@@ -16,7 +16,8 @@ import Register from "./components/User/form";
 import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';
 import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
-import Review from '../src/components/Reviews/commentbox'
+import CommentBox from '../src/components/Reviews/commentbox';
+import Reviews from "../src/components/Reviews/Reviews"
 
 let protectionTest = true;
 
@@ -61,7 +62,9 @@ function App() {
           < Route exact path='/register' component={Register} />
           < Route exact path='/login' component={UserLogin} />
           < Route exact path='/lost-password' component={ResetPassword} />
-          <Route exact path='/reviews' component = {Review}/>
+          <Route exact path='/:id/reviews' component = {CommentBox}/>
+          <Route exact path='/allreviews/:id' component = {Reviews}/>
+
 
         </BrowserRouter>
       </div>
