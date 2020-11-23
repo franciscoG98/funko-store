@@ -2,13 +2,14 @@ import Axios from 'axios';
 
 
 //falta la ruta y probar!!!!
-export function loginUser(login) {
-    //     return (dispatch) => {
-    //         return Axios.post(`http://localhost:3001/`, login)
-    //             .then(json => {
-    //                 dispatch({ type: "LOGIN_USER", payload: json });
-    //             });
-    //     }
+export function loginUser(loginBla) {
+    return (dispatch) => {
+        return Axios.post(`http://localhost:3001/auth/login`, loginBla)
+            .then(json => {
+                console.log(json.data.user);
+                dispatch({ type: "LOGIN_USER", payload: json });
+            });
+    }
 }
 
 export function passwordReset(id) {

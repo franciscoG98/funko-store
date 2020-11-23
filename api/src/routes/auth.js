@@ -1,81 +1,55 @@
-// if(process.env.NODE_ENV !== 'production') {
-//   require('dotenv').config();
-// }
+const { isNotAuthenticated } = require("./passport-config");
+// , isAuthenticated
 
 const server = require('express').Router();
-const { User } = require('../db.js');
 const passport = require("passport");
+const session = require("express-session");
+const { User } = require('../db.js');
 
-// ---------------------------------------------------------------------------------------------------------------------
-// const flash = require('express-flash');
-// const flash = require('express-session');
 
-// const getAllUsers = (req, res)=>{
-//   User.findAll()
-//   .then(user =>{
-//     res.status(200).json(user)
-//   })
-//   .catch(err => {
-//     console.log(err);
-//   })
-// }
+server.use(
+  session({
+    secret: 'secretFunkos',
+    resave: false,
+    saveUninitialized: false
+  })
+);
+server.use(passport.initialize());
+server.use(passport.session());
 
-// console.log(getAllUsers())
+passport.serializeUser((user, done) => {
+  // console.log(user)
+  done(null, user.id);
+});
 
-// const users = getAllUsers();
-// console.log('esta aca', users)
-
-// const initializePassport = require("./passport-config");
-// const { session } = require('passport');
-
-// initializePassport(passport, email => {
-//   return users.find(user => user.email === email)
-//   // esto igual es porque el chabon crea los usuarios en un array de users locales
-// });
-
-// server.use(passport.initialize());
-// server.use(passport.session());
-
-// ---------------------------------------------------------------------------------------------------------------------
-
-server.put('/promote/:id', (req, res) => {
-  const { id } = req.params;
-  User.findByPk(id)
-   .then(user => {
-       if (!user.isAdmin){
-        user.update({
-              isAdmin: true
-          })
-      } else {
-        user.update({
-             isAdmin: false
-          })
-      }  
+  passport.deserializeUser((id, done) => {
+    User.findOne({
+      where: {
+        id,
+      }
     })
-    .then(() => res.json("Le diste/sacaste poder a ese gato"))
-    .catch(err => res.json(err))  
+  .then((user) => {
+    if (user) {
+      return done(null, {
+        username: user.username,
+        fullname: user.fullname, 
+        email: user.email,
+        id: user.id,
+        isAdmin: user.isAdmin,
+        phone:user.phone, 
+        address: user.address,
+        password: user.password
+        
+      });
+    } else {
+      return done(new Error("User not found"), null);
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+    return done(new Error("Internal error"), null);
+  });
 })
-// ---------------------------------------------------------------------------------------------------------------------
-
-
-
-// server.post("/login", passport.authenticate('local', {
-//   successRedirect: '/',
-//   failureRedirect: '/login',
-
-
-//   // failureFlash: true
-
-//   // esto hace que flash por atras le mandes unos mmensajitos a la pag que son los msj que yo le puse,
-//   // minuto 26
-// },
-//   console.log('coso')
-//   // aca tendria que devolver el usuario para que hjaga algo no se
-// ));
-
-// ---------------------------------------------------------------------------------------------------------------------
-
-const {  isNotAuthenticated } = require("./passport-config");
 
 // Login
 server.post(
@@ -83,7 +57,8 @@ server.post(
   isNotAuthenticated,
   passport.authenticate("local"),
   (req, res) => {
-    res.send({ user: req.user, logged: true });
+    console.log('aaaaaa:');
+    res.send({ user: req.user});
   }
 );
 

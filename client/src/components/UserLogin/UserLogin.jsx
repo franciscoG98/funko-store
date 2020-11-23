@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { loginUser } from '../../actions/Login';
 
+import { useHistory } from "react-router-dom";
 
 import useStyles from './UserLoginStyles';
 
@@ -48,15 +49,17 @@ function UserLogin() {
         setLogin({ ...login, [e.target.id]: e.target.value })
     }
 
+    let history = useHistory();
+    
+
     //axios for submit data
     const handleSubmit = e => {
         e.preventDefault()
 
         dispatch(loginUser(login));
+        history.push("/");
 
     }
-
-
 
 
     return (
