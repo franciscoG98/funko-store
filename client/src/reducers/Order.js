@@ -1,4 +1,6 @@
+// import { loadState } from '../components/saveToLocalStorage/LocalStorage';
 
+import { loadState } from "../components/saveToLocalStorage/LocalStorage"
 
 const initialState = {
     items: [],
@@ -9,6 +11,7 @@ const initialState = {
     carrito: [],
     cartProd: [],
     incDec: [],
+    guestCart: loadState() === undefined ? '' : loadState()
 }
 
 
@@ -71,20 +74,18 @@ export default (state = initialState, action) => {
                 cartProd: action.payload.data.products
             }
 
-        // case "GET_GUEST_CART":
-        //     return {
-        //         ...state,
-        //         carrito: [...state.carrito, action.payload]
-        //         // ...state,
-        //         // carrito: [...state.cart, action.payload]
-        //     }
+        case "GET_GUEST_CART":
+            return {
+                ...state,
+                guestCart: [...state.guestCart, action.payload]
+            }
 
-        // case "UPDATE_GUEST_CART":
-        //     return {
-        //         ...state,
-        //         cart: action.payload.cart,
-        //         cartProd: action.payload.data.products
-        //     }
+        case "UPDATE_GUEST_CART":
+            return {
+                ...state,
+                cart: action.payload.cart,
+                cartProd: action.payload
+            }
 
 
         default: return state;

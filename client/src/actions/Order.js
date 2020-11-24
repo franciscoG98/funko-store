@@ -103,8 +103,8 @@ export function getUserInfo(id) {
 // guest cart
 export function updateGuestCart() {
     return (dispatch) => {
-        const cart = loadState()
-        dispatch({ type: "UPDATE_GUEST_CART", payload: cart });
+        const cartLoaded = loadState()
+        dispatch({ type: "UPDATE_GUEST_CART", payload: cartLoaded });
     }
 }
 

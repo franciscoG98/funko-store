@@ -13,7 +13,7 @@ import Reviews from "../Reviews/Reviews";
 import useStyles from './ProductStyle';
 
 import { useDispatch } from 'react-redux';
-import { UpdateOrderLine, saveToLocalStorage } from '../../actions/Order';
+import { UpdateOrderLine, saveToLocalStorage, updateGuestCart } from '../../actions/Order';
 
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
@@ -48,15 +48,20 @@ const Product = ({ f }) => {
 
 
 
-  const userId = 1;
+  // const userId = 1;
   const user = false;
+  const arr = []
 
   const setToLocalStorage = (f, userId) => {
-    if (userId) {
+    if (userId !== 0) {
       dispatch(UpdateOrderLine(f, userId))
     }
     else {
+
+      const arr1 = arr.push(f)
+      console.log(arr)
       dispatch(saveToLocalStorage(f))
+      // dispatch(updateGuestCart())
     }
 
   }
@@ -98,7 +103,7 @@ const Product = ({ f }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, 1)}>
+        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, 0)}>
           <AddShoppingCartRoundedIcon />
           Add To Cart
         </Button> : null}

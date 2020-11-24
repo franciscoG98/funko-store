@@ -39,7 +39,7 @@ const store = createStore(
 
 // store.subscribe(() => saveToLocalStorage(store.getState()));
 store.subscribe(function () {
-    saveState(store.getState())
+    saveState(store.getState().Order.guestCart)
 })
 
 export default store;
