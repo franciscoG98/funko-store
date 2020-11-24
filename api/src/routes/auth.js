@@ -17,7 +17,7 @@ server.use(passport.initialize());
 server.use(passport.session());
 
 passport.serializeUser((user, done) => {
-  // console.log(user)
+  console.log('serialize user:\n', user)
   done(null, user.id);
 });
 
@@ -28,6 +28,8 @@ passport.serializeUser((user, done) => {
       }
     })
   .then((user) => {
+  console.log('deserialize user:\n', user)
+
     if (user) {
       return done(null, {
         username: user.username,
@@ -57,6 +59,7 @@ server.post(
   passport.authenticate("local"),
   (req, res) => {
     console.log('aaaaaa:');
+    // res.redirect('/');
     res.send({ user: req.user});
   }
 );

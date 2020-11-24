@@ -11,17 +11,28 @@ passport.use(
         passwordField: "password",
       },
       (email, password, done) => {
+        // console.log('estara aca el pass que llega del front?:\n',password);
+
         User.findOne({
           where: {
             email: email,
           }
         })
         .then((user) => {
-          if (user) {
-            if (bcrypt.compare(password, user.password )) {
+
+          console.log('pass que llega del front:\n',password, '\n user pass de DB:\n',user.password);
+
+          bcrypt.compare(password, user.password, function(err, res) {
+            if (err){
+              console.log('le has mandado cualquier pass ura mira:\n',password);
+              // res.json({success: false, message: 'passwords do not match'});
+              res.json({message: 'passwords do not match'})
+            }
+            else if(res) {
+              
               return done(null, {
                 username: user.username,
-                fullname: user.fullname, 
+                fullname: user.fullname,
                 email: user.email,
                 id: user.id,
                 isAdmin: user.isAdmin,
@@ -30,12 +41,48 @@ passport.use(
                 password: user.password
               });
             } else {
-              return done(new Error("Password incorrect"));
+              console.log('le has mandado cualquier pass ura mira:\n',password);
+              
+              // response is OutgoingMessage object that server response http request
+              // res.json({success: false, message: 'passwords do not match'})
+              res.json({message: 'passwords do not match'})
+
             }
-          } else {
-            return done(new Error("User not found"), null);
-          }
+          })
         })
+
+        //   if (user) {
+
+        //     // bcrypt.compare(password, function(err, res) {
+        //     //   if(password != user.password){
+        //     //     res.json({success: false, message: 'passwords do not match'});
+        //     //   }
+
+        //     console.log('pass que llega del front:\n',password, '\n user pass de DB:\n',user.password);
+
+        //     const paso = bcrypt.compare(password, user.password);
+        //     console.log('paso: \n', paso);
+
+
+        //     if (paso) {
+        //       return done(null, {
+        //         username: user.username,
+        //         fullname: user.fullname,
+        //         email: user.email,
+        //         id: user.id,
+        //         isAdmin: user.isAdmin,
+        //         phone:user.phone, 
+        //         address: user.address,
+        //         password: user.password
+        //       });
+        //     } else {
+        //       console.log('macho le mandaste cualquieeeeer pass word: \n', password)
+        //       return done(new Error("Password incorrect"));
+        //     }
+        //   } else {
+        //     return done(new Error("User not found"), null);
+        //   }
+        // })
         .catch((err) => {
           console.error(err);
           return done(new Error("Internal error"), null);
@@ -82,3 +129,38 @@ module.exports = {
     // isNotAdmin
 }
 
+
+
+
+
+// ---------------------------------------------
+
+// .then((user) => {
+//   // console.log('userrrrrrrrrrrrrrrrrrrrrrrrrRR:\n',user);
+//   if (user) {
+
+//     console.log('estara aca el pass que llega del front?:\n',password, '\n user pass hash:\n',user.password);
+
+//     bcrypt.compare(password, function(err, res) {
+//       if(password !== user.password){
+        
+//         return res.json({success: false, message: 'passwords do not match'});
+//       } else {
+//         return done(null, {
+//           username: user.username,
+//           fullname: user.fullname, 
+//           email: user.email,
+//           id: user.id,
+//           isAdmin: user.isAdmin,
+//           phone:user.phone, 
+//           address: user.address,
+//           password: user.password
+//         })
+//       }
+//     })
+//   } else {
+//     return done(new Error("User not found"), null);
+//   }
+// })
+
+// ---------------------------------------------

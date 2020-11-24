@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 //Material
@@ -50,16 +50,21 @@ function UserLogin() {
     }
 
     let history = useHistory();
-    
+
+    // history.push("/");
+    // history.push("/login");
+
 
     //axios for submit data
     const handleSubmit = e => {
         e.preventDefault()
 
         dispatch(loginUser(login));
-        history.push("/");
+
+        
 
     }
+
 
 
     return (
