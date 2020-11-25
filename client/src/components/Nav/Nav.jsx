@@ -108,7 +108,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-717px', marginLeft: '-272px' }}
+      style={{ opacity: '80%' /*, marginTop: '-717px', marginLeft: '-272px'*/, marginLeft:'-26%', marginTop: '-27%'}}
     >
       <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
         <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign in! </span> </MenuItem>
