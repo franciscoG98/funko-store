@@ -58,16 +58,35 @@ server.post(
   isNotAuthenticated,
   passport.authenticate("local"),
   (req, res) => {
-    console.log('aaaaaa:');
-    // res.redirect('/');
-    res.send({ user: req.user});
+
+    // res.redirect('localhost:3000/'); //localhost:3001/
+    res.send({user: req.user}).redirect('localhost:3000/');
   }
 );
 
 // Logout
 server.get("/logout", isAuthenticated, (req, res) => {
   req.logOut();
-  res.send({ message: "You've logged out from your account" });
+  window.localStorage.clear();
+  res.send({ message: "You've logged out from your account" }).res.redirect('#home');
 });
+
+server.put('/promote/:id', (req, res) => {
+  const { id } = req.params;
+  User.findByPk(id)
+   .then(user => {
+       if (!user.isAdmin){
+        user.update({
+              isAdmin: true
+          })
+      } else {
+        user.update({
+             isAdmin: false
+          })
+      }  
+    })
+    .then(() => res.json("Usuario Promovido"))
+    .catch(err => res.json(err))  
+})
 
 module.exports = server;

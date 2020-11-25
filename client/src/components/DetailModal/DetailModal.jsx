@@ -7,11 +7,12 @@ import { useDispatch } from 'react-redux';
 import { addItem } from '../../actions/Order';
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
 import Typography from '@material-ui/core/Typography';
+import {  UpdateOrderLine } from '../../actions/Order';
 
 export default function DetailModal({f}) {
 
-    const {name, description, price, imagen, stock} = f;
-    const user = false;
+    const {name, description, price, imagen, stock, id} = f;
+    const user = true;
     const dispatch = useDispatch();
 
     return (
@@ -30,27 +31,26 @@ export default function DetailModal({f}) {
                     {name}
                 </Typography>
 
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography style= {{fontFamily: 'Calibri', fontSize: '17px', color: '#686868'}} variant="body2" color="textSecondary" component="p">
                     {description}
                 </Typography>
                 <br />
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography style= {{fontFamily: 'Calibri', fontSize: '17px', color: '#686868'}}  variant="body2" color="textSecondary" component="p">
                     Stock:{stock > 5 ? <span>Disponible</span> : <span style={{color: "red"}}>{stock} unidades en stock</span>}
                 </Typography>
                 <br />
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography style= {{fontFamily: 'Calibri', fontSize: '17px', color: '#686868'}} variant="body2" color="textSecondary" component="p">
                     Price: ${price}
                 </Typography>
                 <br/>
-                <Reviews />  
 
                 <br />
-                {stock > 0 ? <Button color="primary" onClick={() => dispatch( addItem(f.id) )}>
+                {stock > 0 ? <Button color="primary" onClick={() => dispatch( UpdateOrderLine(f, 1) )}>
                 
                 <AddShoppingCartRoundedIcon />
                 Add To Cart 
                 </Button>: null}
-                {user ? <Link to='/reviews'>Add Your Review</Link> : null} 
+                {user ? <Link to={`/${id}/reviews`} style= {{fontSize: '18px', color: 'black'}} >Add Your Review here!</Link> : null} 
                {/* )} */}
             </div>
         </div>

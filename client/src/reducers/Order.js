@@ -6,6 +6,7 @@ const initialState = {
     userInfo: [],
     carrito: [],
     cartProd: [],
+    incDec: [],
 }
 
 
@@ -21,7 +22,8 @@ export default (state = initialState, action) => {
         case "DELETE_ITEM":
             return {
                 ...state,
-                cart: state.cart.filter((i) => i.productId !== action.payload)
+                cart: state.cart.filter((i) => i.productId !== action.payload),
+                cartProd: state.cartProd.filter((i) => i.id !== action.payload)
                 // carrito: console.log(action.payload)
             }
 
@@ -43,6 +45,18 @@ export default (state = initialState, action) => {
                 carrito: action.payload
             }
 
+        case "INCREASE_ORDER_LINE":
+            return {
+                ...state,
+                cart: [...state.cart]
+            }
+
+        case "DECREASE_ORDER_LINE":
+            return {
+                ...state,
+                cart: [...state.cart]
+            }
+
         case "GET_USER_INFO":
             return {
                 ...state,
@@ -54,6 +68,7 @@ export default (state = initialState, action) => {
                 cart: action.payload.data.orderlines,
                 cartProd: action.payload.data.products
             }
+
 
 
         default: return state;
