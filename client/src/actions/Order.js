@@ -1,4 +1,6 @@
 import Axios from 'axios';
+import { loadState, saveState } from '../components/saveToLocalStorage/LocalStorage'
+
 
 
 
@@ -53,9 +55,9 @@ export function IncreaseOrderLine(prod, idUser) {
 export function deleteItem(userId, id) {
     return (dispatch) => {
         Axios.delete(`http://localhost:3001/users/${userId}/cart/${id}`)
-        .then(json => {
-            dispatch({ type: 'DELETE_ITEM', payload: id });
-        })
+            .then(json => {
+                dispatch({ type: 'DELETE_ITEM', payload: id });
+            })
     }
 }
 
@@ -96,3 +98,21 @@ export function getUserInfo(id) {
             })
     };
 }
+
+//-------------------------------------------------------------------------------------------
+// guest cart
+export function updateGuestCart() {
+    return (dispatch) => {
+        const cartLoaded = loadState()
+        dispatch({ type: "UPDATE_GUEST_CART", payload: cartLoaded });
+    }
+}
+
+export function saveToLocalStorage(prod) {
+    return (dispatch) => {
+        saveState(prod)
+        dispatch({ type: "GET_GUEST_CART", payload: prod });
+    }
+}
+
+//--------------------------------------------------------------------------------------------

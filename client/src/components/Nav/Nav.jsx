@@ -31,19 +31,19 @@ export default function PrimarySearchAppBar() {
   const dispatch = useDispatch();
 
   // const loggedUser = localStorage.getItem("Login"); 
-  
-  const loggedUser = useSelector(state => state.Login.login.user.username);
 
-// console.log(loggedUser);
+  // const loggedUser = useSelector(state => state.Login.login.user.username);
+
+  // console.log(loggedUser);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [userEl, setUserEl] = React.useState(null);  
+  const [userEl, setUserEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const isUserMenuOpen = Boolean(userEl);
-  
+
   //menu desplegable categories-products
 
   const handleProfileMenuOpen = (event) => {
@@ -59,7 +59,7 @@ export default function PrimarySearchAppBar() {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
-  };  
+  };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -68,7 +68,7 @@ export default function PrimarySearchAppBar() {
   //componente de usuario logueado
 
   const handleLoggedUserMenu = (event) => {
-       setUserEl(event.currentTarget);
+    setUserEl(event.currentTarget);
   };
 
   const handleUserMenuClose = () => {
@@ -95,10 +95,10 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/categories'> Categories </Link> </MenuItem>
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem>
 
-    </Menu>    
+    </Menu>
   );
 
-  
+
   const renderUserMenu = (
     <Menu
       userEl={userEl}
@@ -109,24 +109,24 @@ export default function PrimarySearchAppBar() {
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
       style={{ opacity: '80%', marginTop: '-717px', marginLeft: '-272px' }}
-    >     
-    <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px'}} >
-      <MenuItem onClick={handleUserMenuClose}> <span className= 'signout'> Sign in! </span> </MenuItem>
-    </Link>
-    
-      
-      <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
-          <span className='signedas'> Signed as {loggedUser} </span>  
+    >
+      <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+        <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign in! </span> </MenuItem>
+      </Link>
+
+
+      <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic' />
+        {/* <span className='signedas'> Signed as {loggedUser} </span> */}
       </MenuItem>
-      
-      <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px'}} >
-        <MenuItem onClick={handleUserMenuClose}> <span className= 'signout'> Sign out </span> </MenuItem>
+
+      <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+        <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign out </span> </MenuItem>
       </Link>
 
       {/* <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem> */}
 
-    </Menu>    
-  );  
+    </Menu>
+  );
 
 
   // aca esta la version mobile
@@ -222,12 +222,12 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-  
+
   // aca termina la version mobile
 
   return (
     <div className={classes.grow}>
-      <AppBar style={{backgroundColor: '#202020'}} position="static">
+      <AppBar style={{ backgroundColor: '#202020' }} position="static">
         <Toolbar>
           {/* sidebar */}
           <IconButton
@@ -280,22 +280,22 @@ export default function PrimarySearchAppBar() {
             </Link>
 
             {/* user */}
-            
-              <IconButton
-                aria-label="show 0 new notifications"
-                aria-controls={menuId}
-                onClick={handleLoggedUserMenu}
-                color="inherit"
-              // edge="end"
-              // aria-label="account of current user"
-              // aria-controls={menuId}
-              // aria-haspopup="true"
-              // onClick={handleProfileMenuOpen}
-              // color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-         
+
+            <IconButton
+              aria-label="show 0 new notifications"
+              aria-controls={menuId}
+              onClick={handleLoggedUserMenu}
+              color="inherit"
+            // edge="end"
+            // aria-label="account of current user"
+            // aria-controls={menuId}
+            // aria-haspopup="true"
+            // onClick={handleProfileMenuOpen}
+            // color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+
 
             {/* settings */}
             <IconButton
@@ -310,13 +310,13 @@ export default function PrimarySearchAppBar() {
                 <SettingsRoundedIcon />
               </Badge>
             </IconButton>
-         
+
 
           </div>
 
-         
 
-         
+
+
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
@@ -332,7 +332,7 @@ export default function PrimarySearchAppBar() {
             </IconButton>
           </div>
 
-          
+
 
 
           <SearchBar classes={classes} />
@@ -342,7 +342,7 @@ export default function PrimarySearchAppBar() {
       {renderMobileMenu}
       {renderUserMenu}
       {renderMenu}
-      
+
     </div>
   );
 }

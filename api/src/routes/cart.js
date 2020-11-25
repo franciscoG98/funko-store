@@ -51,7 +51,7 @@ server.post('/:idUser/cart', async (req, res) => {
     if (orderFound) {
         return orderFound.update({
             productId: prod.id,
-            quantity: orderFound.quantity +1 ,
+            quantity: orderFound.quantity + 1,
             price: prod.price,
             subtotal: orderFound.subtotal + prod.price
         }).then((r) => res.json(r))
@@ -103,14 +103,14 @@ server.put('/:idUser/cart', async (req, res) => {
 //delete orderline
 server.delete('/:idUser/cart/:prodId', (req, res) => {
     const { idUser, prodId } = req.params;
-     return Orderline.destroy({
+    return Orderline.destroy({
         where: {
             productId: prodId
         }
     })
-    .then(()=> res.json("Voló"))
-    .catch(err => res.json(err))
-   
+        .then(() => res.json("Voló"))
+        .catch(err => res.json(err))
+
 })
 //GET /users
 server.get('/:id/orders', (req, res) => {
@@ -121,9 +121,9 @@ server.get('/:id/orders', (req, res) => {
 })
 
 //Reset password route
-server.post('/:id/passwordReset', (req, res) => {
+server.put('/:id/passwordReset', (req, res) => {
     const { id } = req.params;
-    const resetPassword = req.body;
+    const resetPassword = req.body.password;
 
     User.findOne({
         where: {
@@ -133,8 +133,8 @@ server.post('/:id/passwordReset', (req, res) => {
         .then((data) => {
             data.update({ password: resetPassword })
         })
-        .then((newPass) => {
-            res.json(newPass)
+        .then(() => {
+            res.json(`Your password was successfully updated`)
         })
         .catch(err => {
             res.status(400).json(err)
@@ -142,23 +142,7 @@ server.post('/:id/passwordReset', (req, res) => {
 
 });
 
-//HASHEAAR PASSWORD debe ir inmediatamente despues de la creacion del usuario en el POST
-// bcrypt.genSalt(10, (err, salt) => {
-//     bcrypt.hash(newUser.password, salt, (err, hash) => {
-//         if (err) throw err;
-//         newUser.password = hash;
-//         newUser
-//             .save()
-//             .then(user => {
-//                 req.flash(
-//                     'success_msg',
-//                     'You are now registered and can log in'
-//                 );
-//                 res.redirect('/users/login');
-//             })
-//             .catch(err => console.log(err));
-//     });
-// });
+
 
 
 

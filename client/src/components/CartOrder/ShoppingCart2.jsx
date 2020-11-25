@@ -35,7 +35,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-//import { getProductId } from '../../actions/Products';
+// import { updateGuestCart } from '../../actions/Order';
 import { total } from "./total.js"
 
 const MySwal = withReactContent(Swal)
@@ -48,7 +48,7 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     fontSize: 14,
   },
- 
+
 
 }))(TableCell);
 
@@ -94,7 +94,7 @@ const useStyles = makeStyles({
     }
   },
   hover: {
-    
+
     '&:hover': {
       backgroundColor: '#484848',
       color: 'white',
@@ -122,16 +122,22 @@ const ShoppingCart2 = () => {
   //const order = useSelector(state => state.Order.items);
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
-  console.log("carro1: " + carro); 
+  console.log("carro1: " + carro);
   const userId = 1
+  const user = false;
   // const { userId } = useParams();
   useEffect(() => {
-    dispatch(getCarrito(userId))
-  },[] )
+    if (user) {
+      dispatch(getCarrito(userId))
+    } else {
+      // dispatch(updateGuestCart())
+    }
+  }, [])
+
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]
   //cartProd:[{id:2},{id:1}]
- 
+
   /* // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
   let arrMap = [];// orden entera
   let idArr = [];//junta los id para ver si los tiene 
@@ -166,8 +172,8 @@ const ShoppingCart2 = () => {
     }
   } */
   // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
- 
- 
+
+
   const deleteItemCart = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',
@@ -193,27 +199,28 @@ const ShoppingCart2 = () => {
 
   };
   console.log('orderlines antes de la ifi:\n', carro)
-  
 
-  
+
+
+
   const carro2 = carro.sort(function (a, b) {
-      if (a.productId > b.productId) {
-        return 1;
-      }
-      if (a.productId < b.productId) {
-        return -1;
-      }
-      return 0;
-    });
-    const prod2 = cartProduct.sort(function (a, b) {
-      if (a.id > b.id) {
-        return 1;
-      }
-      if (a.id < b.id) {
-        return -1;
-      }
-      return 0;
-    });
+    if (a.productId > b.productId) {
+      return 1;
+    }
+    if (a.productId < b.productId) {
+      return -1;
+    }
+    return 0;
+  });
+  const prod2 = cartProduct.sort(function (a, b) {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  });
 
   for (let index = 0; index < carro.length; index++) {
     carro2[index].prodName = prod2[index].name
@@ -236,11 +243,11 @@ const ShoppingCart2 = () => {
           {/* titulo */}
           <TableHead>
             <TableRow>
-              <StyledTableCell className= {classes.cells} align="left"></StyledTableCell>
-              <StyledTableCell className= {classes.cells} align="left">Funko</StyledTableCell>
-              <StyledTableCell className= {classes.cells} align="left"></StyledTableCell>
-              <StyledTableCell className= {classes.quantitycell} align="center">Quantity</StyledTableCell>
-              <StyledTableCell className= {classes.cells} align="right">Subtotal</StyledTableCell>
+              <StyledTableCell className={classes.cells} align="left"></StyledTableCell>
+              <StyledTableCell className={classes.cells} align="left">Funko</StyledTableCell>
+              <StyledTableCell className={classes.cells} align="left"></StyledTableCell>
+              <StyledTableCell className={classes.quantitycell} align="center">Quantity</StyledTableCell>
+              <StyledTableCell className={classes.cells} align="right">Subtotal</StyledTableCell>
             </TableRow>
           </TableHead>
           {/* cuerpo */}
@@ -249,53 +256,54 @@ const ShoppingCart2 = () => {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button style={{color: 'black'}} size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
+                  <Button style={{ color: 'black' }} size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
-                <StyledTableCell className= {classes.text} align="left">{i.prodName}</StyledTableCell>
+                <StyledTableCell className={classes.text} align="left">{i.prodName}</StyledTableCell>
                 <StyledTableCell align="left">
                   <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
-                <StyledTableCell style= {{fontSize: '18px', paddingRight: '42px'}} align="center">
-                    
+                <StyledTableCell style={{ fontSize: '18px', paddingRight: '42px' }} align="center">
+
                   <ButtonGroup>
-                    
-                  <Button className= {classes.hover}
-                    style= {{borderRight: '1px solid #bfbfbf' }}
-                    aria-label="reduce"
-                    onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseOrderLine (i, userId) )}
+
+                    <Button className={classes.hover}
+                      style={{ borderRight: '1px solid #bfbfbf' }}
+                      aria-label="reduce"
+                      onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseOrderLine(i, userId))}
                     >
-                    <RemoveIcon fontSize="small" />
+                      <RemoveIcon fontSize="small" />
                     </Button>
-                    <span style={{display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '10px', marginRight: '11px'}} >
+                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingLeft: '10px', marginRight: '11px' }} >
 
-                    {i.quantity}
+                      {i.quantity}
 
-                    </span>                    
-                    <Button className= {classes.hover}
+                    </span>
+                    <Button className={classes.hover}
                       aria-label="increase"
-                      onClick={() => dispatch(IncreaseOrderLine (i, userId) )} >
+                      onClick={() => dispatch(IncreaseOrderLine(i, userId))} >
                       <AddIcon fontSize="small" />
                     </Button>
                   </ButtonGroup>
-                    
+
                 </StyledTableCell>
-                <StyledTableCell style= {{fontSize: '17px', paddingRight: '30px'}} align="right">${i.quantity * i.price}</StyledTableCell>
+                <StyledTableCell style={{ fontSize: '17px', paddingRight: '30px' }} align="right">${i.quantity * i.price}</StyledTableCell>
               </StyledTableRow>
             ))}
 
 
-          
+
 
 
             {/* parte de abajo */}
-            <StyledTableCell style={{fontFamily: 'Cairo', fontSize: '24px'/* , fontWeight: 'bold' */}} align="left">TOTAL</StyledTableCell>
+            <StyledTableCell style={{ fontFamily: 'Cairo', fontSize: '24px'/* , fontWeight: 'bold' */ }} align="left">TOTAL</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell style= {{fontSize: '25px'}} align="right">${total(carro2)} </StyledTableCell>
+            <StyledTableCell style={{ fontSize: '25px' }} align="right">${total(carro2)} </StyledTableCell>
             <StyledTableCell align="right">
 
+              {/* ternario aca que si es usuario 0 me redireccione a login */}
               <Link to={`/user/1/product`}>
-                <Button className= {classes.buy} /* autoFocus color="primary" */>
+                <Button className={classes.buy} /* autoFocus color="primary" */>
                   Buy
                 </Button>
               </Link>
