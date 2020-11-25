@@ -22,7 +22,7 @@ import Avatar from '../User/components/avatar.jsx'
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import GitHubIcon from '@material-ui/icons/GitHub';
+// import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function PrimarySearchAppBar() {
 
@@ -218,20 +218,20 @@ export default function PrimarySearchAppBar() {
           <div className={classes.sectionDesktop}>
 
             {/* github signIn */}
-            <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
+            {/* <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new mails" color="inherit">
                 <Badge badgeContent={0} color="secondary">
                   <GitHubIcon />
                 </Badge>
               </IconButton>
-            </Link>
+            </Link> */}
 
             {/* mensajito */}
-            <IconButton aria-label="show 0 new mails" color="inherit">
+            {/* <IconButton aria-label="show 0 new mails" color="inherit">
               <Badge badgeContent={0} color="secondary">
                 <MailIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
 
             {/* carrito fail */}
             {/* <IconButton aria-label="show 0 new notifications" color="inherit">
