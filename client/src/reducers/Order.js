@@ -86,6 +86,12 @@ export default (state = initialState, action) => {
                 cart: action.payload.cart,
                 cartProd: action.payload
             }
+        
+        case 'FILTER_ADMIN_ORDER':
+            return {
+                ...state,
+                orderItem: action.payload.data.ordenes
+            }
 
 
         default: return state;
