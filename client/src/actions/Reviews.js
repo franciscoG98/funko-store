@@ -11,10 +11,11 @@ export function addReviews(data, id) {
 }
 
 
-export function getReviews( id) {
+export function getReviews(id) {
     return(dispatch) => {
         return Axios(`http://localhost:3001/products/${id}/review`)
                .then(rev => {
+                   console.log(rev)
                    dispatch({type: "GET_REVIEW", payload: rev})
                })
     }

@@ -108,14 +108,14 @@ export default function PrimarySearchAppBar() {
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
       style={{ opacity: '80%', marginTop: '-717px', marginLeft: '-272px' }}
-    >
-      <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
-        <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign in! </span> </MenuItem>
-      </Link>
-
-
-      <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic' />
-        {/* <span className='signedas'> Signed as {loggedUser} </span> */}
+    >     
+    <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px'}} >
+      <MenuItem onClick={handleUserMenuClose}> <span className= 'signout'> Sign in! </span> </MenuItem>
+    </Link>
+    
+      
+      <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
+       <span className='signedas'> Signed as {loggedUser} </span>  
       </MenuItem>
 
       <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >

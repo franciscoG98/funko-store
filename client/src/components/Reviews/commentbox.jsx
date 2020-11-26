@@ -6,7 +6,7 @@ import Form from '../User/components/formon'
 import Button from '../User/components/button'
 import Input from '../User/components/input'
 import {addReviews} from "../../actions/Reviews";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useParams} from "react-router-dom"
 
 export default function CommentBox(){
@@ -15,12 +15,10 @@ export default function CommentBox(){
     const id = useParams();
     const {handleSubmit, errors, register} = useForm({
     })
-
-    
+    // const userId = 1;
+    const userId = useSelector(state => state.Login.login.user.id)
   
-
     const onSubmit=(data, e)=>{
-    console.log(data)
     dispatch(addReviews(data, id.id))
     e.target.reset();
 }
@@ -30,6 +28,7 @@ return (
     <MainContainer>
     <Title/>
     <Form onSubmit = {handleSubmit(onSubmit)}>
+        <Input ref={register} name="userId" value={userId} style={{display: "none"}} />
         <Input
         ref = {register}
         style = {{width:'70px'}}

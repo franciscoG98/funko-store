@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
         case "ADD_REVIEW":
             return {
                 ...state,
-                reviews: [...state.reviews, action.payload]
+                reviews: [ action.payload.data.msg]
             }
             case "GET_REVIEW":
                 return {
