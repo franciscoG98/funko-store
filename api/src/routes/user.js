@@ -14,6 +14,20 @@ server.get('/', (req, res) => {
 })
 
 
+server.get('/:id/me', (req, res)=>{
+    
+    const { id } = req.params;
+   return User.findOne({
+       where:{id:id},
+       include: [Order]
+   }).then(user => {
+    res.status(200).json(user)
+}).catch(err => {
+    res.json({ err });
+})
+})
+
+
 server.get('/:id', (req, res) => {
     const { id } = req.params;
 
@@ -26,6 +40,8 @@ server.get('/:id', (req, res) => {
             res.json(user);
         })
 })
+
+
 
 //route for a user creation depending on if is admin or not.
 server.post('/', function (req, res, next) {
