@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { saveSession, loadSession } from '../store/saveToSessionStorage/sessionStorage';
 
 
 //falta la ruta y probar!!!!
@@ -6,7 +7,7 @@ export function loginUser(loginBla) {
     return (dispatch) => {
         return Axios.post(`http://localhost:3001/auth/login`, loginBla)
             .then(json => {
-                console.log(json.data.user);
+                saveSession(json);
                 dispatch({ type: "LOGIN_USER", payload: json });
             });
     }
