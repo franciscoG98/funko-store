@@ -8,6 +8,7 @@ import Input from '../User/components/input'
 import {addReviews} from "../../actions/Reviews";
 import {useDispatch} from "react-redux";
 import {Link, useParams} from "react-router-dom"
+import { Typography } from '@material-ui/core'
 
 export default function CommentBox(){
 
@@ -30,11 +31,11 @@ return (
     <MainContainer>
     <Title/>
     <Form onSubmit = {handleSubmit(onSubmit)}>
+        <Typography>Rate:</Typography>
         <Input
         ref = {register}
         style = {{width:'70px'}}
         name = 'qualification'
-        label = 'Rate'
         type = 'number'
         />
         <Input

@@ -19,6 +19,7 @@ import ResetPassword from './components/UserLogin/ResetPassword';
 import CommentBox from '../src/components/Reviews/commentbox';
 import Reviews from "../src/components/Reviews/Reviews"
 import filterOrders from './components/Admin/Products/filterOrders';
+import Profile from './components/User/profile'
 
 const loggedUser = true;
 function SecuredRoute(props) {
@@ -90,7 +91,7 @@ function App() {
           < Route exact path='/register' component={Register} />
           < Route exact path='/login' component={UserLogin} />
           < Route exact path='/lost-password' component={ResetPassword} />
-
+          < Route exact path= '/profile' component = {Profile}/>
           <Route exact path='/:id/reviews' component={CommentBox} />
           <Route exact path='/allreviews/:id' component={Reviews} />
         </BrowserRouter>

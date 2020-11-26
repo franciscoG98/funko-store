@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import ProductReducers from "./Products";
 import CategoryReducers from "./Categories";
 import OrderReducers from './Order';
-
+import ProfileReducers from './Profile';
 import ReviewReducer from "./Reviews";
 
 import LoginReducers from './Login';
@@ -16,5 +16,6 @@ export default combineReducers({
     Review: ReviewReducer,
     Login: LoginReducers,
     User: UserReducers,
+    Profile: ProfileReducers,
 
   });
