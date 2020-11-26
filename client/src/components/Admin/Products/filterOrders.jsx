@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { useDispatch } from 'react-redux';
+import { filterAdminOrder, getAdminOrders } from '../../../actions/Order';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     color: 'white',
     '& > *': {
-      margin: theme.spacing(1.4),
+      margin: theme.spacing(0.8),
       color: 'white',
     },    
   },
@@ -39,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimplePaper() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <div className={classes.root}>
@@ -51,11 +54,12 @@ export default function SimplePaper() {
             aria-label="vertical contained primary button group"
             variant="text"
         >
-            <Button className={classes.buttons}>Cart</Button>
-            <Button className={classes.buttons}>Created</Button>
-            <Button className={classes.buttons}>Processing</Button>
-            <Button className={classes.buttons}>Canceled</Button>
-            <Button className={classes.buttons}>Completed</Button>
+            <Button onClick= {()=> dispatch(getAdminOrders())} className={classes.buttons}>All</Button>
+            <Button onClick= {()=> dispatch(filterAdminOrder('cart'))} className={classes.buttons}>Cart</Button>
+            <Button onClick= {()=> dispatch(filterAdminOrder('created'))} className={classes.buttons}>Created</Button>
+            <Button onClick= {()=> dispatch(filterAdminOrder('processing'))} className={classes.buttons}>Processing</Button>
+            <Button onClick= {()=> dispatch(filterAdminOrder('canceled'))} className={classes.buttons}>Canceled</Button>
+            <Button onClick= {()=> dispatch(filterAdminOrder('completed'))} className={classes.buttons}>Completed</Button>
         </ButtonGroup>
 
       </Paper>
