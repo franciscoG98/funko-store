@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito, DecreaseOrderLine, IncreaseOrderLine } from '../../actions/Order';
+import { deleteItem, UpdateOrderLine, getCarrito, DecreaseOrderLine, IncreaseOrderLine, saveToLocalStorage, updateGuestCart } from '../../actions/Order';
 
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
@@ -107,32 +107,25 @@ const ShoppingCart2 = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  /*   {
-      "id": 1,
-      "total": 1000,
-      "state": "cart",
-      "createdAt": "2020-11-17T14:13:30.886Z",
-      "updatedAt": "2020-11-17T14:13:30.886Z",
-      "userId": 1,
-      "products": [],
-      "orderlines": []
-      } */
-
-
-  //const order = useSelector(state => state.Order.items);
+  
+  const user = useSelector(state => state.Login.login.user);    
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
-  console.log("carro1: " + carro);
-  const userId = 1
-  const user = false;
-  // const { userId } = useParams();
+  
+  var userId = 0
+  
+  if (user){userId = user.id}
+  
   useEffect(() => {
-    if (user) {
-      dispatch(getCarrito(userId))
-    } else {
-      // dispatch(updateGuestCart())
-    }
+    console.log("usoeffect")
+     dispatch(updateGuestCart())
   }, [])
+  
+  
+  
+  console.log("carro1: " + carro);
+  
+  // const { userId } = useParams();
 
   //JELPER para renderizar
   //carro:   [{prodId:1},{prodId:2}]

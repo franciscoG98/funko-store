@@ -1,4 +1,4 @@
-import React, { useState, useSelector } from 'react';
+import React, { useState } from 'react';
 
 import './ProductStyle.jsx';
 
@@ -28,6 +28,7 @@ import Fade from '@material-ui/core/Fade';
 import DetailModal from '../DetailModal/DetailModal'
 import { green } from '@material-ui/core/colors';
 import { useEffect } from 'react';
+import {useSelector} from 'react-redux'
 
 const Product = ({ f }) => {
 
@@ -44,16 +45,16 @@ const Product = ({ f }) => {
     setOpen(false);
   };
 
+  const user = useSelector(state => state.Login.login.user);
   //---------------------------------------------------------------------------------
-
-
-
-  // const userId = 1;
-  const user = false;
+  var userId = 0
+  if (user){userId = user.id}
+  
   const arr = []
 
   const setToLocalStorage = (f, userId) => {
-    if (userId !== 0) {
+   console.log(userId)
+    if (userId) {
       dispatch(UpdateOrderLine(f, userId))
     }
     else {
@@ -103,7 +104,7 @@ const Product = ({ f }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, 0)}>
+        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, userId)}>
           <AddShoppingCartRoundedIcon />
           Add To Cart
         </Button> : null}

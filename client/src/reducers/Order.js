@@ -80,12 +80,12 @@ export default (state = initialState, action) => {
                 guestCart: [...state.guestCart, action.payload]
             }
 
-        case "UPDATE_GUEST_CART":
+        /* case "UPDATE_GUEST_CART":
             return {
                 ...state,
                 cart: action.payload.cart,
                 cartProd: action.payload
-            }
+            } */
 
 
         default: return state;
