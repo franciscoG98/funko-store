@@ -25,10 +25,17 @@ export function getCarrito(idUser, idProd) {
 
 export function UpdateOrderLine(prod, idUser) {
     return (dispatch) => {
-        return Axios.post(`http://localhost:3001/users/${idUser}/cart`, prod)
-            .then(json => {
-                dispatch({ type: 'UPDATE_ORDER_LINE', payload: json });
-            })
+        if (idUser) {
+            return Axios.post(`http://localhost:3001/users/${idUser}/cart`, prod)
+                .then(json => {
+                    dispatch({ type: 'UPDATE_ORDER_LINE', payload: json });
+                })
+        } else {
+            return (dispatch) => {
+                saveState(prod)
+                dispatch({ type: "GET_GUEST_CART", payload: prod });
+            }
+        }
     }
 }
 
@@ -108,11 +115,11 @@ export function updateGuestCart() {
     }
 }
 
-export function saveToLocalStorage(prod) {
-    return (dispatch) => {
-        saveState(prod)
-        dispatch({ type: "GET_GUEST_CART", payload: prod });
-    }
-}
+// export function saveToLocalStorage(prod) {
+//     return (dispatch) => {
+//         saveState(prod)
+//         dispatch({ type: "GET_GUEST_CART", payload: prod });
+//     }
+// }
 
 //--------------------------------------------------------------------------------------------
