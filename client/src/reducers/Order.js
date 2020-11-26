@@ -11,7 +11,8 @@ const initialState = {
     carrito: [],
     cartProd: [],
     incDec: [],
-    guestCart: loadState() === undefined ? '' : loadState()
+    guestCart: loadState() === undefined ? '' : loadState(),
+    guestCartProd: []
 }
 
 
@@ -77,14 +78,15 @@ export default (state = initialState, action) => {
         case "GET_GUEST_CART":
             return {
                 ...state,
-                guestCart: [...state.guestCart, action.payload]
+                guestCartProd: 
             }
 
         case "UPDATE_GUEST_CART":
             return {
                 ...state,
-                cart: action.payload.cart,
-                cartProd: action.payload
+                guestCart: [...state.guestCart, action.payload]
+                /* cart: action.payload.cart,
+                cartProd: action.payload */
             }
 
         case 'FILTER_ADMIN_ORDER':

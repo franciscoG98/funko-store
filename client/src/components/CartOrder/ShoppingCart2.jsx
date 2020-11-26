@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito, DecreaseOrderLine, IncreaseOrderLine } from '../../actions/Order';
+import { deleteItem, UpdateOrderLine, getCarrito, DecreaseOrderLine, IncreaseOrderLine, getGuestCart } from '../../actions/Order';
 
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
@@ -121,8 +121,13 @@ const ShoppingCart2 = () => {
   if (user){userId = user.id}
   
   useEffect(() => {
-    console.log("usoeffect")
-     dispatch(getCarrito(userId))
+    if (userId) {
+      dispatch(getCarrito(userId))
+    }
+    else {
+      dispatch(getGuestCart())
+    }
+     
   }, [])
 
   
