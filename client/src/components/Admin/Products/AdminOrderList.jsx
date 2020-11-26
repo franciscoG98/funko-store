@@ -69,7 +69,7 @@ export default function AdminOrderList() {
 
   return (
 
-    <div>
+    <div style={{opacity: '87%'}}>
 
 
       <TableContainer className={classes.tableContainer} component={Paper}>

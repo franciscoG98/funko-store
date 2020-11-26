@@ -18,6 +18,8 @@ import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
 import CommentBox from '../src/components/Reviews/commentbox';
 import Reviews from "../src/components/Reviews/Reviews"
+import filterOrders from './components/Admin/Products/filterOrders';
+
 const loggedUser = true;
 function SecuredRoute(props) {
 
@@ -77,7 +79,12 @@ function App() {
           < Route exact path='/products/search/:search' component={Search} />
           < SecuredRoute exact path='/admin/categories' component={ListCategories} />
           < SecuredRoute exact path='/admin/products' component={ListProducts} />
-          < SecuredRoute exact path='/products/admin' component={AdminOrderList} />
+          <div className= 'orders'>            
+            < SecuredRoute exact path='/products/admin' component={AdminOrderList} />         
+           
+            < SecuredRoute exact path='/products/admin' component={filterOrders} />             
+                
+          </div>
           < SecuredRoute exact path='/auth/promote/:id' />
           < Route exact path='/user/:id/product/' component={UserOrderList} />
           < Route exact path='/register' component={Register} />
