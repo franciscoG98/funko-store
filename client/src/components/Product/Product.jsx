@@ -76,43 +76,41 @@ const Product = ({ f }) => {
     <Card className={classes.root} >
       <CardActionArea>
         <CardMedia
+          style={{alignItems: 'center'}}
           className={classes.media}
           image={f.imagen}
-          onClick={() => handleOpen()}
-          title={f.name}
+          // onClick={() => handleOpen()}
+          // title={f.name}
         />
         <CardContent>
-          <Typography style={{ fontFamily: 'Ubuntu', fontSize: '30px', fontWeight: 'light', fontStyle: 'normal' }} gutterBottom variant="h5" component="h2">
+          <Typography style={{ fontFamily: 'Ubuntu', fontSize: '30px', fontWeight: 'light', fontStyle: 'normal', textAlign: 'center' }} gutterBottom variant="h5" component="h2">
             {f.name}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          {/* <Typography variant="body2" color="textSecondary" component="p">
             <span style={{ fontFamily: 'Raleway', fontWeight: "bolder", marginLeft: '1px', fontSize: '15px', color: '#585858' }}> Description: </span>
             <span style={{ fontFamily: 'Calibri', marginLeft: '1px', fontSize: '15px', color: '#686868' }}>
               {f.description}
             </span>
-          </Typography>
+          </Typography> */}
           <Typography variant="body2" color="textSecondary" component="p">
-            <span style={{ fontFamily: 'Raleway', fontWeight: "bolder  ", marginLeft: '1px', fontSize: '15px', color: '#585858' }}> Price: </span>
-            <span style={{ fontFamily: 'Raleway', marginLeft: '1px', fontSize: '13px', color: '#585858', fontWeight: "bolder" }}> $ </span>
-            <span style={{ fontFamily: 'Calibri', marginRight: '3px', fontSize: '16px', color: '#585858' }}> {f.price} </span>
+            {/* <span style={{ fontFamily: 'Raleway', fontWeight: "bolder  ", marginLeft: '1px', fontSize: '15px', color: '#585858' }}> Price: </span> */}
+            <div style={{textAlign: 'center'}}>
+              <span style={{ fontFamily: 'Texturina', marginLeft: '1px', fontSize: '23px', color: '#585858', fontWeight: "bolder" }}> $ </span>
+              <span style={{ fontFamily: 'Texturina', fontSize: '34 px', color: '#585858', fontWeight: 'bolder'}}> {f.price} </span>
+            </div>            
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {f.stock > 0 ? <span style={{ opacity: '100%', color: 'green', fontFamily: 'Calibri', fontSize: '17px' }}>Available</span> : <span style={{ color: "red", marginLeft: '1px', fontFamily: 'Calibri', fontSize: '17px' }}>No Stock</span>}
+          <Typography style= {{ textAlign: 'center' }} variant="body2" color="textSecondary" component="p">
+            
+          </Typography>
+          <Typography style= {{ textAlign: 'center', marginTop: '20px' }} variant="body2" color="textSecondary" component="p">
+            {f.stock > 0 ? <span style={{ opacity: '100%', color: 'green', fontFamily: 'Calibri', fontSize: '17px'}}>Available</span> : <span style={{ color: "red", marginLeft: '1px', fontFamily: 'Calibri', fontSize: '17px' }}>No Stock</span>}
           </Typography>
 
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, 0)}>
-          <AddShoppingCartRoundedIcon />
-          Add To Cart
-        </Button> : null}
-        <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => handleOpen()}>
-          <OpenInNewRoundedIcon />
-            More
-        </Button>
+      <CardActions style= {{alignItems: 'baseline'}}>
 
-        <Modal
+      <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           className={classes.modal}
@@ -130,6 +128,18 @@ const Product = ({ f }) => {
             </div>
           </Fade>
         </Modal>
+        
+        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, 0)}>
+          <AddShoppingCartRoundedIcon />
+          Add To Cart
+        </Button> : null}
+        <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => handleOpen()}>
+          <OpenInNewRoundedIcon />
+            More
+        </Button>
+        
+
+       
 
       </CardActions>
     </Card>

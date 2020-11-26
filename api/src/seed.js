@@ -34,14 +34,14 @@ const initialCategories = [
 ];
 const initialProducts = [
   {
-    name: "Capitán América",
+    name: "Captain America",
     description: "Este es el funko del Capi",
     price: 100,
     imagen: "https://lafrikileria.com/14056-large_default/funko-pop-capitan-america-avengers.jpg",
     stock: 0,
   },
   {
-    name: "Capitana Marvel",
+    name: "Captain Marvel",
     description: "Este es el funko de la Carol Danvers",
     price: 100,
     imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtymm2PJTJ9HaNGaXrAl7u2vsWF3duGY7yFw&usqp=CAU",
@@ -55,7 +55,7 @@ const initialProducts = [
     stock: 10,
   },
   {
-    name: "EL increíble Hulk",
+    name: "Incredible Hulk",
     description: "Este es el funko de Hulk, alias Bruce Banner",
     price: 100,
     imagen: "https://deepsanddeeps.com/media/catalog/product/cache/3/image/750x750/9df78eab33525d08d6e5fb8d27136e95/d/e/deeps-and-deeps-funko-pop-avengers-age-of-ultron-el-increible-hulk--foto-completa-4776.jpg",
@@ -76,14 +76,14 @@ const initialProducts = [
     stock: 10,
   },
   {
-    name: "La Roca",
+    name: "The Rock",
     description: "Este es el funko de La Roca",
     price: 500,
     imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRAVZrXeMzx71HvELEyL9IyVrt_kLZnZjGLJA&usqp=CAU",
     stock: 10,
   },
   {
-    name: "Mujer Invisible",
+    name: "Invisible Woman",
     description: "Este es el funko de Mujer Invisible",
     price: 500,
     imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQPj9Fovd3ueQ44hVdQ-D8_hglvW11RhoxQqA&usqp=CAU",
@@ -97,7 +97,7 @@ const initialProducts = [
     stock: 10,
   },
   {
-    name: "Batman con kiryptoarmadura",
+    name: "Batman Kryptonite Suit",
     description: "Este es el funko de Batman con el traje de kryptonita de Batman vs Superman",
     price: 500,
     imagen: "https://i5.walmartimages.com/asr/c736dd92-c8c9-4b6f-9f0e-1963111de155_1.ff6517eacfd8aae94d837d5d0a911d64.jpeg?odnWidth=612&odnHeight=612&odnBg=ffffff",
