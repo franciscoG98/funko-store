@@ -35,8 +35,9 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-// import { updateGuestCart } from '../../actions/Order';
+import { updateGuestCart } from '../../actions/Order';
 import { total } from "./total.js"
+import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 
 const MySwal = withReactContent(Swal)
 
@@ -107,73 +108,24 @@ const ShoppingCart2 = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  /*   {
-      "id": 1,
-      "total": 1000,
-      "state": "cart",
-      "createdAt": "2020-11-17T14:13:30.886Z",
-      "updatedAt": "2020-11-17T14:13:30.886Z",
-      "userId": 1,
-      "products": [],
-      "orderlines": []
-      } */
-
-
+ 
+  const user = loadSession();
   //const order = useSelector(state => state.Order.items);
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
+  
   console.log("carro1: " + carro);
-  const userId = 1
-  const user = false;
-  // const { userId } = useParams();
+  console.log("cartProd: " + carro)
+  
+  var userId = 0
+  if (user){userId = user.id}
+  
   useEffect(() => {
-    if (user) {
-      dispatch(getCarrito(userId))
-    } else {
-      // dispatch(updateGuestCart())
-    }
+    console.log("usoeffect")
+     dispatch(getCarrito(userId))
   }, [])
 
-  //JELPER para renderizar
-  //carro:   [{prodId:1},{prodId:2}]
-  //cartProd:[{id:2},{id:1}]
-
-  /* // estos arrays y el for los uso para que se agrupen los funkos y no se repitan en la orden
-  let arrMap = [];// orden entera
-  let idArr = [];//junta los id para ver si los tiene 
-
-  for (let i = 0; i < order.length; i++) {
-
-    if (idArr.includes(order[i].id)) {
-
-      let iddd = order[i].id;//guarda id del producto para buscarla en la orden
-      let orderLine = idArr.indexOf(iddd); //busca donde esta en la orden para modificar la OL
-      //arrMap[orderLine].quantity += 1;
-      dispatch(UpdateOrderLine(arrMap[orderLine], userId))
-
-    } else {
-      idArr.push(order[i].id);
-      let SendOrderLine = {
-        productId: order[i].id,
-        price: order[i].price,
-        quantity: 1
-      }
-      let pushOrderLine = {
-        productId: order[i].id,
-        name: order[i].name,
-        imagen: order[i].imagen,
-        price: order[i].price,
-        quantity: 1
-      }
-
-      dispatch(UpdateOrderLine(SendOrderLine, userId));
-
-      arrMap.push(pushOrderLine);
-    }
-  } */
-  // console.log('order:\n', order, '\n arrMap: \n', arrMap, '\n idArr: \n', idArr);
-
-
+  
   const deleteItemCart = async (id) => {
     MySwal.fire({
       title: 'Are you sure?',
