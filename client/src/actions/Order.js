@@ -115,4 +115,13 @@ export function saveToLocalStorage(prod) {
     }
 }
 
+export function filterAdminOrder(status) {
+    return (dispatch) => {
+        return Axios.get(`http://localhost:3001/status?query=` + status)
+            .then(json => {
+                dispatch({ type: 'FILTER_ADMIN_ORDER', payload: json });
+            })
+    };
+}
+
 //--------------------------------------------------------------------------------------------
