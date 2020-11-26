@@ -105,9 +105,8 @@ function UserLogin() {
                         label="Remember me"
                     />
 
-                    <Link to="/auth/google" style={{ textDecoration: 'None' }}>
+                    <Link href="/auth/google" style={{ textDecoration: 'None' }}>
                         <GoogleButton
-                            onClick={() => { console.log('Google button clicked') }}
                         />
                     </Link>
 
