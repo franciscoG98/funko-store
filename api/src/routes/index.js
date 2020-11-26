@@ -10,6 +10,8 @@ const cartRouter = require('./cart.js');
 const reviewsRouter = require('./reviews.js');
 const authRouter = require ('./auth.js');
 const statusRouter = require ('./adminStatus.js');
+const emailRouter = require("./email");
+
 
 
 // const server = require('./product.js');
@@ -26,6 +28,8 @@ router.use('/users', cartRouter); //---> cart.js
 router.use('/product', reviewsRouter);
 router.use('/auth', authRouter );
 router.use('/status', statusRouter);
+router.use('/email', emailRouter);
+
 
 
 
