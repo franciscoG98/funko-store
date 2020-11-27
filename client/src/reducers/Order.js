@@ -12,6 +12,7 @@ const initialState = {
     carrito: [],
     cartProd: [],
     incDec: [],
+    prueba: [],
     guestOrder: [],
     guestCart: loadState() === undefined ? '' : loadState(),
     guestCartProd: []
@@ -81,7 +82,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 guestCart: action.payload,
-                guestOrder: [...state.guestCart]
+                //guestOrder: action.payload
             }
 
         case "UPDATE_GUEST_CART":
@@ -89,7 +90,7 @@ export default (state = initialState, action) => {
                 ...state,
                 guestCartProd: [...state.guestCartProd, action.payload],
                 guestCart: [...state.guestCartProd, action.payload],
-                guestOrder: orderlines(state.guestCart)
+                guestOrder: orderlines([action.payload])
                 /* cart: action.payload.cart,
                 cartProd: action.payload */
             }
