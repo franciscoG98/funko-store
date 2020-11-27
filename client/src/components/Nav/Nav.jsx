@@ -23,6 +23,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 
 export default function PrimarySearchAppBar() {
 
@@ -33,6 +34,10 @@ export default function PrimarySearchAppBar() {
   // const loggedUser = localStorage.getItem("Login"); 
 
   // const loggedUser = useSelector(state => state.Login.login.user.username);
+
+  let username = 'juancito';
+  let logged = false;
+  let isAdmin = true;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -85,18 +90,20 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      style={{ opacity: '80%', marginTop: '52px', marginLeft: '39px' }}
+      style={{ opacity: '80%', marginTop: '41px', marginLeft: '39px' }}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/categories'> Categories </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/products/admin'> Orders </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/admin/products'> Products </Link> </MenuItem>     
 
     </Menu>
   );
 
 
   const renderUserMenu = (
+    
     <Menu
       userEl={userEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -106,23 +113,49 @@ export default function PrimarySearchAppBar() {
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
       style={{ opacity: '80%', marginTop: '-717px', marginLeft: '-272px' }}
-    >     
-    <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px'}} >
-      <MenuItem onClick={handleUserMenuClose}> <span className= 'signout'> Sign in! </span> </MenuItem>
-    </Link>
+    >    
+
+    {/* si no hay usuario logueado muestra login y create account, de lo contrario muestra signed as (username) y sign out */}
+
+    {!logged ?      
     
-      
-      <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
-       <span className='signedas'> Signed as {/* {loggedUser} */} </span>  
-      </MenuItem>
-
-      <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
-        <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign out </span> </MenuItem>
+    <Menu
+      userEl={userEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isUserMenuOpen}
+      onClose={handleUserMenuClose}
+      style={{ opacity: '80%', marginTop: '-777px', marginLeft: '-272px'}}
+    >    
+      <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
+        <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}> Sign In! </span> </MenuItem>
       </Link>
+      <Link to="/register" style={{ textDecoration: 'none', color: 'black'}} >
+        <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}}> Create Account </span> </MenuItem>
+      </Link> 
+    </Menu> 
+    
+    : <Menu
+      userEl={userEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isUserMenuOpen}
+      onClose={handleUserMenuClose}
+      style={{ opacity: '80%', marginTop: '-762px', marginLeft: '-272px' }}
+    > 
+        <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
+        <span className='signedas'> Signed as {username} </span>  
+        </MenuItem>
 
-      {/* <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem> */}
-
-    </Menu>
+        <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black'}} >
+          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}> Logout </span> </MenuItem>
+        </Link> </Menu>  }   
+    
+     </Menu>   
   );
 
 
@@ -216,20 +249,20 @@ export default function PrimarySearchAppBar() {
           <div className={classes.sectionDesktop}>
 
             {/* github signIn */}
-            <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
+           {/*  <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new mails" color="inherit">
                 <Badge badgeContent={0} color="secondary">
                   <GitHubIcon />
                 </Badge>
               </IconButton>
-            </Link>
+            </Link> */}
 
             {/* mensajito */}
-            <IconButton aria-label="show 0 new mails" color="inherit">
+            {/* <IconButton aria-label="show 0 new mails" color="inherit">
               <Badge badgeContent={0} color="secondary">
                 <MailIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
 
             {/* carrito fail */}
             {/* <IconButton aria-label="show 0 new notifications" color="inherit">
@@ -238,7 +271,16 @@ export default function PrimarySearchAppBar() {
               </Badge>
             </IconButton> */}
 
+            <Link to='/' style={{ textDecoration: 'none', color: 'white' }} >
+              <IconButton aria-label="show 0 new notifications" color="inherit">
+                <Badge badgeContent={order.length} color="secondary">
+                  <ShopTwoIcon />
+                </Badge>
+              </IconButton>
+            </Link>
+
             {/* carrito 2 */}
+
             <Link to='/ShoppingCart2' style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new notifications" color="inherit">
                 <Badge badgeContent={order.length} color="secondary">
@@ -248,6 +290,7 @@ export default function PrimarySearchAppBar() {
             </Link>
 
             {/* user */}
+            
 
             <IconButton
               aria-label="show 0 new notifications"
@@ -261,12 +304,13 @@ export default function PrimarySearchAppBar() {
             // onClick={handleProfileMenuOpen}
             // color="inherit"
             >
-              <AccountCircle />
+              {/* <AccountCircle /> */}
+              <GitHubIcon />
             </IconButton>
 
 
             {/* la tuerquitas visteSSS */}
-            <IconButton
+            {isAdmin ? <IconButton
               // aria-label="show 0 new notifications" 
               // color="inherit"
               edge="end"
@@ -279,7 +323,8 @@ export default function PrimarySearchAppBar() {
               <Badge badgeContent={0} color="secondary">
                 <SettingsRoundedIcon />
               </Badge>
-            </IconButton>
+            </IconButton> : null}
+            
 
 
           </div>

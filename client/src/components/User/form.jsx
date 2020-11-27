@@ -150,7 +150,7 @@ export default function Register(){
             helperText = {errors?.passwordConfirmation?.message}
             />
         
-            <Button>Sign Up</Button>
+            <Button style={{backgroundColor: '#303030', color: 'white'}}>Sign Up</Button>
  
         </Form>
        </MainContainer>

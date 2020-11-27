@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Product from '../Product/Product';
+import Transition from './transition';
 // import Funkos from './funkos';
 import './Products.css';
 // import Axios from 'axios';
@@ -28,10 +29,14 @@ const Products = () => {
     return (
 
         <div className='container'>
-            {products.map((f) => <Product 
+            {products.map((f) => 
+            
+                <Product 
                 f={f}
-                key={f.name}
-            />)}
+                key={f.name}/>
+            
+            
+            )}
         </div>
 
     );
