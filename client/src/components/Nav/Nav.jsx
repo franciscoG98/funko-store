@@ -94,9 +94,9 @@ export default function PrimarySearchAppBar() {
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'bolder', fontFamily: 'Trade Winds'}} to='/products/admin'> Orders </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'bolder', fontFamily: 'Trade Winds'}} to='/admin/categories'> Categories </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'bolder', fontFamily: 'Trade Winds'}} to='/admin/products'> Products </Link> </MenuItem>     
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/products/admin'> Orders </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/admin/products'> Products </Link> </MenuItem>     
 
     </Menu>
   );
@@ -127,13 +127,13 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-774px', marginLeft: '-272px'}}
+      style={{ opacity: '80%', marginTop: '-777px', marginLeft: '-272px'}}
     >    
-      <Link to="/login" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px'}} >
-        <MenuItem onClick={handleUserMenuClose}> <span className= 'signout'> Sign In! </span> </MenuItem>
+      <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
+        <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}> Sign In! </span> </MenuItem>
       </Link>
-      <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px'}} >
-        <MenuItem onClick={handleUserMenuClose}> <span className= 'signout'> Create Account </span> </MenuItem>
+      <Link to="/register" style={{ textDecoration: 'none', color: 'black'}} >
+        <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}}> Create Account </span> </MenuItem>
       </Link> 
     </Menu> 
     
@@ -151,8 +151,8 @@ export default function PrimarySearchAppBar() {
         <span className='signedas'> Signed as {username} </span>  
         </MenuItem>
 
-        <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
-          <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Logout </span> </MenuItem>
+        <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black'}} >
+          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}> Logout </span> </MenuItem>
         </Link> </Menu>  }   
     
      </Menu>   

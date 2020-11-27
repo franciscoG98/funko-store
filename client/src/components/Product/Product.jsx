@@ -89,8 +89,8 @@ const Product = ({ f }) => {
           <Typography variant="body2" color="textSecondary" component="p">
             {/* <span style={{ fontFamily: 'Raleway', fontWeight: "bolder  ", marginLeft: '1px', fontSize: '15px', color: '#585858' }}> Price: </span> */}
             <div style={{textAlign: 'center'}}>
-              <span style={{ fontFamily: 'Texturina', marginLeft: '1px', fontSize: '23px', color: '#585858', fontWeight: "bolder" }}> $ </span>
-              <span style={{ fontFamily: 'Texturina', fontSize: '34 px', color: '#585858', fontWeight: 'bolder'}}> {f.price} </span>
+              <span style={{ fontFamily: 'Texturina', marginLeft: '1px', fontSize: '26px', color: '#585858', fontWeight: "bolder" }}> $ </span>
+              <span style={{ fontFamily: 'Texturina', fontSize: '35px', color: '#585858', fontWeight: 'bolder'}}> {f.price} </span>
             </div>            
           </Typography>
           <Typography style= {{ textAlign: 'center' }} variant="body2" color="textSecondary" component="p">
