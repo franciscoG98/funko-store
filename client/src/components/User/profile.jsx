@@ -12,7 +12,8 @@ const Profile = () =>{
     console.log(info)
     const id = useParams();
     useEffect(() => {
-        dispatch(getUser(1))
+        dispatch(console.log(getUser(1)))
+
       },[])
 
     return (
