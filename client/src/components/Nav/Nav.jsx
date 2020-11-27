@@ -25,6 +25,14 @@ import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 
+import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
+
+const user = loadSession();
+ 
+ var userId = 0
+ 
+ if (user){userId = user.id}
+
 export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
@@ -189,13 +197,19 @@ export default function PrimarySearchAppBar() {
         </IconButton> */}
 
         {/* carrito 2 */}
-        <Link to='/ShoppingCart2' >
+        {userId ? <Link to='/UserCart' > 
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
-        </Link>
+        </Link> : <Link to='/GuestCart' > 
+          <IconButton aria-label="show 0 new notifications" color="inherit">
+            <Badge badgeContent={order.length} color="secondary">
+              <ShoppingCartRoundedIcon />
+            </Badge>
+          </IconButton>
+        </Link> }
         <p>Notifications</p>
       </MenuItem>
 

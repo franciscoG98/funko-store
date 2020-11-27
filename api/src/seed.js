@@ -200,6 +200,12 @@ let initialUsers = [
 ];
 let initialOrders = [
   {
+    id: -1,
+    total: 0,
+    state: "cart",
+    userId: -1
+  },
+  {
     total: 1000,
     state: "cart",
     userId: 1

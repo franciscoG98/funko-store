@@ -13,7 +13,8 @@ import Search from "./components/SearchBar/Search";
 import AdminOrderList from './components/Admin/Products/AdminOrderList';
 import UserOrderList from './components/CartOrder/UserOrderList';
 import Register from "./components/User/form";
-import ShoppingCart2 from '../src/components/CartOrder/ShoppingCart2';
+import GuestCart from '../src/components/CartOrder/GuestCart';
+import UserCart from '../src/components/CartOrder/UserCart';
 import UserLogin from './components/UserLogin/UserLogin';
 import ResetPassword from './components/UserLogin/ResetPassword';
 import CommentBox from '../src/components/Reviews/commentbox';
@@ -77,7 +78,8 @@ function App() {
           </div>
 
           < Route exact path='/' component={Products} />
-          < Route exact path='/ShoppingCart2' component={ShoppingCart2} />
+          < Route exact path='/UserCart' component={UserCart} />
+          < Route exact path='/GuestCart' component={GuestCart} />
           < Route exact path='/product/:nombreCat' component={CategoryProduct} />
           < Route exact path='/products/search/:search' component={Search} />
           < SecuredRoute exact path='/admin/categories' component={ListCategories} />

@@ -13,7 +13,7 @@ import Reviews from "../Reviews/Reviews";
 import useStyles from './ProductStyle';
 
 import { useDispatch } from 'react-redux';
-import { UpdateOrderLine, saveToLocalStorage, updateGuestCart } from '../../actions/Order';
+import { UpdateOrderLine, saveToGuestCart, updateGuestCart } from '../../actions/Order';
 import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
@@ -55,10 +55,11 @@ const Product = ({ f }) => {
 
   const setToLocalStorage = (p, id) => {
     if (id) {
+      //p.quantity = 1
       dispatch(UpdateOrderLine(p, id))
     }
     else {
-      dispatch(UpdateOrderLine(p, -1))
+      dispatch(saveToGuestCart(p))
     }
 
   }

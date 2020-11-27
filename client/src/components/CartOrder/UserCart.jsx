@@ -114,7 +114,7 @@ const ShoppingCart2 = () => {
   const carro = useSelector(state => state.Order.cart)
   const cartProduct = useSelector(state => state.Order.cartProd);
   
-  console.log("carro1: " + carro);
+  console.log("carro1: " + !!carro);
   console.log("cartProd: " + carro)
   
   var userId = 0
@@ -122,13 +122,15 @@ const ShoppingCart2 = () => {
   
   useEffect(() => {
     if (userId) {
-      dispatch(getCarrito(userId))
-    }
-    else {
-      dispatch(getGuestCart(-1))
-    }
+     dispatch(getCarrito(userId))
+      }
+  
+        dispatch(getGuestCart())
+      
+      
+    },
      
-  }, [])
+   [])
 
   
   const deleteItemCart = async (id) => {
