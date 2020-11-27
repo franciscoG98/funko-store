@@ -12,13 +12,12 @@ const Profile = () =>{
     console.log(info)
     const id = useParams();
     useEffect(() => {
-        dispatch(getUser(1))
-
+        dispatch(getUser(id.id))
       },[])
 
     return (
         <Container>
-            
+    
         </Container>
     )
 }
