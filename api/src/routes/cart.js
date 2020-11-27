@@ -35,12 +35,14 @@ server.get('/:idUser/cart', (req, res) => {
 server.post('/:idUser/cart', async (req, res) => {
     const { idUser } = req.params;
     const prod = req.body;
+   
     const Orden = await Order.findOrCreate({
         where: {
             userId: idUser,
             state: 'cart',
-        }
-    })
+        },
+     })
+     Orden[0].total += prod.price
     idOrd = Orden[0].id
     const orderFound = await Orderline.findOne({
         where: {
