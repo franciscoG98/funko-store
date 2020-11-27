@@ -115,7 +115,7 @@ export default function PrimarySearchAppBar() {
     
       
       <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
-       <span className='signedas'> Signed as {loggedUser} </span>  
+       <span className='signedas'> Signed as {/* {loggedUser} */} </span>  
       </MenuItem>
 
       <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
