@@ -1,7 +1,7 @@
 .circle {
     border-radius: 90%;
-    height: 40px;
-    width: 40px;
+    height: 36px;
+    width: 36px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -21,4 +21,6 @@
    .signedas {
        font-size: 16px;
        font-family: Trade Winds;
+       height: 20px;
+       
    }
