@@ -18,11 +18,11 @@ import SideBar from '../SideBar/SideBar';
 
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Avatar from '../User/components/avatar.jsx'
-import MailIcon from '@material-ui/icons/Mail';
+// import Avatar from '../User/components/avatar.jsx'
+// import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import GitHubIcon from '@material-ui/icons/GitHub';
+// import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function PrimarySearchAppBar() {
 
@@ -92,8 +92,10 @@ export default function PrimarySearchAppBar() {
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/categories'> Categories </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} to='/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} to='/admin/products'> Products </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} to='/admin/products'> Order </Link> </MenuItem>
+
 
     </Menu>
   );
@@ -108,20 +110,29 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
-      style={{ opacity: '80%' /*, marginTop: '-717px', marginLeft: '-272px'*/, marginLeft:'-26%', marginTop: '-27%'}}
+      style={{ opacity: '80%',/*, marginTop: '-717px', marginLeft: '-272px' no borrar es como le queda bien a juan*/ marginLeft:'-355px', marginTop: '-660px'}}
     >
-      <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
-        <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign in! </span> </MenuItem>
-      </Link>
-
-
       <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic' />
         {/* <span className='signedas'> Signed as {loggedUser} </span> */}
       </MenuItem>
 
-      <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
-        <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign out </span> </MenuItem>
-      </Link>
+      <MenuItem onClick={handleUserMenuClose}> 
+        <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+          <span className='signout'> Register </span>
+        </Link>
+      </MenuItem>
+
+      <MenuItem onClick={handleUserMenuClose}>
+        <Link to="/login" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+          <span className='signout'> Sign in </span>
+        </Link>
+      </MenuItem>
+
+      <MenuItem onClick={handleUserMenuClose}>
+        <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+          <span className='signout'> Sign out </span>
+        </Link>
+      </MenuItem>
 
       {/* <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem> */}
 
@@ -141,29 +152,28 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-
-      {/* mensaje */}
-      <MenuItem>
-        <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={0} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
+       <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic' />
+        {/* <span className='signedas'> Signed as {loggedUser} </span> */}
       </MenuItem>
 
-      {/* github signIn */}
-      <MenuItem>
-        <IconButton aria-label="show 0 new mails" color="inherit">
-          <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
-              <Badge badgeContent={0} color="black">
-                <GitHubIcon />
-              </Badge>
-          </Link>
-        </IconButton>
-        <p>Login</p>
+      <MenuItem onClick={handleUserMenuClose}> 
+        <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+          <span className='signout'> Register </span>
+        </Link>
       </MenuItem>
-      {/* github signIn */}
+
+      <MenuItem onClick={handleUserMenuClose}>
+        <Link to="/login" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+          <span className='signout'> Sign in </span>
+        </Link>
+      </MenuItem>
+
+      <MenuItem onClick={handleUserMenuClose}>
+        <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+          <span className='signout'> Sign out </span>
+        </Link>
+      </MenuItem>
+
 
       <MenuItem>
         {/* carrito fail */}
@@ -172,6 +182,7 @@ export default function PrimarySearchAppBar() {
             <ShoppingCart />
           </Badge>
         </IconButton> */}
+
 
         {/* carrito 2 */}
         <Link to='/ShoppingCart2' style={{ textDecoration: 'none', color: 'black'}} >
@@ -184,6 +195,7 @@ export default function PrimarySearchAppBar() {
         <p>Cart</p>
       </MenuItem>
 
+
       {/* Profile */}
       <MenuItem >
         <IconButton
@@ -194,7 +206,19 @@ export default function PrimarySearchAppBar() {
           color="inherit"
         >
           <Badge badgeContent={0} color="secondary">
-            <AccountCircle />
+            <AccountCircle>
+              {/* <Link to="/register" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+                <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Register! </span> </MenuItem>
+              </Link>
+
+              <Link to="/login" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+                <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign in! </span> </MenuItem>
+              </Link>
+
+              <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black', fontFamily: 'Calibri', fontSize: '19px' }} >
+                <MenuItem onClick={handleUserMenuClose}> <span className='signout'> Sign out </span> </MenuItem>
+              </Link> */}
+            </AccountCircle>
           </Badge>
         </IconButton>
         <p>Profile</p>
@@ -248,20 +272,20 @@ export default function PrimarySearchAppBar() {
           <div className={classes.sectionDesktop}>
 
             {/* github signIn */}
-            <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
+            {/* <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new mails" color="inherit">
                 <Badge badgeContent={0} color="secondary">
                   <GitHubIcon />
                 </Badge>
               </IconButton>
-            </Link>
+            </Link> */}
 
             {/* mensajito */}
-            <IconButton aria-label="show 0 new mails" color="inherit">
+            {/* <IconButton aria-label="show 0 new mails" color="inherit">
               <Badge badgeContent={0} color="secondary">
-                <MailIcon />
+                // <MailIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
 
             {/* carrito fail */}
             {/* <IconButton aria-label="show 0 new notifications" color="inherit">
