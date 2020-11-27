@@ -78,7 +78,7 @@ export default (state = initialState, action) => {
         case "GET_GUEST_CART":
             return {
                 ...state,
-                guestCartProd: 
+                guestCartProd: "hola"
             }
 
         case "UPDATE_GUEST_CART":
