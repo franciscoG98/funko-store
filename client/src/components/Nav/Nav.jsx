@@ -23,6 +23,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 
 export default function PrimarySearchAppBar() {
 
@@ -89,12 +90,13 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      style={{ opacity: '80%', marginTop: '52px', marginLeft: '39px' }}
+      style={{ opacity: '80%', marginTop: '41px', marginLeft: '39px' }}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/categories'> Categories </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#4B0082', fontWeight: 'bolder' }} to='/admin/products'> Products </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'bolder', fontFamily: 'Trade Winds'}} to='/products/admin'> Orders </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'bolder', fontFamily: 'Trade Winds'}} to='/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'bolder', fontFamily: 'Trade Winds'}} to='/admin/products'> Products </Link> </MenuItem>     
 
     </Menu>
   );
@@ -269,7 +271,16 @@ export default function PrimarySearchAppBar() {
               </Badge>
             </IconButton> */}
 
+            <Link to='/' style={{ textDecoration: 'none', color: 'white' }} >
+              <IconButton aria-label="show 0 new notifications" color="inherit">
+                <Badge badgeContent={order.length} color="secondary">
+                  <ShopTwoIcon />
+                </Badge>
+              </IconButton>
+            </Link>
+
             {/* carrito 2 */}
+
             <Link to='/ShoppingCart2' style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new notifications" color="inherit">
                 <Badge badgeContent={order.length} color="secondary">
@@ -293,7 +304,8 @@ export default function PrimarySearchAppBar() {
             // onClick={handleProfileMenuOpen}
             // color="inherit"
             >
-              <AccountCircle />
+              {/* <AccountCircle /> */}
+              <GitHubIcon />
             </IconButton>
 
 
