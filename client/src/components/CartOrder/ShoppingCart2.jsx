@@ -125,7 +125,7 @@ const ShoppingCart2 = () => {
       dispatch(getCarrito(userId))
     }
     else {
-      dispatch(getGuestCart())
+      dispatch(getGuestCart(-1))
     }
      
   }, [])
