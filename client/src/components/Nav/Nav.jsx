@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 import { logout } from '../../actions/Login';
 import { Link } from 'react-router-dom';
 import useStyles from './NavStyles';
@@ -25,8 +26,6 @@ import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 
-import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
-
 const user = loadSession();
  
  var userId = 0
@@ -37,15 +36,13 @@ export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
   const order = useSelector(state => state.Order.items);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
+  const userData = loadSession();  
 
-  // const loggedUser = localStorage.getItem("Login"); 
+  let username = userData && userData.username;
+  let logged = userData && userData;
+  let isAdmin = userData && userData.isAdmin;
 
-  // const loggedUser = useSelector(state => state.Login.login.user.username);
-
-  let username = 'juancito';
-  let logged = false;
-  let isAdmin = true;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -98,7 +95,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      style={{ opacity: '80%', marginTop: '41px', marginLeft: '39px' }}
+      style={{ opacity: '80%', marginTop: '4px', marginLeft: '-210px' }}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
@@ -153,14 +150,17 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-762px', marginLeft: '-272px' }}
+      style={{ opacity: '80%', marginTop: '-778px', marginLeft: '-520px' }}
     > 
-        <MenuItem onClick={handleUserMenuClose}>  <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
+        <MenuItem onClick={handleUserMenuClose} style={{height: '37px'}}> <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
         <span className='signedas'> Signed as {username} </span>  
         </MenuItem>
 
+          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', height: '25px'}}> Profile </span> </MenuItem>
+        
+
         <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black'}} >
-          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}> Logout </span> </MenuItem>
+          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto'/* , marginRight: 'auto' */}}> Logout </span> </MenuItem>
         </Link> </Menu>  }   
     
      </Menu>   
