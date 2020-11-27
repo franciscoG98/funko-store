@@ -25,7 +25,7 @@ function SecuredRoute(props) {
 
 
     //const loggedUser = useSelector(state => state.Login.login.user.isAdmin);
-   
+       
     return (
     <Route path={props.path} render= {data => loggedUser ? 
 

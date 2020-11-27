@@ -51,11 +51,11 @@ const Product = ({ f }) => {
  if (user){userId = user.id}
 
   const setToLocalStorage = (p, id) => {
-    if (userId) {
+    if (id) {
       dispatch(UpdateOrderLine(p, id))
     }
     else {
-      dispatch(saveToLocalStorage(p))
+      dispatch(UpdateOrderLine(p, -1))
     }
 
   }

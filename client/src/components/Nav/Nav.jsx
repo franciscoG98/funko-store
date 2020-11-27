@@ -34,8 +34,6 @@ export default function PrimarySearchAppBar() {
 
   // const loggedUser = useSelector(state => state.Login.login.user.username);
 
-  // console.log(loggedUser);
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [userEl, setUserEl] = React.useState(null);
