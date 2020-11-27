@@ -14,7 +14,7 @@ import useStyles from './ProductStyle';
 
 import { useDispatch } from 'react-redux';
 import { UpdateOrderLine, saveToLocalStorage, updateGuestCart } from '../../actions/Order';
-
+import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
 import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
@@ -44,24 +44,18 @@ const Product = ({ f }) => {
     setOpen(false);
   };
 
-  //---------------------------------------------------------------------------------
+ const user = loadSession();
+ 
+ var userId = 0
+ 
+ if (user){userId = user.id}
 
-
-
-  // const userId = 1;
-  const user = false;
-  const arr = []
-
-  const setToLocalStorage = (f, userId) => {
-    if (userId !== 0) {
-      dispatch(UpdateOrderLine(f, userId))
+  const setToLocalStorage = (p, id) => {
+    if (userId) {
+      dispatch(UpdateOrderLine(p, id))
     }
     else {
-
-      const arr1 = arr.push(f)
-      console.log(arr)
-      dispatch(saveToLocalStorage(f))
-      // dispatch(updateGuestCart())
+      dispatch(saveToLocalStorage(p))
     }
 
   }
@@ -129,7 +123,7 @@ const Product = ({ f }) => {
           </Fade>
         </Modal>
         
-        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, 0)}>
+        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, userId)}>
           <AddShoppingCartRoundedIcon />
           Add To Cart
         </Button> : null}

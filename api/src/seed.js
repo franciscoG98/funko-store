@@ -157,6 +157,17 @@ const categoryProducts = [
 ];
 let initialUsers = [
   {
+    id: -1,
+    username: "Guest",
+    fullname: "Invitado",
+    email: "guest@funkos.com",
+    phone: "123456789",
+    address: "Av siempre viva 123",
+    state: "Argentina",
+    isAdmin: false,
+    password: "password"
+  },
+  {
     username: "Ele",
     fullname: "Elena Gonzalez",
     email: "ele@admin.com",
