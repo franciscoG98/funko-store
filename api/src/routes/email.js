@@ -20,6 +20,7 @@ server.post("/",  (req, res) => {
     let mailOptions = {
         from: 'funkostorehenry@gmail.com', 
         to: "enzoorbe1998@gmail.com",  //Colocar su email para ver los cambios de estilos en el html, probar con postman con los campos que pide de req.body
+        // to: "franciscomanuel.gonzalez3@gmail.com", 
         subject: 'Confirmacion de compra',
         text: 'Confirmacion de compra',
         html: html
