@@ -34,7 +34,7 @@ const SearchBar = ({classes}) => {
       onChange={onChange}
       />
       <Link to={`/products/search/${query.query}`}  >
-        <SearchIcon style={{paddingTop: '7px', color: 'white', marginTop: '1px'}} />
+        <SearchIcon style={{paddingTop: '5px', color: 'white', height: '20px'}} />
         </Link>
       
      </div>

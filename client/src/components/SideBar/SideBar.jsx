@@ -24,8 +24,9 @@ const useStyles = makeStyles({
       width: 'auto',
     },
     font: {
+      fontFamily: 'Trade Winds',
       textDecoration: 'none',
-      color: '#191970',
+      color: '#303030',
       fontSize: '20'
     },
     op: {
@@ -78,18 +79,16 @@ const SideBar = () => {
           {!category ? <p>cargando...</p> : category.map((text) => (
             <Link className= {classes.font} to= {`/product/${text.name}`} >
               
-                  <ListItem button key={text.id}>
+                  <ListItem style={{fontFamily: 'Trade Winds'}} button key={text.id}>
 
                     {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
               
-                    <ListItemText fontWeight= 'fontWeightBold' primary={text.name} />              
+                    <ListItemText style={{fontFamily: 'Trade Winds'}} primary={text.name} />              
 
                   </ListItem>
             </Link>
           ))}
-        </List>
-
-        <Divider />
+        </List>       
        
       </div>
     );
