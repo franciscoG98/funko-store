@@ -78,13 +78,13 @@ export default (state = initialState, action) => {
         case "GET_GUEST_CART":
             return {
                 ...state,
-                guestCartProd: "hola"
+                guestCart: [...state.guestCartProd]
             }
 
         case "UPDATE_GUEST_CART":
             return {
                 ...state,
-                guestCart: [...state.guestCart, action.payload]
+                guestCartProd: [...state.guestCartProd, action.payload]
                 /* cart: action.payload.cart,
                 cartProd: action.payload */
             }

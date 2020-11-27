@@ -21,10 +21,7 @@ const SearchBar = ({classes}) => {
   
   return ( 
     <>
-      <div className={classes.search}>   
-        <Link to={`/products/search/${query.query}`}  >
-        <SearchIcon />
-        </Link>
+      <div className={classes.search}>           
       
       <InputBase
       placeholder="          Search…"
@@ -36,6 +33,9 @@ const SearchBar = ({classes}) => {
       inputProps={{ 'aria-label': 'search' }}
       onChange={onChange}
       />
+      <Link to={`/products/search/${query.query}`}  >
+        <SearchIcon style={{paddingTop: '5px', color: 'white', height: '20px'}} />
+        </Link>
       
      </div>
     </>

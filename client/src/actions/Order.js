@@ -108,9 +108,9 @@ export function getGuestCart() {
     }
 }
 
-export function saveToLocalStorage(prod) {
+export function saveToGuestCart(prod) {
     return (dispatch) => {
-        saveState(prod)
+        //saveState(prod)
         dispatch({ type: "UPDATE_GUEST_CART", payload: prod });
     }
 }
