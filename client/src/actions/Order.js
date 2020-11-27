@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { loadState, saveState } from '../components/saveToLocalStorage/LocalStorage'
+import orderlines from "../components/CartOrder/Utils"
 
 
 
@@ -109,8 +110,9 @@ export function getGuestCart() {
 }
 
 export function saveToGuestCart(prod) {
+    var ol = orderlines(prod)
     return (dispatch) => {
-        //saveState(prod)
+        saveState(ol)
         dispatch({ type: "UPDATE_GUEST_CART", payload: prod });
     }
 }
@@ -123,5 +125,10 @@ export function filterAdminOrder(status) {
             })
     };
 }
-
+export function DecreaseGuestLine(prod) {
+    //prod.quantity -= 1;
+    return (dispatch) => {
+                dispatch({ type: 'DECREASE_ORDER_LINE', payload: prod });
+    }
+}
 //--------------------------------------------------------------------------------------------

@@ -1,5 +1,6 @@
+/* eslint-disable import/no-anonymous-default-export */
 // import { loadState } from '../components/saveToLocalStorage/LocalStorage';
-
+import orderlines from "../components/CartOrder/Utils"
 import { loadState } from "../store/saveToLocalStorage/LocalStorage";
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
     carrito: [],
     cartProd: [],
     incDec: [],
+    guestOrder: [],
     guestCart: loadState() === undefined ? '' : loadState(),
     guestCartProd: []
 }
@@ -78,16 +80,31 @@ export default (state = initialState, action) => {
         case "GET_GUEST_CART":
             return {
                 ...state,
-                guestCart: [...state.guestCartProd]
+                guestCart: action.payload,
+                guestOrder: [...state.guestCart]
             }
 
         case "UPDATE_GUEST_CART":
             return {
                 ...state,
-                guestCartProd: [...state.guestCartProd, action.payload]
+                guestCartProd: [...state.guestCartProd, action.payload],
+                guestCart: [...state.guestCartProd, action.payload],
+                guestOrder: orderlines(state.guestCart)
                 /* cart: action.payload.cart,
                 cartProd: action.payload */
             }
+            case "INCREASE_GUEST_LINE":
+                return {
+                    ...state,
+                    guestCartProd: state.guestCartProd.filter((i) => i.id !== action.payload)
+                }
+    
+            case "DECREASE_GUEST_LINE":
+                return {
+                    ...state,
+                    
+                    guestOrder: state.guestOrder.filter((i) => i.productId  !== action.payload.productId)
+                }
 
         case 'FILTER_ADMIN_ORDER':
             return {

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito, DecreaseOrderLine, IncreaseOrderLine, getGuestCart } from '../../actions/Order';
+import { deleteItem, UpdateOrderLine, getCarrito, DecreaseGuestLine, IncreaseOrderLine, getGuestCart } from '../../actions/Order';
 
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
@@ -103,7 +103,7 @@ const GuestCart = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   
-  const order = useSelector(state => state.Order.guestCart);
+  const order = useSelector(state => state.Order.guestOrder);
   //const carro = useSelector(state => state.Order.cart)
   
   console.log( order)
@@ -113,6 +113,7 @@ const GuestCart = () => {
 
   
   useEffect(() => {
+    
     dispatch(getGuestCart())
       
       
@@ -178,7 +179,7 @@ const GuestCart = () => {
                     <Button className={classes.hover}
                       style={{ borderRight: '1px solid #bfbfbf' }}
                       aria-label="reduce"
-                      onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseOrderLine(i, ))}
+                      onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseGuestLine(i))}
                     >
                       <RemoveIcon fontSize="small" />
                     </Button>
