@@ -1,5 +1,7 @@
+import { loadSession } from "../store/saveToSessionStorage/sessionStorage"
+
 const initialState = {
-    login: [],
+    login: loadSession === undefined ? [] : loadSession(),
     resetPass: [], //creo que es un string
 }
 
@@ -8,7 +10,7 @@ export default (state = initialState, action) => {
         case "LOGIN_USER":
             return {
                 ...state,
-                login: action.payload.data
+                login: action.payload
             }
 
         case "LOGOUT":

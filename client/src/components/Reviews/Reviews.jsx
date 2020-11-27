@@ -79,17 +79,17 @@ export default function UserOrderList() {
   const classes = useStyles();
   //const classes2 = useStylesGrid();
   const [value, setValue] = React.useState();
-
+  
   const dispatch = useDispatch();
   const revi = useSelector(state => state.Review.stars)
   const id = useParams();
+
 
    //action UserOrderList
   useEffect(() => {
     dispatch(getReviews(id.id))
   },[])
 
-  
 
   
 

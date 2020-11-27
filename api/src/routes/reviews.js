@@ -6,8 +6,18 @@ server.post("/:id/reviews", (req, res) => {
     const {id} = req.params;
     const {qualification, description, userId} = req.body;
     let prod;
-    Product.findByPk(id)
-        .then(product => {
+    Reviews.findOne({
+        where: {
+            productId: id,
+            userId
+        }
+    })
+    .then((revi) =>{
+        if(revi){
+            res.json({msg: "No puedes publicar otra Review"})
+        } else {
+            Product.findByPk(id)
+             .then(product => {
             prod = product;
             return Reviews.create({
                 qualification,
@@ -21,16 +31,19 @@ server.post("/:id/reviews", (req, res) => {
                 res.json({msg: "Reviews Creada"})
             })
         })
-        .then(() => {
-            res.status(200)
-        })
-        .catch(err => {
-            res.json(err)
-        })
+        }
+    })
+    .then(() => {
+        res.status(200)
+    })
+    .catch(err => {
+        res.json(err)
+    })
+       
 })
 
 
-server.put("/:id/reviews/:idReviews", (req, res) => {
+server.put("/:id/reviews/:idReviews", (req, res) => {su
     const {id, idReviews} = req.params;
     const {qualification, description} = req.body;
     let prod;

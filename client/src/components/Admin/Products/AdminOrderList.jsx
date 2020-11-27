@@ -55,7 +55,7 @@ export default function AdminOrderList() {
   // const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
   const itemsList = useSelector(state => state.Order.orderItem);
-
+console.log(itemsList);
 
   useEffect(() => {
     dispatch(getAdminOrders())
@@ -69,7 +69,7 @@ export default function AdminOrderList() {
 
   return (
 
-    <div>
+    <div style={{opacity: '89%'}}>
 
 
       <TableContainer className={classes.tableContainer} component={Paper}>
@@ -90,7 +90,7 @@ export default function AdminOrderList() {
 
             {itemsList.map(item => (
               <TableRow key={item.id}>
-                <TableCell scope="row" align="center"> {console.log(item)}  {item.id}</TableCell>
+                <TableCell scope="row" align="center"> {/* {console.log(item)} */}  {item.id}</TableCell>
                 <TableCell scope="row" align="center">{item.total}</TableCell>
                 <TableCell scope="row" align="center"> {item.state}</TableCell>
                 <TableCell scope="row" align="center">{item.userId}</TableCell>

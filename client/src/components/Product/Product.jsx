@@ -14,10 +14,13 @@ import useStyles from './ProductStyle';
 
 import { useDispatch } from 'react-redux';
 import { UpdateOrderLine, saveToLocalStorage, updateGuestCart } from '../../actions/Order';
-
+import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 // icons
 import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
 import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
+import ShopIcon from '@material-ui/icons/Shop';
+import LocalMallIcon from '@material-ui/icons/LocalMall';
+import MoreIcon from '@material-ui/icons/More';
 
 
 //modal 
@@ -44,24 +47,18 @@ const Product = ({ f }) => {
     setOpen(false);
   };
 
-  //---------------------------------------------------------------------------------
+ const user = loadSession();
+ 
+ var userId = 0
+ 
+ if (user){userId = user.id}
 
-
-
-  // const userId = 1;
-  const user = false;
-  const arr = []
-
-  const setToLocalStorage = (f, userId) => {
-    if (userId !== 0) {
-      dispatch(UpdateOrderLine(f, userId))
+  const setToLocalStorage = (p, id) => {
+    if (id) {
+      dispatch(UpdateOrderLine(p, id))
     }
     else {
-
-      const arr1 = arr.push(f)
-      console.log(arr)
-      dispatch(saveToLocalStorage(f))
-      // dispatch(updateGuestCart())
+      dispatch(UpdateOrderLine(p, -1))
     }
 
   }
@@ -75,44 +72,42 @@ const Product = ({ f }) => {
   return (
     <Card className={classes.root} >
       <CardActionArea>
-        <CardMedia
+        <CardMedia          
           className={classes.media}
           image={f.imagen}
-          onClick={() => handleOpen()}
-          title={f.name}
+          style={{display: 'block', margin: '0 auto', height: '220px', width: '50%'}}
+          // onClick={() => handleOpen()}
+          // title={f.name}
         />
         <CardContent>
-          <Typography style={{ fontFamily: 'Ubuntu', fontSize: '30px', fontWeight: 'light', fontStyle: 'normal' }} gutterBottom variant="h5" component="h2">
+          <Typography style={{ fontFamily: 'Ubuntu', fontSize: '30px', fontWeight: 'light', fontStyle: 'normal', textAlign: 'center' }} gutterBottom variant="h5" component="h2">
             {f.name}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          {/* <Typography variant="body2" color="textSecondary" component="p">
             <span style={{ fontFamily: 'Raleway', fontWeight: "bolder", marginLeft: '1px', fontSize: '15px', color: '#585858' }}> Description: </span>
             <span style={{ fontFamily: 'Calibri', marginLeft: '1px', fontSize: '15px', color: '#686868' }}>
               {f.description}
             </span>
-          </Typography>
+          </Typography> */}
           <Typography variant="body2" color="textSecondary" component="p">
-            <span style={{ fontFamily: 'Raleway', fontWeight: "bolder  ", marginLeft: '1px', fontSize: '15px', color: '#585858' }}> Price: </span>
-            <span style={{ fontFamily: 'Raleway', marginLeft: '1px', fontSize: '13px', color: '#585858', fontWeight: "bolder" }}> $ </span>
-            <span style={{ fontFamily: 'Calibri', marginRight: '3px', fontSize: '16px', color: '#585858' }}> {f.price} </span>
+            {/* <span style={{ fontFamily: 'Raleway', fontWeight: "bolder  ", marginLeft: '1px', fontSize: '15px', color: '#585858' }}> Price: </span> */}
+            <div style={{textAlign: 'center'}}>
+              <span style={{ fontFamily: 'Texturina', marginLeft: '1px', fontSize: '26px', color: '#585858', fontWeight: "bolder" }}> $ </span>
+              <span style={{ fontFamily: 'Texturina', fontSize: '35px', color: '#585858', fontWeight: 'bolder'}}> {f.price} </span>
+            </div>            
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {f.stock > 0 ? <span style={{ opacity: '100%', color: 'green', fontFamily: 'Calibri', fontSize: '17px' }}>Available</span> : <span style={{ color: "red", marginLeft: '1px', fontFamily: 'Calibri', fontSize: '17px' }}>No Stock</span>}
+          <Typography style= {{ textAlign: 'center' }} variant="body2" color="textSecondary" component="p">
+            
+          </Typography>
+          <Typography style= {{ textAlign: 'center', marginTop: '20px' }} variant="body2" color="textSecondary" component="p">
+            {f.stock > 0 ? <span style={{ opacity: '100%', color: 'green', fontFamily: 'Trade Winds', fontSize: '16px'}}>Available</span> : <span style={{ color: "red", marginLeft: '1px', fontFamily: 'Trade Winds', fontSize: '16px' }}>No Stock</span>}
           </Typography>
 
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        {f.stock > 0 ? <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => setToLocalStorage(f, 0)}>
-          <AddShoppingCartRoundedIcon />
-          Add To Cart
-        </Button> : null}
-        <Button style={{ color: '#585858' }} size="small" color="primary" onClick={() => handleOpen()}>
-          <OpenInNewRoundedIcon />
-            More
-        </Button>
+      <CardActions style= {{alignItems: 'baseline'}}>
 
-        <Modal
+      <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           className={classes.modal}
@@ -130,6 +125,18 @@ const Product = ({ f }) => {
             </div>
           </Fade>
         </Modal>
+        
+        {f.stock > 0 ? <Button style={{ color: '#585858', fontFamily: 'Philosopher', fontWeight: 'bold' }} size="small" color="primary" onClick={() => setToLocalStorage(f, userId)}>
+          <LocalMallIcon />
+          Add To Cart
+        </Button> : null}
+        <Button style={{ color: '#585858', fontFamily: 'Philosopher', fontWeight: 'bold' }} size="small" color="primary" onClick={() => handleOpen()}>
+          <MoreIcon />
+            More
+        </Button>
+        
+
+       
 
       </CardActions>
     </Card>

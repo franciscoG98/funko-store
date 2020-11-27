@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
   sequelize.define('order', {
       total: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        //allowNull: false,
       },
       state: {
         type: DataTypes.ENUM('cart', 'created', 'processing', 'canceled', 'completed'),

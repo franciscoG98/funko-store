@@ -101,18 +101,27 @@ export function getUserInfo(id) {
 
 //-------------------------------------------------------------------------------------------
 // guest cart
-export function updateGuestCart() {
+export function getGuestCart() {
     return (dispatch) => {
         const cartLoaded = loadState()
-        dispatch({ type: "UPDATE_GUEST_CART", payload: cartLoaded });
+        dispatch({ type: "GET_GUEST_CART", payload: cartLoaded });
     }
 }
 
 export function saveToLocalStorage(prod) {
     return (dispatch) => {
         saveState(prod)
-        dispatch({ type: "GET_GUEST_CART", payload: prod });
+        dispatch({ type: "UPDATE_GUEST_CART", payload: prod });
     }
+}
+
+export function filterAdminOrder(status) {
+    return (dispatch) => {
+        return Axios.get(`http://localhost:3001/status?query=` + status)
+            .then(json => {
+                dispatch({ type: 'FILTER_ADMIN_ORDER', payload: json });
+            })
+    };
 }
 
 //--------------------------------------------------------------------------------------------
