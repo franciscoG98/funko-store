@@ -13,10 +13,12 @@
        text-align: center;
        margin-left: auto;
        /* margin-right: auto; */
-       font-size: 19px;
-       font-family: Calibri;
+       font-size: 17px;
+       font-family: Trade Winds;
+       font-weight: lighter;
    }
 
    .signedas {
        font-size: 16px;
+       font-family: Trade Winds;
    }
