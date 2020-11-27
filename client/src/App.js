@@ -21,12 +21,12 @@ import Reviews from "../src/components/Reviews/Reviews"
 import filterOrders from './components/Admin/Products/filterOrders';
 import Profile from './components/User/profile'
 
-// let loggedUser = false;
+ let loggedUser = false;
 function SecuredRoute(props) {
 
 
-    const loggedUser = useSelector(state => state.Login.login.user.isAdmin);
-   
+    //const loggedUser = useSelector(state => state.Login.login.user.isAdmin);
+       
     return (
     <Route path={props.path} render= {data => loggedUser ? 
 
