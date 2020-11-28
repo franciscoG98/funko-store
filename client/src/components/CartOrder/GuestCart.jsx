@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito, DecreaseGuestLine, IncreaseOrderLine, getGuestCart } from '../../actions/Order';
+import { deleteItem, DecreaseGuestLine, removeGuestLine, getGuestCart } from '../../actions/Order';
 
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
@@ -28,11 +28,11 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { updateGuestCart } from '../../actions/Order';
+import { saveToGuestCart } from '../../actions/Order';
 import { total } from "./total.js"
 import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 
-import orderlines from "./Utils"
+import {orderlines} from "./Utils"
 
 const MySwal = withReactContent(Swal)
 
@@ -103,10 +103,10 @@ const GuestCart = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   
-  const order = useSelector(state => state.Order.guestOrder);
+  const order = useSelector(state => state.Order.guestCart);
   //const carro = useSelector(state => state.Order.cart)
   
-  console.log( order)
+  console.log(order)
   var guestOrderlines = orderlines(order)
   
   console.log(guestOrderlines);
@@ -166,7 +166,7 @@ const GuestCart = () => {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button style={{ color: 'black' }} size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
+                  <Button style={{ color: 'black' }} size="small" color="primary" onClick={() =>dispatch (removeGuestLine(i.id))}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
                 <StyledTableCell className={classes.text} align="left">{i.name}</StyledTableCell>
                 <StyledTableCell align="left">
@@ -190,7 +190,7 @@ const GuestCart = () => {
                     </span>
                     <Button className={classes.hover}
                       aria-label="increase"
-                      onClick={() => dispatch(IncreaseOrderLine(i, ))} >
+                      onClick={() => dispatch(saveToGuestCart(i))} >
                       <AddIcon fontSize="small" />
                     </Button>
                   </ButtonGroup>

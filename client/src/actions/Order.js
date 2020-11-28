@@ -117,6 +117,19 @@ export function saveToGuestCart(prod) {
     }
 }
 
+export function DecreaseGuestLine(prod) {
+    //prod.quantity -= 1;
+    return (dispatch) => {
+        dispatch({ type: 'DECREASE_GUEST_LINE', payload: prod });
+    }
+}
+export function removeGuestLine(prod) {
+    //prod.quantity -= 1;
+    return (dispatch) => {
+        dispatch({ type: 'REMOVE_GUEST_LINE', payload: prod });
+    }
+}
+
 export function filterAdminOrder(status) {
     return (dispatch) => {
         return Axios.get(`http://localhost:3001/status?query=` + status)
@@ -124,11 +137,5 @@ export function filterAdminOrder(status) {
                 dispatch({ type: 'FILTER_ADMIN_ORDER', payload: json });
             })
     };
-}
-export function DecreaseGuestLine(prod) {
-    //prod.quantity -= 1;
-    return (dispatch) => {
-                dispatch({ type: 'DECREASE_ORDER_LINE', payload: prod });
-    }
 }
 //--------------------------------------------------------------------------------------------
