@@ -9,8 +9,8 @@ const Profile = () =>{
 
    const dispatch = useDispatch();
     const info = useSelector(state => state.Profile.userInfo);
-    console.log(info)
     const id = useParams();
+    console.log(id.id)
     useEffect(() => {
         dispatch(getUser(id.id))
       },[])

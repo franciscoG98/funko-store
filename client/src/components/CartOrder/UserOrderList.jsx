@@ -10,6 +10,8 @@ import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { total } from './total';
+import StripeCheckout from 'react-stripe-checkout'
+
 
 //const MySwal = withReactContent(Swal)
 
@@ -97,6 +99,10 @@ export default function UserOrderList() {
   }
   console.log(userList);
 
+  function handleToken(token, addresses){
+    console.log(token, addresses)
+  }
+
   return (
 
     <div>
@@ -180,10 +186,13 @@ export default function UserOrderList() {
             <StyledTableCell className={classes.black} width="200px" align="center">Payment Information</StyledTableCell>
 
             <TableCell scope="row" width="800px" align="center" >
-              <ButtonGroup align="center" variant="text" color="primary" aria-label="text primary button group">
-                <Button>Credit Card</Button>
-                <Button>Cash</Button>
-              </ButtonGroup>
+                <StripeCheckout
+                stripeKey = 'pk_test_51HsVfCGPp99r0B7MXf3SjryIPftr9tUGFehUIbuQQGSBEFO8SdTkMwR4PuAS63GJHA7uLMcQDjCxOry71pew4fjv00EeMP0HO8'
+                token = {handleToken}
+                billingaddress
+                shippingaddress
+                amount = {total(userList)}
+                />
             </TableCell>
 
 
