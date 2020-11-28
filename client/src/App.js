@@ -21,10 +21,13 @@ import ResetPassword from './components/UserLogin/ResetPassword';
 import CommentBox from '../src/components/Reviews/commentbox';
 import Reviews from "../src/components/Reviews/Reviews"
 import filterOrders from './components/Admin/Products/filterOrders';
+import Promote from './components/Admin/Users/Promote';
 
 const userData = loadSession();
 
 const isAdmin = userData && userData.isAdmin;
+
+
 
 
 function SecuredRoute(props) {    
@@ -69,7 +72,8 @@ function App() {
             < SecuredRoute exact path='/products/admin' component={AdminOrderList} />             
             < SecuredRoute exact path='/products/admin' component={filterOrders} />                   
           </div>
-          < SecuredRoute exact path='/auth/promote/:id' />
+          < Route exact path='/auth/promote/:id' />
+          < SecuredRoute exact path='/admin/user' component={Promote} />
           < Route exact path='/user/:id/product/' component={UserOrderList} />
           < Route exact path='/register' component={Register} />
           < Route exact path='/login' component={UserLogin} />

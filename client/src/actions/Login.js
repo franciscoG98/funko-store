@@ -19,11 +19,11 @@ export function logout() {
     }
 }
 
-export function passwordReset(id) {
-    return (dispatch) => {
-        return Axios.post(`http://localhost:3001/${id}/passwordReset`)
-            .then(json => {
-                dispatch({ type: "RESET_PASSWORD", payload: json });
-            });
-    }
-}
+// export function passwordReset(id) {
+//     return (dispatch) => {
+//         return Axios.post(`http://localhost:3001/${id}/passwordReset`)
+//             .then(json => {
+//                 dispatch({ type: "RESET_PASSWORD", payload: json });
+//             });
+//     }
+// }
