@@ -19,7 +19,7 @@ import SideBar from '../SideBar/SideBar';
 
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Avatar from '../User/components/avatar.jsx'
+// import Avatar from '../User/components/avatar.jsx'
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
@@ -180,30 +180,15 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={0} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-
-        {/* carrito fail */}
-        {/* <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={0} color="secondary">
-            <ShoppingCart />
-          </Badge>
-        </IconButton> */}
 
         {/* carrito 2 */}
-        {userId ? <Link to='/UserCart' > 
+        {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black'}}> 
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
-        </Link> : <Link to='/GuestCart' > 
+        </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'black'}} > 
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />
@@ -295,7 +280,7 @@ export default function PrimarySearchAppBar() {
 
             {/* carrito 2 */}
 
-            {userId ? <Link to='/UserCart' > 
+            {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'inherit'}} > 
                 <IconButton aria-label="show 0 new notifications" color="inherit">
                   <Badge badgeContent={order.length} color="primary">
                     <ShoppingCartRoundedIcon />
