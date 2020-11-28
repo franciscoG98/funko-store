@@ -19,7 +19,9 @@ export function loginUser(loginParaQuenoPiseVble) {
 }
 
 export function logout() {
+    
     return (dispatch) => {
+        sessionStorage.clear()
         return dispatch({ type: "LOGOUT" });
     }
 }
