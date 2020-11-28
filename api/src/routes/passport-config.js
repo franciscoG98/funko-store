@@ -17,24 +17,29 @@ passport.use(
           }
         })
         .then((user) => {
-          if (user) {
-            if (bcrypt.compare(password, user.password )) {
+
+          console.log('pass que llega del front:\n',password, '\n user pass de DB:\n',user.password);
+
+          bcrypt.compare(password, user.password, function(err, res) {
+            if (err){
+              console.log('le has mandado cualquier pass ura mira:\n',password);
+              // res.json({success: false, message: 'passwords do not match'});
+              res.json({message: 'passwords do not match'})
+            }
+            else if(res) {
+              
               return done(null, {
                 username: user.username,
-                fullname: user.fullname, 
+                fullname: user.fullname,
                 email: user.email,
                 id: user.id,
                 isAdmin: user.isAdmin,
-                phone:user.phone, 
+                phone: user.phone, 
                 address: user.address,
                 password: user.password
               });
-            } else {
-              return done(new Error("Password incorrect"));
-            }
-          } else {
-            return done(new Error("User not found"), null);
-          }
+            } 
+          })
         })
         .catch((err) => {
           console.error(err);

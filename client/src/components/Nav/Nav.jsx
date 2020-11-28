@@ -19,7 +19,7 @@ import SideBar from '../SideBar/SideBar';
 
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Avatar from '../User/components/avatar.jsx'
+// import Avatar from '../User/components/avatar.jsx'
 import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
@@ -159,9 +159,14 @@ export default function PrimarySearchAppBar() {
           <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', height: '25px'}}> Profile </span> </MenuItem>
         
 
-        <Link to="/auth/logout" style={{ textDecoration: 'none', color: 'black'}} >
-          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto'/* , marginRight: 'auto' */}}> Logout </span> </MenuItem>
-        </Link> </Menu>  }   
+          <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
+            <MenuItem onClick={() => dispatch(logout())}>
+              <span onClick={handleUserMenuClose} style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto'}}>
+                 Logout 
+              </span> 
+            </MenuItem>
+          </Link>
+        </Menu>  }   
     
      </Menu>   
   );
@@ -179,50 +184,48 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={0} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
+      {/* home */}
+      <MenuItem>        
+        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }} >
+          <IconButton aria-label="show 0 new notifications" color="inherit">
+            <Badge badgeContent={order.length} color="secondary">
+              <ShopTwoIcon />
+            </Badge>
+          </IconButton>
+        </Link>
+        <p>Home</p>
       </MenuItem>
+
+
+      {/* carrito 2 */}
       <MenuItem>
-
-        {/* carrito fail */}
-        {/* <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={0} color="secondary">
-            <ShoppingCart />
-          </Badge>
-        </IconButton> */}
-
-        {/* carrito 2 */}
-        {userId ? <Link to='/UserCart' > 
+        {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black'}}> 
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
-        </Link> : <Link to='/GuestCart' > 
+        </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'black'}} > 
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
         </Link> }
-        <p>Notifications</p>
+        <p>Shopping Cart</p>
+      </MenuItem>
+
+      {/* Profile */}
+      <MenuItem>
+        <IconButton aria-label="" color="inherit">
+          <Badge badgeContent={0} color="secondary">
+            <AccountCircle />
+          </Badge>
+        </IconButton>
+        <p>Profile</p>
       </MenuItem>
 
       {/* Settings */}
-      <MenuItem>
-        <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <SettingsRoundedIcon />
-          </Badge>
-        </IconButton>
-        <p>Settings</p>
-      </MenuItem>
-
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -230,9 +233,9 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <SettingsRoundedIcon />
         </IconButton>
-        <p>Profile</p>
+        <p>Settings</p>
       </MenuItem>
     </Menu>
   );
@@ -271,20 +274,7 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             </Link> */}
 
-            {/* mensajito */}
-            {/* <IconButton aria-label="show 0 new mails" color="inherit">
-              <Badge badgeContent={0} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
-
-            {/* carrito fail */}
-            {/* <IconButton aria-label="show 0 new notifications" color="inherit">
-              <Badge badgeContent={0} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton> */}
-
+            {/* home */}
             <Link to='/' style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new notifications" color="inherit">
                 <Badge badgeContent={order.length} color="secondary">
@@ -295,13 +285,13 @@ export default function PrimarySearchAppBar() {
 
             {/* carrito 2 */}
 
-            {userId ? <Link to='/UserCart' > 
+            {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'inherit'}} > 
                 <IconButton aria-label="show 0 new notifications" color="inherit">
                   <Badge badgeContent={order.length} color="primary">
                     <ShoppingCartRoundedIcon />
                   </Badge>
                 </IconButton>
-              </Link> : <Link to='/GuestCart' > 
+              </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'inherit'}} > 
                 <IconButton aria-label="show 0 new notifications" color="inherit">
                   <Badge badgeContent={order.length} color="primary">
                     <ShoppingCartRoundedIcon />
@@ -309,20 +299,13 @@ export default function PrimarySearchAppBar() {
                 </IconButton>
               </Link> }
 
-            {/* user */}
-            
 
+            {/* user */}
             <IconButton
               aria-label="show 0 new notifications"
               aria-controls={menuId}
               onClick={handleLoggedUserMenu}
               color="inherit"
-            // edge="end"
-            // aria-label="account of current user"
-            // aria-controls={menuId}
-            // aria-haspopup="true"
-            // onClick={handleProfileMenuOpen}
-            // color="inherit"
             >
               {/* <AccountCircle /> */}
               <GitHubIcon />
@@ -331,8 +314,6 @@ export default function PrimarySearchAppBar() {
 
             {/* la tuerquitas visteSSS */}
             {isAdmin ? <IconButton
-              // aria-label="show 0 new notifications" 
-              // color="inherit"
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
