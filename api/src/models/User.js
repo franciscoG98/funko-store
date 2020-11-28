@@ -36,6 +36,18 @@ module.exports = (sequelize) => {
         },
         password: {
             type: DataTypes.STRING,
+        },
+        googleId: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        displayName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
 
     });

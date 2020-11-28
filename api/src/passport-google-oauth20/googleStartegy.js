@@ -11,8 +11,15 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/callback"
 },
     function (accessToken, refreshToken, profile, done) {
-        User.findOrCreate({ googleId: profile.id }, function (err, user) {
-            return done(err, user);
-        });
+        // console.log(profile)
+        User.findOrCreate({
+            googleId: profile.id,
+            displayName: profile.displayName,
+            image: profile.photos[0].value
+
+        },
+            function (err, user) {
+                return done(err, user);
+            });
     }
 ));
