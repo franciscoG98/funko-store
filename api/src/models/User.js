@@ -24,11 +24,11 @@ module.exports = (sequelize) => {
         },
         phone: {
             type: DataTypes.BIGINT,
-            allowNull: false
+            allowNull: true
         },
         address: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         isAdmin: {
             type: DataTypes.BOOLEAN,
@@ -39,11 +39,11 @@ module.exports = (sequelize) => {
         },
         googleId: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         displayName: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         image: {
             type: DataTypes.STRING,

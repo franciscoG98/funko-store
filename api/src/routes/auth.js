@@ -91,7 +91,7 @@ server.put('/promote/:id', (req, res) => {
 //   request.  The first step in Google authentication will involve
 //   redirecting the user to google.com.  After authorization, Google
 //   will redirect the user back to this application at /auth/google/callback
-server.get('/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+server.get('/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
 
 // GET /auth/google/callback
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -100,6 +100,6 @@ server.get('/google', passport.authenticate('google', { scope: ['https://www.goo
 //   which, in this example, will redirect the user to the home page.
 server.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
-    res.redirect('/');
+    res.redirect('http://localhost:3000');
   });
 module.exports = server;

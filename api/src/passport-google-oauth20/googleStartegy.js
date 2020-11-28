@@ -1,25 +1,40 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const { User } = require('../db.js');
 
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and Google
 //   profile), and invoke a callback with a user object.
 passport.use(new GoogleStrategy({
-    clientID: '761928378476-linuiidjstvft84rc9e78fcfeb9gotqm.apps.googleusercontent.com',
-    clientSecret: 'abpbbK_5H9a3wTXaB1_D1WqF',
-    callbackURL: "http://localhost:3000/auth/google/callback"
+    clientID: '761928378476-vjdki2n1rde6q99eqc1kn56o87a5qgn3.apps.googleusercontent.com',
+    clientSecret: 'H8v8S-VDhu9vRy5-xat9yMm0',
+    callbackURL: "http://localhost:3001/auth/google/callback"
 },
     function (accessToken, refreshToken, profile, done) {
         // console.log(profile)
-        User.findOrCreate({
-            googleId: profile.id,
-            displayName: profile.displayName,
-            image: profile.photos[0].value
+        return User.findOne({
+            where: {
+                email: profile.emails[0].value,
+            }
+        })
+            .then(user => {
+                // console.log(profile)
+                if (!user) {
+                    User.create({
 
-        },
-            function (err, user) {
-                return done(err, user);
-            });
-    }
-));
+                        googleId: profile.id,
+                        username: profile.name.givenName,
+                        fullname: profile.displayName,
+                        email: profile.emails[0].value,
+                        password: 'esto me tiene harta',
+                        image: profile.photos[0].value
+
+                    })
+                }
+            })
+    })
+    // .catch(err => {
+    //     done(err, null)
+    // })
+);
