@@ -105,7 +105,7 @@ function UserLogin() {
                         label="Remember me"
                     />
 
-                    <Link href="/auth/google" style={{ textDecoration: 'None' }}>
+                    <Link href="http://localhost:3001/auth/google" style={{ textDecoration: 'None' }}>
                         <GoogleButton
                         />
                     </Link>
