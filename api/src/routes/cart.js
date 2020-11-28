@@ -35,12 +35,14 @@ server.get('/:idUser/cart', (req, res) => {
 server.post('/:idUser/cart', async (req, res) => {
     const { idUser } = req.params;
     const prod = req.body;
+   
     const Orden = await Order.findOrCreate({
         where: {
             userId: idUser,
             state: 'cart',
-        }
-    })
+        },
+     })
+     Orden[0].total += prod.price
     idOrd = Orden[0].id
     const orderFound = await Orderline.findOne({
         where: {
@@ -122,8 +124,11 @@ server.get('/:id/orders', (req, res) => {
 
 //Reset password route
 server.put('/:id/passwordReset', (req, res) => {
+    
     const { id } = req.params;
     const resetPassword = req.body.password;
+    console.log(id);
+    
 
     User.findOne({
         where: {
@@ -131,6 +136,7 @@ server.put('/:id/passwordReset', (req, res) => {
         },
     })
         .then((data) => {
+            console.log(data);
             data.update({ password: resetPassword })
         })
         .then(() => {

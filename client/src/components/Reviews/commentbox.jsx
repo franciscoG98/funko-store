@@ -8,7 +8,11 @@ import Input from '../User/components/input'
 import {addReviews} from "../../actions/Reviews";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useParams} from "react-router-dom"
+<<<<<<< HEAD
 import { Typography } from '@material-ui/core'
+=======
+import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
+>>>>>>> 4cc839265466f6d900aed2b4ddce539c42b822b6
 
 export default function CommentBox(){
 
@@ -17,7 +21,10 @@ export default function CommentBox(){
     const {handleSubmit, errors, register} = useForm({
     })
     // const userId = 1;
-    const userId = useSelector(state => state.Login.login.user.id)
+    // const userId = useSelector(state => state.Login.login.user.id)
+    const userData = loadSession();
+    const userId = userData && userData.id; 
+
   
     const onSubmit=(data, e)=>{
     dispatch(addReviews(data, id.id))

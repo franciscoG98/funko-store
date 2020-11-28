@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, UpdateOrderLine, getCarrito, DecreaseOrderLine, IncreaseOrderLine, getGuestCart } from '../../actions/Order';
+import { deleteItem, DecreaseGuestLine, removeGuestLine, getGuestCart } from '../../actions/Order';
 
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
@@ -18,26 +18,21 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-
-
 import Badge from '@material-ui/core/Badge';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-
-
-
-
-
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { updateGuestCart } from '../../actions/Order';
+import { saveToGuestCart } from '../../actions/Order';
 import { total } from "./total.js"
 import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
+
+import {orderlines} from "./Utils"
 
 const MySwal = withReactContent(Swal)
 
@@ -104,31 +99,25 @@ const useStyles = makeStyles({
   }
 });
 
-const ShoppingCart2 = () => {
+const GuestCart = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  
+  const order = useSelector(state => state.Order.guestCart);
+  //const carro = useSelector(state => state.Order.cart)
+  
+  console.log(order)
+  var guestOrderlines = orderlines(order)
+  
+  console.log(guestOrderlines);
 
- 
-  const user = loadSession();
-  //const order = useSelector(state => state.Order.items);
-  const carro = useSelector(state => state.Order.cart)
-  const cartProduct = useSelector(state => state.Order.cartProd);
-  
-  console.log("carro1: " + carro);
-  console.log("cartProd: " + carro)
-  
-  var userId = 0
-  if (user){userId = user.id}
   
   useEffect(() => {
-    if (userId) {
-      dispatch(getCarrito(userId))
-    }
-    else {
-      dispatch(getGuestCart(-1))
-    }
-     
-  }, [])
+    
+    dispatch(getGuestCart())
+      
+      
+    }, [])
 
   
   const deleteItemCart = async (id) => {
@@ -142,7 +131,7 @@ const ShoppingCart2 = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteItem(userId, id))
+        dispatch(removeGuestLine(id))
 
         MySwal.fire(
           'Deleted!',
@@ -155,42 +144,6 @@ const ShoppingCart2 = () => {
     });
 
   };
-  console.log('orderlines antes de la ifi:\n', carro)
-
-
-
-
-  const carro2 = carro.sort(function (a, b) {
-    if (a.productId > b.productId) {
-      return 1;
-    }
-    if (a.productId < b.productId) {
-      return -1;
-    }
-    return 0;
-  });
-  const prod2 = cartProduct.sort(function (a, b) {
-    if (a.id > b.id) {
-      return 1;
-    }
-    if (a.id < b.id) {
-      return -1;
-    }
-    return 0;
-  });
-
-  for (let index = 0; index < carro.length; index++) {
-    carro2[index].prodName = prod2[index].name
-    carro2[index].prodImg = prod2[index].imagen
-  }
-  /*  const handleAddIcon = function (prod, id){
-    prod.quantity += 1
-    dispatch(IncreaseOrderLine (prod, id)) 
-   }
-   const handleRemoveIcon = function (prod, id){
-    prod.quantity -= 1
-    dispatch(IncreaseOrderLine (prod, id)) 
-   } */
 
   return (
     <div className={classes.op} style={{ width: '70%', margin: 'auto' }}>
@@ -209,15 +162,15 @@ const ShoppingCart2 = () => {
           </TableHead>
           {/* cuerpo */}
           <TableBody>
-            {!carro2 ? <p>cargando...</p> : carro2.map(i => (
+            {!guestOrderlines ? <p>cargando...</p> : guestOrderlines.map(i => (
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button style={{ color: 'black' }} size="small" color="primary" onClick={() => deleteItemCart(i.productId)}><DeleteRoundedIcon /></Button>
+                  <Button style={{ color: 'black' }} size="small" color="primary" onClick={() => deleteItemCart(i.id)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
-                <StyledTableCell className={classes.text} align="left">{i.prodName}</StyledTableCell>
+                <StyledTableCell className={classes.text} align="left">{i.name}</StyledTableCell>
                 <StyledTableCell align="left">
-                  <img src={i.prodImg} alt='funko' style={{ width: 'auto', height: '60px' }} />
+                  <img src={i.imagen} alt='funko' style={{ width: 'auto', height: '60px' }} />
                 </StyledTableCell>
                 <StyledTableCell style={{ fontSize: '18px', paddingRight: '42px' }} align="center">
 
@@ -226,7 +179,7 @@ const ShoppingCart2 = () => {
                     <Button className={classes.hover}
                       style={{ borderRight: '1px solid #bfbfbf' }}
                       aria-label="reduce"
-                      onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseOrderLine(i, userId))}
+                      onClick={() => i.quantity === 1 ? deleteItemCart(i.id) : dispatch(DecreaseGuestLine(i))}
                     >
                       <RemoveIcon fontSize="small" />
                     </Button>
@@ -237,7 +190,7 @@ const ShoppingCart2 = () => {
                     </span>
                     <Button className={classes.hover}
                       aria-label="increase"
-                      onClick={() => dispatch(IncreaseOrderLine(i, userId))} >
+                      onClick={() => dispatch(saveToGuestCart(i))} >
                       <AddIcon fontSize="small" />
                     </Button>
                   </ButtonGroup>
@@ -255,7 +208,7 @@ const ShoppingCart2 = () => {
             <StyledTableCell style={{ fontFamily: 'Cairo', fontSize: '24px'/* , fontWeight: 'bold' */ }} align="left">TOTAL</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
-            <StyledTableCell style={{ fontSize: '25px' }} align="right">${total(carro2)} </StyledTableCell>
+            <StyledTableCell style={{ fontSize: '25px' }} align="right">${total(guestOrderlines)} </StyledTableCell>
             <StyledTableCell align="right">
 
               {/* ternario aca que si es usuario 0 me redireccione a login */}
@@ -276,4 +229,4 @@ const ShoppingCart2 = () => {
   );
 }
 
-export default ShoppingCart2; 
+export default GuestCart; 

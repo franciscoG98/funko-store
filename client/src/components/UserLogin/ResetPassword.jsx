@@ -9,21 +9,24 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
-import { passwordReset } from '../../actions/Login';
+import { passwordReset } from '../../actions/User';
 import { useParams } from 'react-router';
 import useStyles from './UserLoginStyles';
+import { loadSession } from './../../store/saveToSessionStorage/sessionStorage';
 
 // Reset password Form
 function ResetPassword() {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const userData = loadSession();
+    const userId = userData && userData.id;
 
-    const { id } = useParams();
+    // const { id } = useParams();
 
     const handleSubmit = e => {
         e.preventDefault()
 
-        dispatch(passwordReset(id));
+        dispatch(passwordReset(userId));
 
     }
 
