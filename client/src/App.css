@@ -3,14 +3,17 @@
 .marvel {
   background-image: url("https://wallpaperaccess.com/full/14358.jpg");
   background-repeat: repeat-y;
-  height: 500vh;
+  height: 'auto';
+  background-size: 100%;
   
 }
 
 .dc {
   background-image: url("https://wallpapercave.com/wp/IWeDuiF.jpg");
-  height: 500vh;
+  background-size: 100%;
+  height: 'auto';
   background-repeat: repeat-y;
+  /* width: 200 %; */
 }
 
 .switch {
@@ -87,6 +90,7 @@
   margin-left: 438px;
 
 }
+ 
 
 /* .orders :first-child {
   align-self: center;
