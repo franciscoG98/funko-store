@@ -12,7 +12,7 @@ const  {useSelector} = require("react-redux");
   // eslint-disable-next-line react-hooks/rules-of-hooks
    
   
-   const orderlines = function (array){
+  export const orderlines = function (array){
     var guestOrder = []
     var idArr = []
      for (let i = 0; i < array.length; i++) {
@@ -27,7 +27,7 @@ const  {useSelector} = require("react-redux");
         idArr.push(array[i].id);
         
         let pushOrderLine = {
-          productId: array[i].id,
+          id: array[i].id,
           name: array[i].name,
           imagen: array[i].imagen,
           price: array[i].price,
@@ -40,18 +40,20 @@ const  {useSelector} = require("react-redux");
     }return guestOrder
   }
   
+ export const decrease =  ( array, idProd) => {
+   console.log("entroooooo");
+   for (let i = 0; i < array.length; i++) {
+     if (array[i].id === idProd){
+       array.splice(i, 1)
+       
+      return array
+     }
+     
+   }
+   
+ }
+
  
-  export default orderlines;
-  /* for (let i = 0; i < array.length; i++) {
-    if (guestOrder[i].id.includes(arra[i].id))
-  }
-  array.map(p => {
-    if (guestOrder.find(p => p.id == )){
-      let ol =  guestOrder.indexOf(p);
-      guestOrder[ol].quantity += 1   
-    } else {
-      guestOrder.push(p)
-    return guestOrder}
-    
-}) */
+  
+  
   

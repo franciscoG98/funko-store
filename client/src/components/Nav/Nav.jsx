@@ -295,13 +295,19 @@ export default function PrimarySearchAppBar() {
 
             {/* carrito 2 */}
 
-            <Link to='/ShoppingCart2' style={{ textDecoration: 'none', color: 'white' }} >
-              <IconButton aria-label="show 0 new notifications" color="inherit">
-                <Badge badgeContent={order.length} color="secondary">
-                  <ShoppingCartRoundedIcon />
-                </Badge>
-              </IconButton>
-            </Link>
+            {userId ? <Link to='/UserCart' > 
+                <IconButton aria-label="show 0 new notifications" color="inherit">
+                  <Badge badgeContent={order.length} color="primary">
+                    <ShoppingCartRoundedIcon />
+                  </Badge>
+                </IconButton>
+              </Link> : <Link to='/GuestCart' > 
+                <IconButton aria-label="show 0 new notifications" color="inherit">
+                  <Badge badgeContent={order.length} color="primary">
+                    <ShoppingCartRoundedIcon />
+                  </Badge>
+                </IconButton>
+              </Link> }
 
             {/* user */}
             

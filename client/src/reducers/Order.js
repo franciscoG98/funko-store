@@ -1,6 +1,10 @@
+/* eslint-disable import/no-anonymous-default-export */
 // import { loadState } from '../components/saveToLocalStorage/LocalStorage';
-
+import {orderlines, decrease} from "../components/CartOrder/Utils"
 import { loadState } from "../store/saveToLocalStorage/LocalStorage";
+
+
+
 
 const initialState = {
     items: [],
@@ -11,7 +15,9 @@ const initialState = {
     carrito: [],
     cartProd: [],
     incDec: [],
-    guestCart: loadState() === undefined ? '' : loadState(),
+    prueba: [],
+    //guestOrder: [],
+    guestCart: loadState() === undefined ? [] : loadState(),
     guestCartProd: []
 }
 
@@ -78,16 +84,36 @@ export default (state = initialState, action) => {
         case "GET_GUEST_CART":
             return {
                 ...state,
-                guestCart: [...state.guestCartProd]
+                guestCart: state.guestCart,
+                //guestOrder: action.payload
             }
 
         case "UPDATE_GUEST_CART":
             return {
                 ...state,
-                guestCartProd: [...state.guestCartProd, action.payload]
+                guestCartProd: [...state.guestCartProd, action.payload],
+                guestOrder: orderlines([...state.guestCart, action.payload]),
+                guestCart: [...state.guestCart, action.payload],
                 /* cart: action.payload.cart,
                 cartProd: action.payload */
             }
+            case "INCREASE_GUEST_LINE":
+                return {
+                    ...state,
+                    guestCart: state.guestCart,
+                }
+    
+            case "DECREASE_GUEST_LINE":
+                return {
+                    ...state,
+                    guestCart: decrease([...state.guestCart], action.payload.id)
+                }
+                
+            case "REMOVE_GUEST_LINE":
+                return {
+                    ...state,
+                    guestCart: state.guestCart.filter((i) => i.id !== action.payload)
+                }
 
         case 'FILTER_ADMIN_ORDER':
             return {
