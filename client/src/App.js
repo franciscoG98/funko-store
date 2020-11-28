@@ -27,7 +27,7 @@ const userData = loadSession();
 
 const isAdmin = userData && userData.isAdmin;
 
-console.log(isAdmin);
+
 
 
 function SecuredRoute(props) {    

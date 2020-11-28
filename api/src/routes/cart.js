@@ -124,8 +124,11 @@ server.get('/:id/orders', (req, res) => {
 
 //Reset password route
 server.put('/:id/passwordReset', (req, res) => {
+    
     const { id } = req.params;
     const resetPassword = req.body.password;
+    console.log(id);
+    
 
     User.findOne({
         where: {
@@ -133,6 +136,7 @@ server.put('/:id/passwordReset', (req, res) => {
         },
     })
         .then((data) => {
+            console.log(data);
             data.update({ password: resetPassword })
         })
         .then(() => {

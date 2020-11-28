@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUsers, promoteUser } from '../../../actions/User';
+import { getUsers, promoteUser, deleteUser } from '../../../actions/User';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -46,17 +46,34 @@ const useStyles = makeStyles({
   }
 });
 
+
+
 function CustomizedTables() {
 
   const classes = useStyles();
   const dispatch = useDispatch();
-  const users = useSelector(state => state.User.data);
-  console.log(users);
+  const users1 = useSelector(state => state.User.data);
+  
+  
 
   useEffect(()=>{
     dispatch( getUsers() )
-    // eslint-disable-next-line
+    
   },[])
+
+  async function promote(id) {    
+    await dispatch( promoteUser(id) );  
+    dispatch(getUsers());
+  }
+
+  async function wipe(id) {
+    await dispatch( deleteUser(id) );
+    dispatch(getUsers());
+    
+  }
+
+
+  const users = users1.sort();
 
   return (
     <TableContainer className={classes.container} component={Paper}>
@@ -92,13 +109,13 @@ function CustomizedTables() {
               </StyledTableCell>
 
               <StyledTableCell component="th" scope="row">
-                <Button onClick={() => dispatch( promoteUser(user.id) )}>
+                <Button onClick={() => promote(user.id) }>
                   <PersonAddIcon/>  
                 </Button>                
               </StyledTableCell>
 
               <StyledTableCell component="th" scope="row">
-                <Button>
+                <Button onClick={()=> wipe(user.id) } >
                   <DeleteIcon/> 
                 </Button>                
               </StyledTableCell>
