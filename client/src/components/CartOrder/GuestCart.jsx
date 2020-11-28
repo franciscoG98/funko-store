@@ -131,7 +131,7 @@ const GuestCart = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteItem( id))
+        dispatch(removeGuestLine(id))
 
         MySwal.fire(
           'Deleted!',
@@ -166,7 +166,7 @@ const GuestCart = () => {
 
               <StyledTableRow key={i.id}>
                 <StyledTableCell align="left">
-                  <Button style={{ color: 'black' }} size="small" color="primary" onClick={() =>dispatch (removeGuestLine(i.id))}><DeleteRoundedIcon /></Button>
+                  <Button style={{ color: 'black' }} size="small" color="primary" onClick={() => deleteItemCart(i.id)}><DeleteRoundedIcon /></Button>
                 </StyledTableCell>
                 <StyledTableCell className={classes.text} align="left">{i.name}</StyledTableCell>
                 <StyledTableCell align="left">
@@ -179,7 +179,7 @@ const GuestCart = () => {
                     <Button className={classes.hover}
                       style={{ borderRight: '1px solid #bfbfbf' }}
                       aria-label="reduce"
-                      onClick={() => i.quantity === 1 ? deleteItemCart(i.productId) : dispatch(DecreaseGuestLine(i))}
+                      onClick={() => i.quantity === 1 ? deleteItemCart(i.id) : dispatch(DecreaseGuestLine(i))}
                     >
                       <RemoveIcon fontSize="small" />
                     </Button>
