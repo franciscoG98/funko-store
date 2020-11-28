@@ -9,7 +9,15 @@ export default (state = initialState, action)=>{
             return {
                 ...state,
                 data: [...state.data, action.payload]
-    }
+            }
+        
+            case "GET_USERS": 
+                return {
+                    ...state,
+                    data: action.payload.data
+                }
+
+
     default: return state;
   }
 
