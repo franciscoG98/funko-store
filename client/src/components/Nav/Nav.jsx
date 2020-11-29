@@ -25,6 +25,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ShopTwoIcon from '@material-ui/icons/ShopTwo';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const user = loadSession();
  
@@ -132,7 +133,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-777px', marginLeft: '-272px'}}
+      style={{ opacity: '80%', marginTop: '-700px', marginLeft: '-272px'}}
     >    
       <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
         <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}> Sign In! </span> </MenuItem>
@@ -150,7 +151,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-778px', marginLeft: '-520px' }}
+      style={{ opacity: '80%', marginTop: '-698px', marginLeft: '-519px' }}
     > 
         <MenuItem onClick={handleUserMenuClose} style={{height: '37px'}}> <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
         <span className='signedas'> Signed as {username} </span>  
@@ -308,7 +309,7 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
               {/* <AccountCircle /> */}
-              <GitHubIcon />
+              <AccountCircleIcon />
             </IconButton>
 
 

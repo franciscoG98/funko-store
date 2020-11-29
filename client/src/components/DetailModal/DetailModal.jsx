@@ -17,7 +17,7 @@ export default function DetailModal({f}) {
     const dispatch = useDispatch();
 
     return (
-        <div>
+        <div  >
             <div id='image'>
                 <img src={imagen} alt='funko img' />
             </div>
