@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
+import { loadSession } from "../../store/saveToSessionStorage/sessionStorage"
 import { logout } from '../../actions/Login';
 import { Link } from 'react-router-dom';
 import useStyles from './NavStyles';
@@ -26,17 +26,17 @@ import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const user = loadSession();
- 
- var userId = 0
- 
- if (user){userId = user.id}
+
+var userId = 0
+
+if (user) { userId = user.id }
 
 export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
   const order = useSelector(state => state.Order.items);
-  const dispatch = useDispatch();  
-  const userData = loadSession();  
+  const dispatch = useDispatch();
+  const userData = loadSession();
 
   let username = userData && userData.username;
   let logged = userData && userData;
@@ -98,16 +98,16 @@ export default function PrimarySearchAppBar() {
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/products/admin'> Orders </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/admin/categories'> Categories </Link> </MenuItem>
-      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}} to='/admin/products'> Products </Link> </MenuItem>     
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/products/admin'> Orders </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/admin/categories'> Categories </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/admin/products'> Products </Link> </MenuItem>
 
     </Menu>
   );
 
 
   const renderUserMenu = (
-    
+
     <Menu
       userEl={userEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -117,57 +117,57 @@ export default function PrimarySearchAppBar() {
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
       style={{ opacity: '80%', marginTop: '-717px', marginLeft: '-272px' }}
-    >    
+    >
 
-    {/* si no hay usuario logueado muestra login y create account, de lo contrario muestra signed as (username) y sign out */}
+      {/* si no hay usuario logueado muestra login y create account, de lo contrario muestra signed as (username) y sign out */}
 
-    {!logged ?      
-    
-    <Menu
-      userEl={userEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isUserMenuOpen}
-      onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-700px', marginLeft: '-272px'}}
-    >    
-      <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
-        <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}> Sign In! </span> </MenuItem>
-      </Link>
-      <Link to="/register" style={{ textDecoration: 'none', color: 'black'}} >
-        <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}}> Create Account </span> </MenuItem>
-      </Link> 
-    </Menu> 
-    
-    : <Menu
-      userEl={userEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isUserMenuOpen}
-      onClose={handleUserMenuClose}
-      style={{ opacity: '80%', marginTop: '-698px', marginLeft: '-519px' }}
-    > 
-        <MenuItem onClick={handleUserMenuClose} style={{height: '37px'}}> <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
-        <span className='signedas'> Signed as {username} </span>  
-        </MenuItem>
+      {!logged ?
 
-          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', height: '25px'}}> Profile </span> </MenuItem>
-        
+        <Menu
+          userEl={userEl}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          id={menuId}
+          keepMounted
+          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          open={isUserMenuOpen}
+          onClose={handleUserMenuClose}
+          style={{ opacity: '80%', marginTop: '-700px', marginLeft: '-272px' }}
+        >
+          <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
+            <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}> Sign In! </span> </MenuItem>
+          </Link>
+          <Link to="/register" style={{ textDecoration: 'none', color: 'black' }} >
+            <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }}> Create Account </span> </MenuItem>
+          </Link>
+        </Menu>
 
-          <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
+        : <Menu
+          userEl={userEl}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          id={menuId}
+          keepMounted
+          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          open={isUserMenuOpen}
+          onClose={handleUserMenuClose}
+          style={{ opacity: '80%', marginTop: '-698px', marginLeft: '-519px' }}
+        >
+          <MenuItem onClick={handleUserMenuClose} style={{ height: '37px' }}> <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic' />
+            <span className='signedas'> Signed as {username} </span>
+          </MenuItem>
+
+          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', height: '25px' }}> Profile </span> </MenuItem>
+
+
+          <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
             <MenuItem onClick={() => dispatch(logout())}>
-              <span onClick={handleUserMenuClose} style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto'}}>
-                Logout 
-              </span> 
+              <span onClick={handleUserMenuClose} style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto' }}>
+                Logout
+              </span>
             </MenuItem>
           </Link>
-        </Menu>  }   
-    
-     </Menu>   
+        </Menu>}
+
+    </Menu>
   );
 
 
@@ -184,7 +184,7 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       {/* home */}
-      <MenuItem>        
+      <MenuItem>
         <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }} >
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
@@ -198,19 +198,19 @@ export default function PrimarySearchAppBar() {
 
       {/* carrito 2 */}
       <MenuItem>
-        {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black'}}> 
+        {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black' }}>
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
-        </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'black'}} > 
-          <IconButton aria-label="show 0 new notifications" color="inherit">
-            <Badge badgeContent={order.length} color="secondary">
-              <ShoppingCartRoundedIcon />
-            </Badge>
-          </IconButton>
-        </Link> }
+        </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'black' }} >
+            <IconButton aria-label="show 0 new notifications" color="inherit">
+              <Badge badgeContent={order.length} color="secondary">
+                <ShoppingCartRoundedIcon />
+              </Badge>
+            </IconButton>
+          </Link>}
         <p>Shopping Cart</p>
       </MenuItem>
 
@@ -265,7 +265,7 @@ export default function PrimarySearchAppBar() {
           <div className={classes.sectionDesktop}>
 
             {/* github signIn */}
-           {/*  <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
+            {/*  <Link to="/login" style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new mails" color="inherit">
                 <Badge badgeContent={0} color="secondary">
                   <GitHubIcon />
@@ -284,19 +284,19 @@ export default function PrimarySearchAppBar() {
 
             {/* carrito 2 */}
 
-            {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'inherit'}} > 
+            {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'inherit' }} >
+              <IconButton aria-label="show 0 new notifications" color="inherit">
+                <Badge badgeContent={order.length} color="primary">
+                  <ShoppingCartRoundedIcon />
+                </Badge>
+              </IconButton>
+            </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'inherit' }} >
                 <IconButton aria-label="show 0 new notifications" color="inherit">
                   <Badge badgeContent={order.length} color="primary">
                     <ShoppingCartRoundedIcon />
                   </Badge>
                 </IconButton>
-              </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'inherit'}} > 
-                <IconButton aria-label="show 0 new notifications" color="inherit">
-                  <Badge badgeContent={order.length} color="primary">
-                    <ShoppingCartRoundedIcon />
-                  </Badge>
-                </IconButton>
-              </Link> }
+              </Link>}
 
 
             {/* user */}
@@ -324,7 +324,7 @@ export default function PrimarySearchAppBar() {
                 <SettingsRoundedIcon />
               </Badge>
             </IconButton> : null}
-            
+
 
 
           </div>
@@ -354,10 +354,10 @@ export default function PrimarySearchAppBar() {
 
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderUserMenu}
-      {renderMenu}
+      { renderMobileMenu}
+      { renderUserMenu}
+      { renderMenu}
 
-    </div>
+    </div >
   );
 }
