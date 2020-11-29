@@ -49,7 +49,7 @@ function UserLogin() {
     })
 
     const [error, setError] = useState(false);
-    
+
     const user = useSelector(state => state.Login);
 
     function handleChange(e) {
@@ -58,10 +58,7 @@ function UserLogin() {
 
     let history = useHistory();
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> 3e14ac7cd16a391d01f2d7fc854bacc980b12102
+
 
     //axios for submit data
     const handleSubmit = async e => {
@@ -69,7 +66,7 @@ function UserLogin() {
 
         await dispatch(loginUser(login));
 
-        if(loadSession() === undefined){
+        if (loadSession() === undefined) {
             setError(true);
 
         } else {
@@ -79,12 +76,12 @@ function UserLogin() {
 
     }
 
-    
+
 
     return (
         <Container className={classes.todo} component="main" maxWidth="xs">
 
-            {error ? <p style={{color:'red', backgroundColor:'pink', border: '1px solid red', width: '60%', marginLeft:'auto', marginRight: 'auto', padding: '20px', textAlign: 'center'}}>
+            {error ? <p style={{ color: 'red', backgroundColor: 'pink', border: '1px solid red', width: '60%', marginLeft: 'auto', marginRight: 'auto', padding: '20px', textAlign: 'center' }}>
                 Incorrect email/password
                 </p>
                 : null}
@@ -130,8 +127,7 @@ function UserLogin() {
                     />
 
                     <Link href="http://localhost:3001/auth/google" style={{ textDecoration: 'None' }}>
-                        <GoogleButton
-                        />
+                        <GoogleButton />
                     </Link>
 
                     <Button
