@@ -23,6 +23,7 @@ import Reviews from "../src/components/Reviews/Reviews"
 import filterOrders from './components/Admin/Products/filterOrders';
 import Profile from './components/User/profile'
 import Promote from './components/Admin/Users/Promote';
+import DownBar from './components/DownBar/DownBar';
 
 const userData = loadSession();
 
@@ -47,7 +48,7 @@ function SecuredRoute(props) {
 
 function App() {
 
-  const [marvel, setMarvel] = useState(false);
+  const [marvel, setMarvel] = useState(true);
 
   return (
 
@@ -82,6 +83,9 @@ function App() {
           < Route exact path= '/profile' component = {Profile}/>
           <Route exact path='/:id/reviews' component={CommentBox} />
           <Route exact path='/allreviews/:id' component={Reviews} />
+
+          {/* <DownBar style={{backgroundColor: 'black', verticalAlign : 'bottom'}}/> */}
+
         </BrowserRouter>
       </div>
 
