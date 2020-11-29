@@ -63,9 +63,9 @@ server.post('/', function (req, res, next) {
                 state: 'cart'
          })
         })
-      .then(usuario => {
-          console.log(userCreated)
-                res.status(200).json({ msg: "User created", user: userCreated })
+      .then(order => {
+          //console.log(usuario)
+                res.status(200).json({ msg: "User created", user: order })
             }) 
         .catch(next);
 

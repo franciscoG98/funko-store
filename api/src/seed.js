@@ -156,7 +156,7 @@ const categoryProducts = [
   { categoryId: 7, productId: 13 },
 ];
 let initialUsers = [
-  {
+  /* {
     id: -1,
     username: "Guest",
     fullname: "Invitado",
@@ -166,7 +166,7 @@ let initialUsers = [
     state: "Argentina",
     isAdmin: false,
     password: "password"
-  },
+  }, */
   {
     username: "Ele",
     fullname: "Elena Gonzalez",
@@ -199,12 +199,7 @@ let initialUsers = [
   }
 ];
 let initialOrders = [
-  {
-    id: -1,
-    total: 0,
-    state: "cart",
-    userId: -1
-  },
+  
   {
     total: 1000,
     state: "cart",
