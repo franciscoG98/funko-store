@@ -98,6 +98,7 @@ export default function PrimarySearchAppBar() {
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/products/admin'> Orders </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/admin/user'> Users </Link> </MenuItem>
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/admin/categories'> Categories </Link> </MenuItem>
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/admin/products'> Products </Link> </MenuItem>
 
