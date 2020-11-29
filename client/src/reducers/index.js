@@ -16,5 +16,4 @@ export default combineReducers({
     Login: LoginReducers,
     User: UserReducers,
     Profile: ProfileReducers,
-
   });
