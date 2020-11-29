@@ -98,8 +98,8 @@ server.get('/google', passport.authenticate('google', { scope: ['email', 'profil
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-server.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }),
+server.get('/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:3001/login' }),
   function (req, res) {
-    res.redirect('http://localhost:3000');
+    res.redirect('http://localhost:3000/');
   });
 module.exports = server;

@@ -21,7 +21,7 @@ passport.use(new GoogleStrategy({
             .then(user => {
                 // console.log(profile)
                 if (!user) {
-                    User.create({
+                    return User.create({
 
                         googleId: profile.id,
                         username: profile.name.givenName,
@@ -33,8 +33,13 @@ passport.use(new GoogleStrategy({
                     })
                 }
             })
+            .then(user2 => {
+                done(null, user2)
+            })
+            .catch(err => {
+                console.log(err)
+                done(err, null)
+            })
     })
-    // .catch(err => {
-    //     done(err, null)
-    // })
+
 );
