@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Button from '@material-ui/core/Button';
+import { Switch } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -117,8 +118,8 @@ function CustomizedTables() {
               </StyledTableCell>
 
               <StyledTableCell component="th" scope="row">
-                <Button onClick={() => promote(user.id) }>
-                  <PersonAddIcon/>  
+                <Button onClick={() => promote(user.id)}>
+                  <Switch checked={ user.isAdmin ? true : false} />  
                 </Button>                
               </StyledTableCell>
 

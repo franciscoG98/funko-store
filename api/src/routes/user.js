@@ -6,7 +6,6 @@ const { Op } = require("sequelize");
 server.get('/', (req, res) => {
     User.findAll()
         .then(user => {
-            console.log(user)
             res.status(200).json(user)
         })
         .catch(err => {

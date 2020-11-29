@@ -19,7 +19,7 @@ export default (state = initialState, action)=>{
             case "PROMOTE_USER":
                 return {
                     ...state,
-                    data: state.data
+                    data: [...state.data]
                 }
             case 'DELETE_USER':
                 return {
