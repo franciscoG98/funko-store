@@ -128,12 +128,12 @@ const Product = ({ f }) => {
           </Fade>
         </Modal>
         
-        {f.stock > 0 ? <Button style={{ color: '#585858', fontFamily: 'Philosopher', fontWeight: 'bold', marginLeft: '30px' }} size="small" color="primary" onClick={() => setToLocalStorage(f, userId)}>
-          <LocalMallIcon />
+        {f.stock > 0 ? <Button className={classes.adds2} size="small" color="primary" onClick={() => setToLocalStorage(f, userId)}>
+          <LocalMallIcon style={{paddingRight: '4px'}} />
           Add To Cart
         </Button> : null}
-        <Button style={{ color: '#585858', fontFamily: 'Philosopher', fontWeight: 'bold', marginLeft: '20px' }} size="small" color="primary" onClick={() => handleOpen()}>
-          <MoreIcon />
+        <Button className={classes.adds} size="small" color="primary" onClick={() => handleOpen()}>
+          <MoreIcon style={{paddingRight: '5px'}} />
             More
         </Button>
         
