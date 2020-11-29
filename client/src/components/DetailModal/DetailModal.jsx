@@ -17,11 +17,11 @@ export default function DetailModal({f}) {
     const dispatch = useDispatch();
 
     return (
-        <div>
-            <div id='image'>
+        <div style={{borderRadius: '50px'}}  >
+            <div style={{borderRadius: '50px'}} id='image'>
                 <img src={imagen} alt='funko img' />
             </div>
-            <div id='info'>
+            <div style={{borderRadius: '50px'}} id='info'>
                 {/* <h3>{name}</h3>
                 <p>{description}</p>
                 <span>Price: ${price}</span>

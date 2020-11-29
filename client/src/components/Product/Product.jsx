@@ -1,6 +1,7 @@
 import React, { useState, useSelector } from 'react';
 
 import './ProductStyle.jsx';
+import './Product.css';
 
 import Card from '@material-ui/core/Card';
 import { CardActionArea, CardActions } from '@material-ui/core/';
@@ -72,11 +73,11 @@ const Product = ({ f }) => {
 
   return (
     <Card className={classes.root} >
-      <CardActionArea>
+      <CardActionArea className= 'cardsis' >
         <CardMedia          
           className={classes.media}
           image={f.imagen}
-          style={{display: 'block', margin: '0 auto', height: '220px', width: '50%'}}
+          style={{display: 'block', margin: '0 auto', height: '135px', width: '50%'}}
           // onClick={() => handleOpen()}
           // title={f.name}
         />
@@ -92,9 +93,9 @@ const Product = ({ f }) => {
           </Typography> */}
           <Typography variant="body2" color="textSecondary" component="p">
             {/* <span style={{ fontFamily: 'Raleway', fontWeight: "bolder  ", marginLeft: '1px', fontSize: '15px', color: '#585858' }}> Price: </span> */}
-            <div style={{textAlign: 'center'}}>
+            <div style={{textAlign: 'center', marginTop: '-18px'}}>
               <span style={{ fontFamily: 'Texturina', marginLeft: '1px', fontSize: '26px', color: '#585858', fontWeight: "bolder" }}> $ </span>
-              <span style={{ fontFamily: 'Texturina', fontSize: '35px', color: '#585858', fontWeight: 'bolder'}}> {f.price} </span>
+              <span style={{ fontFamily: 'Texturina', fontSize: '40px', color: '#585858', fontWeight: 'bolder'}}> {f.price} </span>
             </div>            
           </Typography>
           <Typography style= {{ textAlign: 'center' }} variant="body2" color="textSecondary" component="p">
@@ -127,11 +128,11 @@ const Product = ({ f }) => {
           </Fade>
         </Modal>
         
-        {f.stock > 0 ? <Button style={{ color: '#585858', fontFamily: 'Philosopher', fontWeight: 'bold' }} size="small" color="primary" onClick={() => setToLocalStorage(f, userId)}>
+        {f.stock > 0 ? <Button style={{ color: '#585858', fontFamily: 'Philosopher', fontWeight: 'bold', marginLeft: '30px' }} size="small" color="primary" onClick={() => setToLocalStorage(f, userId)}>
           <LocalMallIcon />
           Add To Cart
         </Button> : null}
-        <Button style={{ color: '#585858', fontFamily: 'Philosopher', fontWeight: 'bold' }} size="small" color="primary" onClick={() => handleOpen()}>
+        <Button style={{ color: '#585858', fontFamily: 'Philosopher', fontWeight: 'bold', marginLeft: '20px' }} size="small" color="primary" onClick={() => handleOpen()}>
           <MoreIcon />
             More
         </Button>

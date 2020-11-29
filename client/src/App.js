@@ -21,11 +21,9 @@ import ResetPassword from './components/UserLogin/ResetPassword';
 import CommentBox from '../src/components/Reviews/commentbox';
 import Reviews from "../src/components/Reviews/Reviews"
 import filterOrders from './components/Admin/Products/filterOrders';
-<<<<<<< HEAD
 import Profile from './components/User/profile'
-=======
 import Promote from './components/Admin/Users/Promote';
->>>>>>> 4cc839265466f6d900aed2b4ddce539c42b822b6
+import DownBar from './components/DownBar/DownBar';
 
 const userData = loadSession();
 
@@ -50,7 +48,7 @@ function SecuredRoute(props) {
 
 function App() {
 
-  const [marvel, setMarvel] = useState(false);
+  const [marvel, setMarvel] = useState(true);
 
   return (
 
@@ -82,15 +80,12 @@ function App() {
           < Route exact path='/register' component={Register} />
           < Route exact path='/login' component={UserLogin} />
           < Route exact path='/lost-password' component={ResetPassword} />
-<<<<<<< HEAD
           < Route exact path= '/profile' component = {Profile}/>
           <Route exact path='/:id/reviews' component={CommentBox} />
           <Route exact path='/allreviews/:id' component={Reviews} />
-=======
-          < Route exact path='/:id/reviews' component={CommentBox} />
-          < Route exact path='/allreviews/:id' component={Reviews} />
 
->>>>>>> 4cc839265466f6d900aed2b4ddce539c42b822b6
+          {/* <DownBar style={{backgroundColor: 'black', verticalAlign : 'bottom'}}/> */}
+
         </BrowserRouter>
       </div>
 
