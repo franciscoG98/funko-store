@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import { passwordReset } from '../../actions/User';
-import { useParams } from 'react-router';
 import useStyles from './UserLoginStyles';
 import { loadSession } from './../../store/saveToSessionStorage/sessionStorage';
 
@@ -20,8 +19,6 @@ function ResetPassword() {
     const dispatch = useDispatch();
     const userData = loadSession();
     const userId = userData && userData.id;
-
-    // const { id } = useParams();
 
     const handleSubmit = e => {
         e.preventDefault()

@@ -3,14 +3,14 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 
-import withReactContent from 'sweetalert2-react-content';
-import Swal from 'sweetalert2';
+// import withReactContent from 'sweetalert2-react-content';
+// import Swal from 'sweetalert2';
 
 import { getAdminOrders } from '../../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const MySwal = withReactContent(Swal)
+// const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
   head: {

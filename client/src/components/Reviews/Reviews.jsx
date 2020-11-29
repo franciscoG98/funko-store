@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect /*, useState*/ } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import {useParams} from "react-router-dom"
 import {getReviews} from "../../actions/Reviews";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper/*, Button*/ } from '@material-ui/core';
 
 
 
@@ -42,10 +40,10 @@ const useStyles = makeStyles({
     flexDirection: "row"
 
   },
-  Button: {
-    display: "flex",
-    marginLeft: "62%",
-  },
+  // Button: {
+  //   display: "flex",
+  //   marginLeft: "62%",
+  // },
   black: {
     backgroundColor: '#303030',
   }
@@ -78,7 +76,7 @@ const useStylesGrid = makeStyles((theme) => ({
 export default function UserOrderList() {
   const classes = useStyles();
   //const classes2 = useStylesGrid();
-  const [value, setValue] = React.useState();
+  // const [value, setValue] = React.useState();
   
   const dispatch = useDispatch();
   const revi = useSelector(state => state.Review.stars)

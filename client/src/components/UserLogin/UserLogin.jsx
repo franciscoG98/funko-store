@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { /*useSelector,*/ useDispatch } from 'react-redux';
 
 //Material
 import Avatar from '@material-ui/core/Avatar';
@@ -49,7 +49,7 @@ function UserLogin() {
 
     const [error, setError] = useState(false);
     
-    const user = useSelector(state => state.Login);
+    // const user = useSelector(state => state.Login);
 
     function handleChange(e) {
         setLogin({ ...login, [e.target.id]: e.target.value })

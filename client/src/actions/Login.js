@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { saveSession, loadSession } from '../store/saveToSessionStorage/sessionStorage';
+import { saveSession } from '../store/saveToSessionStorage/sessionStorage';
 
 
 //falta la ruta y probar!!!!

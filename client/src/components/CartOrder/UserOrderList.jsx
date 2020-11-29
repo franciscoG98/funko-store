@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect /*, useState*/ } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import withReactContent from 'sweetalert2-react-content';
-import Swal from 'sweetalert2';
-
 import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';

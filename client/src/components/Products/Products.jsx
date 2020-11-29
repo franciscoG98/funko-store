@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Product from '../Product/Product';
-import Transition from './transition';
 // import Funkos from './funkos';
 import './Products.css';
 // import Axios from 'axios';

@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react'
+import React /*, {useEffect}*/ from 'react'
 import {useForm} from 'react-hook-form'
 import Title from './styles/title'
 import MainContainer from '../User/components/mainContainer'
@@ -6,7 +6,7 @@ import Form from '../User/components/formon'
 import Button from '../User/components/button'
 import Input from '../User/components/input'
 import {addReviews} from "../../actions/Reviews";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch /*, useSelector*/} from "react-redux";
 import {Link, useParams} from "react-router-dom"
 import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 
@@ -14,7 +14,7 @@ export default function CommentBox(){
 
     const dispatch = useDispatch();
     const id = useParams();
-    const {handleSubmit, errors, register} = useForm({
+    const {handleSubmit/*, errors*/, register} = useForm({
     })
     // const userId = 1;
     // const userId = useSelector(state => state.Login.login.user.id)

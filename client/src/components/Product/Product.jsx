@@ -1,25 +1,21 @@
-import React, { useState, useSelector } from 'react';
+import React, { useState /*, useSelector*/ } from 'react';
 
 import './ProductStyle.jsx';
 import './Product.css';
 
 import Card from '@material-ui/core/Card';
 import { CardActionArea, CardActions } from '@material-ui/core/';
-//import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Reviews from "../Reviews/Reviews";
+// import Reviews from "../Reviews/Reviews";
 import useStyles from './ProductStyle';
 
 import { useDispatch } from 'react-redux';
-import { UpdateOrderLine, saveToGuestCart, updateGuestCart } from '../../actions/Order';
+import { UpdateOrderLine, saveToGuestCart/*, updateGuestCart*/ } from '../../actions/Order';
 import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 // icons
-import AddShoppingCartRoundedIcon from '@material-ui/icons/AddShoppingCartRounded';
-import OpenInNewRoundedIcon from '@material-ui/icons/OpenInNewRounded';
-import ShopIcon from '@material-ui/icons/Shop';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import MoreIcon from '@material-ui/icons/More';
 
@@ -30,8 +26,6 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 import DetailModal from '../DetailModal/DetailModal'
-import { green } from '@material-ui/core/colors';
-import { useEffect } from 'react';
 
 const Product = ({ f }) => {
 
