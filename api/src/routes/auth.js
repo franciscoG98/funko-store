@@ -52,7 +52,7 @@ passport.serializeUser((user, done) => {
 
 // Login
 server.post("/login", isNotAuthenticated, passport.authenticate("local"), (req, res) => {
-    console.log('aaaaaa:\n');
+   
     res.send({ user: req.user})
   }
 );

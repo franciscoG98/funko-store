@@ -60,10 +60,10 @@ function UserLogin() {
     
 
     //axios for submit data
-    const handleSubmit = e => {
-        e.preventDefault()
+    const handleSubmit = async e => {
+        e.preventDefault();
 
-        dispatch(loginUser(login));
+        await dispatch(loginUser(login));
 
         if(loadSession() === undefined){
             setError(true);
@@ -80,7 +80,7 @@ function UserLogin() {
     return (
         <Container className={classes.todo} component="main" maxWidth="xs">
 
-            {error ? <p style={{marginTop: '30px', color:'red', backgroundColor:'pink', border: '1px solid red', width: '60%', marginLeft:'auto', marginRight: 'auto', padding: '20px', textAlign: 'center'}}>
+            {error ? <p style={{color:'red', backgroundColor:'pink', border: '1px solid red', width: '60%', marginLeft:'auto', marginRight: 'auto', padding: '20px', textAlign: 'center'}}>
                 Incorrect email/password
                 </p>
                 : null}
@@ -131,7 +131,6 @@ function UserLogin() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        // onSubmit={handleSubmit}
                     >
                         Sign In
                     </Button>
