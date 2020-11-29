@@ -88,16 +88,16 @@ server.put('/promote/:id', (req, res) => {
   User.findByPk(id)
     .then(user => {
       if (!user.isAdmin) {
-        user.update({
+       return user.update({
           isAdmin: true
         })
       } else {
-        user.update({
+      return  user.update({
           isAdmin: false
         })
       }
     })
-    .then(() => res.json("Usuario Promovido"))
+    .then((json) => res.json(json))
     .catch(err => res.json(err))
 })
 
