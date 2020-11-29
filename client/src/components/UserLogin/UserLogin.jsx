@@ -21,6 +21,8 @@ import { useHistory } from "react-router-dom";
 
 import useStyles from './UserLoginStyles';
 
+import { loadSession } from '../../store/saveToSessionStorage/sessionStorage';
+
 //footer Copyright
 function Copyright() {
     return (
@@ -46,25 +48,47 @@ function UserLogin() {
         password: "",
     })
 
+    const [error, setError] = useState(false);
+    
+    const user = useSelector(state => state.Login);
+
     function handleChange(e) {
         setLogin({ ...login, [e.target.id]: e.target.value })
     }
 
     let history = useHistory();
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 3e14ac7cd16a391d01f2d7fc854bacc980b12102
 
     //axios for submit data
-    const handleSubmit = e => {
-        e.preventDefault()
+    const handleSubmit = async e => {
+        e.preventDefault();
 
-        dispatch(loginUser(login));
-        history.push("/");
+        await dispatch(loginUser(login));
+
+        if(loadSession() === undefined){
+            setError(true);
+
+        } else {
+            history.push("/");
+
+        }
 
     }
 
+    
 
     return (
         <Container className={classes.todo} component="main" maxWidth="xs">
+
+            {error ? <p style={{color:'red', backgroundColor:'pink', border: '1px solid red', width: '60%', marginLeft:'auto', marginRight: 'auto', padding: '20px', textAlign: 'center'}}>
+                Incorrect email/password
+                </p>
+                : null}
+
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -117,7 +141,6 @@ function UserLogin() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                    // onSubmit={handleSubmit}
                     >
                         Sign In
                     </Button>

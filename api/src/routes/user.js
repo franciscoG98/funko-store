@@ -48,7 +48,6 @@ server.get('/:id', (req, res) => {
 server.post('/', function (req, res, next) {
 
     let { username, fullname, email, phone, address, purchases, isAdmin, password } = req.body;
-
     User.create({
         username,
         fullname,
@@ -57,10 +56,17 @@ server.post('/', function (req, res, next) {
         address,
         password
     })
-        .then(
-            userCreated => {
+    .then(userCreated => {
+        id = userCreated.id
+       return Order.create({
+                userId: id,
+                state: 'cart'
+         })
+        })
+      .then(usuario => {
+          console.log(userCreated)
                 res.status(200).json({ msg: "User created", user: userCreated })
-            })
+            }) 
         .catch(next);
 
 });
@@ -84,7 +90,6 @@ server.put('/:id', (req, res) => {
                 res.json({ err });
             })
     }
-
 })
 
 server.delete("/:id", (req, res) => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
 import { logout } from '../../actions/Login';
 import { Link } from 'react-router-dom';
 import useStyles from './NavStyles';
@@ -18,26 +19,29 @@ import SideBar from '../SideBar/SideBar';
 
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Avatar from '../User/components/avatar.jsx'
-import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ShopTwoIcon from '@material-ui/icons/ShopTwo';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+const user = loadSession();
+ 
+ var userId = 0
+ 
+ if (user){userId = user.id}
 
 export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
   const order = useSelector(state => state.Order.items);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
+  const userData = loadSession();  
 
-  // const loggedUser = localStorage.getItem("Login"); 
+  let username = userData && userData.username;
+  let logged = userData && userData;
+  let isAdmin = userData && userData.isAdmin;
 
-  // const loggedUser = useSelector(state => state.Login.login.user.username);
-
-  let username = 'juancito';
-  let logged = false;
-  let isAdmin = true;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -90,7 +94,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      style={{ opacity: '80%', marginTop: '41px', marginLeft: '39px' }}
+      style={{ opacity: '80%', marginTop: '4px', marginLeft: '-210px' }}
     >
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
@@ -117,6 +121,7 @@ export default function PrimarySearchAppBar() {
 
       {/* si no hay usuario logueado muestra login y create account, de lo contrario muestra signed as (username) y sign out */}
 
+<<<<<<< HEAD
       {!logged ?
 
         <Menu
@@ -156,6 +161,55 @@ export default function PrimarySearchAppBar() {
           </Link> </Menu>}
 
     </Menu>
+=======
+    {!logged ?      
+    
+    <Menu
+      userEl={userEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isUserMenuOpen}
+      onClose={handleUserMenuClose}
+      style={{ opacity: '80%', marginTop: '-700px', marginLeft: '-272px'}}
+    >    
+      <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
+        <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}> Sign In! </span> </MenuItem>
+      </Link>
+      <Link to="/register" style={{ textDecoration: 'none', color: 'black'}} >
+        <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds'}}> Create Account </span> </MenuItem>
+      </Link> 
+    </Menu> 
+    
+    : <Menu
+      userEl={userEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isUserMenuOpen}
+      onClose={handleUserMenuClose}
+      style={{ opacity: '80%', marginTop: '-698px', marginLeft: '-519px' }}
+    > 
+        <MenuItem onClick={handleUserMenuClose} style={{height: '37px'}}> <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic'/>
+        <span className='signedas'> Signed as {username} </span>  
+        </MenuItem>
+
+          <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', height: '25px'}}> Profile </span> </MenuItem>
+        
+
+          <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
+            <MenuItem onClick={() => dispatch(logout())}>
+              <span onClick={handleUserMenuClose} style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto'}}>
+                Logout 
+              </span> 
+            </MenuItem>
+          </Link>
+        </Menu>  }   
+    
+     </Menu>   
+>>>>>>> 3e14ac7cd16a391d01f2d7fc854bacc980b12102
   );
 
 
@@ -171,44 +225,48 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={0} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
+      {/* home */}
+      <MenuItem>        
+        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }} >
+          <IconButton aria-label="show 0 new notifications" color="inherit">
+            <Badge badgeContent={order.length} color="secondary">
+              <ShopTwoIcon />
+            </Badge>
+          </IconButton>
+        </Link>
+        <p>Home</p>
       </MenuItem>
+
+
+      {/* carrito 2 */}
       <MenuItem>
-
-        {/* carrito fail */}
-        {/* <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={0} color="secondary">
-            <ShoppingCart />
-          </Badge>
-        </IconButton> */}
-
-        {/* carrito 2 */}
-        <Link to='/ShoppingCart2' >
+        {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black'}}> 
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
-        </Link>
-        <p>Notifications</p>
+        </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'black'}} > 
+          <IconButton aria-label="show 0 new notifications" color="inherit">
+            <Badge badgeContent={order.length} color="secondary">
+              <ShoppingCartRoundedIcon />
+            </Badge>
+          </IconButton>
+        </Link> }
+        <p>Shopping Cart</p>
+      </MenuItem>
+
+      {/* Profile */}
+      <MenuItem>
+        <IconButton aria-label="" color="inherit">
+          <Badge badgeContent={0} color="secondary">
+            <AccountCircle />
+          </Badge>
+        </IconButton>
+        <p>Profile</p>
       </MenuItem>
 
       {/* Settings */}
-      <MenuItem>
-        <IconButton aria-label="" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <SettingsRoundedIcon />
-          </Badge>
-        </IconButton>
-        <p>Settings</p>
-      </MenuItem>
-
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -216,9 +274,9 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <SettingsRoundedIcon />
         </IconButton>
-        <p>Profile</p>
+        <p>Settings</p>
       </MenuItem>
     </Menu>
   );
@@ -257,20 +315,7 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             </Link> */}
 
-            {/* mensajito */}
-            {/* <IconButton aria-label="show 0 new mails" color="inherit">
-              <Badge badgeContent={0} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
-
-            {/* carrito fail */}
-            {/* <IconButton aria-label="show 0 new notifications" color="inherit">
-              <Badge badgeContent={0} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton> */}
-
+            {/* home */}
             <Link to='/' style={{ textDecoration: 'none', color: 'white' }} >
               <IconButton aria-label="show 0 new notifications" color="inherit">
                 <Badge badgeContent={order.length} color="secondary">
@@ -281,38 +326,40 @@ export default function PrimarySearchAppBar() {
 
             {/* carrito 2 */}
 
-            <Link to='/ShoppingCart2' style={{ textDecoration: 'none', color: 'white' }} >
-              <IconButton aria-label="show 0 new notifications" color="inherit">
-                <Badge badgeContent={order.length} color="secondary">
-                  <ShoppingCartRoundedIcon />
-                </Badge>
-              </IconButton>
-            </Link>
+            {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'inherit'}} > 
+                <IconButton aria-label="show 0 new notifications" color="inherit">
+                  <Badge badgeContent={order.length} color="primary">
+                    <ShoppingCartRoundedIcon />
+                  </Badge>
+                </IconButton>
+              </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'inherit'}} > 
+                <IconButton aria-label="show 0 new notifications" color="inherit">
+                  <Badge badgeContent={order.length} color="primary">
+                    <ShoppingCartRoundedIcon />
+                  </Badge>
+                </IconButton>
+              </Link> }
 
+<<<<<<< HEAD
             {/* user */}
 
+=======
+>>>>>>> 3e14ac7cd16a391d01f2d7fc854bacc980b12102
 
+            {/* user */}
             <IconButton
               aria-label="show 0 new notifications"
               aria-controls={menuId}
               onClick={handleLoggedUserMenu}
               color="inherit"
-            // edge="end"
-            // aria-label="account of current user"
-            // aria-controls={menuId}
-            // aria-haspopup="true"
-            // onClick={handleProfileMenuOpen}
-            // color="inherit"
             >
               {/* <AccountCircle /> */}
-              <GitHubIcon />
+              <AccountCircleIcon />
             </IconButton>
 
 
             {/* la tuerquitas visteSSS */}
             {isAdmin ? <IconButton
-              // aria-label="show 0 new notifications" 
-              // color="inherit"
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}

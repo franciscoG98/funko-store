@@ -61,13 +61,23 @@ module.exports = (sequelize) => {
                 throw (err);
             });
     });
-    //hook update password
-    User.addHook('beforeUpdate', (user) => {
-        // console.log(user);
-        if (user.password) {
-            user.password = bcrypt.hashSync(user.previous.password, bcrypt.genSaltSync(10), null);
-        }
+    User.beforeUpdate((user, options) => {
+
+        return bcrypt.hash(user.password, 10)
+            .then(hash => {
+                user.password = hash;
+            })
+            .catch(err => {
+                throw (err);
+            });
     });
+    //hook update password
+    // User.addHook('beforeUpdate', (user) => {
+    //     // console.log(user);
+    //     if (user.password) {
+    //         user.password = bcrypt.hashSync(user.previous.password, bcrypt.genSaltSync(10), null);
+    //     }
+    // });
     /* User.beforeBulkCreate((user, options) => {
     
         return bcrypt.hash(user.password, 10)

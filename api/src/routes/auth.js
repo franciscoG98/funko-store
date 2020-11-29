@@ -51,6 +51,7 @@ passport.deserializeUser((id, done) => {
 })
 
 // Login
+<<<<<<< HEAD
 server.post(
   "/login",
   isNotAuthenticated,
@@ -58,6 +59,11 @@ server.post(
   (req, res) => {
     console.log('aaaaaa:');
     res.send({ user: req.user });
+=======
+server.post("/login", isNotAuthenticated, passport.authenticate("local"), (req, res) => {
+   
+    res.send({ user: req.user})
+>>>>>>> 3e14ac7cd16a391d01f2d7fc854bacc980b12102
   }
 );
 
@@ -67,6 +73,25 @@ server.get("/logout", isAuthenticated, (req, res) => {
   window.localStorage.clear()
   res.send({ message: "You've logged out from your account" });
 });
+
+// server.put('/promote/:id', (req, res) => {
+//   const { id } = req.params;
+//   User.findByPk(id)
+//    .then(user => {
+//        if (!user.isAdmin){
+//         user.update({
+//               isAdmin: true
+//           })
+//       } else {
+//         user.update({
+//              isAdmin: false
+//           })
+//       }  
+//     })
+//     .then(User.findByPk(id)
+//     .then(user => res.json(user)))
+//     .catch(err => res.json(err))  
+// })
 
 server.put('/promote/:id', (req, res) => {
   const { id } = req.params;

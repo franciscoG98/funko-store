@@ -1,7 +1,22 @@
 .container {
     display: flex;
-    padding: 30px;
-    flex-direction: row;
+    /* padding: 30px; */
+    /* flex-direction: row; */
     flex-wrap: wrap;
-    opacity: 90%;
+    opacity: 83%;
+    animation: 1.2s ease-out 0s 1 slideInFromLeft;
+    
+    /* background: #333; */
+    /* padding: 30px; */
 }
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  
