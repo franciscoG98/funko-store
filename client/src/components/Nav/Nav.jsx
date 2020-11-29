@@ -14,16 +14,15 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-import SearchBar from '../SearchBar/SearchBar'
-import SideBar from '../SideBar/SideBar';
-
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+import SearchBar from '../SearchBar/SearchBar'
+import SideBar from '../SideBar/SideBar';
 
 const user = loadSession();
 

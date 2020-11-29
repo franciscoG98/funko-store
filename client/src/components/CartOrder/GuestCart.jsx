@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
 // import { useParams } from 'react-router';
-import { deleteItem, DecreaseGuestLine, removeGuestLine, getGuestCart } from '../../actions/Order';
+import { /*deleteItem,*/ DecreaseGuestLine, removeGuestLine, getGuestCart } from '../../actions/Order';
 
 
 // import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
@@ -16,9 +16,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 
-import Badge from '@material-ui/core/Badge';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import AddIcon from '@material-ui/icons/Add';
@@ -29,8 +27,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import { saveToGuestCart } from '../../actions/Order';
-import { total } from "./total.js"
-import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
+import { total } from "./total.js";
 
 import {orderlines} from "./Utils"
 
