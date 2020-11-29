@@ -4,10 +4,10 @@
     /* flex-direction: row; */
     flex-wrap: wrap;
     opacity: 83%;
-    /* animation: 1.2s ease-out 0s 1 slideInFromLeft; */
+    animation: 1.2s ease-out 0s 1 slideInFromLeft;
     
     /* background: #333; */
-    padding: 30px;
+    /* padding: 30px; */
 }
 
 @keyframes slideInFromLeft {

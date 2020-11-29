@@ -82,7 +82,7 @@ function App() {
           < Route exact path='/:id/reviews' component={CommentBox} />
           < Route exact path='/allreviews/:id' component={Reviews} />
 
-          <DownBar style={{backgroundColor: 'black', verticalAlign : 'bottom'}}/>
+          {/* <DownBar style={{backgroundColor: 'black', verticalAlign : 'bottom'}}/> */}
 
         </BrowserRouter>
       </div>
