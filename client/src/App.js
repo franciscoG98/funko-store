@@ -21,6 +21,7 @@ import ResetPassword from './components/UserLogin/ResetPassword';
 import CommentBox from '../src/components/Reviews/commentbox';
 import Reviews from "../src/components/Reviews/Reviews"
 import filterOrders from './components/Admin/Products/filterOrders';
+import Profile from './components/User/profile'
 import Promote from './components/Admin/Users/Promote';
 // import DownBar from './components/DownBar/DownBar';
 
@@ -79,8 +80,9 @@ function App() {
           < Route exact path='/register' component={Register} />
           < Route exact path='/login' component={UserLogin} />
           < Route exact path='/lost-password' component={ResetPassword} />
-          < Route exact path='/:id/reviews' component={CommentBox} />
-          < Route exact path='/allreviews/:id' component={Reviews} />
+          < Route exact path= '/profile' component = {Profile}/>
+          <Route exact path='/:id/reviews' component={CommentBox} />
+          <Route exact path='/allreviews/:id' component={Reviews} />
 
           {/* <DownBar style={{backgroundColor: 'black', verticalAlign : 'bottom'}}/> */}
 

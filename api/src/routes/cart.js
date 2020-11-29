@@ -1,4 +1,5 @@
 const server = require('express').Router();
+
 const { Product, User, Order, Orderline } = require('../db.js');
 //const  = require('../models/OrderLine.js');
 // const bcrypt = require('bcryptjs'); esto es el require para hashear la contraseña

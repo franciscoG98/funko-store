@@ -2,11 +2,19 @@ import React, { useEffect /*, useState*/ } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
+
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+
 import { getUserOrders, getUserInfo } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { total } from './total';
+import StripeCheckout from 'react-stripe-checkout'
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
 
 //const MySwal = withReactContent(Swal)
 
@@ -94,6 +102,19 @@ export default function UserOrderList() {
   }
   console.log(userList);
 
+  async function handleToken(token){
+    const response = await axios.post(
+      "http://localhost:3001/checkout", {token, userList}
+    );
+    const {status} = response.data;
+    console.log('Response:', response.data);
+    if (status === 'success') {
+      toast ("Success! Check email for details", {type: 'success'});
+    } else {
+      toast("Something went wrong", {type: 'error'});
+    }
+  }
+
   return (
 
     <div>
@@ -134,6 +155,21 @@ export default function UserOrderList() {
                 <TableCell scope="row" align="center">Total:</TableCell>
                 <TableCell scope="row" align="center">{total(userList)}</TableCell>
             </TableRow>
+            <TableRow>
+            <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center"></TableCell>
+                <TableCell scope="row" align="center">
+            <StripeCheckout
+                stripeKey = 'pk_test_51HsVfCGPp99r0B7MXf3SjryIPftr9tUGFehUIbuQQGSBEFO8SdTkMwR4PuAS63GJHA7uLMcQDjCxOry71pew4fjv00EeMP0HO8'
+                token = {handleToken}
+                billingaddress
+                shippingaddress
+                amount = {total(userList)}
+                />
+                </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
@@ -168,34 +204,7 @@ export default function UserOrderList() {
           </TableBody>
         </Table>
       </TableContainer>
-
-
-      <TableContainer className={classes.tableContainer} component={Paper}>
-
-        <TableHead >
-          <TableRow>
-            <StyledTableCell className={classes.black} width="200px" align="center">Payment Information</StyledTableCell>
-
-            <TableCell scope="row" width="800px" align="center" >
-              <ButtonGroup align="center" variant="text" color="primary" aria-label="text primary button group">
-                <Button>Credit Card</Button>
-                <Button>Cash</Button>
-              </ButtonGroup>
-            </TableCell>
-
-
-          </TableRow>
-        </TableHead>
-
-
-
-
-      </TableContainer>
-
-      <br></br>
     </div>
-
-
   );
 }
 
