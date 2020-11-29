@@ -4,7 +4,6 @@ import CategoryReducers from "./Categories";
 import OrderReducers from './Order';
 import ProfileReducers from './Profile';
 import ReviewReducer from "./Reviews";
-
 import LoginReducers from './Login';
 import UserReducers from './User';
 
@@ -17,5 +16,4 @@ export default combineReducers({
     Login: LoginReducers,
     User: UserReducers,
     Profile: ProfileReducers,
-
   });
