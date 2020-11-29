@@ -5,10 +5,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 // import CheckboxAvenger from "./checkboxAvenger";
 import Axios from "axios";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
 // import {useSelector} from "react-redux"
-import Checkbox from '@material-ui/core/Checkbox';
+// import Checkbox from '@material-ui/core/Checkbox';
 
 
 const useStyles = makeStyles({

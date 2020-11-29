@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { loadSession } from './store/saveToSessionStorage/sessionStorage';
@@ -23,7 +23,7 @@ import Reviews from "../src/components/Reviews/Reviews"
 import filterOrders from './components/Admin/Products/filterOrders';
 import Profile from './components/User/profile'
 import Promote from './components/Admin/Users/Promote';
-import DownBar from './components/DownBar/DownBar';
+// import DownBar from './components/DownBar/DownBar';
 
 const userData = loadSession();
 

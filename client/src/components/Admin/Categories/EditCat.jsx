@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 // import Axios from 'axios';
-import { makeStyles} from '@material-ui/core/styles';
+// import { makeStyles} from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 
 import { useDispatch } from 'react-redux';
@@ -16,19 +16,19 @@ import { useState } from 'react';
  
 
 
-const useStyles = makeStyles({
+// const useStyles = makeStyles({
 
-  buttons:{
-      display: "flex",
-      marginLeft: "62%"
-  },
-  op: {
-    opacity: '88%',
-  }
-});
+//   buttons:{
+//       display: "flex",
+//       marginLeft: "62%"
+//   },
+//   op: {
+//     opacity: '88%',
+//   }
+// });
 
 export default function FormDialog({getCategory, cambio, newCategory, edit, setEdit, cat, setNewCategory}) {
-  const classes = useStyles();
+  // const classes = useStyles();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [categoria, setCategoria] = useState({

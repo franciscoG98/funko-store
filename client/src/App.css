@@ -46,6 +46,7 @@
   font-size: 20px;
   /* font-weight: 300; */
   font-family: Spicy Rice;
+  transition: 0.6s;
   /* font-weight: bolder; */
 }
 
@@ -72,6 +73,7 @@
   /* font-weight: 300; */
   font-family: Trade Winds;
   font-weight: bold;
+  transition: 0.6s;
 }
 
 .butt2:hover {  
