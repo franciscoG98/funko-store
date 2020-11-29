@@ -54,6 +54,15 @@ function CustomizedTables() {
   const dispatch = useDispatch();
   const users1 = useSelector(state => state.User.data);
   
+  const users = users1.sort(function (a, b) {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  });
   
 
   useEffect(()=>{
@@ -73,7 +82,6 @@ function CustomizedTables() {
   }
 
 
-  const users = users1.sort();
 
   return (
     <TableContainer className={classes.container} component={Paper}>
