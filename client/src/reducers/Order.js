@@ -16,8 +16,8 @@ const initialState = {
     cartProd: [],
     incDec: [],
     prueba: [],
-    //guestOrder: [],
-    guestCart: loadState() === undefined ? [] : loadState(),
+    guestOrder: [],
+    guestCart: loadState() === undefined ? []: loadState(),
     guestCartProd: []
 }
 
@@ -92,8 +92,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 guestCartProd: [...state.guestCartProd, action.payload],
-                //guestOrder: orderlines([...state.guestCart, action.payload]),
-                guestCart: [...state.guestCart, action.payload],
+                guestCart: [...state.guestCartProd, action.payload],
+                guestOrder: orderlines([...state.guestCart])
                 /* cart: action.payload.cart,
                 cartProd: action.payload */
             }

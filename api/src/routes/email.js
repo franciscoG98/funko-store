@@ -4,7 +4,7 @@ const fs = require("fs")
 
 
 server.post("/",  (req, res) => {
-    const {name, products, quantity, total} = req.body;
+    const {name, products, quantity, total, email} = req.body;
 
     let transporter = nodemailer.createTransport({
         service: "gmail",
@@ -18,12 +18,12 @@ server.post("/",  (req, res) => {
     });
 
     var html = fs.readFileSync(__dirname + "/views/index.html", "utf-8")
-    html = html.replace("Name", name).replace("quantity", quantity).replace("products", products).replace("{total}", total)
+    html = html.replace("{name}", name).replace("{quantity}", quantity).replace("{products}", products).replace("{total}", total)
 
     let mailOptions = {
         from: 'funkostorehenry@gmail.com', 
 
-        to: "enzoorbe1998@gmail.com",  //Colocar su email para ver los cambios de estilos en el html, probar con postman con los campos que pide de req.body
+        to: email,  //Colocar su email para ver los cambios de estilos en el html, probar con postman con los campos que pide de req.body
         // to: "franciscomanuel.gonzalez3@gmail.com", 
         // to: "julicheruse@hotmail.com",
         subject: 'Confirmacion de compra',

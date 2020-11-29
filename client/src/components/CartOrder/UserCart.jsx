@@ -261,7 +261,7 @@ const ShoppingCart2 = () => {
             <StyledTableCell align="right">
 
               {/* ternario aca que si es usuario 0 me redireccione a login */}
-              <Link to={`/user/1/product`}>
+              <Link to={`/user/${userId}/product`}>
                 <Button className={classes.buy} /* autoFocus color="primary" */>
                   Buy
                 </Button>
