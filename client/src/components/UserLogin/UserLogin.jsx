@@ -14,6 +14,7 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import GoogleButton from 'react-google-button'
 import { loginUser } from '../../actions/Login';
 
 import { useHistory } from "react-router-dom";
@@ -27,7 +28,7 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link style= {{color: '#FFD700'}}  color="yellow" href="https://soyhenry.com/" target="_blank">
+            <Link style={{ color: '#FFD700' }} color="yellow" href="https://soyhenry.com/" target="_blank">
                 Powered by Henry
             </Link>{' '}
             {new Date().getFullYear()}
@@ -48,7 +49,7 @@ function UserLogin() {
     })
 
     const [error, setError] = useState(false);
-    
+
     const user = useSelector(state => state.Login);
 
     function handleChange(e) {
@@ -57,7 +58,7 @@ function UserLogin() {
 
     let history = useHistory();
 
-    
+
 
     //axios for submit data
     const handleSubmit = async e => {
@@ -65,7 +66,7 @@ function UserLogin() {
 
         await dispatch(loginUser(login));
 
-        if(loadSession() === undefined){
+        if (loadSession() === undefined) {
             setError(true);
 
         } else {
@@ -74,12 +75,12 @@ function UserLogin() {
         }
     }
 
-    
+
 
     return (
         <Container className={classes.todo} component="main" maxWidth="xs">
 
-            {error ? <p style={{color:'red', backgroundColor:'pink', border: '1px solid red', width: '60%', marginLeft:'auto', marginRight: 'auto', padding: '20px', textAlign: 'center'}}>
+            {error ? <p style={{ color: 'red', backgroundColor: 'pink', border: '1px solid red', width: '60%', marginLeft: 'auto', marginRight: 'auto', padding: '20px', textAlign: 'center' }}>
                 Incorrect email/password
                 </p>
                 : null}
@@ -123,8 +124,13 @@ function UserLogin() {
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
                     />
+
+                    <Link href="http://localhost:3001/auth/google" style={{ textDecoration: 'None' }}>
+                        <GoogleButton />
+                    </Link>
+
                     <Button
-                        style= {{backgroundColor: '#303030'}}
+                        style={{ backgroundColor: '#303030' }}
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -135,12 +141,12 @@ function UserLogin() {
                     </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link style= {{color: '#303030'}}  href="/lost-password" variant="body2">
+                            <Link style={{ color: '#303030' }} href="/lost-password" variant="body2">
                                 Forgot password?
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link style= {{color: '#303030'}}  href="/register" variant="body2">
+                            <Link style={{ color: '#303030' }} href="/register" variant="body2">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>

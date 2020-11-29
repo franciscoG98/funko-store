@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 server.get('/', (req, res) => {
     User.findAll()
         .then(user => {
+            console.log(user)
             res.status(200).json(user)
         })
         .catch(err => {
@@ -14,17 +15,17 @@ server.get('/', (req, res) => {
 })
 
 
-server.get('/:id/me', (req, res)=>{
-    
+server.get('/:id/me', (req, res) => {
+
     const { id } = req.params;
-   return User.findOne({
-       where:{id:id},
-       include: [Order]
-   }).then(user => {
-    res.status(200).json(user)
-}).catch(err => {
-    res.json({ err });
-})
+    return User.findOne({
+        where: { id: id },
+        include: [Order]
+    }).then(user => {
+        res.status(200).json(user)
+    }).catch(err => {
+        res.json({ err });
+    })
 })
 
 
@@ -62,9 +63,9 @@ server.post('/', function (req, res, next) {
                 state: 'cart'
          })
         })
-      .then(usuario => {
-          console.log(userCreated)
-                res.status(200).json({ msg: "User created", user: userCreated })
+      .then(order => {
+          //console.log(usuario)
+                res.status(200).json({ msg: "User created", user: order })
             }) 
         .catch(next);
 

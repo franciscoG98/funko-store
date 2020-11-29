@@ -17,6 +17,7 @@
     "libphonenumber-js": "^1.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-google-button": "^0.7.1",
     "react-hook-form": "^6.11.2",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
