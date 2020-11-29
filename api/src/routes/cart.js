@@ -13,17 +13,7 @@ server.get('/:idUser/cart', (req, res) => {
             state: 'cart',
         },
         include: [Product, Orderline]
-    }) /* .then((orderFound) => {
-        idOrder = orderFound.id;
-
-        return Orderline.findAll({
-            where: {
-                orderId: idOrder,  
-            },
-            //include: {all: true, nested: true}  
-        } 
-        )
-    })  */
+    }) 
         .then((e) => res.json(e))
         .catch(err => res.json(err))
 })
@@ -36,6 +26,8 @@ server.post('/:idUser/cart', async (req, res) => {
     const { idUser } = req.params;
     const prod = req.body;
    
+   prod.quantity = 1
+   console.log(prod)
     const Orden = await Order.findOrCreate({
         where: {
             userId: idUser,
@@ -51,19 +43,19 @@ server.post('/:idUser/cart', async (req, res) => {
         }
     })
     if (orderFound) {
-        return orderFound.update({
+        return await orderFound.update({
             productId: prod.id,
-            quantity: orderFound.quantity + 1,
+            quantity: orderFound.quantity + prod.quantity,
             price: prod.price,
             subtotal: orderFound.subtotal + prod.price
         }).then((r) => res.json(r))
     } else {
-        return Orderline.create({
+        return await Orderline.create({
             orderId: idOrd,
             productId: prod.id,
-            quantity: prod.quantity,
+            quantity: 1,
             price: prod.price,
-            subtotal: prod.price * prod.quantity
+            subtotal: prod.price
         })
             .then((r) => res.json(r))
             .catch(err => res.json(err))
@@ -74,6 +66,7 @@ server.put('/:idUser/cart', async (req, res) => {
     const { idUser } = req.params;
     const prod = req.body;
     console.log(prod)
+    
     return Order.findOne({
         where: {
             userId: idUser,

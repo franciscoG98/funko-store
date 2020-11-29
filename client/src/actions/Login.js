@@ -11,12 +11,15 @@ export function loginUser(loginParaQuenoPiseVble) {
                 saveSession(json);
                 dispatch({ type: "LOGIN_USER", payload: json });
             })
-            .then(user => {
+            .then(async user => {
                 var user1 = loadSession()
                 var prod = loadState()
-                console.log(user)
+                console.log(user1)
                 console.log(prod)
-                prod.map(p => dispatch(UpdateOrderLine(p, user1.id)))
+                for(let i = 0; i < prod.length; i ++){
+                 await Axios.post(`http://localhost:3001/users/${user1.id}/cart`, prod[i])
+                }
+                //prod.map(p =>  dispatch(UpdateOrderLine(p, user1.id)))
             })
             /* .then(json => {
                 dispatch({ type: 'UPDATE_ORDER_LINE', payload: json });
