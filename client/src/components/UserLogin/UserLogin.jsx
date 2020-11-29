@@ -71,9 +71,8 @@ function UserLogin() {
 
         } else {
             history.push("/");
-
+            window.location.reload(false);
         }
-
     }
 
 

@@ -9,20 +9,24 @@ const useStyles = makeStyles({
     
     borderBlockStyle: 'solid',       
     border: '13px',
-    borderBlockColor: '#505050',
+    borderBlockColor: '#484848',
     "&:hover": {
       // backgroundColor: 'rgb(7, 177, 77, 0.42)',
       transform: 'scale(1.09)',
       transition: 'transform 0.5s',
-      filter: 'brightness(123%)',       
+            
     }    
   },
   
   media: {
     height: 130,
     width: 140,
-    
-
+    "&:hover": {
+      // backgroundColor: 'rgb(7, 177, 77, 0.42)',
+      transform: 'scale(1.15)',
+      transition: 'transform 0.5s',
+      filter: 'brightness(128%)',
+    }
   },
   // media: {
   //   height: 0,  
@@ -41,6 +45,35 @@ const useStyles = makeStyles({
     border: 'none',
     marginLeft: '0 auto',
   },
+
+  adds: {
+    color: '#585858',
+    fontFamily: 'Philosopher', 
+    fontWeight: 'bold', 
+    marginLeft: '30px',
+    borderRadius: '30px',
+    transition: '0.8s',
+    "&:hover": {      
+      color: 'white',     
+      transition: '0.8s',
+      backgroundColor: '#484848',            
+    },  
+  },
+  adds2: {
+    color: '#585858',
+    fontFamily: 'Philosopher', 
+    fontWeight: 'bold', 
+    marginLeft: '30px',
+    borderRadius: '30px',
+    transition: '0.8s',
+    "&:hover": {      
+      color: 'white',     
+      transition: '0.8s',
+      backgroundColor: '#484848',            
+    },  
+  },
+
+
 });
 
 export default useStyles;
