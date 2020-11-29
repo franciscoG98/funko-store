@@ -197,7 +197,7 @@ export default function PrimarySearchAppBar() {
 
       {/* carrito 2 */}
       <MenuItem>
-        {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black' }}>
+        {logged ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black'}}> 
           <IconButton aria-label="show 0 new notifications" color="inherit">
             <Badge badgeContent={order.length} color="secondary">
               <ShoppingCartRoundedIcon />

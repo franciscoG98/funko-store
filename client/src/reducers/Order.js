@@ -92,7 +92,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 guestCartProd: [...state.guestCartProd, action.payload],
-                guestOrder: orderlines([...state.guestCart, action.payload]),
+                //guestOrder: orderlines([...state.guestCart, action.payload]),
                 guestCart: [...state.guestCart, action.payload],
                 /* cart: action.payload.cart,
                 cartProd: action.payload */

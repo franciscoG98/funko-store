@@ -104,9 +104,9 @@ const GuestCart = () => {
   //const carro = useSelector(state => state.Order.cart)
   
   console.log(order)
-  var guestOrderlines = orderlines(order)
+  var uGuestOrderlines = orderlines(order)
   
-  console.log(guestOrderlines);
+  console.log(uGuestOrderlines);
 
   
   useEffect(() => {
@@ -116,6 +116,16 @@ const GuestCart = () => {
       
     }, [])
 
+    const guestOrderlines = uGuestOrderlines.sort(function (a, b) {
+      if (a.id > b.id) {
+        return 1;
+      }
+      if (a.id < b.id) {
+        return -1;
+      }
+      return 0;
+    });
+    
   
   const deleteItemCart = async (id) => {
     MySwal.fire({
