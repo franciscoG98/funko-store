@@ -160,7 +160,7 @@ export default function PrimarySearchAppBar() {
           <Link to="/login" style={{ textDecoration: 'none', color: 'black'}} >
             <MenuItem onClick={() => dispatch(logout())}>
               <span onClick={handleUserMenuClose} style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto'}}>
-                 Logout 
+                Logout 
               </span> 
             </MenuItem>
           </Link>
