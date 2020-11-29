@@ -51,20 +51,10 @@ passport.deserializeUser((id, done) => {
 })
 
 // Login
-<<<<<<< HEAD
-server.post(
-  "/login",
-  isNotAuthenticated,
-  passport.authenticate("local"),
-  (req, res) => {
-    console.log('aaaaaa:');
-    res.send({ user: req.user });
-=======
 server.post("/login", isNotAuthenticated, passport.authenticate("local"), (req, res) => {
-   
-    res.send({ user: req.user})
->>>>>>> 3e14ac7cd16a391d01f2d7fc854bacc980b12102
-  }
+
+  res.send({ user: req.user })
+}
 );
 
 // Logout
