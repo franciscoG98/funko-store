@@ -11,7 +11,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Reviews from "../Reviews/Reviews";
-import useStyles from './ProductStyle';
+// import useStyles from './ProductStyle';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { useDispatch } from 'react-redux';
 import { UpdateOrderLine, saveToGuestCart, updateGuestCart } from '../../actions/Order';
@@ -23,7 +24,6 @@ import ShopIcon from '@material-ui/icons/Shop';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import MoreIcon from '@material-ui/icons/More';
 
-
 //modal 
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -32,6 +32,72 @@ import Fade from '@material-ui/core/Fade';
 import DetailModal from '../DetailModal/DetailModal'
 import { green } from '@material-ui/core/colors';
 import { useEffect } from 'react';
+
+const useStyles = makeStyles({
+  root: {
+    borderRadius: '25% !IMPORTANT',
+    width: '300px',    
+    margin: '55px',
+    padding: '10px',    
+    borderBlockStyle: 'solid',       
+    border: '13px',
+    borderBlockColor: '#484848',
+    transition: '0.5s',
+    "&:hover": {      
+      transform: 'scale(1.09)',
+      transition: 'transform 0.5s',            
+    }    
+  },  
+  media: {
+    height: 130,
+    width: 140,
+    transition: '0.5s',
+    "&:hover": {
+      transform: 'scale(1.15)',
+      transition: 'transform 0.5s',
+      filter: 'brightness(128%)',
+    }
+  },  
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: '0 auto',
+  },
+  paper: {
+    backgroundColor: 'white',
+    padding: 50,
+    border: 'none',
+    marginLeft: '0 auto',
+  },
+
+  adds: {
+    color: '#585858',
+    fontFamily: 'Philosopher', 
+    fontWeight: 'bold', 
+    marginLeft: '30px',
+    borderRadius: '30px',
+    transition: '0.8s',
+    "&:hover": {      
+      color: 'white',     
+      transition: '0.8s',
+      backgroundColor: '#484848',            
+    },  
+  },
+  adds2: {
+    color: '#585858',
+    fontFamily: 'Philosopher', 
+    fontWeight: 'bold', 
+    marginLeft: '30px',
+    borderRadius: '30px',
+    transition: '0.8s',
+    "&:hover": {      
+      color: 'white',     
+      transition: '0.8s',
+      backgroundColor: '#484848',            
+    },  
+  },
+});
 
 const Product = ({ f }) => {
 
@@ -132,7 +198,7 @@ const Product = ({ f }) => {
           <LocalMallIcon style={{paddingRight: '4px'}} />
           Add To Cart
         </Button> : null}
-        <Button className={classes.adds} size="small" color="primary" onClick={() => handleOpen()}>
+        <Button className={classes.adds2} size="small" color="primary" onClick={() => handleOpen()}>
           <MoreIcon style={{paddingRight: '5px'}} />
             More
         </Button>
