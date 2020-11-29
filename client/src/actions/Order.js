@@ -1,6 +1,5 @@
 import Axios from 'axios';
-import { loadState, saveState } from '../components/saveToLocalStorage/LocalStorage'
-import orderlines from "../components/CartOrder/Utils"
+import { loadState, saveState } from '../components/saveToLocalStorage/LocalStorage';
 
 
 

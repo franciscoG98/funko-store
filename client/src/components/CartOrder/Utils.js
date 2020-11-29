@@ -1,6 +1,5 @@
 // const { userId } = useParams();
 //import React from 'react'
-const  {useSelector} = require("react-redux");
 
  //traemos el array con los productos repetidos
  //creamos un nuevo arr con la cantidad sumada de prod repetidos (un obj por producto)
