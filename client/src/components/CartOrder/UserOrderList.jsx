@@ -3,7 +3,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
-import { getUserOrders, getUserInfo } from '../../actions/Order';
+import { getUserOrders, getUserInfo, updateOrderState } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { total, cantidad } from './total';
@@ -100,6 +100,7 @@ export default function UserOrderList() {
   console.log(userList);
 
   async function handleToken(token){
+
     await Axios.post("http://localhost:3001/email", {
         name: userInfoList[0].fullname,
         products: "Funkos",
@@ -107,6 +108,7 @@ export default function UserOrderList() {
         total: total(userList),
         email: token.email
     })
+    await dispatch(updateOrderState(userList[0].orderId))
     const response = await axios.post(
       "http://localhost:3001/checkout", {token, userList}
     );
