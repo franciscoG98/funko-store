@@ -10,11 +10,61 @@ import {useDispatch /*, useSelector*/} from "react-redux";
 import {Link, useParams} from "react-router-dom"
 import { Typography } from '@material-ui/core'
 import {loadSession} from "../../store/saveToSessionStorage/sessionStorage"
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({  
+  
+    adds: {
+      color: '#585858',
+      fontFamily: 'Philosopher', 
+      fontWeight: 'bold', 
+      
+      borderRadius: '30px',
+      transition: '0.8s',
+      paddingBottom: '10px',
+      "&:hover": {      
+        color: 'white',     
+        transition: '0.8s',
+        backgroundColor: '#484848',            
+      },  
+    },
+    adds3: {
+        color: '#585858',
+        fontFamily: 'Philosopher', 
+        fontWeight: 'bold', 
+        marginTop: '10px',
+        borderRadius: '30px',
+        transition: '0.8s',
+        paddingBottom: '10px',
+        "&:hover": {      
+          color: 'white',     
+          transition: '0.8s',
+          backgroundColor: '#484848',            
+        },  
+      },
+    adds2: {
+      color: '#585858',
+      fontFamily: 'Philosopher', 
+      fontWeight: 'bold', 
+      marginLeft: '30px',
+      borderRadius: '30px',
+      transition: '0.8s',
+      textDecoration: 'none',
+      marginRight: '18px',
+      "&:hover": {      
+        color: 'white',     
+        transition: '0.8s',
+        backgroundColor: '#484848',            
+      },  
+    },
+  });
+  
 
 
 export default function CommentBox(){
 
     const dispatch = useDispatch();
+    const classes = useStyles();
     const id = useParams();
     const {handleSubmit/*, errors*/, register} = useForm({
     })
@@ -31,7 +81,7 @@ export default function CommentBox(){
 
 return (
     <div>
-    <MainContainer>
+    <MainContainer style={{height: '400px'}} >
     <Title/>
     <Form onSubmit = {handleSubmit(onSubmit)}>
         <Input ref={register} name="userId" value={userId} style={{display: "none"}} />
@@ -47,10 +97,14 @@ return (
         type = 'textarea'
         placeholder='Leave your review here!'
         label = 'Leave a Comment'
+        
         />
-        <Button>Submit</Button>
+        <Button className={classes.adds} >Submit</Button>
     </Form>
-        <Link to={`/allreviews/${id.id}`}>View all Reviews</Link>
+    
+    <Button className={classes.adds3} >
+        <Link to={`/allreviews/${id.id}`} className={classes.adds2} >View all Reviews</Link>
+    </Button>
     </MainContainer>
     </div>
 )
