@@ -29,12 +29,12 @@ const Profile = () =>{
   const info = useSelector(state => state.Profile.userInfo);
   const userInfo = loadSession();
   const userInfoId = userInfo.id
+  const orders = info.data.orders
   const classes = useStyles();
   useEffect(() => {
     dispatch(getUser(userInfoId))
   }, [])
 
-  //console.log(info.data.orders)
 
     return (
         <Container>
@@ -66,17 +66,17 @@ const Profile = () =>{
              Your Products
              <br/><br/>
              {
-         /*     !info.data.orders? <p>charging...</p>:
-             info.data.orders.map(i => (
+              (!orders) ? <p>charging...</p>:
+             orders.map(i => (
                <Typography key = {i.id} variant ='p' style={{textAlign:'center', fontFamily: 'texturina'}}>
-                 <b>Product Id:</b>{i.id}
+                 <b>Product Id: </b>{i.id}
                  <br/>
-                 <b>Total:</b>{i.total}
+                 <b>Total: </b>{i.total}
                  <br/>
-                 <b>State:</b>{i.state}
+                 <b>State: </b>{i.state}
                  <br/><br/>
                </Typography>
-             )) */
+             )) 
              }
            </Paper>
            </Grid>
