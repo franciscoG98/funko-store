@@ -110,11 +110,11 @@ export default function PrimarySearchAppBar() {
   const renderUserMenu = (
 
     <Menu
-      userEl={userEl}
+      anchorEl={userEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
       style={{ opacity: '80%', marginTop: '-717px', marginLeft: '-272px' }}
@@ -125,14 +125,14 @@ export default function PrimarySearchAppBar() {
       {!logged ?
 
         <Menu
-          userEl={userEl}
+          anchorEl={userEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           id={menuId}
           keepMounted
           transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           open={isUserMenuOpen}
           onClose={handleUserMenuClose}
-          style={{ opacity: '80%', marginTop: '-700px', marginLeft: '-272px' }}
+          style={{ opacity: '80%', /* marginTop: '-700px', marginLeft: '-272px' */ }}
         >
           <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
             <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}> Sign In! </span> </MenuItem>
@@ -143,7 +143,7 @@ export default function PrimarySearchAppBar() {
         </Menu>
 
         : <Menu
-          userEl={userEl}
+        anchorEl={userEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           id={menuId}
           keepMounted
@@ -156,8 +156,9 @@ export default function PrimarySearchAppBar() {
             <span className='signedas'> Signed as {username} </span>
           </MenuItem>
 
+          <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }} >
           <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', height: '25px' }}> Profile </span> </MenuItem>
-
+          </Link>
 
           <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
             <MenuItem onClick={() => dispatch(logout())}>
@@ -192,12 +193,12 @@ export default function PrimarySearchAppBar() {
               <ShopTwoIcon />
             </Badge>
           </IconButton>
+         <span>Home</span>
         </Link>
-        <p>Home</p>
       </MenuItem>
 
 
-      {/* carrito 2 */}
+      {/* carrito*/}
       <MenuItem>
         {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black'}}> 
           <IconButton aria-label="show 0 new notifications" color="inherit">
@@ -205,24 +206,30 @@ export default function PrimarySearchAppBar() {
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
+          <span>Cart</span>
         </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'black' }} >
             <IconButton aria-label="show 0 new notifications" color="inherit">
               <Badge badgeContent={guestOrder.length} color="secondary">
                 <ShoppingCartRoundedIcon />
               </Badge>
             </IconButton>
+          <span>Cart</span>
           </Link>}
-        <p>Shopping Cart</p>
       </MenuItem>
 
       {/* Profile */}
-      <MenuItem>
+      
+      <MenuItem  onClick={handleUserMenuClose}>
+      <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
+            
+          
         <IconButton aria-label="" color="inherit">
           <Badge badgeContent={0} color="secondary">
             <AccountCircle />
           </Badge>
         </IconButton>
-        <p>Profile</p>
+          <span>Profile</span>
+        </Link>
       </MenuItem>
 
       {/* Settings */}
@@ -245,7 +252,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar style={{ backgroundColor: '#202020' }} position="static">
+      <AppBar style={{ backgroundColor: '#202020' }} position="fixed">
         <Toolbar>
           {/* sidebar */}
           <IconButton
@@ -259,7 +266,7 @@ export default function PrimarySearchAppBar() {
 
           {/* Menu */}
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link style={{ textDecoration: 'none', color: 'white', fontFamily: 'Trade Winds', marginLeft: '22px' }} to='/'> Funko's Store </Link>
+            <Link style={{ textDecoration: 'none', color: 'white', fontFamily: 'Trade Winds', marginLeft: '22px' }} to='/'> Funko Wars </Link>
           </Typography>
 
           <div className={classes.grow} />
