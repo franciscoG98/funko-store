@@ -11,6 +11,7 @@ const reviewsRouter = require('./reviews.js');
 const authRouter = require ('./auth.js');
 const statusRouter = require ('./adminStatus.js');
 const emailRouter = require("./email");
+const checkoutRouter = require("./checkout");
 
 
 
@@ -29,6 +30,7 @@ router.use('/product', reviewsRouter);
 router.use('/auth', authRouter );
 router.use('/status', statusRouter);
 router.use('/email', emailRouter);
+router.use('/checkout', checkoutRouter);
 
 
 

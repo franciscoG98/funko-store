@@ -3,14 +3,15 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 
-import { getUserOrders, getUserInfo } from '../../actions/Order';
+import { getUserOrders, getUserInfo, updateOrderState } from '../../actions/Order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { total } from './total';
+import { total, cantidad } from './total';
 import StripeCheckout from 'react-stripe-checkout'
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Axios from 'axios';
 
 toast.configure();
 
@@ -83,12 +84,10 @@ export default function UserOrderList() {
   //const classes2 = useStylesGrid();
 
   const id = useParams();
-  console.log(id.id)
 
   const dispatch = useDispatch();
   const userList = useSelector(state => state.Order.userItem);
   const userInfoList = useSelector(state => state.Order.userInfo);
-
   //action UserOrderList
   useEffect(() => {
     dispatch(getUserOrders(id.id))
@@ -101,6 +100,15 @@ export default function UserOrderList() {
   console.log(userList);
 
   async function handleToken(token){
+
+    await Axios.post("http://localhost:3001/email", {
+        name: userInfoList[0].fullname,
+        products: "Funkos",
+        quantity: cantidad(userList),
+        total: total(userList),
+        email: token.email
+    })
+    await dispatch(updateOrderState(userList[0].orderId))
     const response = await axios.post(
       "http://localhost:3001/checkout", {token, userList}
     );

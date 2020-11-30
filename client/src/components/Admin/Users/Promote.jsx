@@ -13,6 +13,11 @@ import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Button from '@material-ui/core/Button';
+import { Switch } from '@material-ui/core';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
+
+const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -54,6 +59,15 @@ function CustomizedTables() {
   const dispatch = useDispatch();
   const users1 = useSelector(state => state.User.data);
   
+  const users = users1.sort(function (a, b) {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+    return 0;
+  });
   
 
   useEffect(()=>{
@@ -67,13 +81,30 @@ function CustomizedTables() {
   }
 
   async function wipe(id) {
-    await dispatch( deleteUser(id) );
-    dispatch(getUsers());
-    
+    MySwal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        
+        await dispatch( deleteUser(id) );
+        
+        MySwal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+    dispatch(getUsers());    
   }
 
 
-  const users = users1.sort();
 
   return (
     <TableContainer className={classes.container} component={Paper}>
@@ -109,8 +140,8 @@ function CustomizedTables() {
               </StyledTableCell>
 
               <StyledTableCell component="th" scope="row">
-                <Button onClick={() => promote(user.id) }>
-                  <PersonAddIcon/>  
+                <Button onClick={() => promote(user.id)}>
+                  <Switch checked={ user.isAdmin ? true : false} />  
                 </Button>                
               </StyledTableCell>
 

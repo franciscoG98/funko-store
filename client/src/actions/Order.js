@@ -112,6 +112,7 @@ export function saveToGuestCart(prod) {
    // var ol = orderlines(prod)
     return (dispatch) => {
         saveState(prod)
+        
         dispatch({ type: "UPDATE_GUEST_CART", payload: prod });
     }
 }
@@ -138,3 +139,14 @@ export function filterAdminOrder(status) {
     };
 }
 //--------------------------------------------------------------------------------------------
+
+
+export function updateOrderState(orderId) {
+    return (dispatch) => {
+        return Axios.put(`http://localhost:3001/orders/` + orderId, {state:'created'})
+            .then(json => {
+                dispatch({ type: 'UPDATE_STATE_ORDER', payload: json });
+            })
+    }
+}
+

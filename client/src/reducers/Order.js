@@ -7,7 +7,7 @@ import { loadState } from "../store/saveToLocalStorage/LocalStorage";
 
 
 const initialState = {
-    items: [],
+    items: 0,
     orderItem: [],
     cart: [],
     userItem: [],
@@ -16,8 +16,8 @@ const initialState = {
     cartProd: [],
     incDec: [],
     prueba: [],
-    //guestOrder: [],
-    guestCart: loadState() === undefined ? [] : loadState(),
+    guestOrder: [],
+    guestCart: loadState() === undefined ? []: loadState(),
     guestCartProd: []
 }
 
@@ -54,7 +54,8 @@ export default (state = initialState, action) => {
         case "UPDATE_ORDER_LINE":
             return {
                 ...state,
-                carrito: action.payload
+                carrito: action.payload,
+                items: state.items +1
             }
 
         case "INCREASE_ORDER_LINE":
@@ -92,8 +93,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 guestCartProd: [...state.guestCartProd, action.payload],
-                //guestOrder: orderlines([...state.guestCart, action.payload]),
-                guestCart: [...state.guestCart, action.payload],
+                guestCart: [...state.guestCartProd, action.payload],
+                guestOrder: orderlines([...state.guestCart])
                 /* cart: action.payload.cart,
                 cartProd: action.payload */
             }
@@ -121,6 +122,11 @@ export default (state = initialState, action) => {
                 orderItem: action.payload.data.ordenes
             }
 
+        case 'UPDATE_STATE_ORDER':
+            return {
+                ...state,
+                orderItem: action.payload
+            }
 
         default: return state;
 

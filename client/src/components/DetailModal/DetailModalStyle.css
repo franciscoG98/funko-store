@@ -15,3 +15,17 @@ img {
   width: 400px;
   height: "auto";
 }
+
+.review {
+  color: black;
+  margin-top: 26px;
+  font-family: Philosopher;
+  transition: 0.8s;
+  border-radius: 30px;
+}
+
+.review:hover {
+  background-color: #484848;  
+  color: white;
+  transition-duration: 0.8s;
+}

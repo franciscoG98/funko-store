@@ -41,10 +41,17 @@ server.put('/:id', (req, res) => {
                 id: id
             }
         })
-            .then(order => {
-                order.update({ state })
+            .then(async order => {
+                return await order.update({ state })
             })
-            .then(res.status(201).json({ msj: 'Order successfully updated!' }))
+            .then(orderUpdated => {
+                id = orderUpdated.userId
+               return Order.create({
+                        userId: id,
+                        state: 'cart'
+                 })
+                })
+            .then(()  => res.json({ msj: 'Order successfully updated!' }))
             .catch(err => {
                 res.json({ err });
             })
