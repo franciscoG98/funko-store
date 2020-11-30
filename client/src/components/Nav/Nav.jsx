@@ -132,7 +132,7 @@ export default function PrimarySearchAppBar() {
           transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           open={isUserMenuOpen}
           onClose={handleUserMenuClose}
-          style={{ opacity: '80%', /* marginTop: '-700px', marginLeft: '-272px' */ }}
+          style={{ opacity: '80%', marginTop: '20px', marginLeft: '45px' }}
         >
           <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
             <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}> Sign In! </span> </MenuItem>
@@ -150,7 +150,7 @@ export default function PrimarySearchAppBar() {
           transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           open={isUserMenuOpen}
           onClose={handleUserMenuClose}
-          style={{ opacity: '80%', marginTop: '-698px', marginLeft: '-519px' }}
+          style={{ opacity: '80%', marginTop: '39px', marginLeft: '70px' }}
         >
           <MenuItem onClick={handleUserMenuClose} style={{ height: '37px' }}> <img class="circle" src='https://www.urbecom.com/css/profile/img-usuario.svg' alt='profile pic' />
             <span className='signedas'> Signed as {username} </span>
@@ -252,7 +252,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar style={{ backgroundColor: '#202020' }} position="fixed">
+      <AppBar style={{ backgroundColor: '#202020' }} position="static">
         <Toolbar>
           {/* sidebar */}
           <IconButton
