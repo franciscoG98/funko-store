@@ -6,14 +6,14 @@ const useStyles = makeStyles((theme)=>({
     root: {
         background: 'white',
         alignItems: 'center',
-        opacity: '88%'
+        border: 'outset'
     }
 }))
 
 export default function ProfileContainer({children, ...props}){
     const styles = useStyles();
     return (
-        <Container className = {styles.root} component = 'main' maxWidth {...props}>
+        <Container className = {styles.root} component = 'main' maxWidth = 'lg' {...props}>
             {children}
         </Container>
     )

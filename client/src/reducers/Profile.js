@@ -7,7 +7,7 @@ export default (state = initialState, action) => {
             case 'GET_PROFILE':
                 return {
                     ...state,
-                    userInfo: action.payload.data
+                    userInfo: action.payload
                 }    
 
             default: return state     
