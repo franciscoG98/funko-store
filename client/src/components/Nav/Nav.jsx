@@ -110,7 +110,7 @@ export default function PrimarySearchAppBar() {
   const renderUserMenu = (
 
     <Menu
-      userEl={userEl}
+      anchorEl={userEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
       keepMounted
@@ -125,7 +125,7 @@ export default function PrimarySearchAppBar() {
       {!logged ?
 
         <Menu
-        anchorPosition={userEl}
+          anchorEl={userEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           id={menuId}
           keepMounted
@@ -143,7 +143,7 @@ export default function PrimarySearchAppBar() {
         </Menu>
 
         : <Menu
-          anchorPosition={userEl}
+        anchorEl={userEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           id={menuId}
           keepMounted
@@ -180,7 +180,7 @@ export default function PrimarySearchAppBar() {
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
@@ -192,12 +192,12 @@ export default function PrimarySearchAppBar() {
               <ShopTwoIcon />
             </Badge>
           </IconButton>
+         <span>Home</span>
         </Link>
-        <p>Home</p>
       </MenuItem>
 
 
-      {/* carrito 2 */}
+      {/* carrito*/}
       <MenuItem>
         {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black'}}> 
           <IconButton aria-label="show 0 new notifications" color="inherit">
@@ -205,24 +205,30 @@ export default function PrimarySearchAppBar() {
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
+          <span>Cart</span>
         </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'black' }} >
             <IconButton aria-label="show 0 new notifications" color="inherit">
               <Badge badgeContent={guestOrder.length} color="secondary">
                 <ShoppingCartRoundedIcon />
               </Badge>
             </IconButton>
+          <span>Cart</span>
           </Link>}
-        <p>Shopping Cart</p>
       </MenuItem>
 
       {/* Profile */}
-      <MenuItem>
+      
+      <MenuItem  onClick={handleUserMenuClose}>
+      <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
+            
+          
         <IconButton aria-label="" color="inherit">
           <Badge badgeContent={0} color="secondary">
             <AccountCircle />
           </Badge>
         </IconButton>
-        <p>Profile</p>
+          <span>Profile</span>
+        </Link>
       </MenuItem>
 
       {/* Settings */}
