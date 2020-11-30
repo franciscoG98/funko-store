@@ -122,6 +122,11 @@ export default (state = initialState, action) => {
                 orderItem: action.payload.data.ordenes
             }
 
+        case 'UPDATE_STATE_ORDER':
+            return {
+                ...state,
+                orderItem: action.payload
+            }
 
         default: return state;
 
