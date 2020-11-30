@@ -18,11 +18,11 @@ passport.use(
         })
         .then((user) => {
 
-          console.log('pass que llega del front:\n',password, '\n user pass de DB:\n',user.password);
+          //console.log('pass que llega del front:\n',password, '\n user pass de DB:\n',user.password);
 
           bcrypt.compare(password, user.password, function(err, res) {
             if (err){
-              console.log('le has mandado cualquier pass ura mira:\n',password);
+              //console.log('le has mandado cualquier pass ura mira:\n',password);
               // res.json({success: false, message: 'passwords do not match'});
               res.json({message: 'passwords do not match'})
             }
