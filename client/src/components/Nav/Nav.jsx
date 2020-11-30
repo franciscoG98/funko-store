@@ -156,8 +156,9 @@ export default function PrimarySearchAppBar() {
             <span className='signedas'> Signed as {username} </span>
           </MenuItem>
 
+          <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }} >
           <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', height: '25px' }}> Profile </span> </MenuItem>
-
+          </Link>
 
           <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
             <MenuItem onClick={() => dispatch(logout())}>
@@ -245,7 +246,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar style={{ backgroundColor: '#202020' }} position="static">
+      <AppBar style={{ backgroundColor: '#202020' }} position="fixed">
         <Toolbar>
           {/* sidebar */}
           <IconButton
@@ -259,7 +260,7 @@ export default function PrimarySearchAppBar() {
 
           {/* Menu */}
           <Typography className={classes.title} variant="h6" noWrap>
-            <Link style={{ textDecoration: 'none', color: 'white', fontFamily: 'Trade Winds', marginLeft: '22px' }} to='/'> Funko's Store </Link>
+            <Link style={{ textDecoration: 'none', color: 'white', fontFamily: 'Trade Winds', marginLeft: '22px' }} to='/'> Funko Wars </Link>
           </Typography>
 
           <div className={classes.grow} />
