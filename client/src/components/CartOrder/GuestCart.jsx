@@ -221,7 +221,7 @@ const GuestCart = () => {
               {/* ternario aca que si es usuario 0 me redireccione a login */}
               <Link to={`/login`}>
                 <Button className={classes.buy} /* autoFocus color="primary" */>
-                  Login
+                  BUY
                 </Button>
               </Link>
             </StyledTableCell>

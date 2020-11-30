@@ -7,7 +7,7 @@ import { loadState } from "../store/saveToLocalStorage/LocalStorage";
 
 
 const initialState = {
-    items: [],
+    items: 0,
     orderItem: [],
     cart: [],
     userItem: [],
@@ -54,7 +54,8 @@ export default (state = initialState, action) => {
         case "UPDATE_ORDER_LINE":
             return {
                 ...state,
-                carrito: action.payload
+                carrito: action.payload,
+                items: state.items +1
             }
 
         case "INCREASE_ORDER_LINE":

@@ -34,6 +34,7 @@ export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
   const order = useSelector(state => state.Order.items);
+  const guestOrder = useSelector(state => state.Order.guestCart);
   const dispatch = useDispatch();
   const userData = loadSession();
 
@@ -98,6 +99,7 @@ export default function PrimarySearchAppBar() {
       {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/products/admin'> Orders </Link> </MenuItem>
+      <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/admin/user'> Users </Link> </MenuItem>
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/admin/categories'> Categories </Link> </MenuItem>
       <MenuItem onClick={handleMenuClose}>  <Link style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds' }} to='/admin/products'> Products </Link> </MenuItem>
 
@@ -186,7 +188,7 @@ export default function PrimarySearchAppBar() {
       <MenuItem>
         <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }} >
           <IconButton aria-label="show 0 new notifications" color="inherit">
-            <Badge badgeContent={order.length} color="secondary">
+            <Badge badgeContent={order} color="secondary">
               <ShopTwoIcon />
             </Badge>
           </IconButton>
@@ -199,13 +201,13 @@ export default function PrimarySearchAppBar() {
       <MenuItem>
         {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'black'}}> 
           <IconButton aria-label="show 0 new notifications" color="inherit">
-            <Badge badgeContent={order.length} color="secondary">
+            <Badge badgeContent={order} color="secondary">
               <ShoppingCartRoundedIcon />
             </Badge>
           </IconButton>
         </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'black' }} >
             <IconButton aria-label="show 0 new notifications" color="inherit">
-              <Badge badgeContent={order.length} color="secondary">
+              <Badge badgeContent={guestOrder.length} color="secondary">
                 <ShoppingCartRoundedIcon />
               </Badge>
             </IconButton>
@@ -285,13 +287,13 @@ export default function PrimarySearchAppBar() {
 
             {userId ? <Link to='/UserCart' style={{ textDecoration: 'none', color: 'inherit' }} >
               <IconButton aria-label="show 0 new notifications" color="inherit">
-                <Badge badgeContent={order.length} color="primary">
+                <Badge badgeContent={order} color="primary">
                   <ShoppingCartRoundedIcon />
                 </Badge>
               </IconButton>
             </Link> : <Link to='/GuestCart' style={{ textDecoration: 'none', color: 'inherit' }} >
                 <IconButton aria-label="show 0 new notifications" color="inherit">
-                  <Badge badgeContent={order.length} color="primary">
+                  <Badge badgeContent={guestOrder.length} color="primary">
                     <ShoppingCartRoundedIcon />
                   </Badge>
                 </IconButton>
