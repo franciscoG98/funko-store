@@ -114,7 +114,7 @@ export default function PrimarySearchAppBar() {
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       open={isUserMenuOpen}
       onClose={handleUserMenuClose}
       style={{ opacity: '80%', marginTop: '-717px', marginLeft: '-272px' }}
@@ -125,14 +125,14 @@ export default function PrimarySearchAppBar() {
       {!logged ?
 
         <Menu
-          userEl={userEl}
+        anchorPosition={userEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           id={menuId}
           keepMounted
           transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           open={isUserMenuOpen}
           onClose={handleUserMenuClose}
-          style={{ opacity: '80%', marginTop: '-700px', marginLeft: '-272px' }}
+          style={{ opacity: '80%', /* marginTop: '-700px', marginLeft: '-272px' */ }}
         >
           <Link to="/login" style={{ textDecoration: 'none', color: 'black' }} >
             <MenuItem onClick={handleUserMenuClose}> <span style={{ textDecoration: 'none', color: '#303030', fontWeight: 'lighter', fontFamily: 'Trade Winds', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto' }}> Sign In! </span> </MenuItem>
@@ -143,7 +143,7 @@ export default function PrimarySearchAppBar() {
         </Menu>
 
         : <Menu
-          userEl={userEl}
+          anchorPosition={userEl}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           id={menuId}
           keepMounted
@@ -180,7 +180,7 @@ export default function PrimarySearchAppBar() {
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
