@@ -31,7 +31,7 @@ export function deleteUser(id) {
     return (dispatch) => {
         return Axios.delete(`http://localhost:3001/user/${id}`)
             .then(json => {
-                dispatch({ type: 'DELETE_USER', payload: json });
+                dispatch({ type: 'DELETE_USER', payload: id });
             })            
     }    
 }

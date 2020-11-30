@@ -14,6 +14,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Button from '@material-ui/core/Button';
 import { Switch } from '@material-ui/core';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
+
+const MySwal = withReactContent(Swal)
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -77,9 +81,27 @@ function CustomizedTables() {
   }
 
   async function wipe(id) {
-    await dispatch( deleteUser(id) );
-    dispatch(getUsers());
-    
+    MySwal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        
+        await dispatch( deleteUser(id) );
+        
+        MySwal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+    dispatch(getUsers());    
   }
 
 

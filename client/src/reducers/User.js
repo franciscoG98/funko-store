@@ -24,7 +24,7 @@ export default (state = initialState, action)=>{
             case 'DELETE_USER':
                 return {
                     ...state,
-                    data: [...state.data]
+                    data: state.data.filter((p) => p.id !== action.payload)
                 }
             
             case 'RESET_PASSWORD':
