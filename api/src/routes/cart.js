@@ -71,7 +71,8 @@ server.put('/:idUser/cart', async (req, res) => {
     return Order.findOne({
         where: {
             userId: idUser,
-            state: 'cart',
+            // state: 'cart',
+            state: 'created',
         }
     }).then((Orden) => {
       idOrd = Orden.id
