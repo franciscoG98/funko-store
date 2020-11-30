@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme)=>({
 export default function ProfileContainer({children, ...props}){
     const styles = useStyles();
     return (
-        <Container className = {styles.root} component = 'main' maxWidth = 'lg' {...props}>
+        <Container className = {styles.root} component = 'main' maxWidth = 'xs' {...props}>
             {children}
         </Container>
     )

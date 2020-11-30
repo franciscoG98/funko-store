@@ -29,7 +29,7 @@ const Profile = () =>{
   const info = useSelector(state => state.Profile.userInfo);
   const userInfo = loadSession();
   const userInfoId = userInfo.id
-  const orders = info.data.orders
+  /* const orders = info.data.orders */
   const classes = useStyles();
   useEffect(() => {
     dispatch(getUser(userInfoId))
@@ -61,12 +61,12 @@ const Profile = () =>{
            </Paper>
            </Grid>
 
-           <Grid item xs = {12}>
+           {/* <Grid item xs = {12}>
            <Paper className = {classes.paper}>
              Your Products
              <br/><br/>
              {
-              (!orders) ? <p>charging...</p>:
+             (!orders) ? <p>charging...</p>:
              orders.map(i => (
                <Typography key = {i.id} variant ='p' style={{textAlign:'center', fontFamily: 'texturina'}}>
                  <b>Product Id: </b>{i.id}
@@ -79,7 +79,7 @@ const Profile = () =>{
              )) 
              }
            </Paper>
-           </Grid>
+           </Grid> */}
         </Grid>
         <br/>
         <br/>
